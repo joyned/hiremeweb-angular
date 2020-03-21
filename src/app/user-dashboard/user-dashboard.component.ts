@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { JobsComponent } from '../jobs/jobs.component';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-user-dashboard',
@@ -10,15 +11,13 @@ export class UserDashboardComponent implements OnInit {
 
   constructor() { }
 
-  public page: any;
+  @Input() page: any;
 
   ngOnInit(): void {
   }
 
   loadPage(page: any){
     if(page == "Jobs"){
-      console.log("entrei");
-      
       this.page = JobsComponent;
     }
   }

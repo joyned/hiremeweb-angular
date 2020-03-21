@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-jobs',
@@ -7,13 +8,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class JobsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private rootComponent: AppComponent) { }
 
-  public jobs: any = [];
+  displayedColumns: string[] = ['title', 'location', 'edit'];
+
+  public isEditing: boolean;
+
+  public jobs: any = [
+    {title: "DevOps", location:"São Paulo"},
+    {title: "Front-end", location:"São Paulo"},
+    {title: "Back-end", location:"São Paulo"},
+    {title: "Malware Analyst", location:"São Paulo"},
+  ];
 
   ngOnInit(): void {
-    console.log("work");
-    
+    this.isEditing = false;
+  }
+
+  addNewJob(){
+    this.isEditing = true;
+  }
+
+  back(){
+    this.isEditing = false;
   }
 
 }
