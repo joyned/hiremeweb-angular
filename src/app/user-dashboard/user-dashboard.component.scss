@@ -1,0 +1,59 @@
+.upper-menu{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #5fbae9;
+    box-shadow: 0 25px 25px 0 rgba(0,0,0,0.3);
+    height: 10%; /* Full-height: remove this if you want "auto" height */
+    width: 90%; /* Set the width of the sidebar */
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    z-index: 1; /* Stay on top */
+    top: 2%; /* Stay at the top */
+    left: 5%;
+    right: 5%;
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 20px;
+    
+    border-radius: 5px;
+
+    .logo{
+        width: 100%;
+    }
+
+    .menu-item{
+        font-size: x-large;
+        top: 15%;
+        width: 100%;
+
+        .columns{
+            columns: 3;
+            top: 5%;
+        }
+
+        .row{
+            padding: 5px;
+            text-align: center;
+            width: 100%;
+        }
+    }
+}
+
+a:hover {
+    cursor: pointer;
+    border-bottom: solid black;
+}
+
+.content{
+    background-color: #ffffff;
+    width: 90%;
+    box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+    border-radius: 5px;
+    left: 5%;
+    right: 5%;
+    top: 20%;
+    margin-bottom: 5%;
+    position: absolute;
+    height: auto;
+
+    .container{
+        padding: 2%;
+    }
+}
