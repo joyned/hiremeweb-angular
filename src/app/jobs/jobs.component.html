@@ -7,7 +7,7 @@
   <div class="jobs-list" *ngIf="!isEditing">
       <h2>Suas vagas cadastradas</h2>
       <span *ngIf="jobs.length == 0">Não existem vagas cadastradas</span>
-      <div class="list" style="width: 100%;">
+      <div class="list" style="width: 100%;" *ngIf="jobs.length != 0">
           <table mat-table [dataSource]="jobs" matSort class="mat-elevation-z8">
               <ng-container matColumnDef="title">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Vaga </th>
@@ -39,7 +39,7 @@
             Titulo da vaga:
         </div>
         <div class="rowInput" style="text-align: left;">
-          <input type="text" name="" id="">
+          <input type="text" name="title" [(ngModel)]="job.title">
         </div>
       </div>
 
@@ -48,11 +48,11 @@
             Localização:
         </div>
         <div class="rowInput" style="text-align: left;">
-          <input type="text" name="" id="">
+          <input type="text" name="localization" [(ngModel)]="job.localization">
         </div>
       </div>
 
       <button (click)="back()">Voltar</button>
-      <button>Salvar</button>
+      <button (click)="save()">Salvar</button>
     </div>
 </div>

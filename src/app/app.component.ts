@@ -1,5 +1,4 @@
 import { Component, ComponentFactory } from '@angular/core';
-import { ComponentFactoryService } from './component-factory.service';
 import { JobsComponent } from './jobs/jobs.component';
 
 @Component({
