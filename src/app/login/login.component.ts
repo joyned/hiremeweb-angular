@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../classes/user/user';
 import { ApiService } from '../services/api/api.service';
+import { LoginService } from '../services/login/login.service';
 
 @Component({
   selector: 'app-login',
@@ -10,9 +11,9 @@ import { ApiService } from '../services/api/api.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public router: Router, private api: ApiService) { }
+  constructor(public router: Router, private api: ApiService, private loginService: LoginService) { }
 
-  public user: User;
+  public user = new User();
   public response: any;
   public data: any;
 
@@ -20,22 +21,11 @@ export class LoginComponent implements OnInit {
   }
 
   async redirectToDashboard(){
-    //this.response = await this.api.get('test', {});
-    //this.response.then((result: any) => { this.data = result});
-    this.getResult();
-    console.log(this.data);
-    
-    this.router.navigateByUrl('/dashboard');
-  }
-
-  async getResult(){
     try{
-      this.data = await this.api.getResult('test', {});
+      await this.loginService.validUser(this.user);
       this.router.navigateByUrl('/dashboard');
-    } catch (error) {
+    } catch (error){
       console.log(error);
-    } finally {
-      console.log(this.data);
     }
   }
 

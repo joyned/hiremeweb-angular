@@ -13,8 +13,8 @@ export class ApiService {
 
   private response: any;
 
-  post(endPoint: string, headers: any, body: any){
-
+  post(endPoint: string, body: any){
+    return this.http.post(this.url + endPoint, body).toPromise();
   }
 
   async get(endPoint: string, headers: any): Promise<any>{
