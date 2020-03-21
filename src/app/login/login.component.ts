@@ -14,13 +14,12 @@ export class LoginComponent implements OnInit {
   constructor(public router: Router, private api: ApiService, private loginService: LoginService) { }
 
   public user = new User();
-  public response: any;
   public data: any;
 
   ngOnInit(): void {
   }
 
-  async redirectToDashboard(){
+  async doLogin(){
     try{
       await this.loginService.validUser(this.user);
       this.router.navigateByUrl('/dashboard');

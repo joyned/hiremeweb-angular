@@ -12,6 +12,7 @@ import { MatTableModule } from '@angular/material/table'
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { AuthGuard } from './guard/auth-guard.guard';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,7 @@ import { RouterModule } from '@angular/router';
     FormsModule,
     RouterModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
