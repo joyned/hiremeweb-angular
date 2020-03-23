@@ -22,4 +22,9 @@ export class UserDashboardComponent implements OnInit {
     }
   }
 
+  alert(){
+    console.log('teste');
+    
+  }
+
 }

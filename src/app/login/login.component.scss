@@ -22,6 +22,18 @@ h2 {
 
 /* STRUCTURE */
 
+.errorMessage {
+  background-color: #FF7F74;
+  border-radius: 10px;
+  width: auto;
+  height: auto;
+  padding: 10px;
+  position: absolute;
+  color: white;
+  font-size: 20px;
+  top: 15%;
+}
+
 .wrapper {
   font-family: Arial, Helvetica, sans-serif;
   display: flex;
@@ -97,6 +109,12 @@ input[type=button], input[type=submit], input[type=reset]  {
 
 input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover  {
   background-color: #39ace7;
+  -moz-transform: scale(0.95);
+  -webkit-transform: scale(0.95);
+  -o-transform: scale(0.95);
+  -ms-transform: scale(0.95);
+  transform: scale(0.95);
+  cursor: pointer;
 }
 
 input[type=button]:active, input[type=submit]:active, input[type=reset]:active  {
@@ -172,4 +190,14 @@ input[type=text]:placeholder {
 
 * {
   box-sizing: border-box;
+}
+
+.spinner {
+  padding: 30px;
+  width: 90%;
+  max-width: 450px;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 30%;
 }

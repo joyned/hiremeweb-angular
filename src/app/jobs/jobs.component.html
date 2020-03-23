@@ -3,7 +3,7 @@
     <hr>
 </div>
 <div class="content">
-  <button (click)="addNewJob()" *ngIf="!isEditing">Adicionar</button>
+  <app-hire-me-button (click)="addNewJob()" *ngIf="!isEditing" [buttonTitle]="'Adicionar'"></app-hire-me-button>
   <div class="jobs-list" *ngIf="!isEditing">
       <h2>Suas vagas cadastradas</h2>
       <span *ngIf="jobs.length == 0">Não existem vagas cadastradas</span>
@@ -52,7 +52,7 @@
         </div>
       </div>
 
-      <button (click)="back()">Voltar</button>
-      <button (click)="save()">Salvar</button>
+      <app-hire-me-button (click)="back()" [buttonTitle]="'Voltar'"></app-hire-me-button>
+      <app-hire-me-button (click)="save()" [buttonTitle]="'Salvar'"></app-hire-me-button>
     </div>
 </div>

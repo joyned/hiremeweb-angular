@@ -11,20 +11,21 @@ export class LoginService {
 
   private userAuth = false;
 
+  public token: any;
+
   constructor(private api: ApiService) { }
 
-  async validUser(user: User){
+  async login(user: User){
     this.data = await this.api.post('login', user);
-    const res = String(this.data['success']);
-    if(res == "false"){
-      this.userAuth = false;
-      throw throwError("invalid user");
-    }
-    this.userAuth = true;
+    this.token = this.data['idToken']
   }
 
   getUserAuth(){
     return this.userAuth;
+  }
+
+  setUserAuth(state: boolean){
+    this.userAuth = state;
   }
 
 }

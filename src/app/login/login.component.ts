@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../classes/user/user';
-import { ApiService } from '../services/api/api.service';
 import { LoginService } from '../services/login/login.service';
 
 @Component({
@@ -11,21 +10,38 @@ import { LoginService } from '../services/login/login.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public router: Router, private api: ApiService, private loginService: LoginService) { }
+  constructor(public router: Router, private loginService: LoginService) { }
 
   public user = new User();
-  public data: any;
+
+  public isLoading = false;
+  private userAuth = false;
+
+  public errorMessage: string = "";
 
   ngOnInit(): void {
   }
 
   async doLogin(){
     try{
-      await this.loginService.validUser(this.user);
+      this.isLoading = true;
+      await this.loginService.login(this.user);
       this.router.navigateByUrl('/dashboard');
+      this.loginService.setUserAuth(true);
     } catch (error){
-      console.log(error);
+      this.errorMessage = "Usuário e/ou senha incorretos. Por favor, tente novamente.";
+      this.loginService.setUserAuth(false);
+    } finally {
+      this.isLoading = false;
     }
+  }
+
+  getUserAuth(){
+    return this.userAuth;
+  }
+
+  showErrorMessage(){
+    return this.errorMessage.length != 0;
   }
 
 }

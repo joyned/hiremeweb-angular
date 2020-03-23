@@ -1,4 +1,8 @@
 <div class="wrapper fadeInDown">
+    <div class="errorMessage" *ngIf="showErrorMessage()">
+        <img class="images" src="../../assets/icons/outline_error_outline_black_18dp.png" >
+        <label>{{errorMessage}}</label>
+    </div>
     <div id="formContent">
         <!-- Tabs Titles -->
         <h2 class="active"> Sign In </h2>
@@ -18,6 +22,10 @@
         <!-- Remind Passowrd -->
         <div id="formFooter">
         <a class="underlineHover" href="#">Forgot Password?</a>
+        </div>
+        
+        <div class="spinner" align="center" *ngIf="isLoading">
+            <mat-spinner></mat-spinner>
         </div>
 
     </div>

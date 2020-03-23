@@ -9,7 +9,7 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  private readonly url = "https://python-api-test-ionic.herokuapp.com/api/";
+  private readonly url = "https://python-hire-me-api.herokuapp.com/api/";
 
   private response: any;
 

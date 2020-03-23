@@ -13,13 +13,16 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { AuthGuard } from './guard/auth-guard.guard';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { HireMeButtonComponent } from './hire-me-button/hire-me-button.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     UserDashboardComponent,
-    JobsComponent
+    JobsComponent,
+    HireMeButtonComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +33,8 @@ import { AuthGuard } from './guard/auth-guard.guard';
     MatTableModule,
     HttpClientModule,
     FormsModule,
-    RouterModule
+    RouterModule,
+    MatProgressSpinnerModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]
