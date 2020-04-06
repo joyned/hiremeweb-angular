@@ -20,6 +20,7 @@ import { HomeComponent } from './home/home.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { Interceptor } from './services/token-interceptor/token-interceptor.service';
 import { JobDetailsComponent } from './job-details/job-details.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { JobDetailsComponent } from './job-details/job-details.component';
     RouterModule,
     MatProgressSpinnerModule,
     MatGridListModule,
-    Interceptor
+    Interceptor,
+    NgbModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]
