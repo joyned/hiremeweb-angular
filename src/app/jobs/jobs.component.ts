@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AppComponent } from '../app.component';
 import { Job } from '../classes/job/job';
+import { JobService } from '../services/job/job.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-jobs',
@@ -9,30 +11,26 @@ import { Job } from '../classes/job/job';
 })
 export class JobsComponent implements OnInit {
 
-  constructor(private rootComponent: AppComponent) { }
-
-  displayedColumns: string[] = ['title', 'location', 'edit'];
+  constructor(private rootComponent: AppComponent, private jobService: JobService, private router: Router) { }
 
   public isEditing: boolean;
   public job: Job;
-  public jobs: Array<Job> = [];
+  public jobs: Array<any> = [];
+  public isLoading = false;
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.isEditing = false;
+    this.listJobs()
   }
 
-  addNewJob(){
-    this.isEditing = true;
-    this.job = new Job();
+  async listJobs(){
+    this.isLoading = true;
+    this.jobs = await this.jobService.getJobs();
+    this.isLoading = false;
   }
 
-  back(){
-    this.isEditing = false;
-    this.job = new Job();
-  }
-
-  save(){
-    console.log(this.job);
+  jobDetails(id: number){
+    this.router.navigate(['/job-details', id])
   }
 
 }

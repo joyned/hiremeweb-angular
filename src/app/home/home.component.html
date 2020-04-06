@@ -1,0 +1,35 @@
+<div class="img-search" align="center">
+    <img src="../../assets/img/job-background.jpeg" width="80%">
+</div>
+<div class="search-field-home">
+    <mat-grid-list cols="1" rowHeight="2:0.15">
+        <mat-grid-tile>
+            <input type="text" placeholder="Digite a vaga que busca aqui">
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <select>
+                <option *ngFor="let state of states">{{state}}</option>
+            </select>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <app-hire-me-button [buttonTitle]="'Pesquisar'"></app-hire-me-button>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>
+<mat-grid-list cols="3" rowHeight="1:0.15">
+    <mat-grid-tile>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+    </mat-grid-tile>
+    <mat-grid-tile>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+    </mat-grid-tile>
+    <mat-grid-tile>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+    </mat-grid-tile>
+</mat-grid-list>

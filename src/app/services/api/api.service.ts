@@ -9,17 +9,19 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  private readonly url = "https://python-hire-me-api.herokuapp.com/api/";
+  //private readonly url = "https://python-hire-me-api.herokuapp.com/api/";
+  private readonly prefix = "/api/";
+
 
   private response: any;
 
   post(endPoint: string, body: any){
-    return this.http.post(this.url + endPoint, body).toPromise();
+    return this.http.post('/api/' + endPoint, body).toPromise();
   }
 
   async get(endPoint: string, headers: any): Promise<any>{
     const promise = new Promise(async (resolve, rejects) => {
-      await this.http.get<any>(this.url + endPoint, headers)
+      await this.http.get<any>(endPoint, headers)
       .toPromise()
       .then((res: any) => {
           this.response = res;
@@ -34,6 +36,6 @@ export class ApiService {
   }
 
   getResult(endPoint: string, headers: any){
-    return this.http.get(this.url + endPoint, {}).toPromise();
+    return this.http.get('/api/' + endPoint, {}).toPromise();
   }
 }

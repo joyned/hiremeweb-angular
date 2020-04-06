@@ -10,11 +10,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTableModule } from '@angular/material/table'
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { AuthGuard } from './guard/auth-guard.guard';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { HireMeButtonComponent } from './hire-me-button/hire-me-button.component'
+import { HireMeButtonComponent } from './hire-me-button/hire-me-button.component';
+import { RegisterComponent } from './register/register.component';
+import { HomeComponent } from './home/home.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { Interceptor } from './services/token-interceptor/token-interceptor.service';
+import { JobDetailsComponent } from './job-details/job-details.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +27,10 @@ import { HireMeButtonComponent } from './hire-me-button/hire-me-button.component
     LoginComponent,
     UserDashboardComponent,
     JobsComponent,
-    HireMeButtonComponent
+    HireMeButtonComponent,
+    RegisterComponent,
+    HomeComponent,
+    JobDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +42,9 @@ import { HireMeButtonComponent } from './hire-me-button/hire-me-button.component
     HttpClientModule,
     FormsModule,
     RouterModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatGridListModule,
+    Interceptor
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]

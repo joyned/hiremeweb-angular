@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { JobsComponent } from '../jobs/jobs.component';
 import { AppComponent } from '../app.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-dashboard',
@@ -9,7 +10,7 @@ import { AppComponent } from '../app.component';
 })
 export class UserDashboardComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   @Input() page: any;
 
@@ -22,9 +23,14 @@ export class UserDashboardComponent implements OnInit {
     }
   }
 
+  logOut(){
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    this.router.navigateByUrl('/');
+  }
+
   alert(){
     console.log('teste');
-    
   }
 
 }

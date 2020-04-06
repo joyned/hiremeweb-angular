@@ -24,6 +24,7 @@ button:hover {
 
 .jobs-list {
     margin-top: 1%;
+    
 }
 
 .list{
@@ -32,26 +33,15 @@ button:hover {
       }
 }
 
-.columns{
-    top: 5%;
-    width: 100%;
-    display: flex;
-    margin-bottom: 15px;
+.filter-bar{
+    padding: 2%;
+    background-color: lightgray;
+    margin-bottom: 2%;
+    
 }
 
-.rowWidth35PercentRight{
-    margin-right: 10px;;
-    width: 35%;
-    text-align: right;
-    margin-top: 20px;
-    font-size: large;
-}
-
-.rowInput{
-    width: 30%;
-    input{
-        width: 100%;
-    }
+.jobs-content{
+    margin-bottom: 2%;
 }
 
 input[type=text] {

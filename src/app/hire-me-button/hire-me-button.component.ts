@@ -12,8 +12,6 @@ export class HireMeButtonComponent implements OnInit {
 
 
   ngOnInit(): void {
-    console.log(this.buttonTitle);
-    
   }
 
 }
