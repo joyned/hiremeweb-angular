@@ -15,7 +15,6 @@ export class JobDetailsComponent implements OnInit {
   public isLoading = false;
 
   ngOnInit(): void {
-    this.getJobDetail();
   }
 
   backToList(){
