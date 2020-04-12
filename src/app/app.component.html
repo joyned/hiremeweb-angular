@@ -1,38 +1,34 @@
 <div class="upper-menu">
     <div class="menu-item">
-        <div class="columns">
-            <div class="row">
-                logo
-            </div>
-            <div class="row">
-                <a class="menu-option" (click)="redirectToPage('Home')">página inicial</a>
-            </div>
-            <div class="row">
-                <a class="menu-option" (click)="redirectToPage('Jobs')">buscar vagas</a>
-            </div>
-            <div class="row">
-                <a class="menu-option">para empresas</a>
-            </div>
-            <div class="row">
-                <a class="menu-option">sobre nós</a>
-            </div>
-            <div class="row">
-                <div *ngIf="!userName">
-                    <a class="menu-option" (click)="loginOrRegister(1)">entrar</a>
-                    /
-                    <a class="menu-option" (click)="loginOrRegister(2)">registrar</a>
-                </div>
-                <div *ngIf="userName">
-                    <label>Olá, {{userName}}</label>
-                </div>
-            </div>
-            <div class="row" *ngIf="userName">
-                <a class="menu-option" (click)="logOut()">sair</a>
-            </div>
-        </div>
+        <nav class="nav">
+            <div class="nav__title">Site Title</div>
+            <ul class="nav__list">
+                <li class="nav__item" (click)="redirectToPage('Home')">
+                    <label>Página inicial</label>
+                </li>
+                <li class="nav__item" (click)="redirectToPage('Jobs')">
+                    <label>Vagas</label>
+                </li>
+                <li class="nav__item">
+                    <label>Para empresas</label>
+                </li>
+                <li class="nav__item">
+                    <label>Sobre nós</label>
+                </li>
+                <li class="nav__item">
+                    <label (click)="openDialog('Login')">Entrar</label>
+                    <label>/</label>
+                    <label (click)="openDialog('Register')">Registrar</label>
+                </li>
+                <li *ngIf="userName">Olá, {{userName}}</li>
+                <li *ngIf="userName" (click)="logOut()">
+                    <label>Sair</label>
+                </li>
+            </ul>
+        </nav>
     </div>
 </div>
-<div class="content">
+<div class="content" style="width: 100%; height: 100%;">
     <div style="padding: 3%;">
         <router-outlet></router-outlet>
     </div>

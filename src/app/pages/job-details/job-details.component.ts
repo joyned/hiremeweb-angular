@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { JobDetailService } from '../services/job-detail/job-detail.service';
+import { JobDetailService } from 'src/app/services/job-detail/job-detail.service';
 
 @Component({
   selector: 'app-job-details',

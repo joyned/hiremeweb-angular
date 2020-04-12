@@ -1,0 +1,21 @@
+<div class="header">
+</div>
+
+<app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+
+<div class="jobs-list" *ngIf="!isEditing">
+  <div class="list" style="width: 100%;" *ngIf="jobs.length != 0" >
+
+    <div class="filter-bar">
+      Filtros
+    </div>
+
+    <span *ngIf="jobs.length == 0">Não existem vagas cadastradas</span>
+    <div class="jobs-content" *ngFor="let job of jobs">
+      <h1>{{job.title}}</h1>
+      <hr>
+      <p>{{job.description}}</p>
+      <app-hire-me-button [buttonTitle]="'Saiba mais >>'" (click)="jobDetails(job.id)"></app-hire-me-button>
+    </div>
+  </div>
+</div>

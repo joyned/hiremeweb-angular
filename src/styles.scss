@@ -26,6 +26,11 @@ $hire-me-theme: mat-light-theme($hire-me-primary, $hire-me-accent, $hire-me-warn
 // that you are using.
 @include angular-material-theme($hire-me-theme);
 
+:root {
+    --primary-color: #DC7145;
+    --second-color: #EB8756;
+    --third-color: #FA9760;
+}
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }

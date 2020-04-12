@@ -1,6 +1,8 @@
 import { Component, ComponentFactory, OnInit } from '@angular/core';
-import { JobsComponent } from './jobs/jobs.component';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { LoginComponent } from './pages/login/login.component';
+import { RegisterComponent } from './pages/register/register.component';
 
 @Component({
   selector: 'app-root',
@@ -11,10 +13,22 @@ export class AppComponent implements OnInit {
   title = 'hire-me';
   public userName: string;
 
-  constructor(private router: Router){}
+  constructor(private router: Router, private dialog: MatDialog){}
 
   ngOnInit(): void {
     this.getUserName()
+  }
+
+  openDialog(type: string){
+    if(type == 'Login'){
+      this.dialog.open(LoginComponent);
+    } else {
+      this.dialog.open(RegisterComponent);
+    }
+  }
+
+  closeDialog(){
+    this.dialog.closeAll();
   }
 
   getUserName(){

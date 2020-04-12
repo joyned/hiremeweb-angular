@@ -1,0 +1,24 @@
+<div class="errorMessage" *ngIf="showErrorMessage()" align="center">
+    <img class="images" src="../../assets/icons/outline_error_outline_black_18dp.png" >
+    <label>{{errorMessage}}</label>
+</div>
+<div id="formContent">
+    <h2 class="active"> Login </h2>
+
+    <div class="fadeIn first">
+    </div>
+
+    <form>
+    <input type="text" id="login" class="fadeIn second" name="login" placeholder="Usuario" [(ngModel)]="user.user">
+    <input type="password" id="password" class="fadeIn third" name="login" placeholder="Senha" [(ngModel)]="user.password" >
+    <input type="submit" class="fadeIn fourth" value="Entrar" (click)="doLogin()">
+    </form>
+
+    <div id="formFooter">
+    <a class="underlineHover" href="#">Esqueceu a senha?</a>
+    </div>
+    
+    <div class="spinner" align="center" *ngIf="isLoading">
+        <mat-spinner></mat-spinner>
+    </div>
+</div>

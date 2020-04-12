@@ -3,9 +3,6 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
-import { JobsComponent } from './jobs/jobs.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTableModule } from '@angular/material/table'
@@ -14,13 +11,18 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { AuthGuard } from './guard/auth-guard.guard';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { HireMeButtonComponent } from './hire-me-button/hire-me-button.component';
-import { RegisterComponent } from './register/register.component';
-import { HomeComponent } from './home/home.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { Interceptor } from './services/token-interceptor/token-interceptor.service';
-import { JobDetailsComponent } from './job-details/job-details.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { HireMeButtonComponent } from './components/hire-me-button/hire-me-button.component';
+import { JobDetailsComponent } from './pages/job-details/job-details.component';
+import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
+import { LoginComponent } from './pages/login/login.component';
+import { UserDashboardComponent } from './pages/user-dashboard/user-dashboard.component';
+import { JobsComponent } from './pages/jobs/jobs.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { HomeComponent } from './pages/home/home.component';
+import { MatDialogModule } from '@angular/material/dialog'
 
 @NgModule({
   declarations: [
@@ -31,7 +33,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     HireMeButtonComponent,
     RegisterComponent,
     HomeComponent,
-    JobDetailsComponent
+    JobDetailsComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -45,6 +48,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     RouterModule,
     MatProgressSpinnerModule,
     MatGridListModule,
+    MatDialogModule,
     Interceptor,
     NgbModule
   ],

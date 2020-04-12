@@ -1,0 +1,36 @@
+<div class="errorMessage" *ngIf="false">
+    <img class="images" src="../../assets/icons/outline_error_outline_black_18dp.png" >
+    <label></label>
+</div>
+<div id="formContent">
+    <!-- Tabs Titles -->
+    <h2 class="active" >Cadastrar </h2>
+
+    <!-- Icon -->
+    <div class="fadeIn first">
+    </div>
+
+    <!-- Login Form -->
+    <form style="columns: 2;">
+        <div class="column">
+            <input type="text" id="userName" class="fadeIn second" name="userName" placeholder="Nome" style="width: 65%;">    
+            <input type="text" id="userCpf" class="fadeIn second" name="userCpf" placeholder="CPF" style="width: 65%;">
+            <input type="text" id="userBirthdate" class="fadeIn second" name="userBirthdate" placeholder="Data de nascimento" style="width: 65%;" >
+            <input type="text" id="userGender" class="fadeIn second" name="userGender" placeholder="Sexo" style="width: 65%;"  >
+        </div>
+        <div class="column">
+            <input type="text" id="login" class="fadeIn second" name="login" placeholder="Email" style="width: 65%;">
+            <input type="text" id="login" class="fadeIn second" name="login" placeholder="Usuario" style="width: 65%;">
+            <input type="text" id="password" class="fadeIn third" name="login" placeholder="Senha" style="width: 65%;">
+            <input type="text" id="password" class="fadeIn third" name="login" placeholder="Confirme a senha" style="width: 65%;">
+        </div>
+    </form>
+    <div >
+        <input type="submit" class="fadeIn fourth" value="Registrar" >
+    </div>
+    
+    <div class="spinner" align="center" *ngIf="false">
+        <mat-spinner></mat-spinner>
+    </div>
+
+</div>

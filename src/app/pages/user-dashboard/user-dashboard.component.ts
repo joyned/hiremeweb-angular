@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { JobsComponent } from '../jobs/jobs.component';
-import { AppComponent } from '../app.component';
 import { Router } from '@angular/router';
 
 @Component({

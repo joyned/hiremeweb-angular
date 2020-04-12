@@ -1,9 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins');
 
-/* BASIC */
-
 a {
-  color: #92badd;
+  color: var(--third-color);
   display:inline-block;
   text-decoration: none;
   font-weight: 400;
@@ -19,9 +17,6 @@ h2 {
   color: #cccccc;
 }
 
-
-/* STRUCTURE */
-
 .errorMessage {
   background-color: #FF7F74;
   border-radius: 10px;
@@ -36,8 +31,8 @@ h2 {
 
 .wrapper {
   font-family: Arial, Helvetica, sans-serif;
-  align-items: center;
   display: flex;
+  align-items: center;
   flex-direction: column; 
   justify-content: center;
   width: 100%;
@@ -46,16 +41,11 @@ h2 {
 }
 
 #formContent {
-  -webkit-border-radius: 10px 10px 10px 10px;
-  border-radius: 10px 10px 10px 10px;
   background: #fff;
   padding: 30px;
-  width: 90%;
-  max-width: 450px;
-  -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
-  box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+  width: 100%;
   text-align: center;
-  top: 25%;
+  top: 15%;
 }
 
 #formFooter {
@@ -67,31 +57,22 @@ h2 {
   border-radius: 0 0 10px 10px;
 }
 
-
-
-/* TABS */
-
 h2.inactive {
   color: #cccccc;
 }
 
 h2.active {
   color: #0d0d0d;
-  border-bottom: 2px solid #5fbae9;
+  border-bottom: 2px solid var(--primary-color);
 }
 
-
-
-/* FORM TYPOGRAPHY*/
-
 input[type=button], input[type=submit], input[type=reset]  {
-  background-color: #56baed;
+  background-color: var(--primary-color);
   border: none;
   color: white;
   padding: 15px 80px;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
   text-transform: uppercase;
   font-size: 13px;
   -webkit-box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
@@ -106,8 +87,8 @@ input[type=button], input[type=submit], input[type=reset]  {
   transition: all 0.3s ease-in-out;
 }
 
-input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover {
-  background-color: #39ace7;
+input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover  {
+  background-color: var(--primary-color);
   -moz-transform: scale(0.95);
   -webkit-transform: scale(0.95);
   -o-transform: scale(0.95);
@@ -124,7 +105,7 @@ input[type=button]:active, input[type=submit]:active, input[type=reset]:active  
   transform: scale(0.95);
 }
 
-input[type=text], input[type=password] {
+input[type=text] {
   background-color: #f6f6f6;
   border: none;
   color: #0d0d0d;
@@ -134,7 +115,7 @@ input[type=text], input[type=password] {
   display: inline-block;
   font-size: 16px;
   margin: 5px;
-  width: 85%;
+  width: 30%;
   border: 2px solid #f6f6f6;
   -webkit-transition: all 0.5s ease-in-out;
   -moz-transition: all 0.5s ease-in-out;
@@ -145,24 +126,27 @@ input[type=text], input[type=password] {
   border-radius: 5px 5px 5px 5px;
 }
 
-input[type=text]:focus, input[type=password]:focus {
+input[type=text]:focus {
   background-color: #fff;
-  border-bottom: 2px solid #5fbae9;
+  border-bottom: 2px solid var(--primary-color);
 }
 
-input[type=text]:placeholder, input[type=password]:placeholder {
+input[type=text]:placeholder {
   color: #cccccc;
 }
 
+input[type=submit] {
+  margin-top: 1%;
+  width: 65%;
+}
 
-/* Simple CSS3 Fade-in Animation */
 .underlineHover:after {
   display: block;
   left: 0;
   bottom: -10px;
   width: 0;
   height: 2px;
-  background-color: #56baed;
+  background-color: var(--primary-color);
   content: "";
   transition: width 0.2s;
 }
@@ -174,10 +158,6 @@ input[type=text]:placeholder, input[type=password]:placeholder {
 .underlineHover:hover:after{
   width: 100%;
 }
-
-
-
-/* OTHERS */
 
 *:focus {
     outline: none;
@@ -196,7 +176,7 @@ input[type=text]:placeholder, input[type=password]:placeholder {
   width: 90%;
   max-width: 450px;
   text-align: center;
-  position: relative;
+  position: absolute;
   top: 100%;
   left: 30%;
 }

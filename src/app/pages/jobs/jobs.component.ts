@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AppComponent } from '../app.component';
-import { Job } from '../classes/job/job';
-import { JobService } from '../services/job/job.service';
 import { Router } from '@angular/router';
+import { JobService } from 'src/app/services/job/job.service';
+import { Job } from 'src/app/classes/job/job';
 
 @Component({
   selector: 'app-jobs',
@@ -11,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class JobsComponent implements OnInit {
 
-  constructor(private rootComponent: AppComponent, private jobService: JobService, private router: Router) { }
+  constructor(private jobService: JobService, private router: Router) { }
 
   public isEditing: boolean;
   public job: Job;
@@ -20,7 +19,7 @@ export class JobsComponent implements OnInit {
 
   ngOnInit() {
     this.isEditing = false;
-    this.listJobs()
+    this.listJobs();
   }
 
   async listJobs(){
