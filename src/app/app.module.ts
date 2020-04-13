@@ -22,7 +22,9 @@ import { UserDashboardComponent } from './pages/user-dashboard/user-dashboard.co
 import { JobsComponent } from './pages/jobs/jobs.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { HomeComponent } from './pages/home/home.component';
-import { MatDialogModule } from '@angular/material/dialog'
+import { MatDialogModule } from '@angular/material/dialog';
+import { RegisterFullComponent } from './pages/register-full/register-full.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { MatDialogModule } from '@angular/material/dialog'
     RegisterComponent,
     HomeComponent,
     JobDetailsComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    RegisterComponent,
+    RegisterFullComponent
   ],
   imports: [
     BrowserModule,
@@ -49,6 +53,7 @@ import { MatDialogModule } from '@angular/material/dialog'
     MatProgressSpinnerModule,
     MatGridListModule,
     MatDialogModule,
+    MatCheckboxModule,
     Interceptor,
     NgbModule
   ],
