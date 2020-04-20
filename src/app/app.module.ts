@@ -17,14 +17,15 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { HireMeButtonComponent } from './components/hire-me-button/hire-me-button.component';
 import { JobDetailsComponent } from './pages/job-details/job-details.component';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
-import { LoginComponent } from './pages/login/login.component';
+import { LoginComponent } from './components/login/login.component';
 import { UserDashboardComponent } from './pages/user-dashboard/user-dashboard.component';
 import { JobsComponent } from './pages/jobs/jobs.component';
-import { RegisterComponent } from './pages/register/register.component';
+import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './pages/home/home.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { RegisterFullComponent } from './pages/register-full/register-full.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { InputTextComponent } from './components/input-text/input-text.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     JobDetailsComponent,
     LoadingSpinnerComponent,
     RegisterComponent,
-    RegisterFullComponent
+    RegisterFullComponent,
+    InputTextComponent
   ],
   imports: [
     BrowserModule,

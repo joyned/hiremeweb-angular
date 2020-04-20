@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { User } from 'src/app/classes/user/user';
 import { ApiService } from '../api/api.service';
 import { throwError } from 'rxjs';
+import { AppComponent } from 'src/app/app.component';
 
 @Injectable({
   providedIn: 'root'

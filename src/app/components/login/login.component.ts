@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login/login.service';
-import { AppComponent } from 'src/app/app.component';
 import { User } from 'src/app/classes/user/user';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +11,7 @@ import { User } from 'src/app/classes/user/user';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public router: Router, private loginService: LoginService) { }
+  constructor(public router: Router, private loginService: LoginService, private dialog: MatDialog) { }
 
   public user = new User();
 
@@ -27,7 +27,8 @@ export class LoginComponent implements OnInit {
     try{
       this.isLoading = true;
       await this.loginService.login(this.user);
-      this.router.navigateByUrl('/home');
+      this.dialog.closeAll();
+      window.location.reload();
     } catch (error){
       console.log(error);
       this.errorMessage = "Usuário e/ou senha incorretos. Por favor, tente novamente.";

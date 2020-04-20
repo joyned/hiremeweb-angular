@@ -7,7 +7,13 @@
   <div class="list" style="width: 100%;" *ngIf="jobs.length != 0" >
 
     <div class="filter-bar">
-      Filtros
+      <div class="filter-bar-title">
+        <h1>Filtros</h1>
+      </div>
+      <div class="filter-bar-content">
+        <app-input-text [(ngModel)]="jobName" [placeholder]="'Nome do cargo'" ngDefaultControl></app-input-text>
+        <app-hire-me-button [buttonTitle]="'Filtrar'" (click)="filter()"></app-hire-me-button>
+      </div>
     </div>
 
     <span *ngIf="jobs.length == 0">Não existem vagas cadastradas</span>

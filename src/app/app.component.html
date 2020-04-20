@@ -15,13 +15,13 @@
                 <li class="nav__item">
                     <label>Sobre nós</label>
                 </li>
-                <li class="nav__item">
+                <li class="nav__item" *ngIf="!userName">
                     <label (click)="openDialog('Login')">Entrar</label>
                     <label>/</label>
                     <label (click)="openDialog('Register')">Registrar</label>
                 </li>
-                <li *ngIf="userName">Olá, {{userName}}</li>
-                <li *ngIf="userName" (click)="logOut()">
+                <li *ngIf="userName" class="nav__item">Olá, {{userName}}</li>
+                <li *ngIf="userName" (click)="logOut()" class="nav__item">
                     <label>Sair</label>
                 </li>
             </ul>

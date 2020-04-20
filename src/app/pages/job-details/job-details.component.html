@@ -1,1 +1,24 @@
-<app-hire-me-button [buttonTitle]="'Voltar'" (click)="backToList()"></app-hire-me-button>
+<div *ngIf="isLoading">
+    <app-loading-spinner></app-loading-spinner>
+</div>
+<div class="content" *ngIf="!isLoading">
+    <div>
+        <div class="title-content" style="display: flex;">
+            <h1 class="job-title">{{ job.title }}</h1>
+            <label class="label-x" (click)="closeDialog()">&#10005;</label>
+        </div>
+    </div>
+    <hr>
+    <div class="job-description">
+       {{ job.description }}
+    </div>
+    <hr>
+    <div class="job-detail">
+        Detalhes:
+        <li>Cidade: {{ job.city }}</li>
+        <li>Estado: {{ job.state }}</li>
+        <li>País: {{ job.country }}</li>
+        <li>Remuneração: R$ {{ job.salary }}</li>
+    </div>
+    <app-hire-me-button [buttonTitle]="'Candidatar-se'" (click)="apply()"></app-hire-me-button>
+</div>

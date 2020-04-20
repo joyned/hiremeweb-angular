@@ -1,5 +1,5 @@
 import { Component, OnInit, Injectable } from '@angular/core';
-import { RegisterComponent } from '../register/register.component';
+import { RegisterComponent } from '../../components/register/register.component';
 import { Router } from '@angular/router';
 
 @Component({
