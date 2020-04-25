@@ -20,10 +20,18 @@
                     <label>/</label>
                     <label (click)="openDialog('Register')">Registrar</label>
                 </li>
-                <li *ngIf="userName" class="nav__item">Olá, {{userName}}</li>
-                <li *ngIf="userName" (click)="logOut()" class="nav__item">
-                    <label>Sair</label>
+                <li *ngIf="userName" class="nav__item" [matMenuTriggerFor]="menu">
+                    <div class="user-name-option">
+                        <label>Olá, {{userName}}</label>
+                        <img class="image" src="../assets/icons/baseline_keyboard_arrow_down_white_18dp.png" width="20px" height="20px"> 
+                    </div>
                 </li>
+                <mat-menu #menu="matMenu" class="drop-down-menu">
+                    <button mat-menu-item>Vagas aplicadas</button>
+                    <button mat-menu-item>Meu curriculo</button>
+                    <button mat-menu-item (click)="redirectToPage('Config')">Configurações</button>
+                    <button mat-menu-item (click)="logout()">Sair</button>
+                </mat-menu>
             </ul>
         </nav>
     </div>

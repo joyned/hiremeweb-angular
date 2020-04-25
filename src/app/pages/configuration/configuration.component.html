@@ -1,0 +1,36 @@
+<div class="header" align="center">
+    <h2>Configurações da conta</h2>
+</div>
+<hr>
+
+<div class="body" align="center">
+    <h3>Sua foto</h3>
+    <app-image-upload [img]="image" [editable]="true" (change)="setImage($event)"></app-image-upload>
+    
+    <h3>Conta</h3>
+    <div class="fields">
+        <form>
+            <app-input-text [placeholder]="'Nome'" [width]="60"></app-input-text>
+            <app-input-text [placeholder]="'Nome completo'" [width]="60"></app-input-text>
+            <app-input-text [placeholder]="'Cidade'" [width]="60"></app-input-text>
+            <app-input-text [placeholder]="'Estado'" [width]="60"></app-input-text>
+            <app-input-text [placeholder]="'Endereço'" [width]="35.5"></app-input-text>
+            <app-input-text [placeholder]="'CEP'" [width]="20"></app-input-text>
+        </form>
+    </div>
+    <h3>Senha</h3>
+    <div class="fields">
+        <form>
+            <app-input-password [placeholder]="'Senha atual'" [width]="60"></app-input-password>
+            <app-input-password [placeholder]="'Nova senha'" [width]="60"></app-input-password>
+            <app-input-password [placeholder]="'Repita a nova senha'" [width]="60"></app-input-password>
+        </form>
+        <div class="forgot-actual-password">
+            Não lembra da sua senha atual? <a>Clique aqui</a> que enviaremos um e-mail para você!
+        </div>
+    </div>
+
+    <div class="button">
+        <app-hire-me-button [buttonTitle]="'Salvar'"></app-hire-me-button>
+    </div>
+</div>

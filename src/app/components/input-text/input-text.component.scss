@@ -7,7 +7,6 @@ input[type=text] {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  width: 85%;
   border: 2px solid #f6f6f6;
   -webkit-transition: all 0.5s ease-in-out;
   -moz-transition: all 0.5s ease-in-out;
@@ -16,6 +15,7 @@ input[type=text] {
   transition: all 0.5s ease-in-out;
   -webkit-border-radius: 5px 5px 5px 5px;
   border-radius: 5px 5px 5px 5px;
+  margin: 7px;
 }
 
 input[type=text]:focus {

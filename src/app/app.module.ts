@@ -26,6 +26,10 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { RegisterFullComponent } from './pages/register-full/register-full.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { InputTextComponent } from './components/input-text/input-text.component';
+import { ConfigurationComponent } from './pages/configuration/configuration.component';
+import { ImageUploadComponent } from './components/image-upload/image-upload.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { InputPasswordComponent } from './components/input-password/input-password.component'
 
 @NgModule({
   declarations: [
@@ -40,7 +44,10 @@ import { InputTextComponent } from './components/input-text/input-text.component
     LoadingSpinnerComponent,
     RegisterComponent,
     RegisterFullComponent,
-    InputTextComponent
+    InputTextComponent,
+    ConfigurationComponent,
+    ImageUploadComponent,
+    InputPasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +64,8 @@ import { InputTextComponent } from './components/input-text/input-text.component
     MatDialogModule,
     MatCheckboxModule,
     Interceptor,
-    NgbModule
+    NgbModule,
+    FontAwesomeModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]

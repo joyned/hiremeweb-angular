@@ -1,4 +1,4 @@
-import { Component, ComponentFactory, OnInit } from '@angular/core';
+import { Component, ComponentFactory, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from './components/login/login.component';
@@ -7,7 +7,8 @@ import { RegisterComponent } from './components/register/register.component';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements OnInit {
   title = 'hire-me';
@@ -45,7 +46,7 @@ export class AppComponent implements OnInit {
     }
   }
 
-  logOut(){
+  logout(){
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     this.userName = "";
@@ -57,6 +58,8 @@ export class AppComponent implements OnInit {
       this.router.navigateByUrl('/jobs');
     } else if(page == 'Home'){
       this.router.navigateByUrl('/home');
+    } else if(page == 'Config') {
+      this.router.navigateByUrl('/config');
     }
   }
 }
