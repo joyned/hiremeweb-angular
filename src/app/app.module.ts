@@ -29,7 +29,15 @@ import { InputTextComponent } from './components/input-text/input-text.component
 import { ConfigurationComponent } from './pages/configuration/configuration.component';
 import { ImageUploadComponent } from './components/image-upload/image-upload.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { InputPasswordComponent } from './components/input-password/input-password.component'
+import { InputPasswordComponent } from './components/input-password/input-password.component';
+import { MainNavComponent } from './components/main-nav/main-nav.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list'
+
 
 @NgModule({
   declarations: [
@@ -47,7 +55,8 @@ import { InputPasswordComponent } from './components/input-password/input-passwo
     InputTextComponent,
     ConfigurationComponent,
     ImageUploadComponent,
-    InputPasswordComponent
+    InputPasswordComponent,
+    MainNavComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +74,13 @@ import { InputPasswordComponent } from './components/input-password/input-passwo
     MatCheckboxModule,
     Interceptor,
     NgbModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]

@@ -10,56 +10,10 @@ import { RegisterComponent } from './components/register/register.component';
   styleUrls: ['./app.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class AppComponent implements OnInit {
+export class AppComponent  {
   title = 'hire-me';
-  public userName: string;
 
-  constructor(private router: Router, private dialog: MatDialog){}
+  constructor(){}
 
-  ngOnInit(): void {
-    this.getUserName()
-  }
-
-  openDialog(type: string){
-    if(type == 'Login'){
-      this.dialog.open(LoginComponent);
-    } else {
-      this.dialog.open(RegisterComponent);
-    }
-  }
-
-  closeDialog(){
-    this.dialog.closeAll();
-  }
-
-  getUserName(){
-    if(localStorage.getItem('user') != undefined){
-      this.userName = localStorage.getItem('user');
-    }
-  }
-
-  loginOrRegister(type: number){
-    if(type == 1){
-      this.router.navigateByUrl('/login');
-    } else {
-      this.router.navigateByUrl('/register');
-    }
-  }
-
-  logout(){
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    this.userName = "";
-    this.router.navigateByUrl('/home');
-  }
-
-  redirectToPage(page: any){
-    if(page == 'Jobs'){
-      this.router.navigateByUrl('/jobs');
-    } else if(page == 'Home'){
-      this.router.navigateByUrl('/home');
-    } else if(page == 'Config') {
-      this.router.navigateByUrl('/config');
-    }
-  }
+  
 }
