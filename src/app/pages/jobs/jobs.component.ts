@@ -38,7 +38,8 @@ export class JobsComponent implements OnInit {
   jobDetails(id: number){
     this.dialog.open(JobDetailsComponent, {
       data: {
-        job_id: id
+        job_id: id,
+        show_button: true
       }
     });
   }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-configuration',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConfigurationComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dialog: MatDialog) { }
 
   public image: any;
 
@@ -16,6 +17,15 @@ export class ConfigurationComponent implements OnInit {
 
   setImage(event){
     this.image = event.target.files[0];
+  }
+
+  sendEmail(dialog: any){
+    this.dialog.open(dialog);
+    setTimeout(() => this.closeDialog(), 10000);
+  }
+
+  closeDialog(){
+    this.dialog.closeAll();
   }
 
 }

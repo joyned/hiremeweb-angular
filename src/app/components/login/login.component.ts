@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
   private userAuth = false;
 
   public errorMessage: string = "";
+  public errorMessageVisible = false;
 
   ngOnInit(): void {
   }
@@ -32,6 +33,7 @@ export class LoginComponent implements OnInit {
     } catch (error){
       console.log(error);
       this.errorMessage = "Usuário e/ou senha incorretos. Por favor, tente novamente.";
+      this.showErrorMessage();
     } finally {
       this.isLoading = false;
     }
@@ -46,7 +48,11 @@ export class LoginComponent implements OnInit {
   }
 
   showErrorMessage(){
-    return this.errorMessage.length != 0;
+    if(this.errorMessageVisible){
+      return;
+    }
+    this.errorMessageVisible = this.errorMessage.length != 0;
+    setTimeout(() => this.errorMessageVisible = false, 4000);
   }
 
 }

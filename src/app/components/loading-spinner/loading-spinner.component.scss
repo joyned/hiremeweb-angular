@@ -1,3 +1,7 @@
-.spinner{
-    text-align: center;
+.spinner {
+  margin: 3%;
+}
+
+.mat-progress-spinner::ng-deep circle {
+    stroke: var(--primary-color);
 }

@@ -10,7 +10,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { AuthGuard } from './guard/auth-guard.guard';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatProgressSpinnerModule, MatSpinner } from '@angular/material/progress-spinner';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { Interceptor } from './services/token-interceptor/token-interceptor.service';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
@@ -36,7 +36,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list'
+import { MatListModule } from '@angular/material/list';
+import { AppliedJobsComponent } from './pages/applied-jobs/applied-jobs.component';
+import { ErrorDialogComponent } from './components/error-dialog/error-dialog.component';
+import { HireMeTitleComponent } from './components/hire-me-title/hire-me-title.component';
 
 
 @NgModule({
@@ -56,7 +59,10 @@ import { MatListModule } from '@angular/material/list'
     ConfigurationComponent,
     ImageUploadComponent,
     InputPasswordComponent,
-    MainNavComponent
+    MainNavComponent,
+    AppliedJobsComponent,
+    ErrorDialogComponent,
+    HireMeTitleComponent
   ],
   imports: [
     BrowserModule,
@@ -80,7 +86,8 @@ import { MatListModule } from '@angular/material/list'
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    MatTableModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]

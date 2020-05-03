@@ -16,6 +16,26 @@
     }
 }
 
+@media(max-width:375px){
+    .search-field-home {
+        position: absolute;
+        margin: 0 auto;
+        top: 15%;
+        left: 25%;
+        width: 45%;;
+    
+        input {
+            width: 100%;
+        }
+    
+        select {
+            position: absolute;
+            width: 50%;
+            left: 25%;
+        }
+    }
+}
+
   
 input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover, select, option {
     background-color: #39ace7;

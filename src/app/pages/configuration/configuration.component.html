@@ -26,7 +26,7 @@
             <app-input-password [placeholder]="'Repita a nova senha'" [width]="60"></app-input-password>
         </form>
         <div class="forgot-actual-password">
-            Não lembra da sua senha atual? <a>Clique aqui</a> que enviaremos um e-mail para você!
+            Não lembra da sua senha atual? <a (click)="sendEmail(dialog)">Clique aqui</a> que enviaremos um e-mail para você!
         </div>
     </div>
 
@@ -34,3 +34,15 @@
         <app-hire-me-button [buttonTitle]="'Salvar'"></app-hire-me-button>
     </div>
 </div>
+<ng-template #dialog>
+    <div class="dialog-content">
+        <div style="display: flex;">
+            <h1 class="title">Email enviado</h1>
+            <label class="label-x" (click)="closeDialog()" >&#10005;</label>
+        </div>
+        <hr>
+        <div class="dialog-body">
+            <p>Enviamos um email para USER-EMAIL</p>
+        </div>
+    </div>
+</ng-template>

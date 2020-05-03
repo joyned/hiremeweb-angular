@@ -56,6 +56,8 @@ export class MainNavComponent implements OnInit {
   logout(){
     localStorage.removeItem('token');
     localStorage.removeItem('user');
+    localStorage.removeItem('user_id');
+    localStorage.removeItem('candidate_id');
     this.userName = "";
     this.router.navigateByUrl('/home');
   }
@@ -67,6 +69,12 @@ export class MainNavComponent implements OnInit {
       this.router.navigateByUrl('/home');
     } else if(page == 'Config') {
       this.router.navigateByUrl('/config');
+    } else if(page == 'Login'){
+      this.router.navigateByUrl('/login');
+    } else if(page == 'Register'){
+      this.router.navigateByUrl('/register');
+    } else if(page == 'Applied-Jobs'){
+      this.router.navigateByUrl('/applied-jobs')
     }
   }
 

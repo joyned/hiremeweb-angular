@@ -8,6 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class HireMeButtonComponent implements OnInit {
   
   @Input() buttonTitle: any;
+  @Input() width: number;
   constructor() { }
 
 

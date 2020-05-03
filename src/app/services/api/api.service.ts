@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map, take } from 'rxjs/operators'
 
 @Injectable({
@@ -10,31 +10,32 @@ export class ApiService {
   constructor(private http: HttpClient) { }
 
   private readonly url = "https://python-hire-me-api.herokuapp.com/api/";
+  //private readonly url = "http://localhost:4200/api/";
 
-
-  private response: any;
-
-  post(endPoint: string, body: any){
-    return this.http.post(this.url + endPoint, body).toPromise();
+  getFromExternal(url: any){
+    return this.http.get(url, {}).toPromise();
   }
 
-  async get(endPoint: string, headers: any): Promise<any>{
-    const promise = new Promise(async (resolve, rejects) => {
-      await this.http.get<any>(this.url + endPoint, headers)
-      .toPromise()
-      .then((res: any) => {
-          this.response = res;
-          resolve();
-        },
-          err => {
-            console.log(err);
-          }
-        );
-    });
-    return promise;
+  delete(endPoint: string, options: any){
+    return this.http.delete(this.url + endPoint, options).toPromise();
+  }
+
+  post(endPoint: string, body: any, options: any){
+    return this.http.post(this.url + endPoint, body, options).toPromise();
+  }
+
+  postTokenHeader(endPoint: string, body: any){
+    let token;
+    if(localStorage.getItem('token') != null){
+      token = localStorage.getItem('token');
+    }
+    
+    let data = this.http.post(this.url + endPoint, body, {headers: {'Authorization': token}}).toPromise();
+    console.log(data);
+    return data;
   }
 
   getResult(endPoint: string, headers: any){
-    return this.http.get(this.url + endPoint, {}).toPromise();
+    return this.http.get(this.url + endPoint, {headers: headers}).toPromise();
   }
 }

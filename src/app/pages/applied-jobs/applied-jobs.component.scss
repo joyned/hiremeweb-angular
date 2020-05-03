@@ -1,0 +1,26 @@
+.list{
+    width: 100%;
+    columns: 3;
+    padding: 9px;
+    column-width: 33.3%;
+}
+
+.header{
+    width: 100%;
+    columns: 3;
+    padding: 9px;
+    column-width: 33.3%;
+}
+
+
+img:hover{
+    cursor: pointer;
+}
+
+.label-x{
+    font-size: xx-large;
+}
+
+.label-x:hover{
+    cursor: pointer;
+}

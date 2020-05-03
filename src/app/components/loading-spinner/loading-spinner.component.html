@@ -1,6 +1,6 @@
 <div class="spinner" align="center">
-    <img src="../../../assets/img/loading.gif">
+    <mat-spinner [diameter]="diameter"></mat-spinner>
 </div>
-<div class="content" align="center">
+<div class="content" align="center" *ngIf="showText">
     <label>Carregando...</label>
 </div>

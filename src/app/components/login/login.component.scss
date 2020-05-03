@@ -161,12 +161,23 @@ input[type=text]:placeholder, input[type=password]:placeholder {
   overflow: hidden;
 }
 
-.spinner {
-  padding: 30px;
-  width: 90%;
-  max-width: 450px;
-  text-align: center;
-  position: relative;
-  top: 100%;
-  left: 30%;
+.visible {
+  opacity: 1;
+  transform: translateY(1.25rem);
+}
+
+@media(max-width: 411px){
+  .errorMessage{
+    background-color: #FF7F74;
+    border-radius: 10px;
+    width: auto;
+    height: auto;
+    padding: 10px;
+    position: absolute;
+    color: white;
+    font-size: 15px;
+    top: 8%;
+    left: 10%;
+    right: 10%;
+  }
 }

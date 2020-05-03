@@ -94,3 +94,22 @@ h3 {
   top: 100%;
   left: 30%;
 }
+
+.dialog-content {
+
+  padding: 9px;
+
+  h1 {
+    width: 90%;
+  }
+
+  .label-x {
+    width: 10%; 
+    text-align: right; 
+    font-size: xx-large;
+  }
+  
+  .label-x:hover{
+    cursor: pointer;
+  }
+}

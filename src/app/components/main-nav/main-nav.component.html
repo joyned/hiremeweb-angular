@@ -9,9 +9,9 @@
       <a mat-list-item (click)="redirectToPage('Jobs'); drawer.close()">Vagas</a>
       <a mat-list-item href="#">Para empresas</a>
       <a mat-list-item href="#">Sobre nós</a>
-      <a mat-list-item *ngIf="!userName" (click)="openDialog('Login'); drawer.close()">Entrar</a>
-      <a mat-list-item *ngIf="!userName" (click)="openDialog('Register'); drawer.close()">Registrar</a>
-      <a mat-list-item *ngIf="userName"> Vagas aplicadas </a>
+      <a mat-list-item *ngIf="!userName" (click)="redirectToPage('Login'); drawer.close()">Entrar</a>
+      <a mat-list-item *ngIf="!userName" (click)="redirectToPage('Register'); drawer.close()">Registrar</a>
+      <a mat-list-item *ngIf="userName" (click)="redirectToPage('Applied-Jobs')"> Vagas aplicadas </a>
       <a mat-list-item *ngIf="userName">Meu curriculo</a>
       <a mat-list-item *ngIf="userName" (click)="redirectToPage('Config'); drawer.close()">Configurações</a>
       <a mat-list-item *ngIf="userName" (click)="logout(); drawer.close()">Sair</a>
@@ -46,7 +46,7 @@
           
 
         <mat-menu #menu="matMenu" class="drop-down-menu">
-          <button mat-menu-item>Vagas aplicadas</button>
+          <button mat-menu-item (click)="redirectToPage('Applied-Jobs')">Vagas aplicadas</button>
           <button mat-menu-item>Meu curriculo</button>
           <button mat-menu-item (click)="redirectToPage('Config')">Configurações</button>
           <button mat-menu-item (click)="logout()">Sair</button>

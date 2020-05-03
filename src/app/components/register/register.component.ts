@@ -33,7 +33,7 @@ export class RegisterComponent implements OnInit {
   async register(){
     if(await this.passwordMatch()){
       this.dialog.closeAll();
-      this.router.navigateByUrl('/register');
+      this.router.navigateByUrl('/registerfull');
     }
   }
 

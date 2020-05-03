@@ -1,4 +1,4 @@
-<div class="errorMessage" *ngIf="showErrorMessage()" align="center">
+<div class="errorMessage" *ngIf="errorMessageVisible" align="center">
     <img class="images" src="../../assets/icons/outline_error_outline_black_18dp.png" >
     <label>{{errorMessage}}</label>
 </div>
@@ -18,7 +18,7 @@
     <a class="underlineHover" href="#">Esqueceu a senha?</a>
     </div>
     
-    <div class="spinner" align="center" *ngIf="isLoading">
-        <mat-spinner></mat-spinner>
+    <div class="spinner" *ngIf="isLoading">
+        <app-loading-spinner [diameter]="50"></app-loading-spinner>
     </div>
 </div>
