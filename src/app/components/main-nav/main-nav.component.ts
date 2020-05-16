@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from '../login/login.component';
 import { RegisterComponent } from '../register/register.component';
+import { PageService } from 'src/app/services/pages/page.service';
 
 @Component({
   selector: 'app-main-nav',
@@ -21,10 +22,12 @@ export class MainNavComponent implements OnInit {
     );
   userName: string;
 
-  constructor(private breakpointObserver: BreakpointObserver, private router: Router, private dialog: MatDialog) {}
+  constructor(private breakpointObserver: BreakpointObserver, private router: Router, private dialog: MatDialog, private pageService: PageService) {}
+
+  public pages = [];
 
   ngOnInit(): void {
-    this.getUserName()
+    this.getUserNameAndLoadPages()
   }
 
   openDialog(type: string){
@@ -39,9 +42,10 @@ export class MainNavComponent implements OnInit {
     this.dialog.closeAll();
   }
 
-  getUserName(){
+  async getUserNameAndLoadPages(){
     if(localStorage.getItem('user') != undefined){
       this.userName = localStorage.getItem('user');
+      this.pages = await this.pageService.getPagesByUserId(localStorage.getItem('user_id'));
     }
   }
 

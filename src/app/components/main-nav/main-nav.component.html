@@ -46,9 +46,13 @@
           
 
         <mat-menu #menu="matMenu" class="drop-down-menu">
-          <button mat-menu-item (click)="redirectToPage('Applied-Jobs')">Vagas aplicadas</button>
+          <!-- <button mat-menu-item (click)="redirectToPage('Applied-Jobs')">Vagas aplicadas</button>
           <button mat-menu-item>Meu curriculo</button>
           <button mat-menu-item (click)="redirectToPage('Config')">Configurações</button>
+          <button mat-menu-item (click)="logout()">Sair</button> -->
+          <button mat-menu-item *ngFor="let page of pages">
+            {{ page.name }}
+          </button>
           <button mat-menu-item (click)="logout()">Sair</button>
       </mat-menu>
       </div>
