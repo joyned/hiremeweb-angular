@@ -50,7 +50,7 @@
           <button mat-menu-item>Meu curriculo</button>
           <button mat-menu-item (click)="redirectToPage('Config')">Configurações</button>
           <button mat-menu-item (click)="logout()">Sair</button> -->
-          <button mat-menu-item *ngFor="let page of pages">
+          <button mat-menu-item *ngFor="let page of pages" (click)="redirectToPage(page.constant)">
             {{ page.name }}
           </button>
           <button mat-menu-item (click)="logout()">Sair</button>

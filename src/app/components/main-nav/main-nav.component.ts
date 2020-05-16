@@ -67,19 +67,7 @@ export class MainNavComponent implements OnInit {
   }
 
   redirectToPage(page: any){
-    if(page == 'Jobs'){
-      this.router.navigateByUrl('/jobs');
-    } else if(page == 'Home'){
-      this.router.navigateByUrl('/home');
-    } else if(page == 'Config') {
-      this.router.navigateByUrl('/config');
-    } else if(page == 'Login'){
-      this.router.navigateByUrl('/login');
-    } else if(page == 'Register'){
-      this.router.navigateByUrl('/register');
-    } else if(page == 'Applied-Jobs'){
-      this.router.navigateByUrl('/applied-jobs')
-    }
+    this.router.navigateByUrl(page);
   }
 
 }
