@@ -7,6 +7,10 @@ import { ConfigurationComponent } from './pages/configuration/configuration.comp
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AppliedJobsComponent } from './pages/applied-jobs/applied-jobs.component';
+import { PageRegisterComponent } from './pages/page-register/page-register.component'
+import { AuthGuard } from './guard/auth-guard.guard';
+import { ResolveService } from './services/resolve/resolve.service';
+import { UserManualRegisterComponent } from './pages/user-manual-register/user-manual-register.component';
 
 
 const routes: Routes = [
@@ -14,10 +18,12 @@ const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'registerfull', component: RegisterFullComponent},
   {path: 'jobs', component: JobsComponent},
-  {path: 'config', component: ConfigurationComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'applied-jobs', component: AppliedJobsComponent}
+  {path: 'applied-jobs', component: AppliedJobsComponent, canActivate: [AuthGuard]},
+  {path: 'config', component: ConfigurationComponent, canActivate: [AuthGuard]},
+  {path: 'page-register', component: PageRegisterComponent, canActivate: [AuthGuard]},
+  {path: 'manual-register', component: UserManualRegisterComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({

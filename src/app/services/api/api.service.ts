@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map, take } from 'rxjs/operators'
+import { callbackify } from 'util';
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +10,9 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  private readonly url = "https://python-hire-me-api.herokuapp.com/api/";
-  //private readonly url = "http://localhost:4200/api/";
+  //private readonly url = "https://python-hire-me-api.herokuapp.com/api/";
+  private readonly url = "http://localhost:4200/api/";
+  private data: any;
 
   getFromExternal(url: any){
     return this.http.get(url, {}).toPromise();
@@ -25,14 +27,12 @@ export class ApiService {
   }
 
   postTokenHeader(endPoint: string, body: any){
-    let token;
+    let token: string;
     if(localStorage.getItem('token') != null){
       token = localStorage.getItem('token');
     }
     
-    let data = this.http.post(this.url + endPoint, body, {headers: {'Authorization': token}}).toPromise();
-    console.log(data);
-    return data;
+    return this.http.post(this.url + endPoint, body, {headers: {'Authorization': token}}).toPromise();
   }
 
   getResult(endPoint: string, headers: any){

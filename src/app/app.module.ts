@@ -40,6 +40,10 @@ import { MatListModule } from '@angular/material/list';
 import { AppliedJobsComponent } from './pages/applied-jobs/applied-jobs.component';
 import { ErrorDialogComponent } from './components/error-dialog/error-dialog.component';
 import { HireMeTitleComponent } from './components/hire-me-title/hire-me-title.component';
+import { PageRegisterComponent } from './pages/page-register/page-register.component';
+import { MatSelectModule } from '@angular/material/select';
+import { CheckBoxComponent } from './componets/check-box/check-box.component';
+import { UserManualRegisterComponent } from './pages/user-manual-register/user-manual-register.component';
 
 
 @NgModule({
@@ -62,7 +66,10 @@ import { HireMeTitleComponent } from './components/hire-me-title/hire-me-title.c
     MainNavComponent,
     AppliedJobsComponent,
     ErrorDialogComponent,
-    HireMeTitleComponent
+    HireMeTitleComponent,
+    PageRegisterComponent,
+    CheckBoxComponent,
+    UserManualRegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -87,7 +94,8 @@ import { HireMeTitleComponent } from './components/hire-me-title/hire-me-title.c
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    MatTableModule
+    MatTableModule,
+    MatSelectModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]

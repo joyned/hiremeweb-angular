@@ -25,6 +25,7 @@ export class MainNavComponent implements OnInit {
   constructor(private breakpointObserver: BreakpointObserver, private router: Router, private dialog: MatDialog, private pageService: PageService) {}
 
   public pages = [];
+  public isLoading = true;
 
   ngOnInit(): void {
     this.getUserNameAndLoadPages()

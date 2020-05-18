@@ -19,6 +19,8 @@ export class AppliedJobsComponent implements OnInit {
   public dialogJobId: number;
 
   ngOnInit(): void {
+    console.log("entrou");
+    
     this.getAppliedJobs();
   }
 

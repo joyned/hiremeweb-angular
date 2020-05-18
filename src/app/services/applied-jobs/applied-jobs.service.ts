@@ -1,13 +1,17 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { ApiService } from '../api/api.service'
 import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AppliedJobsService {
+export class AppliedJobsService implements OnInit {
 
   private jobs: [];
+
+  ngOnInit(): void {
+    console.log("entrou na pág");
+  }
   
   constructor(private api: ApiService) { }
 
