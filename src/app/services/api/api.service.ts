@@ -10,8 +10,8 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  //private readonly url = "https://python-hire-me-api.herokuapp.com/api/";
-  private readonly url = "http://localhost:4200/api/";
+  private readonly url = "https://python-hire-me-api.herokuapp.com/api/";
+  //private readonly url = "http://localhost:4200/api/";
   private data: any;
 
   getFromExternal(url: any){
