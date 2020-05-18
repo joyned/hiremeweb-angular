@@ -67,7 +67,6 @@ import { UserManualRegisterComponent } from './pages/user-manual-register/user-m
     ErrorDialogComponent,
     HireMeTitleComponent,
     PageRegisterComponent,
-    CheckBoxComponent,
     UserManualRegisterComponent
   ],
   imports: [
