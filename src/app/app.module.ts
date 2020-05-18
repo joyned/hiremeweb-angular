@@ -42,7 +42,6 @@ import { ErrorDialogComponent } from './components/error-dialog/error-dialog.com
 import { HireMeTitleComponent } from './components/hire-me-title/hire-me-title.component';
 import { PageRegisterComponent } from './pages/page-register/page-register.component';
 import { MatSelectModule } from '@angular/material/select';
-import { CheckBoxComponent } from './componets/check-box/check-box.component';
 import { UserManualRegisterComponent } from './pages/user-manual-register/user-manual-register.component';
 
 
