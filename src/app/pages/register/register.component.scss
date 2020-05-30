@@ -189,3 +189,21 @@ input[type=submit] {
   top: 100%;
   left: 30%;
 }
+
+.content {
+  padding: 9px;
+}
+
+.dialog-title {
+  width: 90%;
+}
+
+.label-x {
+  width: 10%; 
+  text-align: right; 
+  font-size: xx-large;
+}
+
+.label-x:hover{
+  cursor: pointer;
+}

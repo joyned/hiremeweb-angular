@@ -20,10 +20,8 @@ import { LoadingSpinnerComponent } from './components/loading-spinner/loading-sp
 import { LoginComponent } from './components/login/login.component';
 import { UserDashboardComponent } from './pages/user-dashboard/user-dashboard.component';
 import { JobsComponent } from './pages/jobs/jobs.component';
-import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './pages/home/home.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { RegisterFullComponent } from './pages/register-full/register-full.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { InputTextComponent } from './components/input-text/input-text.component';
 import { ConfigurationComponent } from './pages/configuration/configuration.component';
@@ -43,7 +41,10 @@ import { HireMeTitleComponent } from './components/hire-me-title/hire-me-title.c
 import { PageRegisterComponent } from './pages/page-register/page-register.component';
 import { MatSelectModule } from '@angular/material/select';
 import { UserManualRegisterComponent } from './pages/user-manual-register/user-manual-register.component';
-
+import { NgxMaskModule } from 'ngx-mask'
+import { RegisterComponent } from './pages/register/register.component';
+import { MatDatepickerModule } from '@angular/material/datepicker'
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -52,12 +53,10 @@ import { UserManualRegisterComponent } from './pages/user-manual-register/user-m
     UserDashboardComponent,
     JobsComponent,
     HireMeButtonComponent,
-    RegisterComponent,
     HomeComponent,
     JobDetailsComponent,
     LoadingSpinnerComponent,
     RegisterComponent,
-    RegisterFullComponent,
     InputTextComponent,
     ConfigurationComponent,
     ImageUploadComponent,
@@ -93,7 +92,10 @@ import { UserManualRegisterComponent } from './pages/user-manual-register/user-m
     MatIconModule,
     MatListModule,
     MatTableModule,
-    MatSelectModule
+    MatSelectModule,
+    NgxMaskModule.forRoot(),
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]

@@ -21,4 +21,12 @@ export class UserService {
       
     return this.usersProfiles;
   }
+
+  async registerNewUser(user){
+    await this.api.post('register', user, {})
+      .then(
+        (res: any) => {
+          console.log(res);
+      });
+  }
 }

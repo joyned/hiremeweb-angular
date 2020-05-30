@@ -35,7 +35,7 @@
         <label href="#">Para empresas</label>
         <label href="#">Sobre nós</label>
         <label *ngIf="!userName" (click)="openDialog('Login')">Entrar</label>
-        <label *ngIf="!userName" (click)="openDialog('Register')">Registrar</label>
+        <label *ngIf="!userName" (click)="redirectToPage('/register')">Registrar</label>
 
         <label *ngIf="userName" [matMenuTriggerFor]="menu">
           <div class="user-name-option">

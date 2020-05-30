@@ -5,7 +5,6 @@ import { map, shareReplay } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from '../login/login.component';
-import { RegisterComponent } from '../register/register.component';
 import { PageService } from 'src/app/services/pages/page.service';
 
 @Component({
@@ -35,7 +34,6 @@ export class MainNavComponent implements OnInit {
     if(type == 'Login'){
       this.dialog.open(LoginComponent);
     } else {
-      this.dialog.open(RegisterComponent);
     }
   }
 
