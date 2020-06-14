@@ -1,0 +1,48 @@
+<div class="page-content">
+    <div class="chat-content">
+        <div class="person">
+            <ng-container *ngFor="let person of user">
+                <div class="chat-person" (click)="changeChat(person)">
+                    <div class="person-content">
+                        <div class="person-photo">
+                            <div class="person-ico">
+                                <img src="../../../assets/img/job-background.jpeg" width="70" height="70">
+                            </div>
+                        </div>
+                        <div class="person-name">
+                            {{person}}
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+        <div class="chat-message">
+            <div class="chat" *ngIf="currentChat != ''">
+                <div class="chat-header">
+                    {{currentChat}}
+                    <br>
+                    <label>Online now</label>
+                    <hr>
+                </div>
+                <div class="messages">
+                    <div class="contact-box">
+                        <label>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vel egestas est. Nam imperdiet arcu ut leo dapibus, sit amet aliquet neque molestie. Vestibulum pharetra augue sed ipsum fermentum eleifend.</label>
+                        <div class="spacer"></div>
+                    </div>
+                    <p>10:35pm</p>
+                    <div class="user-box">
+                        <div class="spacer"></div>
+                        <label>Nam pellentesque varius ex, id fringilla eros sagittis vel. Nunc bibendum justo est, hendrerit dignissim turpis varius in. Maecenas ut magna efficitur, maximus est at, imperdiet purus. Nullam vel tempus massa. Duis pharetra viverra tortor maximus sagittis. Sed lectus quam, porttitor ut mauris et, sodales feugiat lacus.</label>
+                    </div>
+                    <p style="float: right;">10:35pm</p>
+                </div>
+            </div>
+            <hr>
+            <div class="input-text">
+                <input type="text">
+                <button>Enviar</button>
+                <!-- <img src="../../../assets/icons/baseline_send_black_18dp.png" alt=""> -->
+            </div>
+        </div>
+    </div>
+</div>

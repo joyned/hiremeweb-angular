@@ -34,6 +34,7 @@
         <label (click)="redirectToPage('/jobs')">Vagas</label>
         <label href="#">Para empresas</label>
         <label href="#">Sobre nós</label>
+        <label (click)="redirectToPage('/messages')">Mensagens</label>
         <label *ngIf="!userName" (click)="openDialog('Login')">Entrar</label>
         <label *ngIf="!userName" (click)="redirectToPage('/register')">Registrar</label>
 

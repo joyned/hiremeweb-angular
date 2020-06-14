@@ -1,4 +1,8 @@
 <div class="content" align="center">
+    <div class="errorMessage" align="center" *ngIf="emptyFields != ''">
+        <h3>Existem campos obrigatórios vazios:</h3>
+        <pre [innerHtml]= 'emptyFields'></pre>
+    </div>
     <h2 class="active">Dados Gerais</h2>
     <form>
         <input type="text" id="email" class="fadeIn second" name="login" placeholder="Email" style="width: 55%;" [(ngModel)]="user.email">
@@ -8,10 +12,11 @@
         <input type="text" id="cpf" class="fadeIn third" name="cpf" placeholder="CPF" style="width: 55%;" mask="000.000.000-99" [(ngModel)]="user.cpf">
         <input type="text" id="rg" class="fadeIn third" name="rg" placeholder="RG" style="width: 55%;" mask="00.000.000-0" [(ngModel)]="user.rg">
         <input type="text" id="name" class="fadeIn second" name="name" placeholder="Nome abreviado" style="width: 55%;" [(ngModel)]="user.name">
-        <input type="text" id="name" class="fadeIn second" name="name" placeholder="Nome completo" style="width: 55%;" [(ngModel)]="user.fullname">
-        <input matInput type="text" style="width: 45%;" [matDatepicker]="picker" [(ngModel)]="user.birthDate" [ngModelOptions]="{standalone: true}" >
+        <input type="text" id="fullname" class="fadeIn second" name="name" placeholder="Nome completo" style="width: 55%;" [(ngModel)]="user.fullname">
+        <input type="text" id="birthdate" class="fadeIn second" name="name" placeholder="Data de nascimento" style="width: 55%;" [(ngModel)]="user.birthDate" mask='00/00/0000'>
+        <!-- <input matInput type="text" style="width: 45%;" [matDatepicker]="picker" [(ngModel)]="user.birthDate" [ngModelOptions]="{standalone: true}" >
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
+        <mat-datepicker #picker></mat-datepicker> -->
     </form>
     <h2 class="active">Endereço</h2>
     <form>

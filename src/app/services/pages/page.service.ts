@@ -8,8 +8,8 @@ export class PageService {
 
   constructor(private api: ApiService) { }
 
-  async getPagesByUserId(userId: any){
-    let endPoint = 'pages/' + userId;
+  async getPagesByUserId(){
+    let endPoint = 'pages/';
     let data = await this.api.getResult(endPoint, {
       "Authorization": localStorage.getItem('token')
     });

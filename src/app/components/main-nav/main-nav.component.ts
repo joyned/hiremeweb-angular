@@ -44,7 +44,7 @@ export class MainNavComponent implements OnInit {
   async getUserNameAndLoadPages(){
     if(localStorage.getItem('user') != undefined){
       this.userName = localStorage.getItem('user');
-      this.pages = await this.pageService.getPagesByUserId(localStorage.getItem('user_id'));
+      this.pages = await this.pageService.getPagesByUserId();
     }
   }
 
@@ -58,9 +58,6 @@ export class MainNavComponent implements OnInit {
 
   logout(){
     localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    localStorage.removeItem('user_id');
-    localStorage.removeItem('candidate_id');
     this.userName = "";
     this.router.navigateByUrl('/home');
   }

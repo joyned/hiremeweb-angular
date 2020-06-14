@@ -45,6 +45,8 @@ import { NgxMaskModule } from 'ngx-mask'
 import { RegisterComponent } from './pages/register/register.component';
 import { MatDatepickerModule } from '@angular/material/datepicker'
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MessagesComponent } from './pages/messages/messages.component'
 
 @NgModule({
   declarations: [
@@ -66,7 +68,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     ErrorDialogComponent,
     HireMeTitleComponent,
     PageRegisterComponent,
-    UserManualRegisterComponent
+    UserManualRegisterComponent,
+    MessagesComponent
   ],
   imports: [
     BrowserModule,
@@ -95,7 +98,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatSelectModule,
     NgxMaskModule.forRoot(),
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatSnackBarModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]

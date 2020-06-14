@@ -19,7 +19,7 @@ export class AppliedJobsService implements OnInit {
     let endPoint = 'applied-jobs';
     let candidateId = localStorage.getItem("candidate_id");
     let token = localStorage.getItem("token");
-    endPoint = endPoint + '/' + candidateId;
+    endPoint = endPoint
     await this.api.getResult(endPoint, {'Authorization': token}).then(
       (res: any) => {
         this.jobs = res['applied_jobs'];
