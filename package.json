@@ -37,6 +37,8 @@
     "express": "^4.17.1",
     "ngx-mask": "^9.1.2",
     "rxjs": "^6.5.5",
+    "socket-io": "^1.0.0",
+    "socket.io-client": "^2.3.0",
     "true-case-path": "^2.2.1",
     "tslib": "^1.10.0",
     "typescript": "~3.7.5",
