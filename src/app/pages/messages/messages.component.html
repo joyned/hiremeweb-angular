@@ -25,22 +25,24 @@
                     <hr>
                 </div>
                 <div class="messages">
-                    <div class="contact-box">
+                    <!-- <div class="contact-box">
                         <label>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vel egestas est. Nam imperdiet arcu ut leo dapibus, sit amet aliquet neque molestie. Vestibulum pharetra augue sed ipsum fermentum eleifend.</label>
                         <div class="spacer"></div>
                     </div>
-                    <p>10:35pm</p>
-                    <div class="user-box">
-                        <div class="spacer"></div>
-                        <label>Nam pellentesque varius ex, id fringilla eros sagittis vel. Nunc bibendum justo est, hendrerit dignissim turpis varius in. Maecenas ut magna efficitur, maximus est at, imperdiet purus. Nullam vel tempus massa. Duis pharetra viverra tortor maximus sagittis. Sed lectus quam, porttitor ut mauris et, sodales feugiat lacus.</label>
+                    <p>10:35pm</p> -->
+                    <div class="mes" *ngFor="let mes of messages">
+                        <div class="user-box">
+                            <div class="spacer"></div>
+                            <label>{{mes}}</label>
+                        </div>
+                        <p style="float: right;">10:35pm</p>
                     </div>
-                    <p style="float: right;">10:35pm</p>
                 </div>
             </div>
             <hr>
             <div class="input-text">
-                <input type="text">
-                <button>Enviar</button>
+                <input type="text" [(ngModel)]="message">
+                <button (click)="sendMessage()">Enviar</button>
                 <!-- <img src="../../../assets/icons/baseline_send_black_18dp.png" alt=""> -->
             </div>
         </div>

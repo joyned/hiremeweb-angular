@@ -47,6 +47,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker'
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MessagesComponent } from './pages/messages/messages.component'
+import { ClientSocket } from './services/socket/client.socket';
 
 @NgModule({
   declarations: [
@@ -101,7 +102,7 @@ import { MessagesComponent } from './pages/messages/messages.component'
     MatNativeDateModule,
     MatSnackBarModule
   ],
-  providers: [AuthGuard],
+  providers: [AuthGuard, ClientSocket],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
