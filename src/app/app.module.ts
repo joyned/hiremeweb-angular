@@ -28,7 +28,6 @@ import { ConfigurationComponent } from './pages/configuration/configuration.comp
 import { ImageUploadComponent } from './components/image-upload/image-upload.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { InputPasswordComponent } from './components/input-password/input-password.component';
-import { MainNavComponent } from './components/main-nav/main-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
@@ -48,6 +47,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MessagesComponent } from './pages/messages/messages.component'
 import { ClientSocket } from './services/socket/client.socket';
+import { MenuBarComponent } from './components/menu-bar/menu-bar.component';
 
 @NgModule({
   declarations: [
@@ -64,13 +64,13 @@ import { ClientSocket } from './services/socket/client.socket';
     ConfigurationComponent,
     ImageUploadComponent,
     InputPasswordComponent,
-    MainNavComponent,
     AppliedJobsComponent,
     ErrorDialogComponent,
     HireMeTitleComponent,
     PageRegisterComponent,
     UserManualRegisterComponent,
-    MessagesComponent
+    MessagesComponent,
+    MenuBarComponent
   ],
   imports: [
     BrowserModule,
@@ -100,7 +100,8 @@ import { ClientSocket } from './services/socket/client.socket';
     NgxMaskModule.forRoot(),
     MatDatepickerModule,
     MatNativeDateModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    NgbModule
   ],
   providers: [AuthGuard, ClientSocket],
   bootstrap: [AppComponent]

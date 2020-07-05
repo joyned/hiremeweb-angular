@@ -1,0 +1,38 @@
+.menu-bar {
+}
+
+* {
+	margin: 0;
+	padding: 0;
+    list-style-type: none;
+}
+
+ul{
+    padding: 1em;
+	display: flex;
+	justify-content: space-between;
+	text-align: center;
+}
+.menu-button, .logo {
+    padding: 1.5%;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: #ebebeb;
+	min-width: 80px;
+	margin: auto;
+}
+
+.menu-button:hover {
+    background-size: 100% 100%;
+    animation: spring 300ms ease-out;
+    font-weight: bold;
+    background-color: #192642;
+}
+.menu-button:active {
+    transform: translateY(4px);
+}
+
+.logo {
+    width: 50%;
+    border: none;
+}
