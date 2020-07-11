@@ -15,3 +15,9 @@
 .label-x:hover{
     cursor: pointer;
 }
+
+@media(max-width: 320px) {
+    .cdk-overlay-pane{
+        height: 450px !important;
+    }
+}

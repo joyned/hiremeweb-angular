@@ -44,6 +44,7 @@ $hire-me-theme: mat-light-theme($hire-me-primary, $hire-me-accent, $hire-me-warn
 
 html, body { 
     height: 100%;
+    width: auto;
 }
 
 @media(max-width: 754px){
@@ -51,4 +52,11 @@ html, body {
         width: fit-content;
     }
 }
+
+@media(max-width: 320px) {
+    * {
+        font-size: small;
+    }
+}
+
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: #0F1626;}

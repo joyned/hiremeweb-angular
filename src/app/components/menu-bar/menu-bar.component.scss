@@ -72,8 +72,23 @@ ul{
     position: relative;
 }
 
+.menu-mobile{
+    display: none;
+}
+
 @media(max-width: 754px){
     .cdk-overlay-pane{
         top:5%;
+    }
+}
+
+@media(max-width:800px){
+    .menu-bar{
+        display: none;
+    }
+
+    .menu-mobile{
+        display: block;
+        width: 100%;
     }
 }

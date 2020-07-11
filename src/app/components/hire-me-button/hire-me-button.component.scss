@@ -21,3 +21,15 @@ button:hover {
     transform: scale(0.95);
     cursor: pointer;
 }
+
+@media(max-width: 320px) {
+    button {
+        padding: 5px 50px;
+    }
+}
+
+@media(max-width: 375px) {
+    button {
+        padding: 10px 70px;
+    }
+}

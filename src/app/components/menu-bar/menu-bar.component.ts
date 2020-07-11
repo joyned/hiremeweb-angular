@@ -18,8 +18,10 @@ export class MenuBarComponent implements OnInit {
   constructor(private router: Router, private dialog: MatDialog, private pageService: PageService) { }
 
   async ngOnInit(): Promise<void> {
-    this.pages = await this.pageService.getPagesByUserId();
     this.userName = localStorage.getItem('user');
+    if(this.userName){
+      this.pages = await this.pageService.getPagesByUserId();
+    }
   }
 
   redirectToPage(page: any) {
@@ -34,6 +36,7 @@ export class MenuBarComponent implements OnInit {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     this.userName = '';
+    window.location.reload();
     this.router.navigateByUrl('/home');
   }
 

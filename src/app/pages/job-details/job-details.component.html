@@ -21,6 +21,7 @@
             <li>País: {{ job.country }}</li>
             <li>Remuneração: R$ {{ job.salary }}</li>
         </div>
+        <hr>
         <app-hire-me-button *ngIf="showButton" [buttonTitle]="'Candidatar-se'" (click)="openDialog(dialogConfirm)"></app-hire-me-button>
     </div>
 </div>

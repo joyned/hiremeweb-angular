@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Inject, ContentChild, TemplateRef, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, Inject, ContentChild, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { JobDetailService } from 'src/app/services/job-detail/job-detail.service';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -7,7 +7,8 @@ import { ErrorDialogComponent } from 'src/app/components/error-dialog/error-dial
 @Component({
   selector: 'app-job-details',
   templateUrl: './job-details.component.html',
-  styleUrls: ['./job-details.component.scss']
+  styleUrls: ['./job-details.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class JobDetailsComponent implements OnInit {
 
