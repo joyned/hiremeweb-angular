@@ -22,12 +22,13 @@ export class AuthGuard implements CanActivate {
   }
 
   async checkPermission(state) {
-    try {
-      await this.pageAuth.checkPermission(state.url);
-      return true;
-    } catch (error) {
-      this.router.navigateByUrl('/');
-      return false;
-    }
+    // try {
+    //   await this.pageAuth.checkPermission(state.url);
+    //   return true;
+    // } catch (error) {
+    //   this.router.navigateByUrl('/');
+    //   return false;
+    // }
+    return true;
   }
 }

@@ -28,7 +28,7 @@
                 </div>
                 <div class="row" align="center">
                     <div>
-                        <img src="../../../assets/icons/outline_error_outline_black_18dp.png" (click)="jobDetails(job.id)">
+                        <mat-icon (click)="jobDetails(job.id)" style="cursor: pointer;">info</mat-icon>
                     </div>
                 </div>
                 <div class="row" align="center">
@@ -42,7 +42,7 @@
 </div>
 
 <ng-template #dialogConfirm>
-    <div class="confirm-body" style="padding: 9px;">
+    <div class="confirm-body" style="padding: 9px; color: black;">
         <h1 class="job-title">Cancelar aplicação para vaga</h1>
         <hr>
         <div class="text-confirm" style="margin-bottom: 5px;">

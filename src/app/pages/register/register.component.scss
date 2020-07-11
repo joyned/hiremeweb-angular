@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins');
 
 ::ng-deep .mat-checkbox-checked .mat-checkbox-background, .mat-checkbox-indeterminate .mat-checkbox-background {
-    background-color: var(--primary-color) !important;
+    background-color: var(--new-s-color) !important;
 }
   
   // overwrite the ripple overlay on hover and click
 ::ng-deep .mat-checkbox:not(.mat-checkbox-disabled) .mat-checkbox-ripple .mat-ripple-element {
-    background-color: var(--primary-color) !important;
+    background-color: var(--new-s-color) !important;
 }
 
 a {
@@ -70,11 +70,11 @@ h2.inactive {
 
 h2.active {
   color: #0d0d0d;
-  border-bottom: 2px solid var(--primary-color);
+  border-bottom: 2px solid var(--new-s-color);
 }
 
 input[type=button], input[type=submit], input[type=reset]  {
-  background-color: var(--primary-color);
+  background-color: var(--new-s-color);
   border: none;
   color: white;
   padding: 15px 80px;
@@ -95,7 +95,7 @@ input[type=button], input[type=submit], input[type=reset]  {
 }
 
 input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover  {
-  background-color: var(--primary-color);
+  background-color: var(--new-s-color);
   -moz-transform: scale(0.95);
   -webkit-transform: scale(0.95);
   -o-transform: scale(0.95);
@@ -134,7 +134,7 @@ input[type=text], input[type=password] {
 
 input[type=text]:focus, input[type=password]:focus {
   background-color: #fff;
-  border-bottom: 2px solid var(--primary-color);
+  border-bottom: 2px solid var(--new-s-color);
 }
 
 input[type=text]:placeholder {
@@ -152,7 +152,7 @@ input[type=submit] {
   bottom: -10px;
   width: 0;
   height: 2px;
-  background-color: var(--primary-color);
+  background-color: var(--new-s-color);
   content: "";
   transition: width 0.2s;
 }
@@ -188,6 +188,7 @@ input[type=submit] {
 }
 
 .content {
+  color: white;
   padding: 9px;
 }
 
@@ -207,4 +208,19 @@ input[type=submit] {
 
 .ghiles-snackbar {
   background-color: red !important;
+}
+
+::ng-deep .mat-checkbox-checked .mat-checkbox-background, .mat-checkbox-indeterminate .mat-checkbox-background {
+  background-color: var(--new-s-color) !important;
+  border-color: white;
+}
+
+// overwrite the ripple overlay on hover and click
+::ng-deep .mat-checkbox:not(.mat-checkbox-disabled) .mat-checkbox-ripple .mat-ripple-element {
+  background-color: var(--new-s-color) !important;
+  border-color: white;
+}
+
+::ng-deep .mat-checkbox .mat-checkbox-frame {
+  border-color: white;
 }

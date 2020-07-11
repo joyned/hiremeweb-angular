@@ -1,20 +1,40 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { LoginComponent } from '../login/login.component';
+import { PageService } from 'src/app/services/pages/page.service';
 
 @Component({
   selector: 'app-menu-bar',
   templateUrl: './menu-bar.component.html',
-  styleUrls: ['./menu-bar.component.scss']
+  styleUrls: ['./menu-bar.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class MenuBarComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  public userName: string;
+  public pages: any;
 
-  ngOnInit(): void {
+  constructor(private router: Router, private dialog: MatDialog, private pageService: PageService) { }
+
+  async ngOnInit(): Promise<void> {
+    this.pages = await this.pageService.getPagesByUserId();
+    this.userName = localStorage.getItem('user');
   }
 
   redirectToPage(page: any) {
     this.router.navigateByUrl(page);
+  }
+
+  openDialog() {
+    this.dialog.open(LoginComponent);
+  }
+
+  logout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    this.userName = '';
+    this.router.navigateByUrl('/home');
   }
 
 }

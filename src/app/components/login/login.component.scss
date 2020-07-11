@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins');
 
 a {
-  color: var(--third-color);
+  color: var(--new-p-color);
   display:inline-block;
   text-decoration: none;
   font-weight: 400;
@@ -14,7 +14,7 @@ h2 {
   text-transform: uppercase;
   display:inline-block;
   margin: 40px 8px 10px 8px; 
-  color: #cccccc;
+  color: var(--new-p-color);
 }
 
 
@@ -54,11 +54,11 @@ h2.inactive {
 
 h2.active {
   color: #0d0d0d;
-  border-bottom: 2px solid  var(--primary-color);
+  border-bottom: 2px solid  var(--new-p-color);
 }
 
 input[type=button], input[type=submit], input[type=reset]  {
-  background-color: var(--primary-color);
+  background-color: var(--new-s-color);
   border: none;
   color: white;
   padding: 15px 80px;
@@ -80,7 +80,7 @@ input[type=button], input[type=submit], input[type=reset]  {
 }
 
 input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover {
-  background-color: var(--primary-color);
+  background-color: var(--new-p-color);
   -moz-transform: scale(0.95);
   -webkit-transform: scale(0.95);
   -o-transform: scale(0.95);
@@ -120,7 +120,7 @@ input[type=text], input[type=password] {
 
 input[type=text]:focus, input[type=password]:focus {
   background-color: #fff;
-  border-bottom: 2px solid var(--primary-color);
+  border-bottom: 2px solid var(--new-p-color);
 }
 
 input[type=text]:placeholder, input[type=password]:placeholder {
@@ -135,7 +135,7 @@ input[type=text]:placeholder, input[type=password]:placeholder {
   bottom: -10px;
   width: 0;
   height: 2px;
-  background-color: var(--primary-color);
+  background-color: var(--new-p-color);
   content: "";
   transition: width 0.2s;
 }

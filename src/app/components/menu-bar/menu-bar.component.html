@@ -2,20 +2,58 @@
     <ul>
         <li class="logo">Logo</li>
         <li class="menu-button" (click)="redirectToPage('/home')">
-            <i class="fa fa-home" aria-hidden="true"></i>
-            Pagina inicial
+            <div class="menu-content">
+                <mat-icon class="icon-menu">home</mat-icon>
+                <label>Pagina inicial</label>
+            </div>
         </li>
         <li class="menu-button" (click)="redirectToPage('/jobs')">
-            Vagas
-        </li>
-        <li class="menu-button" >
-            Para empresas
-        </li>
-        <li class="menu-button">
-            Sobre nós
+            <div class="menu-content">
+                <mat-icon class="icon-menu">article</mat-icon>
+                <label>Vagas</label>
+            </div>
         </li>
         <li class="menu-button">
-            Entrar/Registrar
+            <div class="menu-content">
+                <mat-icon class="icon-menu">business</mat-icon>
+                <label>Para empresas</label>
+            </div>
+        </li>
+        <li class="menu-button">
+            <div class="menu-content">
+                <mat-icon class="icon-menu">info</mat-icon>
+                <label>Sobre nós</label>
+            </div>
+        </li>
+        <li class="menu-button" (click)="openDialog()" *ngIf="!userName">
+            <div class="menu-content">
+                <mat-icon class="icon-menu">login</mat-icon>
+                <label>Entrar/Registrar</label>
+            </div>
+        </li>
+        <li class="menu-button" *ngIf="userName" [matMenuTriggerFor]="menu">
+            <div class="menu-content">
+                <mat-icon class="icon-menu">perm_identity</mat-icon>
+                <label>Olá, {{ userName }}</label>
+            </div>
         </li>
     </ul>
+
+    <mat-menu #menu="matMenu">
+        <div *ngFor="let page of pages">
+            <label mat-menu-item (click)="redirectToPage(page.constant)">
+                <div class="menu-content">
+                    <mat-icon class="icon-menu">{{ page.icon }}</mat-icon>
+                    <label>{{ page.name }}</label>
+                </div>
+            </label>
+        </div>
+        <label mat-menu-item (click)="logout()">
+            <div class="menu-content">
+                <mat-icon class="icon-menu">exit_to_app</mat-icon>
+                <label>Sair</label>
+            </div>
+        </label>
+    </mat-menu>
+
 </div>

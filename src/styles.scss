@@ -36,7 +36,19 @@ $hire-me-theme: mat-light-theme($hire-me-primary, $hire-me-accent, $hire-me-warn
     --new-t-color: #FF533D;
     --new-f-color: #F5F5F5;
 }
+
+.mat-icon.mat-accent {
+    color: white;
+}
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
+html, body { 
+    height: 100%;
+}
+
+@media(max-width: 754px){
+    body {
+        width: fit-content;
+    }
+}
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: #0F1626;}

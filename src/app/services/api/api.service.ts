@@ -1,15 +1,21 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
 
-  constructor(private http: HttpClient) { }
+  private url: string;
 
-  private readonly url = 'https://python-hire-me-api.herokuapp.com/api/';
-  // private readonly url = 'http://localhost:4200/api/';
+  constructor(private http: HttpClient) {
+    if (environment.production) {
+      this.url = 'https://python-hire-me-api.herokuapp.com/api/';
+    } else {
+      this.url = 'http://localhost:4200/api/';
+    }
+  }
 
   getFromExternal(url: any) {
     return this.http.get(url, {}).toPromise();

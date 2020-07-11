@@ -3,7 +3,7 @@
         <h3>Existem campos obrigatórios vazios:</h3>
         <pre [innerHtml]= 'emptyFields'></pre>
     </div>
-    <h2 class="active">Dados Gerais</h2>
+    <app-hire-me-title [text]="'Dados gerais'"></app-hire-me-title>
     <form>
         <input type="text" id="email" class="fadeIn second" name="login" placeholder="Email" style="width: 55%;" [(ngModel)]="user.email">
         <input type="text" id="user" class="fadeIn second" name="login" placeholder="Usuario" style="width: 55%;" [(ngModel)]="user.user">
@@ -14,11 +14,8 @@
         <input type="text" id="name" class="fadeIn second" name="name" placeholder="Nome abreviado" style="width: 55%;" [(ngModel)]="user.name">
         <input type="text" id="fullname" class="fadeIn second" name="name" placeholder="Nome completo" style="width: 55%;" [(ngModel)]="user.fullname">
         <input type="text" id="birthdate" class="fadeIn second" name="name" placeholder="Data de nascimento" style="width: 55%;" [(ngModel)]="user.birthDate" mask='00/00/0000'>
-        <!-- <input matInput type="text" style="width: 45%;" [matDatepicker]="picker" [(ngModel)]="user.birthDate" [ngModelOptions]="{standalone: true}" >
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker> -->
     </form>
-    <h2 class="active">Endereço</h2>
+    <app-hire-me-title [text]="'Endereço'"></app-hire-me-title>
     <form>
         <input type="text" id="city" claregister-full.componentss="fadeIn third" name="city" placeholder="Cidade" style="width: 55%;" [(ngModel)]="user.city">
         <input type="text" id="state" class="fadeIn third" name="state" placeholder="Estado" style="width: 55%;" [(ngModel)]="user.state">
@@ -34,7 +31,7 @@
     </form>
     <form style="padding: 2%;">
         <mat-checkbox></mat-checkbox>
-        <label style="margin-left: 5px;">Você concorda com os <a>termos de uso?</a></label>
+        <label style="margin-left: 5px;">Você concorda com os <a style="cursor: pointer;">termos de uso?</a></label>
     </form>
     <div>
         <app-hire-me-button [buttonTitle]="'Registrar'" (click)="register()"></app-hire-me-button>

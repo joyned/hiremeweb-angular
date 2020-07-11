@@ -9,7 +9,7 @@
     <app-input-text [width]="66" [placeholder]="'Url da página. Ex: /teste'" [(ngModel)]="pageRegister.pageURL" ngDefaultControl></app-input-text>
     <br>
     <app-hire-me-title [text]="'Permissão de usuário'"></app-hire-me-title>
-    <div *ngFor="let profile of profiles">
+    <div *ngFor="let profile of profiles" style="color: white;">
         <mat-checkbox [value]="profile.id" (change)="checkEvent($event)">{{profile.constante}}</mat-checkbox>
     </div>
     <br><br>

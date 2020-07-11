@@ -1,8 +1,14 @@
 ::ng-deep .mat-checkbox-checked .mat-checkbox-background, .mat-checkbox-indeterminate .mat-checkbox-background {
-    background-color: var(--primary-color) !important;
-  }
-  
-  // overwrite the ripple overlay on hover and click
-  ::ng-deep .mat-checkbox:not(.mat-checkbox-disabled) .mat-checkbox-ripple .mat-ripple-element {
-    background-color: var(--primary-color) !important;
-  }
+  background-color: var(--new-s-color) !important;
+  border-color: white;
+}
+
+// overwrite the ripple overlay on hover and click
+::ng-deep .mat-checkbox:not(.mat-checkbox-disabled) .mat-checkbox-ripple .mat-ripple-element {
+  background-color: var(--new-s-color) !important;
+  border-color: white;
+}
+
+::ng-deep .mat-checkbox .mat-checkbox-frame {
+  border-color: white;
+}

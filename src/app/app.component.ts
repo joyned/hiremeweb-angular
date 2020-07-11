@@ -6,8 +6,8 @@ import { Component, ComponentFactory, OnInit, ViewEncapsulation } from '@angular
   styleUrls: ['./app.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class AppComponent  {
+export class AppComponent {
   title = 'hire-me';
 
-  constructor(){}
+  constructor() { }
 }

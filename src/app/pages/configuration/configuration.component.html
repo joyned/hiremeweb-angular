@@ -1,13 +1,12 @@
 <div class="header" align="center">
-    <h2>Configurações da conta</h2>
+    <app-hire-me-title [text]="'Configurações da conta'"></app-hire-me-title>
 </div>
-<hr>
 
 <div class="body" align="center">
-    <h3>Sua foto</h3>
+    <app-hire-me-title [text]="'Sua foto'"></app-hire-me-title>
     <app-image-upload [img]="image" [editable]="true" (change)="setImage($event)"></app-image-upload>
     
-    <h3>Conta</h3>
+    <app-hire-me-title [text]="'Conta'"></app-hire-me-title>
     <div class="fields">
         <form>
             <app-input-text [placeholder]="'Nome'" [width]="60"></app-input-text>
@@ -18,7 +17,7 @@
             <app-input-text [placeholder]="'CEP'" [width]="20"></app-input-text>
         </form>
     </div>
-    <h3>Senha</h3>
+    <app-hire-me-title [text]="'Senha'"></app-hire-me-title>
     <div class="fields">
         <form>
             <app-input-password [placeholder]="'Senha atual'" [width]="60"></app-input-password>

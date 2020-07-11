@@ -30,6 +30,50 @@ ul{
 }
 
 .logo {
-    width: 50%;
+    width: 40%;
     border: none;
+}
+
+.mat-menu-panel{
+    background: var(--new-p-color) !important;
+}
+
+.mat-menu-item{
+    color: white;
+}
+
+.mat-menu-item .mat-icon-no-color, .mat-menu-item-submenu-trigger::after {
+    color: white;
+    left: 5px;
+    top: -1px;
+    position: relative;
+    cursor: pointer;
+}
+
+.mat-menu-item:hover{
+    background-size: 100% 100%;
+    animation: spring 300ms ease-out;
+    font-weight: bold;
+    background-color: #606a81;
+    cursor: pointer;
+}
+
+.menu-content{
+    cursor: pointer;
+    
+    label{
+        cursor: pointer;
+    }
+}
+
+.icon-menu {
+    top: 5px;
+    right: 5px;
+    position: relative;
+}
+
+@media(max-width: 754px){
+    .cdk-overlay-pane{
+        top:5%;
+    }
 }
