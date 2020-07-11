@@ -1,17 +1,15 @@
-<div class="header">
-</div>
-
 <app-loading-spinner [showText]="true" *ngIf="isLoading"></app-loading-spinner>
 
 <div class="jobs-list" *ngIf="!isEditing">
-  <div class="list" style="width: 100%;" *ngIf="jobs.length != 0" >
+  <div class="list" style="width: 100%;" *ngIf="jobs.length != 0">
 
     <div class="filter-bar">
-      <div class="filter-bar-title">
+      <div class="filter-bar-title" align="center">
         <h1>Filtros</h1>
       </div>
       <div class="filter-bar-content" align="center">
-        <app-input-text [(ngModel)]="jobName" [placeholder]="'Nome do cargo'" [width]="65" ngDefaultControl></app-input-text>
+        <app-input-text [(ngModel)]="jobName" [placeholder]="'Nome do cargo'" [width]="65" ngDefaultControl>
+        </app-input-text>
         <app-input-text [(ngModel)]="jobName" [placeholder]="'Cidade'" [width]="65" ngDefaultControl></app-input-text>
         <app-input-text [(ngModel)]="jobName" [placeholder]="'Area'" [width]="65" ngDefaultControl></app-input-text>
       </div>

@@ -15,16 +15,16 @@ export class ConfigurationComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  setImage(event){
+  setImage(event) {
     this.image = event.target.files[0];
   }
 
-  sendEmail(dialog: any){
+  sendEmail(dialog: any) {
     this.dialog.open(dialog);
     setTimeout(() => this.closeDialog(), 10000);
   }
 
-  closeDialog(){
+  closeDialog() {
     this.dialog.closeAll();
   }
 

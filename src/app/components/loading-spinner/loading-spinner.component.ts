@@ -7,8 +7,8 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class LoadingSpinnerComponent implements OnInit {
 
-  @Input() diameter: number = 100;
-  @Input() showText: boolean = false;
+  @Input() diameter = 100;
+  @Input() showText = false;
 
   constructor() { }
 

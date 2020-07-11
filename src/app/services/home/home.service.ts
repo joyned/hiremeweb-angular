@@ -10,12 +10,12 @@ export class HomeService {
 
   private states = [];
 
-  async getStates(){
+  async getStates() {
     await this.api.getFromExternal('https://servicodados.ibge.gov.br/api/v1/localidades/estados')
-      .then((res: any) => {
-        for(var i = 0; i < res.length; i++){
-          this.states.push(res[i]["nome"]);
-        }
+      .then ((res: any) => {
+        res.array.forEach(element => {
+          this.states.push(element.nome);
+        });
       });
     return this.states;
   }

@@ -6,17 +6,17 @@ import { ApiService } from '../api/api.service';
 })
 export class JobService {
 
-  private jobs: []
+  private jobs: [];
 
   constructor(private api: ApiService) { }
 
-  async getJobs(){
+  async getJobs() {
     await this.api.getResult('job/all', {})
       .then(
         (res: any) => {
-          this.jobs = res['job_list'];
+          this.jobs = res.job_list;
         }
-      )
+      );
     return this.jobs;
   }
 }

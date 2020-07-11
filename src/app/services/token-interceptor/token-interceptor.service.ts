@@ -9,9 +9,11 @@ export class TokenInterceptorService implements HttpInterceptor {
 
   constructor(private injector: Injector) { }
 
-  intercept(req: import("@angular/common/http").HttpRequest<any>, next: import("@angular/common/http").HttpHandler): import("rxjs").Observable<import("@angular/common/http").HttpEvent<any>> {
-    let loginService = this.injector.get(LoginService);
-    if (req.url.includes('/api/login') || req.url.includes('api/job/all') || req.url.includes('api/job/detail') || req.url.includes('api/register') || req.url.includes('api/v1/localidades/estados')) {
+  intercept(req: import('@angular/common/http').HttpRequest<any>,
+            next: import('@angular/common/http').HttpHandler): import('rxjs').Observable<import('@angular/common/http').HttpEvent<any>> {
+    const loginService = this.injector.get(LoginService);
+    if (req.url.includes('/api/login') || req.url.includes('api/job/all') || req.url.includes('api/job/detail')
+      || req.url.includes('api/register') || req.url.includes('api/v1/localidades/estados')) {
       return next.handle(req);
     } else {
       const dupReq = req.clone({

@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
     '../../../assets/img/world.jpg',
     '../../../assets/img/galaxy.jpg',
     '../../../assets/img/particulas.jpg'
-  ]
+  ];
 
   ngOnInit(): void {
     this.getAllStates();

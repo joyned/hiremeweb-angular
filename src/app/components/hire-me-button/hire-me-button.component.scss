@@ -1,6 +1,6 @@
 button {
     margin-top: 1%;
-    background-color: var(--primary-color);
+    background-color: var(--new-s-color);
     border: none;
     color: white;
     padding: 15px 80px;
@@ -13,7 +13,7 @@ button {
 }
 
 button:hover {
-    background-color: var(--second-color);
+    background-color: var(--new-t-color);
     -moz-transform: scale(0.95);
     -webkit-transform: scale(0.95);
     -o-transform: scale(0.95);

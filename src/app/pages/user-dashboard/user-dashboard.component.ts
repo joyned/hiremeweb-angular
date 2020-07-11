@@ -16,20 +16,19 @@ export class UserDashboardComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  loadPage(page: any){
-    if(page == "Jobs"){
+  loadPage(page: any) {
+    if (page === 'Jobs') {
       this.page = JobsComponent;
     }
   }
 
-  logOut(){
+  logOut() {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     this.router.navigateByUrl('/');
   }
 
-  alert(){
-    console.log('teste');
+  alert() {
   }
 
 }

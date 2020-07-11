@@ -6,20 +6,17 @@ import { ApiService } from '../api/api.service';
   providedIn: 'root'
 })
 export class LoginService {
-  data: Object;
+  data: any;
 
   constructor(private api: ApiService) { }
 
-  async login(user: User){
+  async login(user: User) {
     this.data = await this.api.post('login', user, {});
-    localStorage.setItem('token', this.data['token']);
-    localStorage.setItem('user', this.data['user_name']);
+    localStorage.setItem('token', this.data.token);
+    localStorage.setItem('user', this.data.user_name);
   }
 
-  getToken(){
+  getToken() {
     return localStorage.getItem('token');
   }
-
-  
-
 }

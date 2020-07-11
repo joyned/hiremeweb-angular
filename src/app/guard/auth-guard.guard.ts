@@ -8,12 +8,12 @@ import { PageAuthService } from '../services/page-auth/page-auth.service';
 })
 export class AuthGuard implements CanActivate {
 
-  constructor(private pageAuth: PageAuthService, private router: Router) {}
+  constructor(private pageAuth: PageAuthService, private router: Router) { }
 
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if(localStorage.getItem('token')){
+    if (localStorage.getItem('token')) {
       return this.checkPermission(state);
     }
 
@@ -21,7 +21,7 @@ export class AuthGuard implements CanActivate {
     return false;
   }
 
-  async checkPermission(state){
+  async checkPermission(state) {
     try {
       await this.pageAuth.checkPermission(state.url);
       return true;
@@ -30,5 +30,4 @@ export class AuthGuard implements CanActivate {
       return false;
     }
   }
-  
 }

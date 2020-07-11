@@ -1,47 +1,41 @@
 import { Injectable, OnInit } from '@angular/core';
-import { ApiService } from '../api/api.service'
+import { ApiService } from '../api/api.service';
 import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AppliedJobsService implements OnInit {
+export class AppliedJobsService {
 
   private jobs: [];
 
-  ngOnInit(): void {
-    console.log("entrou na pág");
-  }
-  
   constructor(private api: ApiService) { }
 
-  async getAppliedJobs(){
-    let endPoint = 'applied-jobs';
-    let candidateId = localStorage.getItem("candidate_id");
-    let token = localStorage.getItem("token");
-    endPoint = endPoint
-    await this.api.getResult(endPoint, {'Authorization': token}).then(
+  async getAppliedJobs() {
+    const endPoint = 'applied-jobs';
+    const token = localStorage.getItem('token');
+    await this.api.getResult(endPoint, { Authorization: token }).then(
       (res: any) => {
-        this.jobs = res['applied_jobs'];
+        this.jobs = res.applied_jobs;
       }
     );
     return this.jobs;
   }
 
-  async cancelApply(jobId: number){
-    let endPoint = 'delete-applied-job';
-    let candidateId = localStorage.getItem("candidate_id");
-    let token = localStorage.getItem("token");
+  async cancelApply(jobIdentificator: number) {
+    const endPoint = 'delete-applied-job';
+    const candidateIdentificator = localStorage.getItem('candidate_id');
+    const token = localStorage.getItem('token');
 
     const options = {
       headers: new HttpHeaders({
-        'Authorization': token
+        Authorization: token
       }),
       body: {
-        candidateId: candidateId,
-        jobId: jobId
+        candidateId: candidateIdentificator,
+        jobId: jobIdentificator
       }
-    }
+    };
     await this.api.delete(endPoint, options);
   }
 }

@@ -8,7 +8,7 @@ import { ClientSocket } from 'src/app/services/socket/client.socket';
 })
 export class MessagesComponent implements OnInit {
 
-  constructor(public socket: ClientSocket) { 
+  constructor(public socket: ClientSocket) {
     this.socket.recieveMessage()
       .subscribe(m => {
         console.log(m);
@@ -23,7 +23,7 @@ export class MessagesComponent implements OnInit {
     'Smith',
     'Caroline',
     'John'
-  ]
+  ];
 
   public message;
   public currentChat = this.user[0];
@@ -31,17 +31,16 @@ export class MessagesComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  changeChat(user){
+  changeChat(user) {
     this.socket.createRoom(user);
     this.currentChat = user;
   }
 
-  async sendMessage(){
-    var data = {
+  async sendMessage() {
+    const data = {
       message: this.message,
       room: this.currentChat
-    }
+    };
     this.socket.sendMessage(data);
   }
-
 }

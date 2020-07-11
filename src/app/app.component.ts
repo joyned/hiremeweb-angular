@@ -10,6 +10,4 @@ export class AppComponent  {
   title = 'hire-me';
 
   constructor(){}
-
-  
 }

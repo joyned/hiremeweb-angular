@@ -19,18 +19,16 @@ export class AppliedJobsComponent implements OnInit {
   public dialogJobId: number;
 
   ngOnInit(): void {
-    console.log("entrou");
-    
     this.getAppliedJobs();
   }
 
-  async getAppliedJobs(){
+  async getAppliedJobs() {
     this.isLoading = true;
     this.jobs = await this.service.getAppliedJobs();
-    this.isLoading = false; 
+    this.isLoading = false;
   }
 
-  jobDetails(id: number){
+  jobDetails(id: number) {
     this.dialog.open(JobDetailsComponent, {
       data: {
         job_id: id,
@@ -39,16 +37,16 @@ export class AppliedJobsComponent implements OnInit {
     });
   }
 
-  cancelApply(dialog: any, jobId: number, jobTitle: string){
+  cancelApply(dialog: any, jobId: number, jobTitle: string) {
     this.dialogJobId = jobId;
     this.dialogJobTitle = jobTitle;
     this.dialog.open(dialog);
   }
 
-  async cancel(){
-    try{
+  async cancel() {
+    try {
       await this.service.cancelApply(this.dialogJobId);
-    } catch (error){
+    } catch (error) {
       console.error(error);
     } finally {
       this.getAppliedJobs();
@@ -56,7 +54,7 @@ export class AppliedJobsComponent implements OnInit {
     }
   }
 
-  close(){
+  close() {
     this.dialog.closeAll();
   }
 

@@ -10,23 +10,22 @@ export class UserService {
 
   private usersProfiles = [];
 
-  async getUsersProfiles(){
+  async getUsersProfiles() {
     await this.api.getResult('users-profiles', {})
       .then(
         (res: any) => {
           this.usersProfiles = res;
         }
-      )
+      );
     console.log(this.usersProfiles);
-      
     return this.usersProfiles;
   }
 
-  async registerNewUser(user){
+  async registerNewUser(user) {
     await this.api.post('register', user, {})
       .then(
         (res: any) => {
           console.log(res);
-      });
+        });
   }
 }

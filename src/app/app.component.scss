@@ -1,3 +1,11 @@
 .full-content{
+    width: 100%;
     background-color: var(--new-p-color);
+}
+
+.menu {
+    background-color: var(--new-p-color);
+    position: sticky;
+    top:0;
+    z-index: 999;
 }

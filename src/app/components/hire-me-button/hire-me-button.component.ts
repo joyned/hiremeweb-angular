@@ -6,7 +6,6 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./hire-me-button.component.scss']
 })
 export class HireMeButtonComponent implements OnInit {
-  
   @Input() buttonTitle: any;
   @Input() width: number;
   constructor() { }

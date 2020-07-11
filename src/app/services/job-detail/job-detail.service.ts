@@ -6,28 +6,28 @@ import { ApiService } from '../api/api.service';
 })
 export class JobDetailService {
 
-  constructor(private api: ApiService) { }
-
   private data: any;
 
-  async getJobDetailById(id: any){
-    let endPoint = 'job/detail/' + id;
+  constructor(private api: ApiService) { }
+
+  async getJobDetailById(id: any) {
+    const endPoint = 'job/detail/' + id;
     await this.api.post(endPoint, {}, {})
       .then(
         (res: any) => {
           this.data = res;
-      });
+        });
     return this.data;
   }
 
-  async applyToJob(jobId: any){
-    let endPoint = 'job-apply';
+  async applyToJob(jobIdentificator: any) {
+    const endPoint = 'job-apply';
     let userId: any;
-    if(localStorage.getItem('candidate_id')){
-      userId = localStorage.getItem('candidate_id')
+    if (localStorage.getItem('candidate_id')) {
+      userId = localStorage.getItem('candidate_id');
     }
     await this.api.postTokenHeader(endPoint, {
-      jobId: jobId,
+      jobId: jobIdentificator,
       userId: userId == null ? 0 : userId
     });
   }

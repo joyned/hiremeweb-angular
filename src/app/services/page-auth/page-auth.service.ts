@@ -9,11 +9,11 @@ export class PageAuthService {
 
   constructor(private api: ApiService) { }
 
-  async checkPermission(page: any){
-    let endPoint = 'permision-on-page'
+  async checkPermission(pageAccessed: any) {
+    const endPoint = 'permision-on-page';
     await this.api.postTokenHeader(endPoint, {
       userId: localStorage.getItem('user_id'),
-      page: page
+      page: pageAccessed
     });
   }
 }

@@ -1,28 +1,28 @@
-import { Injectable } from "@angular/core";
-import * as io from 'socket.io-client';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import * as io from 'socket.io-client';
 
 @Injectable()
 export class ClientSocket {
 
     private socket = io('https://hire-me-socket.herokuapp.com/');
 
-    sendMessage(data){
+    sendMessage(data) {
         this.socket.emit('send message', data);
     }
 
-    recieveMessage(){
-        let observable = new Observable<any>(observer => {
+    recieveMessage() {
+        const observable = new Observable<any>(observer => {
             this.socket.on('message', (data) => {
                 observer.next(data);
             });
-            return () => {this.socket.disconnect();}
-        })
+            return () => { this.socket.disconnect(); };
+        });
         return observable;
     }
 
-    createRoom(user){
-        this.socket.emit('join', {user: user})
+    createRoom(userToChat) {
+        this.socket.emit('join', { user: userToChat });
     }
 
 }

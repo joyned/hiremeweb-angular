@@ -18,36 +18,36 @@ export class LoginComponent implements OnInit {
   public isLoading = false;
   private userAuth = false;
 
-  public errorMessage: string = "";
+  public errorMessage = '';
   public errorMessageVisible = false;
 
   ngOnInit(): void {
   }
 
-  async doLogin(){
-    try{
+  async doLogin() {
+    try {
       this.isLoading = true;
       await this.loginService.login(this.user);
       this.dialog.closeAll();
       window.location.reload();
-    } catch (error){
+    } catch (error) {
       console.log(error);
-      this.errorMessage = "Usuário e/ou senha incorretos. Por favor, tente novamente.";
+      this.errorMessage = 'Usuário e/ou senha incorretos. Por favor, tente novamente.';
       this.showErrorMessage();
     } finally {
       this.isLoading = false;
     }
   }
 
-  getUserAuth(){
+  getUserAuth() {
     return this.userAuth;
   }
 
-  showErrorMessage(){
-    if(this.errorMessageVisible){
+  showErrorMessage() {
+    if (this.errorMessageVisible) {
       return;
     }
-    this.errorMessageVisible = this.errorMessage.length != 0;
+    this.errorMessageVisible = this.errorMessage.length !== 0;
     setTimeout(() => this.errorMessageVisible = false, 4000);
   }
 

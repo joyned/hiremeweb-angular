@@ -13,7 +13,7 @@ export class MenuBarComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  redirectToPage(page: any){
+  redirectToPage(page: any) {
     this.router.navigateByUrl(page);
   }
 

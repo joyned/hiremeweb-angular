@@ -25,17 +25,17 @@ export class JobsComponent implements OnInit {
     this.listJobs();
   }
 
-  async listJobs(){
+  async listJobs() {
     this.isLoading = true;
     this.jobs = await this.jobService.getJobs();
     this.isLoading = false;
   }
 
-  filter(){
+  filter() {
     console.log(this.jobName);
   }
 
-  jobDetails(id: number){
+  jobDetails(id: number) {
     this.dialog.open(JobDetailsComponent, {
       data: {
         job_id: id,

@@ -11,7 +11,7 @@ import { ErrorDialogComponent } from 'src/app/components/error-dialog/error-dial
 })
 export class JobDetailsComponent implements OnInit {
 
-  constructor(private jobService: JobDetailService, private dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public param: any) {}
+  constructor(private jobService: JobDetailService, private dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public param: any) { }
 
   @ViewChild('dialogApplyConfirmed') dialogApplyConfirmed;
 
@@ -26,15 +26,15 @@ export class JobDetailsComponent implements OnInit {
     this.showButton = this.param.show_button;
   }
 
-  closeDialog(){
+  closeDialog() {
     this.currentDialog.close();
   }
 
-  apply(){
+  apply() {
     try {
       this.jobService.applyToJob(this.param.job_id);
-    } catch (error){
-      console.log("Error: " + error);
+    } catch (error) {
+      console.log('Error: ' + error);
       this.dialog.closeAll();
       this.dialog.open(ErrorDialogComponent);
     } finally {
@@ -44,15 +44,15 @@ export class JobDetailsComponent implements OnInit {
     }
   }
 
-  userLogged(){
+  userLogged() {
     return localStorage.getItem('token') != null;
   }
 
-  openDialog(modal: any){
+  openDialog(modal: any) {
     this.currentDialog = this.dialog.open(modal);
   }
 
-  async getJobDetail(){
+  async getJobDetail() {
     this.isLoading = true;
     this.job = await this.jobService.getJobDetailById(this.param.job_id);
     this.isLoading = false;
