@@ -17,7 +17,6 @@ export class AppliedJobsService {
     await this.api.getResult(endPoint, { Authorization: token }).then(
       (res: any) => {
         console.log(res);
-        
         this.jobs = res.applied_jobs;
       }
     );

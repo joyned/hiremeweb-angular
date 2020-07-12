@@ -19,7 +19,7 @@ export class MenuBarComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.userName = localStorage.getItem('user');
-    if(this.userName){
+    if (this.userName) {
       this.pages = await this.pageService.getPagesByUserId();
     }
   }

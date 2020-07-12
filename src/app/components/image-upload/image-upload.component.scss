@@ -5,8 +5,6 @@
 .avatar-upload {
     position: relative;
     max-width: 205px;
-    border: 6px solid #F8F8F8;
-    border-radius: 100%;
     width: 10em;
     height: 10em;
     .avatar-edit {
@@ -65,4 +63,26 @@
     position: absolute;
     left: 32%;
     top: 19%;
+}
+
+img{
+    border: 6px solid #F8F8F8;
+    border-radius: 100%;
+}
+
+
+.image-cropper {
+    width: 100%;
+    height: 150px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+    margin-left: 0;
+}
+.profile-pic {
+    display: inline;
+    margin: 0 auto;
+    margin-top: 4px;
+    height: 95%;
+    width: auto;
 }
