@@ -6,24 +6,33 @@
     <div class="filter-bar">
       <div class="filter-bar-title" align="center">
         <h1>Filtros</h1>
-      </div>
-      <div class="filter-bar-content" align="center">
-        <app-input-text [(ngModel)]="jobName" [placeholder]="'Nome do cargo'" [width]="65" ngDefaultControl>
-        </app-input-text>
-        <app-input-text [(ngModel)]="jobName" [placeholder]="'Cidade'" [width]="65" ngDefaultControl></app-input-text>
-        <app-input-text [(ngModel)]="jobName" [placeholder]="'Area'" [width]="65" ngDefaultControl></app-input-text>
-      </div>
-      <div align="center">
-        <app-hire-me-button [buttonTitle]="'Filtrar'" (click)="filter()"></app-hire-me-button>
+        <span class="p-input-icon-left" style="width:30%;">
+          <i class="pi pi-search"></i>
+          <input type="text" pInputText placeholder="Cargo" style="width:100%;" />
+        </span>
+
+        <span style="padding: 0.5%;"></span>
+
+        <span class="p-input-icon-left" style="width:30%;">
+          <i class="pi pi-search"></i>
+          <input type="text" pInputText placeholder="Localidade" style="width:100%;" />
+        </span>
+
+        <span style="padding: 0.5%;"></span>
+
+        <button pButton label="Filtrar"></button>
       </div>
     </div>
 
     <span *ngIf="jobs.length == 0">Não existem vagas cadastradas</span>
-    <div class="jobs-content" *ngFor="let job of jobs">
-      <h1>{{job.title}}</h1>
-      <hr>
-      <p>{{job.description}}</p>
-      <app-hire-me-button [buttonTitle]="'Saiba mais >>'" (click)="jobDetails(job.id)"></app-hire-me-button>
-    </div>
+
+    <p-card *ngFor="let job of jobs" header="{{job.title}}" subheader="{{job.city}}, {{job.state}}" styleClass="p-card-shadow"
+      [style]="{'margin-bottom': '2em'}">
+      {{job.shortDescription}}
+      <p-footer>
+        <button pButton label="Saiba mais" (click)="jobDetails(job.id)"></button>
+      </p-footer>
+    </p-card>
+
   </div>
 </div>

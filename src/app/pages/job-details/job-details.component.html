@@ -6,12 +6,11 @@
         <div>
             <div class="title-content" style="display: flex;">
                 <h1 class="job-title">{{ job.title }}</h1>
-                <label class="label-x" mat-dialog-close>&#10005;</label>
             </div>
         </div>
         <hr>
         <div class="job-description">
-           {{ job.description }}
+            {{ job.description }}
         </div>
         <hr>
         <div class="job-detail">
@@ -21,35 +20,18 @@
             <li>País: {{ job.country }}</li>
             <li>Remuneração: R$ {{ job.salary }}</li>
         </div>
+
         <hr>
-        <app-hire-me-button *ngIf="showButton" [buttonTitle]="'Candidatar-se'" (click)="openDialog(dialogConfirm)"></app-hire-me-button>
+
+        <button pButton label="Candidatar-se" (click)="showConfirmDialog()"></button>
+        <span style="padding: 5px;"></span>
+        <button pButton label="Voltar" class="p-button-danger" (click)="backButton()"></button>
+
+        <p-confirmDialog #confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000">
+            <p-footer>
+                <button type="button" pButton icon="pi pi-times" label="Sim" (click)="confirmDialog.accept()"></button>
+                <button type="button" pButton icon="pi pi-check" label="Não" class="p-button-danger" (click)="confirmDialog.reject()"></button>
+            </p-footer>
+        </p-confirmDialog>
     </div>
 </div>
-
-<ng-template #dialogConfirm>
-    <div class="confirm-body" style="padding: 9px;">
-        <h1 class="job-title">{{ job.title }}</h1>
-        <hr>
-        <div class="text-confirm" style="margin-bottom: 5px;">
-            Deseja mesmo se candidatar para <strong>{{ job.title }}</strong>?
-        </div>
-        <div class="button-confirm" style="display: flex;" *ngIf="userLogged()">
-            <app-hire-me-button [buttonTitle]="'Sim'" (click)="apply()"></app-hire-me-button>
-            <app-hire-me-button [buttonTitle]="'Não'" (click)="closeDialog()"></app-hire-me-button>
-        </div>
-    </div>
-</ng-template>
-
-<ng-template #dialogApplyConfirmed>
-    <div class="confirm-body" style="padding: 9px;">
-        <h1 class="job-title">{{ job.title }}</h1>
-        <hr>
-        <div class="text-confirm" style="margin-bottom: 5px;">
-            Sua aplicação para <strong>{{ job.title }}</strong> foi feita com sucesso!
-        </div>
-        <div align="center">
-            <app-hire-me-button [buttonTitle]="'Fechar'" [width]="55" (click)="closeDialog()"></app-hire-me-button>
-        </div>
-    </div>
-</ng-template>
-

@@ -4,29 +4,15 @@
     list-style-type: none;
 }
 
-ul{
+.layout-wrapper .layout-menu li a > .my-margin-left {
+    margin-left: 25px;
+}
+
+.menu-ul {
     padding: 1em;
 	display: flex;
 	justify-content: space-between;
 	text-align: center;
-}
-.menu-button, .logo {
-    padding: 1.5em;
-    text-transform: uppercase;
-    cursor: pointer;
-    color: #ebebeb;
-	min-width: 80px;
-	margin: auto;
-}
-
-.menu-button:hover {
-    background-size: 100% 100%;
-    animation: spring 300ms ease-out;
-    font-weight: bold;
-    background-color: #192642;
-}
-.menu-button:active {
-    transform: translateY(4px);
 }
 
 .logo {
@@ -34,55 +20,15 @@ ul{
     border: none;
 }
 
-.mat-menu-panel{
-    background: var(--new-p-color) !important;
-}
-
-.mat-menu-item{
-    color: white;
-}
-
-.mat-menu-item .mat-icon-no-color, .mat-menu-item-submenu-trigger::after {
-    color: white;
-    left: 5px;
-    top: -1px;
-    position: relative;
-    cursor: pointer;
-}
-
-.mat-menu-item:hover{
-    background-size: 100% 100%;
-    animation: spring 300ms ease-out;
-    font-weight: bold;
-    background-color: #606a81;
-    cursor: pointer;
-}
-
-.menu-content{
-    cursor: pointer;
-    
-    label{
-        cursor: pointer;
-    }
-}
-
-.icon-menu {
-    top: 5px;
-    right: 5px;
-    position: relative;
-}
-
 .menu-mobile{
     display: none;
 }
 
-@media(max-width: 754px){
-    .cdk-overlay-pane{
-        top:5%;
-    }
+.ng-tns-c211-0 {
+    content: "Test";
 }
 
-@media(max-width:800px){
+@media(max-width:960px){
     .menu-bar{
         display: none;
     }

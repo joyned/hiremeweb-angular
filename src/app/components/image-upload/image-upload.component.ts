@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
-import { faPencilAlt, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-image-upload',
@@ -10,9 +9,6 @@ export class ImageUploadComponent implements OnInit, OnChanges {
 
   @Input() img: any;
   @Input() editable: boolean;
-
-  faPencilAlt = faPencilAlt;
-  faTimesCircle = faTimesCircle;
 
   constructor() { }
 

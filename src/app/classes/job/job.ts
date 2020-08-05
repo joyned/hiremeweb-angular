@@ -6,6 +6,7 @@ export class Job {
     country?: string;
     salary?: string;
     description?: string;
+    shortDescription?: string;
     idArea?: number;
     idJobLevel?: number;
 }

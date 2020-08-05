@@ -1,9 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-loading-spinner',
   templateUrl: './loading-spinner.component.html',
-  styleUrls: ['./loading-spinner.component.scss']
+  styleUrls: ['./loading-spinner.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class LoadingSpinnerComponent implements OnInit {
 

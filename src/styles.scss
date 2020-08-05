@@ -1,31 +1,20 @@
-/* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
 
-// Custom Theming for Angular Material
-// For more information: https://material.angular.io/guide/theming
 @import '~@angular/material/theming';
-// Plus imports for other components in your app.
 
-// Include the common styles for Angular Material. We include this here so that you only
-// have to load a single css file for Angular Material in your app.
-// Be sure that you only ever include this mixin once!
+@import '../node_modules/primeng/resources/primeng.min.css';
+@import '../node_modules/primeicons/primeicons.css';
+@import '../node_modules/primeng/resources/themes/saga-green/theme.css';
+
 @include mat-core();
 
-// Define the palettes for your theme using the Material Design palettes available in palette.scss
-// (imported above). For each palette, you can optionally specify a default, lighter, and darker
-// hue. Available color palettes: https://material.io/design/color/
 $hire-me-primary: mat-palette($mat-indigo);
 $hire-me-accent: mat-palette($mat-pink, A200, A100, A400);
 
-// The warn palette is optional (defaults to red).
 $hire-me-warn: mat-palette($mat-red);
 
-// Create the theme object (a Sass map containing all of the palettes).
 $hire-me-theme: mat-light-theme($hire-me-primary, $hire-me-accent, $hire-me-warn);
 
-// Include theme styles for core and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component
-// that you are using.
 @include angular-material-theme($hire-me-theme);
 
 :root {
@@ -42,7 +31,6 @@ $hire-me-theme: mat-light-theme($hire-me-primary, $hire-me-accent, $hire-me-warn
 .mat-icon.mat-accent {
     color: white;
 }
-/* You can add global styles to this file, and also import other style files */
 
 html, body { 
     height: 100%;
@@ -61,5 +49,8 @@ html, body {
     }
 }
 
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: #0F1626;}
+body { 
+    margin: 0; 
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 

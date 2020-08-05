@@ -10,12 +10,14 @@ import { MessagesComponent } from './pages/messages/messages.component';
 import { PageRegisterComponent } from './pages/page-register/page-register.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { UserManualRegisterComponent } from './pages/user-manual-register/user-manual-register.component';
+import { JobDetailsComponent } from './pages/job-details/job-details.component';
 
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'jobs', component: JobsComponent },
+  { path: 'jobs-detail/:job_id/:show_button', component: JobDetailsComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'applied-jobs', component: AppliedJobsComponent, canActivate: [AuthGuard] },

@@ -20,8 +20,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxMaskModule } from 'ngx-mask';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -48,6 +46,14 @@ import { UserManualRegisterComponent } from './pages/user-manual-register/user-m
 import { ClientSocket } from './services/socket/client.socket';
 import { Interceptor } from './services/token-interceptor/token-interceptor.service';
 
+/* PrimeNG Modules */
+import { ButtonModule } from 'primeng/button';
+import { MenubarModule } from 'primeng/menubar';
+import { InputTextModule } from 'primeng/inputtext';
+import { CardModule } from 'primeng/card';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { SlideMenuModule } from 'primeng/slidemenu';
 
 @NgModule({
   declarations: [
@@ -87,8 +93,6 @@ import { Interceptor } from './services/token-interceptor/token-interceptor.serv
     MatDialogModule,
     MatCheckboxModule,
     Interceptor,
-    NgbModule,
-    FontAwesomeModule,
     LayoutModule,
     MatToolbarModule,
     MatButtonModule,
@@ -101,7 +105,13 @@ import { Interceptor } from './services/token-interceptor/token-interceptor.serv
     MatDatepickerModule,
     MatNativeDateModule,
     MatSnackBarModule,
-    NgbModule
+    ButtonModule,
+    MenubarModule,
+    InputTextModule,
+    CardModule,
+    ProgressSpinnerModule,
+    ConfirmDialogModule,
+    SlideMenuModule
   ],
   providers: [AuthGuard, ClientSocket],
   bootstrap: [AppComponent]

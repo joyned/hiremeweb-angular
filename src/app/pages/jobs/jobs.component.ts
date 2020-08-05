@@ -1,18 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { JobService } from 'src/app/services/job/job.service';
-import { Job } from 'src/app/classes/job/job';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Job } from 'src/app/classes/job/job';
+import { JobService } from 'src/app/services/job/job.service';
 import { JobDetailsComponent } from '../job-details/job-details.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-jobs',
   templateUrl: './jobs.component.html',
-  styleUrls: ['./jobs.component.scss']
+  styleUrls: ['./jobs.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class JobsComponent implements OnInit {
 
-  constructor(private jobService: JobService, private dialog: MatDialog) { }
+  constructor(private jobService: JobService, private dialog: MatDialog, private router: Router) { }
 
   public isEditing: boolean;
   public job: Job;
@@ -29,6 +30,7 @@ export class JobsComponent implements OnInit {
     this.isLoading = true;
     this.jobs = await this.jobService.getJobs();
     this.isLoading = false;
+
   }
 
   filter() {
@@ -36,12 +38,7 @@ export class JobsComponent implements OnInit {
   }
 
   jobDetails(id: number) {
-    this.dialog.open(JobDetailsComponent, {
-      data: {
-        job_id: id,
-        show_button: true
-      }
-    });
+    this.router.navigate(['/jobs-detail', id, true]);
   }
 
 }

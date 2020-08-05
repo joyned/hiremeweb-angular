@@ -6,18 +6,6 @@
     width: 90%;
 }
 
-.label-x {
-    width: 10%; 
-    text-align: right; 
-    font-size: xx-large;
-}
-
-.label-x:hover{
-    cursor: pointer;
-}
-
-@media(max-width: 320px) {
-    .cdk-overlay-pane{
-        height: 450px !important;
-    }
+.back-button {
+    padding: 9px;
 }
