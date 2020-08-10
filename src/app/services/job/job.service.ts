@@ -12,7 +12,7 @@ export class JobService {
   constructor(private api: ApiService) { }
 
   async getJobs() {
-    await this.api.getResult('job/all', {})
+    await this.api.get('job/all', {})
       .then(
         (res: any) => {
           this.jobs = res.job_list;

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AppliedJobsService } from '../../services/applied-jobs/applied-jobs.service';
 import { MatDialog } from '@angular/material/dialog';
 import { JobDetailsComponent } from '../job-details/job-details.component';
+import { Job } from 'src/app/classes/job/job';
 
 @Component({
   selector: 'app-applied-jobs',
@@ -12,7 +13,7 @@ export class AppliedJobsComponent implements OnInit {
 
   constructor(private service: AppliedJobsService, private dialog: MatDialog) { }
 
-  public jobs: any = [];
+  public jobs: Job[] = [];
   public isLoading = true;
 
   public dialogJobTitle: string;
@@ -20,6 +21,7 @@ export class AppliedJobsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAppliedJobs();
+    console.log(this.jobs)
   }
 
   async getAppliedJobs() {

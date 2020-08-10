@@ -5,13 +5,10 @@
 <app-loading-spinner [showText]="true" *ngIf="isLoading"></app-loading-spinner>
 
 <div align="center" *ngIf="!isLoading">
-    <app-input-text [width]="66" [placeholder]="'Nome da página'" [(ngModel)]="pageRegister.pageName" ngDefaultControl></app-input-text>
-    <app-input-text [width]="66" [placeholder]="'Url da página. Ex: /teste'" [(ngModel)]="pageRegister.pageURL" ngDefaultControl></app-input-text>
     <br>
     <app-hire-me-title [text]="'Permissão de usuário'"></app-hire-me-title>
     <div *ngFor="let profile of profiles" style="color: white;">
         <mat-checkbox [value]="profile.id" (change)="checkEvent($event)">{{profile.constante}}</mat-checkbox>
     </div>
     <br><br>
-    <app-hire-me-button [buttonTitle]="'Salvar'" (click)="save()"></app-hire-me-button>
 </div>

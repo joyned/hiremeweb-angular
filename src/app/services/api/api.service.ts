@@ -38,7 +38,7 @@ export class ApiService {
     return this.http.post(this.url + endPoint, body, { headers: { Authorization: token } }).toPromise();
   }
 
-  getResult(endPoint: string, header: any) {
+  get(endPoint: string, header: any) {
     return this.http.get(this.url + endPoint, { headers: header }).toPromise();
   }
 }

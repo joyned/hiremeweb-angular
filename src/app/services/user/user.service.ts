@@ -11,7 +11,7 @@ export class UserService {
   private usersProfiles = [];
 
   async getUsersProfiles() {
-    await this.api.getResult('users-profiles', {})
+    await this.api.get('users-profiles', {})
       .then(
         (res: any) => {
           this.usersProfiles = res;

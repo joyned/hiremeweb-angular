@@ -24,11 +24,8 @@ import { NgxMaskModule } from 'ngx-mask';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ErrorDialogComponent } from './components/error-dialog/error-dialog.component';
-import { HireMeButtonComponent } from './components/hire-me-button/hire-me-button.component';
 import { HireMeTitleComponent } from './components/hire-me-title/hire-me-title.component';
 import { ImageUploadComponent } from './components/image-upload/image-upload.component';
-import { InputPasswordComponent } from './components/input-password/input-password.component';
-import { InputTextComponent } from './components/input-text/input-text.component';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { LoginComponent } from './components/login/login.component';
 import { MenuBarComponent } from './components/menu-bar/menu-bar.component';
@@ -45,6 +42,7 @@ import { UserDashboardComponent } from './pages/user-dashboard/user-dashboard.co
 import { UserManualRegisterComponent } from './pages/user-manual-register/user-manual-register.component';
 import { ClientSocket } from './services/socket/client.socket';
 import { Interceptor } from './services/token-interceptor/token-interceptor.service';
+import { AlertMessageComponent } from './components/alert-message/alert-message.component'
 
 /* PrimeNG Modules */
 import { ButtonModule } from 'primeng/button';
@@ -54,6 +52,13 @@ import { CardModule } from 'primeng/card';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { SlideMenuModule } from 'primeng/slidemenu';
+import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
+import { ToastModule } from 'primeng/toast';
+import { CalendarModule } from 'primeng/calendar';
+import { InputMaskModule } from 'primeng/inputmask';
+import { TableModule } from 'primeng/table';
+import { SidebarModule } from 'primeng/sidebar';
 
 @NgModule({
   declarations: [
@@ -61,22 +66,20 @@ import { SlideMenuModule } from 'primeng/slidemenu';
     LoginComponent,
     UserDashboardComponent,
     JobsComponent,
-    HireMeButtonComponent,
     HomeComponent,
     JobDetailsComponent,
     LoadingSpinnerComponent,
     RegisterComponent,
-    InputTextComponent,
     ConfigurationComponent,
     ImageUploadComponent,
-    InputPasswordComponent,
     AppliedJobsComponent,
     ErrorDialogComponent,
     HireMeTitleComponent,
     PageRegisterComponent,
     UserManualRegisterComponent,
     MessagesComponent,
-    MenuBarComponent
+    MenuBarComponent,
+    AlertMessageComponent
   ],
   imports: [
     BrowserModule,
@@ -111,7 +114,14 @@ import { SlideMenuModule } from 'primeng/slidemenu';
     CardModule,
     ProgressSpinnerModule,
     ConfirmDialogModule,
-    SlideMenuModule
+    SlideMenuModule,
+    MessagesModule,
+    MessageModule,
+    ToastModule,
+    CalendarModule,
+    InputMaskModule,
+    TableModule,
+    SidebarModule
   ],
   providers: [AuthGuard, ClientSocket],
   bootstrap: [AppComponent]

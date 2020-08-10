@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { InputTextComponent } from './input-text.component';
+import { AlertMessageComponent } from './alert-message.component';
 
-describe('InputTextComponent', () => {
-  let component: InputTextComponent;
-  let fixture: ComponentFixture<InputTextComponent>;
+describe('AlertMessageComponent', () => {
+  let component: AlertMessageComponent;
+  let fixture: ComponentFixture<AlertMessageComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ InputTextComponent ]
+      declarations: [ AlertMessageComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(InputTextComponent);
+    fixture = TestBed.createComponent(AlertMessageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
