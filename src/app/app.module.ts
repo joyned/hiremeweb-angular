@@ -27,7 +27,7 @@ import { ErrorDialogComponent } from './components/error-dialog/error-dialog.com
 import { HireMeTitleComponent } from './components/hire-me-title/hire-me-title.component';
 import { ImageUploadComponent } from './components/image-upload/image-upload.component';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
-import { LoginComponent } from './components/login/login.component';
+import { LoginComponent } from './pages/login/login.component';
 import { MenuBarComponent } from './components/menu-bar/menu-bar.component';
 import { AuthGuard } from './guard/auth-guard.guard';
 import { AppliedJobsComponent } from './pages/applied-jobs/applied-jobs.component';

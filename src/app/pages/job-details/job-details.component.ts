@@ -25,7 +25,6 @@ export class JobDetailsComponent implements OnInit {
   private jobId: number;
 
   ngOnInit(): void {
-    console.log(window.innerWidth)
     this.jobId = Number(this.activatedRoute.snapshot.paramMap.get('job_id'));
     this.showButton = Boolean(this.activatedRoute.snapshot.paramMap.get('show_button'))
     this.getJobDetail();

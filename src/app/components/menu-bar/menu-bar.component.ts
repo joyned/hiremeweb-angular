@@ -3,7 +3,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { PageService } from 'src/app/services/pages/page.service';
-import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-menu-bar',
@@ -81,7 +80,8 @@ export class MenuBarComponent implements OnInit {
       { separator: true },
       {
         label: 'Sair',
-        icon: 'pi pi-fw pi-times'
+        icon: 'pi pi-fw pi-times',
+        command: () => this.logout()
       }
     );
     this.items.push({
@@ -96,7 +96,8 @@ export class MenuBarComponent implements OnInit {
   }
 
   openDialog() {
-    this.dialog.open(LoginComponent);
+    // this.dialog.open(LoginComponent);
+    this.router.navigateByUrl('/login/');
   }
 
   logout() {

@@ -16,7 +16,6 @@ export class AppliedJobsService {
     const token = localStorage.getItem('token');
     await this.api.get(endPoint, { Authorization: token }).then(
       (res: any) => {
-        console.log(res);
         this.jobs = res.applied_jobs;
       }
     );
@@ -24,19 +23,6 @@ export class AppliedJobsService {
   }
 
   async cancelApply(jobIdentificator: number) {
-    const endPoint = 'delete-applied-job';
-    const candidateIdentificator = localStorage.getItem('candidate_id');
-    const token = localStorage.getItem('token');
-
-    const options = {
-      headers: new HttpHeaders({
-        Authorization: token
-      }),
-      body: {
-        candidateId: candidateIdentificator,
-        jobId: jobIdentificator
-      }
-    };
-    await this.api.delete(endPoint, options);
+    await this.api.postTokenHeader('delete-applied-job/' + jobIdentificator, {});
   }
 }

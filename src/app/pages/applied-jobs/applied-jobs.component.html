@@ -21,21 +21,17 @@
                     <i class="pi pi-info-circle" style="cursor: pointer;"></i>
                 </td>
                 <td style="text-align: center;">
-                    <i class="pi pi-times" style="cursor: pointer;"></i>
+                    <i class="pi pi-times" style="cursor: pointer;" (click)="showCancelConfirmDialog(job)"></i>
                 </td>
             </tr>
         </ng-template>
     </p-table>
 </div>
 
-<ng-template #dialogConfirm>
-    <div class="confirm-body" style="padding: 9px; color: black;">
-        <h1 class="job-title">Cancelar aplicação para vaga</h1>
-        <hr>
-        <div class="text-confirm" style="margin-bottom: 5px;">
-            Deseja mesmo cancelar a aplicação para {{dialogJobTitle}}?
-        </div>
-        <div class="button-confirm" style="display: flex;">
-        </div>
-    </div>
-</ng-template>
+<p-confirmDialog #confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000">
+    <p-footer>
+        <button type="button" pButton icon="pi pi-check" label="Sim" (click)="confirmDialog.accept()"></button>
+        <button type="button" pButton icon="pi pi-times" label="Não" class="p-button-danger"
+            (click)="confirmDialog.reject()"></button>
+    </p-footer>
+</p-confirmDialog>
