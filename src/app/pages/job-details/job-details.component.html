@@ -14,7 +14,7 @@
         </div>
         <hr>
         <div class="job-detail">
-            Detalhes:
+            <span style="font-weight: bold;">Detalhes:</span>
             <li>Cidade: {{ job.city }}</li>
             <li>Estado: {{ job.state }}</li>
             <li>País: {{ job.country }}</li>
@@ -29,9 +29,21 @@
 
         <p-confirmDialog #confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000">
             <p-footer>
-                <button type="button" pButton icon="pi pi-times" label="Sim" (click)="confirmDialog.accept()"></button>
-                <button type="button" pButton icon="pi pi-check" label="Não" class="p-button-danger" (click)="confirmDialog.reject()"></button>
+                <button type="button" pButton icon="pi pi-check" label="Sim" (click)="confirmDialog.accept()"></button>
+                <button type="button" pButton icon="pi pi-times" label="Não" class="p-button-danger"
+                    (click)="confirmDialog.reject()"></button>
             </p-footer>
         </p-confirmDialog>
+
+        <p-sidebar [(visible)]="mobileBottomBar" position="bottom" [baseZIndex]="10000" [showCloseIcon]="false">
+            <div class="confirmBarTitle">
+                Deseja realmente se cadastrar para a vaga <span style="font-weight: bold;"> {{ job.title }} </span>
+            </div>
+            <div class="confirmBarButtons">
+                <button type="button" pButton icon="pi pi-check" label="Sim" (click)="applyToJob()"></button>
+                <button type="button" pButton icon="pi pi-times" label="Não" class="p-button-danger"
+                    (click)="mobileBottomBar = false"></button>
+            </div>
+        </p-sidebar>
     </div>
 </div>

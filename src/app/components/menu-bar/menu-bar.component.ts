@@ -1,9 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { LoginComponent } from '../login/login.component';
-import { PageService } from 'src/app/services/pages/page.service';
+import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
+import { PageService } from 'src/app/services/pages/page.service';
 
 @Component({
   selector: 'app-menu-bar',
@@ -67,29 +66,29 @@ export class MenuBarComponent implements OnInit {
     }
   }
 
-  buildDynamicSubMenu(){
+  buildDynamicSubMenu() {
     let subItens = [];
-      for (var index in this.pages) {
-        let constant = this.pages[index].constant;
-        let item = {
-          label: this.pages[index].name,
-          command: () => this.redirectToPage(constant)
-        }
-        console.log(item);
-        subItens.push(item);
+    for (var index in this.pages) {
+      let constant = this.pages[index].constant;
+      let item = {
+        label: this.pages[index].name,
+        command: () => this.redirectToPage(constant)
       }
-      subItens.push(
-        {separator:true},
-        {
-          label: 'Sair',
-          icon: 'pi pi-fw pi-times'
-        }
-      );
-      this.items.push({
-        label: this.userName,
-        icon: 'pi pi-fw pi-user',
-        items: subItens
-      });
+      subItens.push(item);
+    }
+    subItens.push(
+      { separator: true },
+      {
+        label: 'Sair',
+        icon: 'pi pi-fw pi-times',
+        command: () => this.logout()
+      }
+    );
+    this.items.push({
+      label: this.userName,
+      icon: 'pi pi-fw pi-user',
+      items: subItens
+    });
   }
 
   redirectToPage(page: any) {
@@ -97,7 +96,8 @@ export class MenuBarComponent implements OnInit {
   }
 
   openDialog() {
-    this.dialog.open(LoginComponent);
+    // this.dialog.open(LoginComponent);
+    this.router.navigateByUrl('/login/');
   }
 
   logout() {

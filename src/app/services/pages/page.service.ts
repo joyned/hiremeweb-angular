@@ -10,7 +10,7 @@ export class PageService {
 
   async getPagesByUserId() {
     const endPoint = 'pages/';
-    const data: any = await this.api.getResult(endPoint, {
+    const data: any = await this.api.get(endPoint, {
       Authorization: localStorage.getItem('token')
     });
     return data.pages;

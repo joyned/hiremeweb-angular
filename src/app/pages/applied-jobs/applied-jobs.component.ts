@@ -1,22 +1,20 @@
 import { Component, OnInit } from '@angular/core';
+import { ConfirmationService } from 'primeng/api';
+import { Job } from 'src/app/classes/job/job';
 import { AppliedJobsService } from '../../services/applied-jobs/applied-jobs.service';
-import { MatDialog } from '@angular/material/dialog';
-import { JobDetailsComponent } from '../job-details/job-details.component';
 
 @Component({
   selector: 'app-applied-jobs',
   templateUrl: './applied-jobs.component.html',
-  styleUrls: ['./applied-jobs.component.scss']
+  styleUrls: ['./applied-jobs.component.scss'],
+  providers: [ConfirmationService]
 })
 export class AppliedJobsComponent implements OnInit {
 
-  constructor(private service: AppliedJobsService, private dialog: MatDialog) { }
+  constructor(private service: AppliedJobsService, private confirmationService: ConfirmationService) { }
 
-  public jobs: any = [];
+  public jobs: Job[] = [];
   public isLoading = true;
-
-  public dialogJobTitle: string;
-  public dialogJobId: number;
 
   ngOnInit(): void {
     this.getAppliedJobs();
@@ -28,34 +26,26 @@ export class AppliedJobsComponent implements OnInit {
     this.isLoading = false;
   }
 
-  jobDetails(id: number) {
-    this.dialog.open(JobDetailsComponent, {
-      data: {
-        job_id: id,
-        show_button: false
+  showCancelConfirmDialog(job: Job) {
+    this.confirmationService.confirm({
+      message: 'Tem certeza de deseja <b>cancelar</b> a aplicação para <b>' + job.title + '</b>',
+      header: 'Confirmação',
+      accept: () => {
+        this.cancel(job.id);
       }
     });
   }
 
-  cancelApply(dialog: any, jobId: number, jobTitle: string) {
-    this.dialogJobId = jobId;
-    this.dialogJobTitle = jobTitle;
-    this.dialog.open(dialog);
+  jobDetails(id: number) {
   }
 
-  async cancel() {
+  async cancel(jobId: number) {
     try {
-      await this.service.cancelApply(this.dialogJobId);
+      await this.service.cancelApply(jobId);
     } catch (error) {
       console.error(error);
     } finally {
       this.getAppliedJobs();
-      this.dialog.closeAll();
     }
   }
-
-  close() {
-    this.dialog.closeAll();
-  }
-
 }

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { LoginService } from 'src/app/services/login/login.service';
 import { User } from 'src/app/classes/user/user';
 import { MatDialog } from '@angular/material/dialog';
+import { AlertMessageService } from 'src/app/services/alert-message/alert-message.service';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public router: Router, private loginService: LoginService, private dialog: MatDialog) { }
+  constructor(public router: Router, private loginService: LoginService, private activatedRoute: ActivatedRoute, private alertMessage: AlertMessageService) { }
 
   public user = new User();
 
@@ -21,19 +22,19 @@ export class LoginComponent implements OnInit {
   public errorMessage = '';
   public errorMessageVisible = false;
 
+  private redirectUrl: string;
+
   ngOnInit(): void {
+    this.redirectUrl = this.activatedRoute.snapshot.paramMap.get('redirect');
   }
 
   async doLogin() {
     try {
       this.isLoading = true;
       await this.loginService.login(this.user);
-      this.dialog.closeAll();
       window.location.reload();
     } catch (error) {
-      console.log(error);
-      this.errorMessage = 'Usuário e/ou senha incorretos. Por favor, tente novamente.';
-      this.showErrorMessage();
+      this.alertMessage.errorMessage("Erro", "O usuário/senha estão incorretos. Tente novamente.")
     } finally {
       this.isLoading = false;
     }

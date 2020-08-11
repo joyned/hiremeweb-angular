@@ -2,22 +2,26 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { JobDetailService } from 'src/app/services/job-detail/job-detail.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
+import { AlertMessageService } from 'src/app/services/alert-message/alert-message.service';
 
 @Component({
   selector: 'app-job-details',
   templateUrl: './job-details.component.html',
   styleUrls: ['./job-details.component.scss'],
-  providers: [ConfirmationService]
+  providers: [ConfirmationService],
+  encapsulation: ViewEncapsulation.None
 })
 export class JobDetailsComponent implements OnInit {
 
-  constructor(private jobService: JobDetailService, private activatedRoute: ActivatedRoute, private router: Router, private confirmationService: ConfirmationService) { }
+  constructor(private jobService: JobDetailService, private activatedRoute: ActivatedRoute, private router: Router, private confirmationService: ConfirmationService,
+    private alertMessage: AlertMessageService) { }
 
   private currentDialog: any;
 
   public job: any;
   public isLoading = false;
   public showButton = true;
+  public mobileBottomBar = false;
   private jobId: number;
 
   ngOnInit(): void {
@@ -31,14 +35,28 @@ export class JobDetailsComponent implements OnInit {
   }
 
   showConfirmDialog() {
-    console.log(this.job)
-    this.confirmationService.confirm({
-      message: 'Tem certeza de deseja candidatar a vaga ' + this.job.title,
-      header: 'Confirmação',
-      accept: () => {
-        console.log(this.job);
-      }
-    });
+    if (window.innerWidth >= 960) {
+      this.confirmationService.confirm({
+        message: 'Tem certeza de deseja candidatar a vaga ' + this.job.title,
+        header: 'Confirmação',
+        accept: () => {
+          this.applyToJob();
+        }
+      });
+    } else {
+      this.mobileBottomBar = true;
+    }
+  }
+
+  async applyToJob() {
+    try {
+      await this.jobService.applyToJob(this.jobId);
+      this.mobileBottomBar = false;
+      this.alertMessage.successMessage("Sucesso", "Sua aplicação para a vaga " + this.job.title + " foi um sucesso!");
+    } catch (error) {
+      this.mobileBottomBar = false;
+      this.alertMessage.errorMessage("Erro", "Sua aplicação para a vaga " + this.job.title + " não foi efetuda com sucesso. Por favor, tente novamente.")
+    }
   }
 
   userLogged() {

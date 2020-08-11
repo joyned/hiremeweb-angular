@@ -1,5 +1,4 @@
 <div class="header" align="center">
-    <app-hire-me-title [text]="'Configurações da conta'"></app-hire-me-title>
 </div>
 
 <div class="body" align="center">
@@ -9,39 +8,36 @@
     <app-hire-me-title [text]="'Conta'"></app-hire-me-title>
     <div class="fields">
         <form>
-            <app-input-text [placeholder]="'Nome'" [width]="60"></app-input-text>
-            <app-input-text [placeholder]="'Nome completo'" [width]="60"></app-input-text>
-            <app-input-text [placeholder]="'Cidade'" [width]="60"></app-input-text>
-            <app-input-text [placeholder]="'Estado'" [width]="60"></app-input-text>
-            <app-input-text [placeholder]="'Endereço'" [width]="39"></app-input-text>
-            <app-input-text [placeholder]="'CEP'" [width]="20"></app-input-text>
+            <input type="text" pInputText placeholder="Nome" style="width:60%;" [(ngModel)]="candidate.name" name="name" />
+            <input type="text" pInputText placeholder="Nome completo" style="width:60%;" [(ngModel)]="candidate.full_name" name="full-name"/>
+            <input type="text" pInputText placeholder="Cidade" style="width:60%;" [(ngModel)]="candidate.city" name="city"/>
+            <input type="text" pInputText placeholder="Estado" style="width:60%;" [(ngModel)]="candidate.state" name="state"/>
+            <input type="text" pInputText placeholder="Endereço" style="width:60%;" [(ngModel)]="candidate.address" name="address"/>
+            <input type="text" pInputText placeholder="Complemento" style="width:41%;" [(ngModel)]="candidate.complement" name="complement"/>
+            <p-inputMask mask="99999-999" placeholder="CEP" [style]="{'width':'19%', 'margin-bottom':'10px'}"[(ngModel)]="candidate.cep" name="address-number"></p-inputMask>
         </form>
     </div>
+
+    <app-hire-me-title [text]="'Geral'"></app-hire-me-title>
+    <div class="fields">
+        <form>
+            <input type="text" pInputText placeholder="E-mail" style="width:60%;" [(ngModel)]="candidate.email" name="email" />
+            <p-inputMask mask="999.999.999-99" placeholder="CPF" [style]="{'width':'60%', 'margin-bottom':'10px'}" [(ngModel)]="candidate.cpf" name="cpf"></p-inputMask>
+            <p-inputMask mask="99.999.999-9" placeholder="RG" [style]="{'width':'60%', 'margin-bottom':'10px'}" [(ngModel)]="candidate.rg" name="rg"></p-inputMask>
+            <p-calendar placeholder="Data de nascimento" [locale]="pt" dateFormat="dd/mm/yy" [style]="{'width':'60%'}" [(ngModel)]="candidate.birth_date" name="birthdate"></p-calendar>
+        </form>
+    </div>
+
     <app-hire-me-title [text]="'Senha'"></app-hire-me-title>
     <div class="fields">
         <form>
-            <app-input-password [placeholder]="'Senha atual'" [width]="60"></app-input-password>
-            <app-input-password [placeholder]="'Nova senha'" [width]="60"></app-input-password>
-            <app-input-password [placeholder]="'Repita a nova senha'" [width]="60"></app-input-password>
+            <input type="password" pInputText placeholder="Senha atual" style="width:60%;"/>
+            <input type="password" pInputText placeholder="Nova senha" style="width:60%;"/>
+            <input type="password" pInputText placeholder="Repita a nova senha" style="width:60%;"/>
         </form>
-        <div class="forgot-actual-password">
-            Não lembra da sua senha atual? <a (click)="sendEmail(dialog)">Clique aqui</a> que enviaremos um e-mail para você!
-        </div>
     </div>
 
     <div class="button">
-        <app-hire-me-button [buttonTitle]="'Salvar'"></app-hire-me-button>
+        <button pButton label="Salvar" (click)="updateCandidateDetails()"></button>
     </div>
 </div>
-<ng-template #dialog>
-    <div class="dialog-content">
-        <div style="display: flex;">
-            <h1 class="title">Email enviado</h1>
-            <label class="label-x" (click)="closeDialog()" >&#10005;</label>
-        </div>
-        <hr>
-        <div class="dialog-body">
-            <p>Enviamos um email para USER-EMAIL</p>
-        </div>
-    </div>
-</ng-template>

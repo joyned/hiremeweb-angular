@@ -1,0 +1,30 @@
+<div class="main-panel">
+
+    <div class="columns">
+        <div class="left-column">
+            <img src="../../../assets/img/img-01-do-not-use.png" alt="" >
+        </div>
+
+        <div class="right-column">
+            <div class="fields-panel">
+                <app-hire-me-title [text]="'Login'"></app-hire-me-title>
+                <span class="spacer"></span>
+                <input type="text" pInputText placeholder="Login" class="input-field" name="username" [(ngModel)]="user.user">
+                <input type="password" pInputText placeholder="Senha" class="input-field" name="password" [(ngModel)]="user.password">
+
+                <button pButton label="Login" class="button-login" (click)="doLogin()"></button>
+                <span class="subtitle click">Esqueceu seu usuário/senha?</span>
+                
+                <span class="spacer" style="margin-bottom: 5em;"></span>
+
+                <div class="footer">
+                    <span class="subtitle click">
+                        Criar uma conta
+                        <i class="pi pi-arrow-right" style="margin-left: 5px;"></i>
+                    </span>
+                </div>
+            </div>
+        </div>  
+    </div>
+
+</div>
