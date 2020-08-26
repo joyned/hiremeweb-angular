@@ -1,70 +1,96 @@
-import { Component, OnInit, ViewContainerRef, ViewChild, TemplateRef } from '@angular/core';
+import { Component, OnInit, ViewContainerRef, ViewChild, TemplateRef, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user/user.service';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginService } from 'src/app/services/login/login.service';
 import { User } from 'src/app/classes/user/user';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
+import { ProfessionalHistory } from 'src/app/classes/candidate/professional-history';
+import { lorem } from 'src/app/classes/lorem';
+import { Candidate } from 'src/app/classes/candidate/candidate';
+import { Person } from 'src/app/classes/person/person';
+import { PersonAddress } from 'src/app/classes/person/person-addres';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  styleUrls: ['./register.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class RegisterComponent implements OnInit {
 
   @ViewChild('error') errorDialog: TemplateRef<any>;
   @ViewChild('loading') loadingDialog: TemplateRef<any>;
+
   public errorMessage: any;
   public emptyFields = '';
   public isLoading = false;
+  public pt: any;
+  public tabIndex: number = 0;
 
-  constructor(
-    private router: Router,
-    private userService: UserService,
-    private dialog: MatDialog,
-    private loginService: LoginService) { }
-  public user = {
-    email: '',
-    user: '',
-    password: '',
-    confirmPassword: '',
-    name: '',
-    cpf: '',
-    rg: '',
-    fullname: '',
-    birthDate: '',
-    city: '',
-    state: '',
-    country: '',
-    address: '',
-    addressNumber: '',
-    zipCode: '',
-    complement: '',
-  };
+  public image: any;
+  private imageAsBase64: any;
+
+  public terms = lorem;
+
+  public dialogOpened = false;
+
+  public professionalHistories: ProfessionalHistory[] = [];
+  public professionalHistory: ProfessionalHistory;
+  public selectedProfessionalHistory: ProfessionalHistory;
+  private editingProfessionalHistory = false;
+
+  public person: Person;
+
+  public cols = [
+    {
+      name: 'company',
+      label: 'Empresa'
+    },
+    {
+      name: 'job',
+      label: 'Cargo'
+    },
+    {
+      name: 'description',
+      label: 'Descrição'
+    }
+  ]
+
+  constructor(private router: Router, private userService: UserService, private dialog: MatDialog, private loginService: LoginService) { }
 
   ngOnInit(): void {
+    this.person = new Person();
+    this.person.personAddress = new PersonAddress();
+    this.person.user = new User();
+    
+    this.professionalHistory = new ProfessionalHistory();
+    this.selectedProfessionalHistory = new ProfessionalHistory();
+    this.buildCalendar();
   }
 
   async register() {
+    console.log(this.person)
     this.isLoading = true;
-    if (this.validateFields() && this.checkDate(this.user.birthDate)) {
-      try {
-        this.createLoadingDialog();
-        await this.userService.registerNewUser(this.user);
-        this.dialog.closeAll();
-        const user = new User();
-        user.user = this.user.user;
-        user.password = this.user.password;
-        await this.loginService.login(user);
-        this.router.navigateByUrl('/');
-      } catch (error) {
-        this.errorMessage = error.error;
-        this.createErrorDialog();
-      } finally {
-        this.isLoading = false;
-      }
+    try {
+      this.createLoadingDialog();
+      await this.userService.registerNewUser(this.person);
+      this.dialog.closeAll();
+      this.doLoginAfterRegister();
+    } catch (error) {
+      this.errorMessage = error.error;
+      this.createErrorDialog();
+    } finally {
+      this.isLoading = false;
     }
+  }
+
+  async doLoginAfterRegister(){
+    const user = new User();
+    user.email = this.person.user.email;
+    user.password = this.person.user.password;
+    await this.loginService.login(user);
+    this.router.navigateByUrl('/');
   }
 
   createErrorDialog() {
@@ -77,89 +103,68 @@ export class RegisterComponent implements OnInit {
     this.dialog.open(this.loadingDialog);
   }
 
-  validateFields() {
-    this.emptyFields = '';
-    console.log(this.user);
-    if (this.user.email === '') {
-      this.emptyFields += '<li>Email</li>';
+  buildCalendar() {
+    this.pt = {
+      firstDayOfWeek: 1,
+      dayNames: ["domingo", "segunda", "terça", "quarta", "quinta", "sexta", "sábado"],
+      dayNamesShort: ["dom", "seg", "ter", "qua", "qui", "sex", "sáb"],
+      dayNamesMin: ["D", "S", "T", "Q", "Q", "S", "S"],
+      monthNames: ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"],
+      monthNamesShort: ["jan", "feb", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dec"],
+      today: 'Hoje',
+      clear: 'Apagar'
     }
-    if (this.user.user === '') {
-      this.emptyFields += '<li>Usuário</li>';
-    }
-    if (this.user.password === '') {
-      this.emptyFields += '<li>Senha</li>';
-    }
-    if (this.user.confirmPassword === '') {
-      this.emptyFields += '<li>Confirmar senha</li>';
-    }
-    if (this.user.name === '') {
-      this.emptyFields += '<li>Nome</li>';
-    }
-    if (this.user.cpf === '') {
-      this.emptyFields += '<li>CPF</li>';
-    }
-    if (this.user.rg === '') {
-      this.emptyFields += '<li>RG</li>';
-    }
-    if (this.user.fullname === '') {
-      this.emptyFields += '<li>Nome completo</li>';
-    }
-    if (this.user.birthDate === '') {
-      this.emptyFields += '<li>Data de nascimento</li>';
-    }
-    if (this.user.city === '') {
-      this.emptyFields += '<li>Cidade</li>';
-    }
-    if (this.user.state === '') {
-      this.emptyFields += '<li>Estado</li>';
-    }
-    if (this.user.country === '') {
-      this.emptyFields += '<li>Pais</li>';
-    }
-    if (this.user.address === '') {
-      this.emptyFields += '<li>Endereço</li>';
-    }
-    if (this.user.addressNumber === '') {
-      this.emptyFields += '<li>Número</li>';
-    }
-    if (this.user.zipCode === '') {
-      this.emptyFields += '<li>CEP</li>';
-    }
-    if (this.user.complement === '') {
-      this.emptyFields += '<li>Complemento</li>';
-    }
-
-    console.log(this.emptyFields);
-
-    return this.emptyFields !== '' ? false : true;
   }
 
-  checkDate(date) {
-    const getvalue = date.split('/');
-    console.log(date);
-    const day = getvalue[2];
-    const month = getvalue[1];
-    const year = getvalue[0];
-    if (year < 1901 && year > 2100) {
-      return false;
-    }
-    if (month < 1 && month > 12) {
-      return false;
-    }
-    if (day < 1 && day > 31) {
-      return false;
-    }
-    if ((month === 4 && month === 6 && month === 9 && month === 11) && day === 31) {
-      return false;
-    }
-    if (month === 2) {
-      const isleap = (year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0));
-      if (day > 29 || (day === 29 && !isleap)) {
-        return false;
-      }
+  nextTab() {
+    this.tabIndex++;
+  }
+
+  previousTab() {
+    this.tabIndex--;
+  }
+
+  setImage(event) {
+    this.image = event.target.files[0];
+    var reader = new FileReader();
+    reader.onload = this._handleReaderLoaded.bind(this);
+    reader.readAsBinaryString(this.image);
+  }
+
+  _handleReaderLoaded(readerEvt) {
+    var binaryString = readerEvt.target.result;
+    this.imageAsBase64 = btoa(binaryString);
+    this.person.photo = this.imageAsBase64;
+  }
+
+  openDialog() {
+    this.dialogOpened = true;
+    this.professionalHistory = new ProfessionalHistory();
+  }
+
+  closeDialog() {
+    this.dialogOpened = false;
+    this.professionalHistory = new ProfessionalHistory();
+  }
+
+  addProfessionalHistory() {
+    let pHistories = [...this.professionalHistories];
+    if (!this.editingProfessionalHistory) {
+      pHistories.push(this.professionalHistory);
     } else {
-      return true;
+      pHistories[this.professionalHistories.indexOf(this.selectedProfessionalHistory)] = this.professionalHistory;
     }
+
+    this.professionalHistories = pHistories;
+    this.professionalHistory = new ProfessionalHistory();
+    this.dialogOpened = false;
+    this.editingProfessionalHistory = false;
+  }
+
+  onRowSelect(event) {
+    this.editingProfessionalHistory = true;
+    this.professionalHistory = event.data;
+    this.dialogOpened = true;
   }
 
 }

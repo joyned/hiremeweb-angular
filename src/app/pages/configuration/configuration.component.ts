@@ -3,6 +3,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { CandidateService } from 'src/app/services/candidate/candidate.service';
 import { Candidate } from 'src/app/classes/candidate/candidate';
 import { AlertMessageService } from 'src/app/services/alert-message/alert-message.service';
+import { Person } from 'src/app/classes/person/person';
+import { PersonAddress } from 'src/app/classes/person/person-addres';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-configuration',
@@ -11,21 +14,24 @@ import { AlertMessageService } from 'src/app/services/alert-message/alert-messag
 })
 export class ConfigurationComponent implements OnInit {
 
-  constructor(private dialog: MatDialog, private candidateService: CandidateService, private messageService: AlertMessageService) { }
+  constructor(private dialog: MatDialog, private candidateService: CandidateService, private messageService: AlertMessageService, private sanitizer: DomSanitizer) { }
 
   public image: any;
   private imageAsBase64: any;
-  public candidate: Candidate = new Candidate();
+  public person: Person;
   public pt: any;
 
   async ngOnInit() {
     this.buildCalendar();
-    this.candidate = await this.candidateService.getCandidateDetails();
+    this.person = new Person();
+    this.person.personAddress = new PersonAddress();
+    this.person = await this.candidateService.getPersonDetails();
+    this.image = 'data:image/jpg;base64,' + (this.sanitizer.bypassSecurityTrustResourceUrl(this.person.photo) as any).changingThisBreaksApplicationSecurity;
   }
 
-  async updateCandidateDetails() {
+  async updatePersonDetails() {
     try {
-      await this.candidateService.updateCandidateDetails(this.candidate);
+      await this.candidateService.updatePersonDetails(this.person);
       this.messageService.successMessage("Sucesso", "Sua conta foi atualizada com sucesso!");
     } catch (error) {
       this.messageService.errorMessage("Erro", "Não foi possivel atualizar sua conta. Por favor, tente novamente.");
@@ -42,7 +48,7 @@ export class ConfigurationComponent implements OnInit {
   _handleReaderLoaded(readerEvt) {
     var binaryString = readerEvt.target.result;
     this.imageAsBase64 = btoa(binaryString);
-    console.log(btoa(binaryString));
+    this.person.photo = this.imageAsBase64;
   }
 
   sendEmail(dialog: any) {

@@ -14,10 +14,9 @@ export class UserService {
     await this.api.get('users-profiles', {})
       .then(
         (res: any) => {
-          this.usersProfiles = res;
+          this.usersProfiles = res.payload;
         }
       );
-    console.log(this.usersProfiles);
     return this.usersProfiles;
   }
 

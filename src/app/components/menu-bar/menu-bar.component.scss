@@ -15,6 +15,18 @@
 	text-align: center;
 }
 
+p-menubarsub {
+    width: 100% !important;
+}
+
+.p-menubar-root-list {
+    float: right !important;
+}
+
+.p-submenu-list {
+    left: -60% !important;
+}
+
 .logo {
     width: 40%;
     border: none;
@@ -22,10 +34,6 @@
 
 .menu-mobile{
     display: none;
-}
-
-.ng-tns-c211-0 {
-    content: "Test";
 }
 
 @media(max-width:960px){

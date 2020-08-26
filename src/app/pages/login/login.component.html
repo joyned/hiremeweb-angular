@@ -9,7 +9,7 @@
             <div class="fields-panel">
                 <app-hire-me-title [text]="'Login'"></app-hire-me-title>
                 <span class="spacer"></span>
-                <input type="text" pInputText placeholder="Login" class="input-field" name="username" [(ngModel)]="user.user">
+                <input type="text" pInputText placeholder="E-mail" class="input-field" name="email" [(ngModel)]="user.email">
                 <input type="password" pInputText placeholder="Senha" class="input-field" name="password" [(ngModel)]="user.password">
 
                 <button pButton label="Login" class="button-login" (click)="doLogin()"></button>
@@ -18,7 +18,7 @@
                 <span class="spacer" style="margin-bottom: 5em;"></span>
 
                 <div class="footer">
-                    <span class="subtitle click">
+                    <span class="subtitle click" (click)="goRegister()">
                         Criar uma conta
                         <i class="pi pi-arrow-right" style="margin-left: 5px;"></i>
                     </span>

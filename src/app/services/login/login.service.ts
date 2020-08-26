@@ -13,7 +13,7 @@ export class LoginService {
   async login(user: User) {
     this.data = await this.api.post('login', user, {});
     localStorage.setItem('token', this.data.token);
-    localStorage.setItem('user', this.data.user_name);
+    localStorage.setItem('user', this.data.person_name);
   }
 
   getToken() {

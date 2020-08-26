@@ -8,23 +8,23 @@
     <app-hire-me-title [text]="'Conta'"></app-hire-me-title>
     <div class="fields">
         <form>
-            <input type="text" pInputText placeholder="Nome" style="width:60%;" [(ngModel)]="candidate.name" name="name" />
-            <input type="text" pInputText placeholder="Nome completo" style="width:60%;" [(ngModel)]="candidate.full_name" name="full-name"/>
-            <input type="text" pInputText placeholder="Cidade" style="width:60%;" [(ngModel)]="candidate.city" name="city"/>
-            <input type="text" pInputText placeholder="Estado" style="width:60%;" [(ngModel)]="candidate.state" name="state"/>
-            <input type="text" pInputText placeholder="Endereço" style="width:60%;" [(ngModel)]="candidate.address" name="address"/>
-            <input type="text" pInputText placeholder="Complemento" style="width:41%;" [(ngModel)]="candidate.complement" name="complement"/>
-            <p-inputMask mask="99999-999" placeholder="CEP" [style]="{'width':'19%', 'margin-bottom':'10px'}"[(ngModel)]="candidate.cep" name="address-number"></p-inputMask>
+            <input type="text" pInputText placeholder="Nome" style="width:60%;" [(ngModel)]="person.name" name="name" disabled="true"/>
+            <input type="text" pInputText placeholder="Nome completo" style="width:60%;" [(ngModel)]="person.fullname" name="full-name" disabled="true" />
+            <input type="text" pInputText placeholder="Cidade" style="width:60%;" [(ngModel)]="person.city" name="city"/>
+            <input type="text" pInputText placeholder="Estado" style="width:60%;" [(ngModel)]="person.state" name="state"/>
+            <input type="text" pInputText placeholder="Endereço" style="width:60%;" [(ngModel)]="person.personAddress.address" name="address"/>
+            <input type="text" pInputText placeholder="Complemento" style="width:41%;" [(ngModel)]="person.personAddress.complement" name="complement"/>
+            <p-inputMask mask="99999-999" placeholder="CEP" [style]="{'width':'19%', 'margin-bottom':'10px'}"[(ngModel)]="person.personAddress.cep" name="address-number"></p-inputMask>
         </form>
     </div>
 
     <app-hire-me-title [text]="'Geral'"></app-hire-me-title>
     <div class="fields">
         <form>
-            <input type="text" pInputText placeholder="E-mail" style="width:60%;" [(ngModel)]="candidate.email" name="email" />
-            <p-inputMask mask="999.999.999-99" placeholder="CPF" [style]="{'width':'60%', 'margin-bottom':'10px'}" [(ngModel)]="candidate.cpf" name="cpf"></p-inputMask>
-            <p-inputMask mask="99.999.999-9" placeholder="RG" [style]="{'width':'60%', 'margin-bottom':'10px'}" [(ngModel)]="candidate.rg" name="rg"></p-inputMask>
-            <p-calendar placeholder="Data de nascimento" [locale]="pt" dateFormat="dd/mm/yy" [style]="{'width':'60%'}" [(ngModel)]="candidate.birth_date" name="birthdate"></p-calendar>
+            <input type="text" pInputText placeholder="E-mail" style="width:60%;" name="email" disabled="true" />
+            <p-inputMask mask="999.999.999-99" placeholder="CPF" [style]="{'width':'60%', 'margin-bottom':'10px'}" [(ngModel)]="person.cpf" name="cpf" disabled="true"></p-inputMask>
+            <p-inputMask mask="99.999.999-9" placeholder="RG" [style]="{'width':'60%', 'margin-bottom':'10px'}" [(ngModel)]="person.rg" name="rg" disabled="true"></p-inputMask>
+            <p-calendar placeholder="Data de nascimento" [locale]="pt" dateFormat="dd/mm/yy" [style]="{'width':'60%'}" [(ngModel)]="person.birthdate" name="birthdate" disabled="true"></p-calendar>
         </form>
     </div>
 
@@ -38,6 +38,6 @@
     </div>
 
     <div class="button">
-        <button pButton label="Salvar" (click)="updateCandidateDetails()"></button>
+        <button pButton label="Salvar" (click)="updatePersonDetails()"></button>
     </div>
 </div>

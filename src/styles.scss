@@ -18,6 +18,8 @@ $hire-me-theme: mat-light-theme($hire-me-primary, $hire-me-accent, $hire-me-warn
 @include angular-material-theme($hire-me-theme);
 
 :root {
+    --p-color: #4CAF50;
+
     --primary-color: #DC7145;
     --second-color: #EB8756;
     --third-color: #FA9760;

@@ -38,7 +38,6 @@ import { JobsComponent } from './pages/jobs/jobs.component';
 import { MessagesComponent } from './pages/messages/messages.component';
 import { PageRegisterComponent } from './pages/page-register/page-register.component';
 import { RegisterComponent } from './pages/register/register.component';
-import { UserDashboardComponent } from './pages/user-dashboard/user-dashboard.component';
 import { UserManualRegisterComponent } from './pages/user-manual-register/user-manual-register.component';
 import { ClientSocket } from './services/socket/client.socket';
 import { Interceptor } from './services/token-interceptor/token-interceptor.service';
@@ -59,12 +58,15 @@ import { CalendarModule } from 'primeng/calendar';
 import { InputMaskModule } from 'primeng/inputmask';
 import { TableModule } from 'primeng/table';
 import { SidebarModule } from 'primeng/sidebar';
+import { CheckboxModule } from 'primeng/checkbox';
+import { TabViewModule } from 'primeng/tabview';
+import { DialogModule } from 'primeng/dialog';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    UserDashboardComponent,
     JobsComponent,
     HomeComponent,
     JobDetailsComponent,
@@ -121,7 +123,11 @@ import { SidebarModule } from 'primeng/sidebar';
     CalendarModule,
     InputMaskModule,
     TableModule,
-    SidebarModule
+    SidebarModule,
+    CheckboxModule,
+    TabViewModule,
+    DialogModule,
+    InputTextareaModule
   ],
   providers: [AuthGuard, ClientSocket],
   bootstrap: [AppComponent]

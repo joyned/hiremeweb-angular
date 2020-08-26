@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { LoginService } from 'src/app/services/login/login.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/classes/user/user';
-import { MatDialog } from '@angular/material/dialog';
 import { AlertMessageService } from 'src/app/services/alert-message/alert-message.service';
+import { LoginService } from 'src/app/services/login/login.service';
 
 @Component({
   selector: 'app-login',
@@ -32,7 +31,12 @@ export class LoginComponent implements OnInit {
     try {
       this.isLoading = true;
       await this.loginService.login(this.user);
-      window.location.reload();
+
+      if(!this.redirectUrl){
+        this.router.navigateByUrl('/')
+        window.location.reload();
+      }
+
     } catch (error) {
       this.alertMessage.errorMessage("Erro", "O usuário/senha estão incorretos. Tente novamente.")
     } finally {
@@ -50,6 +54,11 @@ export class LoginComponent implements OnInit {
     }
     this.errorMessageVisible = this.errorMessage.length !== 0;
     setTimeout(() => this.errorMessageVisible = false, 4000);
+  }
+
+
+  goRegister(){
+    this.router.navigateByUrl('/register');
   }
 
 }

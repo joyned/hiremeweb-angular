@@ -1,19 +1,15 @@
-@import url('https://fonts.googleapis.com/css?family=Poppins');
+.terms {
+  padding: 2%;
 
-::ng-deep .mat-checkbox-checked .mat-checkbox-background, .mat-checkbox-indeterminate .mat-checkbox-background {
-    background-color: var(--new-s-color) !important;
-}
-  
-  // overwrite the ripple overlay on hover and click
-::ng-deep .mat-checkbox:not(.mat-checkbox-disabled) .mat-checkbox-ripple .mat-ripple-element {
-    background-color: var(--new-s-color) !important;
-}
+  label {
+    color: black;
+    margin-bottom: 0px;
+  }
 
-a {
-  color: var(--third-color);
-  display:inline-block;
-  text-decoration: none;
-  font-weight: 400;
+  a {
+    color: var(--p-color);
+    font-weight: bold;
+  }
 }
 
 h2 {
@@ -36,147 +32,6 @@ h2 {
   font-size: 15px;
 }
 
-.wrapper {
-  font-family: Arial, Helvetica, sans-serif;
-  display: flex;
-  align-items: center;
-  flex-direction: column; 
-  justify-content: center;
-  width: 100%;
-  min-height: 100%;
-  padding: 20px;
-}
-
-#formContent {
-  background: #fff;
-  padding: 30px;
-  width: 100%;
-  text-align: center;
-  top: 15%;
-}
-
-#formFooter {
-  background-color: #f6f6f6;
-  border-top: 1px solid #dce8f1;
-  padding: 25px;
-  text-align: center;
-  -webkit-border-radius: 0 0 10px 10px;
-  border-radius: 0 0 10px 10px;
-}
-
-h2.inactive {
-  color: #cccccc;
-}
-
-h2.active {
-  color: #0d0d0d;
-  border-bottom: 2px solid var(--new-s-color);
-}
-
-input[type=button], input[type=submit], input[type=reset]  {
-  background-color: var(--new-s-color);
-  border: none;
-  color: white;
-  padding: 15px 80px;
-  text-align: center;
-  text-decoration: none;
-  text-transform: uppercase;
-  font-size: 13px;
-  -webkit-box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
-  box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
-  -webkit-border-radius: 5px 5px 5px 5px;
-  border-radius: 5px 5px 5px 5px;
-  margin: 5px 20px 40px 20px;
-  -webkit-transition: all 0.3s ease-in-out;
-  -moz-transition: all 0.3s ease-in-out;
-  -ms-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
-}
-
-input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover  {
-  background-color: var(--new-s-color);
-  -moz-transform: scale(0.95);
-  -webkit-transform: scale(0.95);
-  -o-transform: scale(0.95);
-  -ms-transform: scale(0.95);
-  transform: scale(0.95);
-  cursor: pointer;
-}
-
-input[type=button]:active, input[type=submit]:active, input[type=reset]:active  {
-  -moz-transform: scale(0.95);
-  -webkit-transform: scale(0.95);
-  -o-transform: scale(0.95);
-  -ms-transform: scale(0.95);
-  transform: scale(0.95);
-}
-
-input[type=text], input[type=password] {
-  background-color: #f6f6f6;
-  color: #0d0d0d;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 5px;
-  width: 30%;
-  border: 2px solid #f6f6f6;
-  -webkit-transition: all 0.5s ease-in-out;
-  -moz-transition: all 0.5s ease-in-out;
-  -ms-transition: all 0.5s ease-in-out;
-  -o-transition: all 0.5s ease-in-out;
-  transition: all 0.5s ease-in-out;
-  -webkit-border-radius: 5px 5px 5px 5px;
-  border-radius: 5px 5px 5px 5px;
-}
-
-input[type=text]:focus, input[type=password]:focus {
-  background-color: #fff;
-  border-bottom: 2px solid var(--new-s-color);
-}
-
-input[type=text]:placeholder {
-  color: #cccccc;
-}
-
-input[type=submit] {
-  margin-top: 1%;
-  width: 65%;
-}
-
-.underlineHover:after {
-  display: block;
-  left: 0;
-  bottom: -10px;
-  width: 0;
-  height: 2px;
-  background-color: var(--new-s-color);
-  content: "";
-  transition: width 0.2s;
-}
-
-.underlineHover:hover {
-  color: #0d0d0d;
-}
-
-.underlineHover:hover:after{
-  width: 100%;
-}
-
-*:focus {
-    outline: none;
-} 
-
-#icon {
-  width:60%;
-}
-
-* {
-  box-sizing: border-box;
-}
-
 .spinner {
   padding: 30px;
   width: 90%;
@@ -192,35 +47,57 @@ input[type=submit] {
   padding: 9px;
 }
 
-.dialog-title {
-  width: 90%;
+.p-inputtext {
+  width: 55%;
+  margin-bottom: 10px;
 }
 
-.label-x {
-  width: 10%; 
-  text-align: right; 
-  font-size: xx-large;
+.p-calendar {
+  width: 55%;
+  margin-bottom: 10px;
 }
 
-.label-x:hover{
-  cursor: pointer;
+.help {
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 
-.ghiles-snackbar {
-  background-color: red !important;
+.next-prev-button {
+  button {
+    margin-right: 10px;
+    margin-top: 10px;
+  }
 }
 
-::ng-deep .mat-checkbox-checked .mat-checkbox-background, .mat-checkbox-indeterminate .mat-checkbox-background {
-  background-color: var(--new-s-color) !important;
-  border-color: white;
+.p-dialog-content {
+  .p-inputtext {
+    width: 100%;
+    margin-bottom: 10px;
+  }
 }
 
-// overwrite the ripple overlay on hover and click
-::ng-deep .mat-checkbox:not(.mat-checkbox-disabled) .mat-checkbox-ripple .mat-ripple-element {
-  background-color: var(--new-s-color) !important;
-  border-color: white;
+.p-datatable-thead {
+  .ng-star-inserted {
+    text-align: center !important;
+  }
 }
 
-::ng-deep .mat-checkbox .mat-checkbox-frame {
-  border-color: white;
+.p-selectable-row {
+  .ng-star-inserted {
+    text-align: center !important;
+  }
+}
+
+@media(max-width: 960px){
+  .p-inputtext {
+    width: 90% !important;
+  }
+
+  .p-calendar {
+    width: 90%;
+  }
+
+  .p-dialog {
+    width: 90vw !important;
+  }
 }

@@ -11,7 +11,6 @@ export class MessagesComponent implements OnInit {
   constructor(public socket: ClientSocket) {
     this.socket.recieveMessage()
       .subscribe(m => {
-        console.log(m);
         this.messages.push(m);
       });
   }

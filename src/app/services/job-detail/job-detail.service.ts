@@ -15,13 +15,13 @@ export class JobDetailService {
     await this.api.post(endPoint, {}, {})
       .then(
         (res: any) => {
-          this.data = res;
+          this.data = res.payload;
         });
     return this.data;
   }
 
   async applyToJob(jobIdentificator: any) {
-    const endPoint = 'job-apply';
+    const endPoint = 'job/apply';
     let userId: any;
     if (localStorage.getItem('candidate_id')) {
       userId = localStorage.getItem('candidate_id');
