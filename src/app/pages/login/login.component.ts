@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/classes/user/user';
 import { AlertMessageService } from 'src/app/services/alert-message/alert-message.service';
@@ -12,7 +12,8 @@ import { of } from 'rxjs';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class LoginComponent implements OnInit {
 

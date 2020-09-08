@@ -1,76 +1,53 @@
-.main-panel {
-  display: grid;
-  place-items: center;
-  margin-top: 5em;
-}
-
-.columns {
-  padding: 10em;
-  border-radius: 15px;
-  background-color: #f8f9fa;
-  border: 1px solid #dee2e6;
-  columns: 2;
-
-}
-
-.fields-panel {
-  display: grid;
-  place-items: center;
+.login-content {
+  overflow-x: hidden;
 }
 
 .spacer {
-  margin-bottom: 2em;
+  margin: 10px;
 }
 
-input {
-  margin-bottom: 10px;
+.header {
+    background-image: url('../../../assets/img/services_hero.jpg');
+    background-position: center;
+    background-repeat: no-repeat; 
+    min-height: 200px;
+
+    display: grid;
+    place-items: center;
+
+    margin-bottom: 70px;
+
+    .title {
+      h1 {
+        text-align: center !important;
+        color: #fff;
+        font-size: 50px;
+        font-weight: 700;
+        text-transform: capitalize;
+      }
+    }
 }
 
-.subtitle {
-  margin-top: 10em;
-  font-weight: 300;
-  margin-bottom: 0.5rem;
-  margin-top: 0.5rem;
-  color: #495057;
+.login-form {
+  text-align: center;
 
-}
-
-.input-field {
-  width: 90%;;
-}
-
-.button-login {
-  width: 90%;
-}
-
-.click:hover {
-  cursor: pointer;
-  font-weight: 500;
-}
-
-@media(max-width:960px) {
-  *{
-    font-weight: 500;
+  h5 {
+    font-size: 20px;
+    text-transform: capitalize;
   }
 
-  .main-panel {
-    margin-top: 0.5em;
+  input {
+    width: 20em;
   }
 
-  .columns {
-    columns: 1;
-    padding: 5em;
+  .p-button {
+    width: 10em !important;
   }
 
-  .left-column{
-    display: none;
-  }
-
-  .input-field  {
-    width: 160%;
-  }
-
-  .button-login {
-    width: 160%;
+  .forgot-password {
+    a:hover {
+      cursor: pointer;
+      font-weight: bolder;
+    }
   }
 }

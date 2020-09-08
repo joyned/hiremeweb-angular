@@ -1,5 +1,4 @@
 p {
-    font-family: "Poppins",sans-serif;
     color: #506172;
     font-size: 16px;
     line-height: 30px;
@@ -16,7 +15,7 @@ p {
     background-position: center;
     background-repeat: no-repeat; 
     background-size: cover;
-    min-height: 700px;
+    min-height: 810px;
 }
 
 .home-carousel-text {
@@ -69,8 +68,12 @@ p {
     }
 
     .image-text {
-        p {
+        h4 {
             color: #191d34;
+            font-size: 25px;
+            font-weight: 600;
+            margin-bottom: 23px;
+            display: block;
         }
         
         span {
@@ -191,13 +194,13 @@ p {
                 width: 100%;
                 height: 100%;
             }
-            .image .about-us {
-                margin-top: 10%;
-                margin-bottom: 15%;
+            .image {
+                height: auto;
             }
 
             .image-text {
-                margin-top: 5%;
+                margin-top: 10%;
+                margin-bottom: 10%;
             }
         }
     }

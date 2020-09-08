@@ -1,14 +1,15 @@
 <div class="menu-bar">
-
     <div class="blue-bar">
         <div class="blue-bar-social">
             <i class="fab fa-linkedin-in"></i>
             65/A, 17th floor, Kings land, New York
         </div>
     </div>
-    <div class="menu">
+    <hr class="separator">
+    <div>
         <p-menubar [model]="items"></p-menubar>
     </div>
+    <hr class="separator">
 </div>
 
 <div class="menu-mobile">
@@ -21,4 +22,5 @@
             <p-slideMenu #menu [model]="items" [popup]="true" [viewportHeight]="270" backLabel="Voltar"></p-slideMenu>
         </li>
     </ul>
+    <hr class="separator">
 </div>

@@ -1,30 +1,46 @@
-<div class="main-panel">
+<div class="login-content">
 
-    <div class="columns">
-        <div class="left-column">
-            <img src="../../../assets/img/img-01-do-not-use.png" alt="" >
+    <div class="header">
+        <div class="title">
+            <h1>Login</h1>
         </div>
+    </div>
 
-        <div class="right-column">
-            <div class="fields-panel">
-                <app-hire-me-title [text]="'Login'"></app-hire-me-title>
-                <span class="spacer"></span>
-                <input type="text" pInputText placeholder="E-mail" class="input-field" name="email" [(ngModel)]="user.email">
-                <input type="password" pInputText placeholder="Senha" class="input-field" name="password" [(ngModel)]="user.password">
-
-                <button pButton label="Login" class="button-login" (click)="doLogin()"></button>
-                <span class="subtitle click">Esqueceu seu usuário/senha?</span>
-                
-                <span class="spacer" style="margin-bottom: 5em;"></span>
-
-                <div class="footer">
-                    <span class="subtitle click" (click)="goRegister()">
-                        Criar uma conta
-                        <i class="pi pi-arrow-right" style="margin-left: 5px;"></i>
-                    </span>
-                </div>
+    <div class="login-form">
+        <div class="p-grid">
+            <div class="p-col-12 p-md-12 p-lg-12">
+                <h5>Email</h5>
             </div>
-        </div>  
+
+            <div class="p-col-12 p-md-12 p-lg-12">
+                <input id="email" type="text" [(ngModel)]="user.email" pInputText>
+            </div>
+
+            <p class="spacer"></p>
+
+            <div class="p-col-12 p-md-12 p-lg-12">
+                <h5>Senha</h5>
+            </div>
+
+            <div class="p-col-12 p-md-12 p-lg-12">
+                <input id="password" type="password" [(ngModel)]="user.password" pInputText>
+                <p class="forgot-password"> Esqueceu sua senha?
+                    <a>Clique aqui</a>
+                </p>
+            </div>
+
+            <div class="p-col-12 p-md-12 p-lg-12">
+                <p-button label="Login" (click)="doLogin()"></p-button>
+            </div>
+
+            
+            <div class="p-col-12 p-md-12 p-lg-12">
+                <hr>
+                <p class="forgot-password"> Ainda não tem uma conta?
+                    <a (click)="goRegister()">Registre-se</a>
+                </p>
+            </div>
+        </div>
     </div>
 
 </div>
