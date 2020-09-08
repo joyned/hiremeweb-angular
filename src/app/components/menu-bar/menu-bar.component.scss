@@ -8,15 +8,43 @@
     margin-left: 25px;
 }
 
+.blue-bar {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 13px 80px;
+}
+
 .menu-ul {
     padding: 1em;
 	display: flex;
 	justify-content: space-between;
-	text-align: center;
+    text-align: center;
 }
 
 p-menubarsub {
     width: 100% !important;
+}
+
+.p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:hover{
+    background:none !important;
+}
+
+.p-menubar {
+    border: none !important;
+    background-color: white;
+    padding: 13px 80px;
+}
+
+.p-menuitem-link {
+    .p-menuitem-text {
+        color: var(--primary-color) !important;
+    }
+}
+
+.p-menuitem-link:hover {
+    .p-menuitem-text {
+        color: var(--second-color) !important;
+    }
 }
 
 .p-menubar-root-list {

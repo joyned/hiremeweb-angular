@@ -17,11 +17,12 @@ export class JobsComponent implements OnInit {
 
   public isEditing: boolean;
   public job: Job;
-  public jobs: Array<any> = [];
+  public jobs: Array<Job> = [];
   public isLoading = false;
   public jobName: string;
 
   ngOnInit() {
+    console.log(this.jobs.length)
     this.isEditing = false;
     this.listJobs();
   }

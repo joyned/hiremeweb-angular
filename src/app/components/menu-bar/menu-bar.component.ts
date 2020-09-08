@@ -37,28 +37,23 @@ export class MenuBarComponent implements OnInit {
     this.items = [
       {
         label: 'Página principal',
-        icon: 'pi pi-fw pi-home',
         command: () => this.redirectToPage('/home')
       },
       {
         label: 'Vagas',
-        icon: 'pi pi-fw pi-briefcase',
         command: () => this.redirectToPage('/jobs')
       },
       {
         label: 'Para empresas',
-        icon: ''
       },
       {
         label: 'Sobre nós',
-        icon: 'pi pi-fw pi-info-circle'
       }
     ];
 
     if (!this.userName) {
       this.items.push({
         label: 'Entrar/Registrar',
-        icon: 'pi pi-fw pi-user',
         command: () => this.openDialog()
       });
     } else {
@@ -80,13 +75,11 @@ export class MenuBarComponent implements OnInit {
       { separator: true },
       {
         label: 'Sair',
-        icon: 'pi pi-fw pi-times',
         command: () => this.logout()
       }
     );
     this.items.push({
       label: this.userName,
-      icon: 'pi pi-fw pi-user',
       items: subItens
     });
   }

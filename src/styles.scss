@@ -6,6 +6,8 @@
 @import '../node_modules/primeicons/primeicons.css';
 @import '../node_modules/primeng/resources/themes/saga-green/theme.css';
 
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
 @include mat-core();
 
 $hire-me-primary: mat-palette($mat-indigo);
@@ -18,16 +20,8 @@ $hire-me-theme: mat-light-theme($hire-me-primary, $hire-me-accent, $hire-me-warn
 @include angular-material-theme($hire-me-theme);
 
 :root {
-    --p-color: #4CAF50;
-
-    --primary-color: #DC7145;
-    --second-color: #EB8756;
-    --third-color: #FA9760;
-
-    --new-p-color: #0F1626;
-    --new-s-color: #AB987A;
-    --new-t-color: #FF533D;
-    --new-f-color: #F5F5F5;
+    --primary-color: #002d5b;
+    --second-color: #ff656a;
 }
 
 .mat-icon.mat-accent {
@@ -56,3 +50,18 @@ body {
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+
+.p-button {
+    background: var(--second-color) !important;
+    border: var(--second-color) !important;
+}
+
+.p-button:hover {
+    background: red !important;
+}
+
+
+.p-button:enabled:hover 
+.p-button:enabled:active {
+    border: none !important;
+}

@@ -13,6 +13,6 @@ export class PageService {
     const data: any = await this.api.get(endPoint, {
       Authorization: localStorage.getItem('token')
     });
-    return data.pages;
+    return data.payload;
   }
 }

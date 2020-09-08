@@ -1,21 +1,23 @@
 import { Injectable } from '@angular/core';
-import { ApiService } from '../api/api.service';
-import { Candidate } from 'src/app/classes/candidate/candidate';
-import { PersonAddress } from 'src/app/classes/person/person-addres';
 import { Person } from 'src/app/classes/person/person';
+import { PersonAddress } from 'src/app/classes/person/person-addres';
+import { ApiService } from '../api/api.service';
+import { User } from 'src/app/classes/user/user';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CandidateService {
+export class PersonService {
 
   constructor(private api: ApiService) { }
 
 
   async getPersonDetails() {
     let person = new Person();
+    person.user = new User();
     await this.api.get('person/get', { Authorization: localStorage.getItem('token') })
       .then((data: any) => {
+        console.log(data)
         person.id = data.payload.id;
         person.name = data.payload.name;
         person.fullname = data.payload.fullname;
@@ -32,6 +34,8 @@ export class CandidateService {
         person.personAddress.number = data.payload.person_addres.number;
         person.personAddress.complement = data.payload.person_addres.complement;
         person.personAddress.cep = data.payload.person_addres.cep;
+
+        person.user.email = data.payload.user.email;
 
       });
 

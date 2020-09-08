@@ -21,7 +21,7 @@
     <app-hire-me-title [text]="'Geral'"></app-hire-me-title>
     <div class="fields">
         <form>
-            <input type="text" pInputText placeholder="E-mail" style="width:60%;" name="email" disabled="true" />
+            <input type="text" pInputText placeholder="E-mail" style="width:60%;" name="email" disabled="true" [(ngModel)]="person.user.email" />
             <p-inputMask mask="999.999.999-99" placeholder="CPF" [style]="{'width':'60%', 'margin-bottom':'10px'}" [(ngModel)]="person.cpf" name="cpf" disabled="true"></p-inputMask>
             <p-inputMask mask="99.999.999-9" placeholder="RG" [style]="{'width':'60%', 'margin-bottom':'10px'}" [(ngModel)]="person.rg" name="rg" disabled="true"></p-inputMask>
             <p-calendar placeholder="Data de nascimento" [locale]="pt" dateFormat="dd/mm/yy" [style]="{'width':'60%'}" [(ngModel)]="person.birthdate" name="birthdate" disabled="true"></p-calendar>

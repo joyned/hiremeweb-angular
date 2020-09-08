@@ -17,7 +17,7 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "^10.0.0",
-    "@angular/cdk": "^10.1.2",
+    "@angular/cdk": "^10.2.0",
     "@angular/cli": "~10.0.5",
     "@angular/common": "^10.0.0",
     "@angular/compiler": "~10.0.8",
@@ -32,7 +32,9 @@
     "bootstrap": "^4.4.0",
     "chokidar": "^3.4.0",
     "express": "^4.17.1",
+    "font-awesome": "^4.7.0",
     "ngx-mask": "^9.1.2",
+    "primeflex": "^2.0.0",
     "primeicons": "^4.0.0",
     "primeng": "^10.0.0-rc.1",
     "rxjs": "^6.5.5",

@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { CandidateService } from 'src/app/services/candidate/candidate.service';
-import { Candidate } from 'src/app/classes/candidate/candidate';
-import { AlertMessageService } from 'src/app/services/alert-message/alert-message.service';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Person } from 'src/app/classes/person/person';
 import { PersonAddress } from 'src/app/classes/person/person-addres';
-import { DomSanitizer } from '@angular/platform-browser';
+import { AlertMessageService } from 'src/app/services/alert-message/alert-message.service';
+import { PersonService } from 'src/app/services/person/person.service';
+import { User } from 'src/app/classes/user/user';
 
 @Component({
   selector: 'app-configuration',
@@ -14,7 +14,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class ConfigurationComponent implements OnInit {
 
-  constructor(private dialog: MatDialog, private candidateService: CandidateService, private messageService: AlertMessageService, private sanitizer: DomSanitizer) { }
+  constructor(private dialog: MatDialog, private personService: PersonService, private messageService: AlertMessageService, private sanitizer: DomSanitizer) { }
 
   public image: any;
   private imageAsBase64: any;
@@ -24,14 +24,15 @@ export class ConfigurationComponent implements OnInit {
   async ngOnInit() {
     this.buildCalendar();
     this.person = new Person();
+    this.person.user = new User();
     this.person.personAddress = new PersonAddress();
-    this.person = await this.candidateService.getPersonDetails();
+    this.person = await this.personService.getPersonDetails();
     this.image = 'data:image/jpg;base64,' + (this.sanitizer.bypassSecurityTrustResourceUrl(this.person.photo) as any).changingThisBreaksApplicationSecurity;
   }
 
   async updatePersonDetails() {
     try {
-      await this.candidateService.updatePersonDetails(this.person);
+      await this.personService.updatePersonDetails(this.person);
       this.messageService.successMessage("Sucesso", "Sua conta foi atualizada com sucesso!");
     } catch (error) {
       this.messageService.errorMessage("Erro", "Não foi possivel atualizar sua conta. Por favor, tente novamente.");

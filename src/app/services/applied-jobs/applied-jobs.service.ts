@@ -15,7 +15,7 @@ export class AppliedJobsService {
     const token = localStorage.getItem('token');
     await this.api.get(endPoint, { Authorization: token }).then(
       (res: any) => {
-        this.jobs = res.payload.applied_jobs;
+        this.jobs = res.payload;
       }
     );
     return this.jobs;

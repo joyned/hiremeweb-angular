@@ -3,6 +3,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/classes/user/user';
 import { AlertMessageService } from 'src/app/services/alert-message/alert-message.service';
 import { LoginService } from 'src/app/services/login/login.service';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+
+import { tap, catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +16,8 @@ import { LoginService } from 'src/app/services/login/login.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public router: Router, private loginService: LoginService, private activatedRoute: ActivatedRoute, private alertMessage: AlertMessageService) { }
+  constructor(public router: Router, private loginService: LoginService, private activatedRoute: ActivatedRoute,
+    private alertMessage: AlertMessageService, private http: HttpClient) { }
 
   public user = new User();
 
@@ -32,7 +38,7 @@ export class LoginComponent implements OnInit {
       this.isLoading = true;
       await this.loginService.login(this.user);
 
-      if(!this.redirectUrl){
+      if (!this.redirectUrl) {
         this.router.navigateByUrl('/')
         window.location.reload();
       }
@@ -57,7 +63,7 @@ export class LoginComponent implements OnInit {
   }
 
 
-  goRegister(){
+  goRegister() {
     this.router.navigateByUrl('/register');
   }
 

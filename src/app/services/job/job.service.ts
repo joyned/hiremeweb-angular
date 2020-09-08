@@ -15,7 +15,7 @@ export class JobService {
     await this.api.get('job/all', {})
       .then(
         (res: any) => {
-          this.jobs = res.job_list;
+          this.jobs = res.payload;
           for (var index in this.jobs) {
             let trimDescription = this.jobs[index].description.substring(0, 200);
             this.jobs[index].shortDescription = trimDescription + '...';

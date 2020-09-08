@@ -42,6 +42,7 @@ import { UserManualRegisterComponent } from './pages/user-manual-register/user-m
 import { ClientSocket } from './services/socket/client.socket';
 import { Interceptor } from './services/token-interceptor/token-interceptor.service';
 import { AlertMessageComponent } from './components/alert-message/alert-message.component'
+import { ChangePasswordComponent } from './pages/change-password/change-password.component';
 
 /* PrimeNG Modules */
 import { ButtonModule } from 'primeng/button';
@@ -62,6 +63,7 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { TabViewModule } from 'primeng/tabview';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
   declarations: [
@@ -81,7 +83,8 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     UserManualRegisterComponent,
     MessagesComponent,
     MenuBarComponent,
-    AlertMessageComponent
+    AlertMessageComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -127,7 +130,8 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     CheckboxModule,
     TabViewModule,
     DialogModule,
-    InputTextareaModule
+    InputTextareaModule,
+    DropdownModule
   ],
   providers: [AuthGuard, ClientSocket],
   bootstrap: [AppComponent]

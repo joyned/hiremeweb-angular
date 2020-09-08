@@ -13,7 +13,7 @@ export class AppliedJobsComponent implements OnInit {
 
   constructor(private service: AppliedJobsService, private confirmationService: ConfirmationService) { }
 
-  public jobs: Job[] = [];
+  public jobs: Job[];
   public isLoading = true;
 
   ngOnInit(): void {
