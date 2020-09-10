@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Person } from 'src/app/classes/person/person';
 import { PersonAddress } from 'src/app/classes/person/person-addres';
+import { User } from 'src/app/classes/user/user';
 import { AlertMessageService } from 'src/app/services/alert-message/alert-message.service';
 import { PersonService } from 'src/app/services/person/person.service';
-import { User } from 'src/app/classes/user/user';
 
 @Component({
   selector: 'app-configuration',
@@ -14,7 +13,7 @@ import { User } from 'src/app/classes/user/user';
 })
 export class ConfigurationComponent implements OnInit {
 
-  constructor(private dialog: MatDialog, private personService: PersonService, private messageService: AlertMessageService, private sanitizer: DomSanitizer) { }
+  constructor(private personService: PersonService, private messageService: AlertMessageService, private sanitizer: DomSanitizer) { }
 
   public image: any;
   private imageAsBase64: any;
@@ -53,12 +52,10 @@ export class ConfigurationComponent implements OnInit {
   }
 
   sendEmail(dialog: any) {
-    this.dialog.open(dialog);
     setTimeout(() => this.closeDialog(), 10000);
   }
 
   closeDialog() {
-    this.dialog.closeAll();
   }
 
   buildCalendar() {

@@ -1,10 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { Job } from 'src/app/classes/job/job';
-import { JobService } from 'src/app/services/job/job.service';
-import { JobDetailsComponent } from '../job-details/job-details.component';
 import { Router } from '@angular/router';
+import { Job } from 'src/app/classes/job/job';
 import { AlertMessageService } from 'src/app/services/alert-message/alert-message.service';
+import { JobService } from 'src/app/services/job/job.service';
 
 @Component({
   selector: 'app-jobs',

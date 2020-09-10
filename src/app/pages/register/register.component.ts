@@ -1,15 +1,12 @@
-import { Component, OnInit, ViewContainerRef, ViewChild, TemplateRef, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserService } from 'src/app/services/user/user.service';
-import { MatDialog } from '@angular/material/dialog';
-import { LoginService } from 'src/app/services/login/login.service';
-import { User } from 'src/app/classes/user/user';
-import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { ProfessionalHistory } from 'src/app/classes/candidate/professional-history';
 import { lorem } from 'src/app/classes/lorem';
-import { Candidate } from 'src/app/classes/candidate/candidate';
 import { Person } from 'src/app/classes/person/person';
 import { PersonAddress } from 'src/app/classes/person/person-addres';
+import { User } from 'src/app/classes/user/user';
+import { LoginService } from 'src/app/services/login/login.service';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-register',
@@ -57,7 +54,7 @@ export class RegisterComponent implements OnInit {
     }
   ]
 
-  constructor(private router: Router, private userService: UserService, private dialog: MatDialog, private loginService: LoginService) { }
+  constructor(private router: Router, private userService: UserService, private loginService: LoginService) { }
 
   ngOnInit(): void {
     this.person = new Person();
@@ -75,7 +72,6 @@ export class RegisterComponent implements OnInit {
     try {
       this.createLoadingDialog();
       await this.userService.registerNewUser(this.person);
-      this.dialog.closeAll();
       this.doLoginAfterRegister();
     } catch (error) {
       this.errorMessage = error.error;
@@ -94,13 +90,9 @@ export class RegisterComponent implements OnInit {
   }
 
   createErrorDialog() {
-    this.dialog.closeAll();
-    this.dialog.open(this.errorDialog);
   }
 
   createLoadingDialog() {
-    this.dialog.closeAll();
-    this.dialog.open(this.loadingDialog);
   }
 
   buildCalendar() {

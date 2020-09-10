@@ -1,10 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
-import { PageService } from 'src/app/services/pages/page.service';
-import { BehaviorSubject } from 'rxjs';
 import { DatasharingService } from 'src/app/services/data-sharing/datasharing.service';
+import { PageService } from 'src/app/services/pages/page.service';
 
 @Component({
   selector: 'app-menu-bar',
