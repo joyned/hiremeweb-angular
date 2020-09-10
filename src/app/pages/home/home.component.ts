@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { AlertMessageService } from 'src/app/services/alert-message/alert-message.service';
 import { SelectItem } from 'primeng/api';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -9,9 +10,6 @@ import { SelectItem } from 'primeng/api';
   encapsulation: ViewEncapsulation.None
 })
 export class HomeComponent implements OnInit {
-
-  constructor(private alertMessage: AlertMessageService) {
-  }
 
   public options: SelectItem[] = [
     {
@@ -22,9 +20,17 @@ export class HomeComponent implements OnInit {
       label: 'Candidato',
       value: 'C'
     }
-  ]
+  ];
+
+  constructor(private route: Router) {
+  }
 
   ngOnInit(): void {
+  }
+
+
+  public openJobs(){
+    this.route.navigateByUrl('/jobs');
   }
 
 }

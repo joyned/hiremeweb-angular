@@ -8,6 +8,8 @@ import { environment } from 'src/environments/environment';
 
 import { tap, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { MenuBarComponent } from 'src/app/components/menu-bar/menu-bar.component';
+import { DatasharingService } from 'src/app/services/data-sharing/datasharing.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +20,7 @@ import { of } from 'rxjs';
 export class LoginComponent implements OnInit {
 
   constructor(public router: Router, private loginService: LoginService, private activatedRoute: ActivatedRoute,
-    private alertMessage: AlertMessageService, private http: HttpClient) { }
+    private alertMessage: AlertMessageService, private dataSharingService: DatasharingService) { }
 
   public user = new User();
 
@@ -30,6 +32,8 @@ export class LoginComponent implements OnInit {
 
   private redirectUrl: string;
 
+  private response: any;
+
   ngOnInit(): void {
     this.redirectUrl = this.activatedRoute.snapshot.paramMap.get('redirect');
   }
@@ -37,11 +41,13 @@ export class LoginComponent implements OnInit {
   async doLogin() {
     try {
       this.isLoading = true;
-      await this.loginService.login(this.user);
+      this.response = await this.loginService.login(this.user);
+
+      this.dataSharingService.userName.next(localStorage.getItem('user'));
+      this.dataSharingService.pages.next(this.response.payload.pages);
 
       if (!this.redirectUrl) {
-        this.router.navigateByUrl('/')
-        window.location.reload();
+        this.router.navigateByUrl('/home');
       }
 
     } catch (error) {

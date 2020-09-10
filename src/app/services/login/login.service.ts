@@ -15,6 +15,8 @@ export class LoginService {
     this.data = await this.api.post('login', user, {});
     localStorage.setItem('token', this.data.payload.token);
     localStorage.setItem('user', this.data.payload.person_name);
+
+    return this.data;
   }
 
   getToken() {

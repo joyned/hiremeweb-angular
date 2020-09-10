@@ -206,6 +206,37 @@ p {
     }
 }
 
+.contact-us {
+    padding: 100px 0px;
+    background: #002d5b;
+
+    .container {
+        width: 100%;
+        text-align: left;
+        h3 {
+            color: #fff;
+            font-size: 40px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 30px;
+        }
+
+        p {
+            color: #fff;
+        }
+
+        .contact-form {
+            margin-top: 1em;
+
+            .p-dropdown {
+                width: 79.5%; 
+                margin-right: 15px;
+                margin-top: 10px;
+            }
+        }
+    }
+}
+
 @media (max-width: 960px){
     .container .our-services {
         padding-top: 100px !important;
@@ -224,6 +255,7 @@ p {
         }
     }
 }
+
 
 @media (max-width: 487px) {
     .contact-us{

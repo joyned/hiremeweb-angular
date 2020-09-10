@@ -3,6 +3,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { PageService } from 'src/app/services/pages/page.service';
+import { BehaviorSubject } from 'rxjs';
+import { DatasharingService } from 'src/app/services/data-sharing/datasharing.service';
 
 @Component({
   selector: 'app-menu-bar',
@@ -18,19 +20,32 @@ import { PageService } from 'src/app/services/pages/page.service';
 export class MenuBarComponent implements OnInit {
 
   public userName: string;
-  public pages: any;
+  public pages: any[] = [];
   public viewportHeight: number;
 
-  public items: MenuItem[];
+  public items: MenuItem[] = [];
 
-  constructor(private router: Router, private dialog: MatDialog, private pageService: PageService) { }
+  constructor(private router: Router, private pageService: PageService, private dataSharingService: DatasharingService) {
+  }
 
   async ngOnInit(): Promise<void> {
     this.userName = localStorage.getItem('user');
-    if (this.userName) {
-      this.pages = await this.pageService.getPagesByUserId();
+
+    if (!this.userName) {
+      this.dataSharingService.userName.subscribe(value => {
+        this.userName = value;
+      });
+
+      this.dataSharingService.pages.subscribe(value => {
+        this.pages = value;
+        this.initMenu();
+      });
     }
-    this.initMenu();
+
+    if (this.userName && this.pages.length === 0) {
+      this.pages = await this.pageService.getPagesByUserId();
+      this.initMenu();
+    }
   }
 
   initMenu() {
@@ -89,7 +104,6 @@ export class MenuBarComponent implements OnInit {
   }
 
   openDialog() {
-    // this.dialog.open(LoginComponent);
     this.router.navigateByUrl('/login/');
   }
 

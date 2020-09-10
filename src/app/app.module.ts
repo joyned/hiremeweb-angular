@@ -64,6 +64,7 @@ import { TabViewModule } from 'primeng/tabview';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { DropdownModule } from 'primeng/dropdown';
+import { FooterBarComponent } from './components/footer-bar/footer-bar.component';
 
 @NgModule({
   declarations: [
@@ -84,7 +85,8 @@ import { DropdownModule } from 'primeng/dropdown';
     MessagesComponent,
     MenuBarComponent,
     AlertMessageComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    FooterBarComponent
   ],
   imports: [
     BrowserModule,

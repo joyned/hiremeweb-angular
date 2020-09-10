@@ -1,28 +1,62 @@
-
-.jobs-list {
-    margin-top: 1%;
-    
+.jobs-content {
+    overflow-x: hidden;
 }
 
-.list{
-    table {
-        width: 100%;
+.jobs-header {
+    background-image: url('../../../assets/img/gallery_hero.jpg');
+    background-position: center;
+    background-repeat: no-repeat; 
+    min-height: 200px;
+
+    display: grid;
+    place-items: center;
+
+
+    .title {
+      h1 {
+        text-align: center !important;
+        color: #fff;
+        font-size: 50px;
+        font-weight: 700;
+        text-transform: capitalize;
       }
+    }
 }
 
-.filter-bar{
-    padding: 2%;
-    margin-bottom: 2%;
-    
+.jobs {
+    padding-top: 20px;
+    .filter {
+        text-align: center;
+        // background-color: #f6f9fe;
+        h5 {
+            font-size: 20px;
+            text-transform: capitalize;
+        }
+        
+        input {
+            width: 95%;
+        }
+
+        button {
+            padding: 10px 50px;
+        }
+    }
+
+    .job-list {
+        margin-top: 15px;
+
+        .p-card {
+            margin-right: 15px;
+        }
+    }
 }
 
-.jobs-content{
-    margin-bottom: 2%;
-}
-
-@media(max-width:960px){
-    .p-input-icon-left{
-        width: 80% !important;
-        margin-bottom: 8px;
+@media(max-width:991px) {
+    .jobs {
+        .job-list{ 
+            .p-card {
+                margin-right: 0 !important;
+            }
+        }
     }
 }

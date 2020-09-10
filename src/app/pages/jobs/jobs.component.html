@@ -1,38 +1,43 @@
-<app-loading-spinner [showText]="true" *ngIf="isLoading"></app-loading-spinner>
+<div class="jobs-content">
 
-<div class="jobs-list" *ngIf="!isEditing">
-  <div class="list" style="width: 100%;" >
-
-    <div class="filter-bar">
-      <div class="filter-bar-title" align="center">
-        <h1>Filtros</h1>
-        <span class="p-input-icon-left" style="width:30%;">
-          <i class="pi pi-search"></i>
-          <input type="text" pInputText placeholder="Cargo" style="width:100%;" />
-        </span>
-
-        <span style="padding: 0.5%;"></span>
-
-        <span class="p-input-icon-left" style="width:30%;">
-          <i class="pi pi-search"></i>
-          <input type="text" pInputText placeholder="Localidade" style="width:100%;" />
-        </span>
-
-        <span style="padding: 0.5%;"></span>
-
-        <button pButton label="Filtrar"></button>
-      </div>
+  <div class="jobs-header">
+    <div class="title">
+      <h1>Vagas</h1>
     </div>
-
-    <span *ngIf="jobs.length == 0">Não existem vagas cadastradas</span>
-
-    <p-card *ngFor="let job of jobs" header="{{job.title}}" subheader="{{job.city}}, {{job.state}}" styleClass="p-card-shadow"
-      [style]="{'margin-bottom': '2em'}">
-      {{job.shortDescription}}
-      <p-footer>
-        <button pButton label="Saiba mais" (click)="jobDetails(job.id)"></button>
-      </p-footer>
-    </p-card>
-
   </div>
+
+  <app-loading-spinner [showText]="true" *ngIf="isLoading"></app-loading-spinner>
+
+  <hr class="separator">
+  <div class="jobs">
+    <div class="p-grid">
+      <div class="p-col-12 p-md-12 p-lg-4 filter">
+        <p-card>
+          <h5>Cargo</h5>
+          <input id="job-title" type="text" pInputText>
+
+          <p class="spacer"></p>
+
+          <h5>Localização</h5>
+          <input id="job-localization" type="text" pInputText>
+
+          <p class="spacer"></p>
+
+          <p-button label="Filtrar" (click)="filter()"></p-button>
+        </p-card>
+      </div>
+
+      <div class="p-col-12 p-md-12 p-lg-8 job-list">
+        <div *ngFor="let job of jobs">
+          <p-card [header]="job.title">
+            <p>{{ job.description }}</p>
+            <p-button label="Saiba mais"></p-button>
+          </p-card>
+          <p class="spacer"></p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
 </div>
