@@ -7,14 +7,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
-@include mat-core();
-
-$hire-me-primary: mat-palette($mat-indigo);
-$hire-me-accent: mat-palette($mat-pink, A200, A100, A400);
-
-$hire-me-warn: mat-palette($mat-red);
-
-$hire-me-theme: mat-light-theme($hire-me-primary, $hire-me-accent, $hire-me-warn);
 
 :root {
     --primary-color: #002d5b;

@@ -8,7 +8,6 @@
     <br>
     <app-hire-me-title [text]="'Permissão de usuário'"></app-hire-me-title>
     <div *ngFor="let profile of profiles" style="color: white;">
-        <mat-checkbox [value]="profile.id" (change)="checkEvent($event)">{{profile.constante}}</mat-checkbox>
     </div>
     <br><br>
 </div>
