@@ -1,3 +1,5 @@
+import { JobBenefit } from '../job-benefit/job-benefit';
+
 export class Job {
     id?: number;
     title?: string;
@@ -9,4 +11,5 @@ export class Job {
     shortDescription?: string;
     idArea?: number;
     idJobLevel?: number;
+    jobBenefits?: JobBenefit[];
 }

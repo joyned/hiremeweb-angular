@@ -8,19 +8,19 @@
 
   <hr class="separator">
 
-  <app-loading-spinner [showText]="true" *ngIf="isLoading"></app-loading-spinner>
+  <app-loading-spinner [showText]="true" *ngIf="loading"></app-loading-spinner>
 
-  <div class="jobs" *ngIf="!isLoading">
+  <div class="jobs" *ngIf="!loading">
     <div class="p-grid">
       <div class="p-col-12 p-md-12 p-lg-4 filter">
         <p-card>
           <h5>Cargo</h5>
-          <input id="job-title" type="text" pInputText>
+          <input id="job-title" type="text" [(ngModel)]="jobFilter.job" pInputText>
 
           <p class="spacer"></p>
 
           <h5>Localização</h5>
-          <input id="job-localization" type="text" pInputText>
+          <input id="job-localization" type="text" [(ngModel)]="jobFilter.localization" pInputText>
 
           <p class="spacer"></p>
 
@@ -28,14 +28,18 @@
         </p-card>
       </div>
 
-      <div class="p-col-12 p-md-12 p-lg-8 job-list">
+      <div class="p-col-12 p-md-12 p-lg-8 job-list" *ngIf="jobs.length != 0">
         <div *ngFor="let job of jobs">
           <p-card [header]="job.title">
             <p>{{ job.description }}</p>
-            <p-button label="Saiba mais"></p-button>
+            <p-button label="Saiba mais" (click)="jobDetails(job)"></p-button>
           </p-card>
           <p class="spacer"></p>
         </div>
+      </div>
+
+      <div class="p-col-12 p-md-12 p-lg-8 job-list" *ngIf="jobs.length == 0">
+        <p style="text-align: center;">Desculpe, não achamos nenhuma vaga com esses filtros :(</p>
       </div>
 
     </div>

@@ -1,5 +1,5 @@
 import { Injectable, NgModule, Injector } from '@angular/core';
-import { HttpInterceptor, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpInterceptor, HTTP_INTERCEPTORS, HttpRequest } from '@angular/common/http';
 import { LoginService } from '../login/login.service';
 
 @Injectable({
@@ -10,10 +10,9 @@ export class TokenInterceptorService implements HttpInterceptor {
   constructor(private injector: Injector) { }
 
   intercept(req: import('@angular/common/http').HttpRequest<any>,
-            next: import('@angular/common/http').HttpHandler): import('rxjs').Observable<import('@angular/common/http').HttpEvent<any>> {
+    next: import('@angular/common/http').HttpHandler): import('rxjs').Observable<import('@angular/common/http').HttpEvent<any>> {
     const loginService = this.injector.get(LoginService);
-    if (req.url.includes('/api/login') || req.url.includes('api/job/all') || req.url.includes('api/job/detail')
-      || req.url.includes('api/register') || req.url.includes('api/v1/localidades/estados')) {
+    if (this.uncheckedPath(req)) {
       return next.handle(req);
     } else {
       const dupReq = req.clone({
@@ -21,6 +20,16 @@ export class TokenInterceptorService implements HttpInterceptor {
       });
       return next.handle(dupReq);
     }
+  }
+
+
+  private uncheckedPath(req: HttpRequest<any>) {
+    return req.url.includes('/api/login') ||
+      req.url.includes('api/job/all') ||
+      req.url.includes('api/job/detail') ||
+      req.url.includes('api/job/filter') ||
+      req.url.includes('api/register') ||
+      req.url.includes('api/v1/localidades/estados')
   }
 }
 

@@ -1,7 +1,12 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { JobDetailService } from 'src/app/services/job-detail/job-detail.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
+import { of } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
+import { Job } from 'src/app/classes/job/job';
+import { ApiUtil } from 'src/app/classes/utils/APIUtils/api-util';
+import { UserUtil } from 'src/app/classes/utils/UserUtils/user-util';
 import { AlertMessageService } from 'src/app/services/alert-message/alert-message.service';
 
 @Component({
@@ -13,64 +18,89 @@ import { AlertMessageService } from 'src/app/services/alert-message/alert-messag
 })
 export class JobDetailsComponent implements OnInit {
 
-  constructor(private jobService: JobDetailService, private activatedRoute: ActivatedRoute, private router: Router, private confirmationService: ConfirmationService,
+  constructor(private http: HttpClient, private activatedRoute: ActivatedRoute, private router: Router, private confirmationService: ConfirmationService,
     private alertMessage: AlertMessageService) { }
 
-  private currentDialog: any;
+  public job: Job;
+  public logged: boolean;
+  public loading: boolean;
+  public alreadyApplied: boolean;
 
-  public job: any;
-  public isLoading = false;
-  public showButton = true;
-  public mobileBottomBar = false;
   private jobId: number;
 
   ngOnInit(): void {
-    this.jobId = Number(this.activatedRoute.snapshot.paramMap.get('job_id'));
-    this.showButton = Boolean(this.activatedRoute.snapshot.paramMap.get('show_button'))
-    this.getJobDetail();
+    this.showApplyButton();
+    this.job = new Job();
+    this.jobId = Number(this.activatedRoute.snapshot.paramMap.get('id'));
+    this.checkIfAlreadyApplied();
+    this.getDetails();
   }
 
-  closeDialog() {
-    this.currentDialog.close();
+  private showApplyButton() {
+    this.logged = UserUtil.isLogged();
   }
 
-  showConfirmDialog() {
-    if (window.innerWidth >= 960) {
-      this.confirmationService.confirm({
-        message: 'Tem certeza de deseja candidatar a vaga ' + this.job.title,
-        header: 'Confirmação',
-        accept: () => {
-          this.applyToJob();
-        }
-      });
-    } else {
-      this.mobileBottomBar = true;
-    }
+  private checkIfAlreadyApplied() {
+    this.http.get<any>(ApiUtil.getPath() + 'job/person-applied/' + this.jobId, ApiUtil.buildOptions())
+      .pipe(
+        tap((data) => {
+          console.log(data)
+          this.alreadyApplied = Boolean(data.payload);
+        }),
+        catchError((httpResponse) => {
+          return of();
+        })
+      ).subscribe();
   }
 
-  async applyToJob() {
-    try {
-      await this.jobService.applyToJob(this.jobId);
-      this.mobileBottomBar = false;
-      this.alertMessage.successMessage("Sucesso", "Sua aplicação para a vaga " + this.job.title + " foi um sucesso!");
-    } catch (error) {
-      this.mobileBottomBar = false;
-      this.alertMessage.errorMessage("Erro", "Sua aplicação para a vaga " + this.job.title + " não foi efetuda com sucesso. Por favor, tente novamente.")
-    }
+  private getDetails() {
+    this.loading = true;
+
+    this.http.post<any>(ApiUtil.getPath() + 'job/detail/' + this.jobId, {})
+      .pipe(
+        tap((data) => {
+          this.job = data.payload;
+        }),
+        catchError((httpResponse) => {
+          return of();
+        })
+      ).subscribe();
+
+    this.loading = false;
   }
 
-  userLogged() {
-    return localStorage.getItem('token') != null;
+  public doLogin() {
+    const routeToRedirect = this.router.url;
+    this.router.navigate(['/login', { redirect: routeToRedirect }]);
   }
 
-  async getJobDetail() {
-    this.isLoading = true;
-    this.job = await this.jobService.getJobDetailById(this.jobId);
-    this.isLoading = false;
+  public confirmJobApplication() {
+    this.confirmationService.confirm({
+      header: this.job.title,
+      message: 'Deseja candidatar-se para <b>' + this.job.title + '</b>?',
+      acceptLabel: 'Sim',
+      rejectLabel: 'Não',
+      accept: () => this.applyToJob()
+    });
   }
 
-  backButton() {
-    this.router.navigateByUrl('/jobs');
+  private applyToJob() {
+    const body = {
+      jobId: this.job.id
+    };
+
+    this.http.post<any>(ApiUtil.getPath() + 'job/apply', body, ApiUtil.buildOptions())
+      .pipe(
+        tap((data) => {
+          console.log(data);
+          this.alertMessage.successMessage("Sucesso", "Sua aplicação para a vaga " + this.job.title + " foi um sucesso!");
+        }),
+        catchError((httpResponse) => {
+          this.alertMessage.errorMessage("Erro", "Sua aplicação para a vaga " + this.job.title + " não foi efetuda com sucesso. Por favor, tente novamente.")
+          return of();
+        })
+      ).subscribe();
+
   }
 
 }

@@ -5,6 +5,10 @@ import { PersonAddress } from 'src/app/classes/person/person-addres';
 import { User } from 'src/app/classes/user/user';
 import { AlertMessageService } from 'src/app/services/alert-message/alert-message.service';
 import { PersonService } from 'src/app/services/person/person.service';
+import { HttpClient } from '@angular/common/http';
+import { ApiUtil } from 'src/app/classes/utils/APIUtils/api-util';
+import { tap, catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-configuration',
@@ -13,7 +17,7 @@ import { PersonService } from 'src/app/services/person/person.service';
 })
 export class ConfigurationComponent implements OnInit {
 
-  constructor(private personService: PersonService, private messageService: AlertMessageService, private sanitizer: DomSanitizer) { }
+  constructor(private personService: PersonService, private messageService: AlertMessageService, private sanitizer: DomSanitizer, private http: HttpClient) { }
 
   public image: any;
   private imageAsBase64: any;
@@ -25,8 +29,22 @@ export class ConfigurationComponent implements OnInit {
     this.person = new Person();
     this.person.user = new User();
     this.person.personAddress = new PersonAddress();
-    this.person = await this.personService.getPersonDetails();
-    this.image = 'data:image/jpg;base64,' + (this.sanitizer.bypassSecurityTrustResourceUrl(this.person.photo) as any).changingThisBreaksApplicationSecurity;
+
+    this.getPersonDetails();
+    // this.image = 'data:image/jpg;base64,' + (this.sanitizer.bypassSecurityTrustResourceUrl(this.person.photo) as any).changingThisBreaksApplicationSecurity;
+  }
+
+  private getPersonDetails() {
+    this.http.get<any>(ApiUtil.getPath() + 'person/get', ApiUtil.buildOptions())
+      .pipe(
+        tap((data) => {
+          this.person.birthdate = new Date(data.payload.birthdate);
+          this.person = data.payload;
+        }),
+        catchError((httpResponse) => {
+          return of();
+        })
+      ).subscribe();
   }
 
   async updatePersonDetails() {

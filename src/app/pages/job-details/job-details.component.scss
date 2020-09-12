@@ -1,21 +1,51 @@
-.content {
-    padding: 9px;
+.job-detail-content {
+    margin: 0;
+    overflow-x: hidden;
 }
 
-.job-title {
-    width: 90%;
-}
 
-.back-button {
-    padding: 9px;
-}
+.jobs-detail-header {
+    background-image: url('../../../assets/img/gallery_hero.jpg');
+    background-position: center;
+    background-repeat: no-repeat; 
+    min-height: 200px;
 
-.confirmBarTitle {
-    margin-bottom: 10px;
-}
+    display: grid;
+    place-items: center;
 
-.confirmBarButtons {
-    button {
-        margin-right: 10px;
+
+    .title {
+      h1 {
+        text-align: center !important;
+        color: #fff;
+        font-size: 50px;
+        font-weight: 700;
+        text-transform: capitalize;
+      }
+
+      p {
+          color: #fff;
+      }
     }
+}
+
+.description, .details {
+    padding: 3%;
+    margin-top: 2%;
+    border-right: 1px solid black;
+}
+
+.button {
+    padding: 3%;
+}
+
+.details {
+    h5 {
+        margin-top: 15px;
+    }
+}
+
+h5 {
+    text-transform: capitalize;
+    font-size: 25px;
 }

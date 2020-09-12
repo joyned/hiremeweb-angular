@@ -1,49 +1,36 @@
-<div class="body-details">
-    <div *ngIf="isLoading">
-        <app-loading-spinner [showText]="true"></app-loading-spinner>
+<app-loading-spinner [showText]="true" *ngIf="loading"></app-loading-spinner>
+
+<div class="job-detail-content" *ngIf="!loading">
+    <div class="jobs-detail-header">
+        <div class="title">
+            <h1>{{ job.title }}</h1>
+            <p style="text-align: center;">{{ job.city }}, {{ job.state }} - {{ job.country }}</p>
+        </div>
     </div>
-    <div class="content" *ngIf="!isLoading">
-        <div>
-            <div class="title-content" style="display: flex;">
-                <h1 class="job-title">{{ job.title }}</h1>
+
+    <hr class="separator">
+
+    <div class="job-details-text">
+        <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>
+        <div class="p-grid">
+            <div class="p-col-12 p-md-12 p-lg-8 description">
+                <h5>Descrição</h5>
+                <p>{{ job.description }}</p>
+            </div>
+            <div class="p-col-12 p-md-12 p-lg-4 details">
+                <h5>Salário</h5>
+                <p>R$ {{ job.salary }}</p>
+
+                <h5>Benefícios</h5>
+                <p *ngFor="let benefit of job.jobBenefits">{{benefit.benefit}}</p>
+
+                <h5 *ngIf="alreadyApplied">Candidatura</h5>
+                <p *ngIf="alreadyApplied">Você já se candidatou para está vaga :)</p>
+            </div>
+            <div class="p-col-12 p-md-12 p-lg-12 button">
+                <p-button label="Candidatar-se" (click)="confirmJobApplication()" *ngIf="logged && !alreadyApplied"></p-button>
+                <p-button label="Efetuar login" (click)="doLogin()" *ngIf="!logged"></p-button>
             </div>
         </div>
-        <hr>
-        <div class="job-description">
-            {{ job.description }}
-        </div>
-        <hr>
-        <div class="job-detail">
-            <span style="font-weight: bold;">Detalhes:</span>
-            <li>Cidade: {{ job.city }}</li>
-            <li>Estado: {{ job.state }}</li>
-            <li>País: {{ job.country }}</li>
-            <li>Remuneração: R$ {{ job.salary }}</li>
-        </div>
-
-        <hr>
-
-        <button pButton label="Candidatar-se" (click)="showConfirmDialog()"></button>
-        <span style="padding: 5px;"></span>
-        <button pButton label="Voltar" class="p-button-danger" (click)="backButton()"></button>
-
-        <p-confirmDialog #confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000">
-            <p-footer>
-                <button type="button" pButton icon="pi pi-check" label="Sim" (click)="confirmDialog.accept()"></button>
-                <button type="button" pButton icon="pi pi-times" label="Não" class="p-button-danger"
-                    (click)="confirmDialog.reject()"></button>
-            </p-footer>
-        </p-confirmDialog>
-
-        <p-sidebar [(visible)]="mobileBottomBar" position="bottom" [baseZIndex]="10000" [showCloseIcon]="false">
-            <div class="confirmBarTitle">
-                Deseja realmente se cadastrar para a vaga <span style="font-weight: bold;"> {{ job.title }} </span>
-            </div>
-            <div class="confirmBarButtons">
-                <button type="button" pButton icon="pi pi-check" label="Sim" (click)="applyToJob()"></button>
-                <button type="button" pButton icon="pi pi-times" label="Não" class="p-button-danger"
-                    (click)="mobileBottomBar = false"></button>
-            </div>
-        </p-sidebar>
     </div>
 </div>

@@ -1,8 +1,11 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
+import { of } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
+import { JobFilter } from 'src/app/classes/job-filter/job-filter';
 import { Job } from 'src/app/classes/job/job';
-import { AlertMessageService } from 'src/app/services/alert-message/alert-message.service';
-import { JobService } from 'src/app/services/job/job.service';
+import { ApiUtil } from 'src/app/classes/utils/APIUtils/api-util';
 
 @Component({
   selector: 'app-jobs',
@@ -12,31 +15,52 @@ import { JobService } from 'src/app/services/job/job.service';
 })
 export class JobsComponent implements OnInit {
 
-  constructor(private jobService: JobService, private alertMessageService: AlertMessageService, private router: Router) { }
+  constructor(private router: Router, private http: HttpClient) { }
 
-  public isEditing: boolean;
-  public job: Job;
+  public jobFilter: JobFilter;
   public jobs: Job[] = [];
-  public isLoading = false;
-  public jobName: string;
+
+  public loading = false;
 
   ngOnInit() {
-    this.isEditing = false;
+    this.jobFilter = new JobFilter();
     this.listJobs();
   }
-  
-  async listJobs() {
-    this.isLoading = true;
-    this.jobs = await this.jobService.getJobs();
-    this.isLoading = false;
+
+  listJobs() {
+    this.loading = true;
+
+    this.http.get<any>(ApiUtil.getPath() + 'job/all')
+      .pipe(
+        tap((data) => {
+          this.jobs = data.payload;
+        }),
+        catchError((httpResponseError) => {
+          return of();
+        })
+      ).subscribe();
+
+    this.loading = false;
   }
 
   filter() {
-    this.alertMessageService.infoMessage('Indisponível.', 'Temporariamente o serviço de filtrar está indisponível.')
+    this.loading = true;
+
+    this.http.post<any>(ApiUtil.getPath() + 'job/filter', this.jobFilter)
+      .pipe(
+        tap((data) => {
+          this.jobs = data.payload;
+        }),
+        catchError((httpResponseError) => {
+          return of();
+        })
+      ).subscribe();
+
+    this.loading = false;
   }
 
-  jobDetails(id: number) {
-    this.router.navigate(['/jobs-detail', id, true]);
+  jobDetails(job: Job) {
+    this.router.navigate(['/jobs-detail', job.id]);
   }
 
 }

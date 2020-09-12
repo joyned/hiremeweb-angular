@@ -102,7 +102,7 @@ export class MenuBarComponent implements OnInit {
   }
 
   openDialog() {
-    this.router.navigateByUrl('/login/');
+    this.router.navigateByUrl('/login');
   }
 
   logout() {

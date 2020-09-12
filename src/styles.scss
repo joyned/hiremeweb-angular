@@ -83,3 +83,11 @@ h1, h2, h3, h4, h5, h6 {
 .spacer {
     padding: 10px !important;
 }
+
+.hire-me-datatable {
+    .p-datatable .p-datatable-tbody > tr > td {
+        font-family: "Poppins",sans-serif !important;
+        border: none;
+        border-bottom: 1px solid black;
+    }
+}

@@ -1,20 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { ApiUtil } from 'src/app/classes/utils/APIUtils/api-util';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
 
-  private url: string;
+  private url: string = ApiUtil.getPath();
 
   constructor(private http: HttpClient) {
-    if (environment.production) {
-      this.url = 'https://python-hire-me-api.herokuapp.com/api/';
-    } else {
-      this.url = 'http://localhost:4200/api/';
-    }
   }
 
   getFromExternal(url: any) {

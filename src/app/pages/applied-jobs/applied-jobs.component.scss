@@ -1,29 +1,50 @@
-.content-jobs {
-    color: white;
+.applied-jobs-content {
+    margin: 0;
+    overflow-x: hidden;
 }
 
-.list{
-    width: 100%;
-    columns: 3;
-    padding: 9px;
-    column-width: 33.3%;
+
+.applied-jobs-header {
+    background-image: url('../../../assets/img/about_hero.jpg');
+    background-position: center;
+    background-repeat: no-repeat; 
+    min-height: 200px;
+
+    display: grid;
+    place-items: center;
+
+
+    .title {
+      h1 {
+        text-align: center !important;
+        color: #fff;
+        font-size: 50px;
+        font-weight: 700;
+        text-transform: capitalize;
+      }
+
+      p {
+          color: #fff;
+      }
+    }
 }
 
-.header{
-    width: 100%;
-    columns: 3;
-    padding: 9px;
-    column-width: 33.3%;
+.applied-jobs-list {
+    padding: 3%;
 }
 
-img:hover{
-    cursor: pointer;
+p {
+    margin-bottom: 0;
 }
 
-.label-x{
-    font-size: xx-large;
+.applied-jobs-list .pi {
+    color: var(--primary-color);
+    font-size: large;
 }
 
-.label-x:hover{
-    cursor: pointer;
+.no-jobs-found {
+    text-align: center;
+    .p-button {
+        margin-top: 15px !important;
+    }
 }

@@ -36,6 +36,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.redirectUrl = this.activatedRoute.snapshot.paramMap.get('redirect');
+    console.log(this.redirectUrl)
   }
 
   async doLogin() {
@@ -48,6 +49,8 @@ export class LoginComponent implements OnInit {
 
       if (!this.redirectUrl) {
         this.router.navigateByUrl('/home');
+      } else {
+        this.router.navigateByUrl(this.redirectUrl);
       }
 
     } catch (error) {
