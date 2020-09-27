@@ -1,11 +1,11 @@
-.job-detail-content {
+.applied-jobs-content {
     margin: 0;
     overflow-x: hidden;
 }
 
 
-.jobs-detail-header {
-    background-image: url('../../../assets/img/gallery_hero.jpg');
+.applied-jobs-header {
+    background-image: url('../../../../assets/img/about_hero.jpg');
     background-position: center;
     background-repeat: no-repeat; 
     min-height: 200px;
@@ -29,23 +29,22 @@
     }
 }
 
-.description, .details {
-    padding: 3%;
-    margin-top: 2%;
-    border-right: 1px solid black;
-}
-
-.button {
+.applied-jobs-list {
     padding: 3%;
 }
 
-.details {
-    h5 {
-        margin-top: 15px;
+p {
+    margin-bottom: 0;
+}
+
+.applied-jobs-list .pi {
+    color: var(--primary-color);
+    font-size: large;
+}
+
+.no-jobs-found {
+    text-align: center;
+    .p-button {
+        margin-top: 15px !important;
     }
-}
-
-h5 {
-    text-transform: capitalize;
-    font-size: 25px;
 }

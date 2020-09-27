@@ -30,7 +30,7 @@
 
       <div class="p-col-12 p-md-12 p-lg-8 job-list" *ngIf="jobs.length != 0">
         <div *ngFor="let job of jobs">
-          <p-card [header]="job.title">
+          <p-card [header]="job.title" subheader="{{job.city}}, {{job.state}}">
             <p>{{ job.description }}</p>
             <p-button label="Saiba mais" (click)="jobDetails(job)"></p-button>
           </p-card>

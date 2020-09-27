@@ -34,6 +34,7 @@ export class JobsComponent implements OnInit {
       .pipe(
         tap((data) => {
           this.jobs = data.payload;
+          console.log(data.payload)
         }),
         catchError((httpResponseError) => {
           return of();

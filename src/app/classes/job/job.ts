@@ -12,4 +12,6 @@ export class Job {
     idArea?: number;
     idJobLevel?: number;
     jobBenefits?: JobBenefit[];
+    company?: string;
+    status?: boolean;
 }

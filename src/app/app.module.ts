@@ -12,24 +12,25 @@ import { ErrorDialogComponent } from './components/error-dialog/error-dialog.com
 import { HireMeTitleComponent } from './components/hire-me-title/hire-me-title.component';
 import { ImageUploadComponent } from './components/image-upload/image-upload.component';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
-import { LoginComponent } from './pages/login/login.component';
 import { MenuBarComponent } from './components/menu-bar/menu-bar.component';
 import { AuthGuard } from './guard/auth-guard.guard';
-import { AppliedJobsComponent } from './pages/applied-jobs/applied-jobs.component';
-import { ConfigurationComponent } from './pages/configuration/configuration.component';
+import { AppliedJobsComponent } from './pages/job/applied-jobs/applied-jobs.component';
 import { HomeComponent } from './pages/home/home.component';
-import { JobDetailsComponent } from './pages/job-details/job-details.component';
-import { JobsComponent } from './pages/jobs/jobs.component';
 import { MessagesComponent } from './pages/messages/messages.component';
-import { PageRegisterComponent } from './pages/page-register/page-register.component';
-import { RegisterComponent } from './pages/register/register.component';
-import { UserManualRegisterComponent } from './pages/user-manual-register/user-manual-register.component';
+import { PageRegisterComponent } from './pages/system-config/page-register/page-register.component';
 import { ClientSocket } from './services/socket/client.socket';
 import { Interceptor } from './services/token-interceptor/token-interceptor.service';
 import { AlertMessageComponent } from './components/alert-message/alert-message.component'
-import { ChangePasswordComponent } from './pages/change-password/change-password.component';
 import { FooterBarComponent } from './components/footer-bar/footer-bar.component';
 import { AboutUsComponent } from './pages/about-us/about-us.component';
+import { JobDetailsComponent } from './pages/job/job-details/job-details.component';
+import { JobsComponent } from './pages/job/jobs/jobs.component';
+import { ChangePasswordComponent } from './pages/user/change-password/change-password.component';
+import { ConfigurationComponent } from './pages/user/configuration/configuration.component';
+import { LoginComponent } from './pages/user/login/login.component';
+import { RegisterComponent } from './pages/user/register/register.component';
+import { UserManualRegisterComponent } from './pages/system-config/user-manual-register/user-manual-register.component';
+import { CompanyDashboardComponent } from './pages/company-dashboard/company-dashboard.component';
 
 /* PrimeNG Modules */
 import { ButtonModule } from 'primeng/button';
@@ -53,7 +54,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { DropdownModule } from 'primeng/dropdown';
 import { TieredMenuModule } from 'primeng/tieredmenu';
 import { CarouselModule } from 'primeng/carousel';
-import { JobRegisterComponent } from './pages/job-register/job-register.component';
+import { ChartModule } from 'primeng/chart';
 
 @NgModule({
   declarations: [
@@ -77,7 +78,7 @@ import { JobRegisterComponent } from './pages/job-register/job-register.componen
     ChangePasswordComponent,
     FooterBarComponent,
     AboutUsComponent,
-    JobRegisterComponent
+    CompanyDashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -110,7 +111,8 @@ import { JobRegisterComponent } from './pages/job-register/job-register.componen
     InputTextareaModule,
     DropdownModule,
     TieredMenuModule,
-    CarouselModule
+    CarouselModule,
+    ChartModule
   ],
   providers: [AuthGuard, ClientSocket],
   bootstrap: [AppComponent]

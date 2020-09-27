@@ -44,7 +44,6 @@ export class JobDetailsComponent implements OnInit {
     this.http.get<any>(ApiUtil.getPath() + 'job/person-applied/' + this.jobId, ApiUtil.buildOptions())
       .pipe(
         tap((data) => {
-          console.log(data)
           this.alreadyApplied = Boolean(data.payload);
         }),
         catchError((httpResponse) => {
@@ -59,6 +58,7 @@ export class JobDetailsComponent implements OnInit {
     this.http.post<any>(ApiUtil.getPath() + 'job/detail/' + this.jobId, {})
       .pipe(
         tap((data) => {
+          console.log(data)
           this.job = data.payload;
         }),
         catchError((httpResponse) => {

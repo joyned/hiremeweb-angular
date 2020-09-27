@@ -26,6 +26,9 @@
 
                 <h5 *ngIf="alreadyApplied">Candidatura</h5>
                 <p *ngIf="alreadyApplied">Você já se candidatou para está vaga :)</p>
+
+                <h5 *ngIf="job.company">Empresa</h5>
+                <p *ngIf="job.company">{{job.company}}</p>
             </div>
             <div class="p-col-12 p-md-12 p-lg-12 button">
                 <p-button label="Candidatar-se" (click)="confirmJobApplication()" *ngIf="logged && !alreadyApplied"></p-button>
