@@ -1,8 +1,11 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
+import { ApiUtil } from 'src/app/classes/utils/APIUtils/api-util';
 import { DatasharingService } from 'src/app/services/data-sharing/datasharing.service';
-import { PageService } from 'src/app/services/pages/page.service';
+import { tap, catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-menu-bar',
@@ -23,7 +26,7 @@ export class MenuBarComponent implements OnInit {
 
   public items: MenuItem[] = [];
 
-  constructor(private router: Router, private pageService: PageService, private dataSharingService: DatasharingService) {
+  constructor(private router: Router, private dataSharingService: DatasharingService, private http: HttpClient) {
   }
 
   async ngOnInit(): Promise<void> {
@@ -41,9 +44,21 @@ export class MenuBarComponent implements OnInit {
     }
 
     if (this.userName && this.pages.length === 0) {
-      this.pages = await this.pageService.getPagesByUserId();
-      this.initMenu();
+      this.getPages();
     }
+  }
+
+  private getPages() {
+    this.http.get<any>(ApiUtil.getPath() + 'pages/', ApiUtil.buildOptions())
+      .pipe(
+        tap((data) => {
+          this.pages = data.payload;
+          this.initMenu();
+        }),
+        catchError((httpResponse) => {
+          return of();
+        })
+      ).subscribe();
   }
 
   initMenu() {
@@ -61,6 +76,7 @@ export class MenuBarComponent implements OnInit {
       },
       {
         label: 'Sobre nós',
+        command: () => this.redirectToPage('/about-us')
       }
     ];
 
@@ -76,7 +92,7 @@ export class MenuBarComponent implements OnInit {
 
   buildDynamicSubMenu() {
     let subItens = [];
-    for (var index in this.pages) {
+    for (var index = 0; index < this.pages.length; index++) {
       let constant = this.pages[index].constant;
       let item = {
         label: this.pages[index].name,
@@ -93,7 +109,8 @@ export class MenuBarComponent implements OnInit {
     );
     this.items.push({
       label: this.userName,
-      items: subItens
+      items: subItens,
+      command: () => this.doNothing()
     });
   }
 
@@ -111,6 +128,10 @@ export class MenuBarComponent implements OnInit {
     this.userName = '';
     window.location.reload();
     this.router.navigateByUrl('/home');
+  }
+
+  private doNothing(){
+    // Do nothing
   }
 
 }

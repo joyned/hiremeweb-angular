@@ -28,6 +28,8 @@ import { ClientSocket } from './services/socket/client.socket';
 import { Interceptor } from './services/token-interceptor/token-interceptor.service';
 import { AlertMessageComponent } from './components/alert-message/alert-message.component'
 import { ChangePasswordComponent } from './pages/change-password/change-password.component';
+import { FooterBarComponent } from './components/footer-bar/footer-bar.component';
+import { AboutUsComponent } from './pages/about-us/about-us.component';
 
 /* PrimeNG Modules */
 import { ButtonModule } from 'primeng/button';
@@ -49,7 +51,9 @@ import { TabViewModule } from 'primeng/tabview';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { DropdownModule } from 'primeng/dropdown';
-import { FooterBarComponent } from './components/footer-bar/footer-bar.component';
+import { TieredMenuModule } from 'primeng/tieredmenu';
+import { CarouselModule } from 'primeng/carousel';
+import { JobRegisterComponent } from './pages/job-register/job-register.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +75,9 @@ import { FooterBarComponent } from './components/footer-bar/footer-bar.component
     MenuBarComponent,
     AlertMessageComponent,
     ChangePasswordComponent,
-    FooterBarComponent
+    FooterBarComponent,
+    AboutUsComponent,
+    JobRegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -102,7 +108,9 @@ import { FooterBarComponent } from './components/footer-bar/footer-bar.component
     TabViewModule,
     DialogModule,
     InputTextareaModule,
-    DropdownModule
+    DropdownModule,
+    TieredMenuModule,
+    CarouselModule
   ],
   providers: [AuthGuard, ClientSocket],
   bootstrap: [AppComponent]

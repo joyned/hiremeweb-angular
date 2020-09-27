@@ -1,0 +1,110 @@
+<div class="about-us-content">
+
+    <div class="about-us-header">
+        <div class="title">
+            <h1>Sobre nós</h1>
+        </div>
+    </div>
+
+    <hr class="separator">
+
+    <div class="about-us-first-content">
+        <div class="p-grid">
+            <div class="p-col-12 p-md-12 p-lg-7 align-end">
+                <img src="assets/img/wetrusted.jpg" alt="" width="627" height="670">
+            </div>
+            <div class="p-col-12 p-md-12 p-lg-5">
+                <div class="trusted-text">
+                    <h2>
+                        Aqui você pode achar seu próximo emprego!
+                    </h2>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostru dolor sit amet, consectetur
+                        adipn.
+                    </p>
+
+                    <p-button label="Saiba mais" (click)="scrollToElement(aboutUsInfo)"></p-button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="about">
+        <div class="container">
+            <div class="p-grid">
+                <div class="p-col-12 p-md-6 p-lg-4">
+                    <div class="image">
+                        <img src="assets/img/team_1.jpg" alt="">
+                    </div>
+                    <div class="image-text">
+                        <h4>Vagas em todo Brasil</h4>
+                        <span>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
+                            ut labore .
+                        </span>
+                    </div>
+                </div>
+                <div class="p-col-12 p-md-6 p-lg-4">
+                    <div class="image">
+                        <img src="assets/img/team_2.jpg" alt="">
+                    </div>
+                    <div class="image-text">
+                        <h4>Vagas em todo Brasil</h4>
+                        <span>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
+                            ut labore .
+                        </span>
+                    </div>
+                </div>
+                <div class="p-col-12 p-md-6 p-lg-4">
+                    <div class="about-us">
+                        <div class="text">
+                            <h2>Hire Me</h2>
+                            <hr>
+                            <span>Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                                smod tem magna aliqua. Ut enim.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="about-us-infos" #aboutUsInfo>
+        <p-carousel [value]="infos" [numVisible]="1" [numScroll]="1" [circular]="false">
+            <ng-template let-info pTemplate="item">
+                <div class="info">
+                    <div class="title">
+                        <h2>{{info.title}}</h2>
+                    </div>
+                    <div class="text">
+                        <p>{{info.text}}</p>
+                    </div>
+                </div>
+            </ng-template>
+        </p-carousel>
+    </div>
+
+    <div class="contact-us">
+        <div class="container">
+            <div class="p-grid">
+                <div class="p-col-12 p-md-4 p-lg-4">
+                    <h3>Entre em contato conosco!</h3>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+                    </p>
+                </div>
+                <div class="p-col-12 p-md-8 p-lg-8">
+                    <div class="contact-form">
+                        <input pInputText placeholder="Nome" style="margin-right: 15px; width: 45%;">
+                        <input pInputText placeholder="Telefone" style="width: 45%;">
+                        <p-dropdown [options]="options"></p-dropdown>
+                        <p-button label="Enviar"></p-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

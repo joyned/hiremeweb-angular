@@ -1,13 +1,17 @@
-<div align="center">
-    <app-hire-me-title [text]="'Cadastro de páginas'"></app-hire-me-title>
-</div>
+<div class="page-register-content">
+    <h2>Cadastro de páginas</h2>
 
-<app-loading-spinner [showText]="true" *ngIf="isLoading"></app-loading-spinner>
-
-<div align="center" *ngIf="!isLoading">
+    <input pInputText [(ngModel)]="pageRegister.pageName" placeholder="Nome da página">
     <br>
-    <app-hire-me-title [text]="'Permissão de usuário'"></app-hire-me-title>
-    <div *ngFor="let profile of profiles" style="color: white;">
+    <input pInputText [(ngModel)]="pageRegister.pageURL" placeholder="URL da página">
+
+    <h2>Permissão de usuário</h2>
+    <div *ngFor="let profile of profiles">
+        <p-checkbox (onChange)="checkEvent($event, profile.id)"></p-checkbox>
+        <span>{{profile.constante}}</span>
     </div>
-    <br><br>
+
+    <br>
+
+    <p-button label="Salvar" (click)="save()"></p-button>
 </div>

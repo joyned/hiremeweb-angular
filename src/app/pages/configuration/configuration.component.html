@@ -1,4 +1,72 @@
-<div class="header" align="center">
+<div class="config-content">
+
+    <div class="config-header">
+        <div class="title">
+            <h1>Configuração</h1>
+        </div>
+    </div>
+
+    <hr class="separator">
+
+    <div class="config-form">
+        <div class="p-grid">
+            <div class="p-col-12 p-md-12 p-lg-2"></div>
+            <div class="p-col-12 p-md-12 p-lg-2">
+                <div class="image-upload" align="center">
+                    <h5>Sua foto</h5>
+                    <app-image-upload [img]="image" [editable]="true" (change)="setImage($event)"></app-image-upload>
+                </div>
+            </div>
+            <div class="p-col-12 p-md-12 p-lg-8 form-fields">
+                <h5>Conta</h5>
+                <input type="text" pInputText placeholder="Nome" style="width:80%;" [(ngModel)]="person.name"
+                    name="name" disabled="true" />
+                <input type="text" pInputText placeholder="Nome completo" style="width:80%;"
+                    [(ngModel)]="person.fullname" name="full-name" disabled="true" />
+                <input type="text" pInputText placeholder="Cidade" style="width:80%;" [(ngModel)]="person.city"
+                    name="city" />
+                <input type="text" pInputText placeholder="Estado" style="width:80%;" [(ngModel)]="person.state"
+                    name="state" />
+                <input type="text" pInputText placeholder="Endereço" style="width:80%;"
+                    [(ngModel)]="person.personAddress.address" name="address" />
+                <input type="text" pInputText placeholder="Complemento" style="width:60%;"
+                    [(ngModel)]="person.personAddress.complement" name="complement" />
+                <p-inputMask mask="99999-999" placeholder="CEP" [style]="{'width':'19.5%', 'margin-bottom':'10px'}"
+                    [(ngModel)]="person.personAddress.cep" name="address-number"></p-inputMask>
+
+                <p class="spacer"></p>
+
+                <h5>Geral</h5>
+                <input type="text" pInputText placeholder="E-mail" style="width:80%;" name="email" disabled="true"
+                    [(ngModel)]="person.user.email" />
+                <p-inputMask mask="999.999.999-99" placeholder="CPF" [style]="{'width':'80%'}"
+                    [(ngModel)]="person.cpf" name="cpf" disabled="true"></p-inputMask>
+                <p-inputMask mask="99.999.999-9" placeholder="RG" [style]="{'width':'80%'}"
+                    [(ngModel)]="person.rg" name="rg" disabled="true"></p-inputMask>
+                <p-calendar placeholder="Data de nascimento" [locale]="pt" dateFormat="dd/mm/yy"
+                    [style]="{'width':'81.5%'}" [(ngModel)]="person.birthdate" name="birthdate" disabled="true">
+                </p-calendar>
+
+                <p class="spacer"></p>
+
+                <h5>Senha</h5>
+                <p class="forgot-password">
+                    Deseja alterar sua senha?
+                    <a>Clique aqui :)</a>
+                </p>
+
+                <p class="spacer"></p>
+
+                <div class="save-button">
+                    <button pButton label="Salvar" (click)="updatePersonDetails()"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- <div class="header" align="center">
 </div>
 
 <div class="body" align="center">
@@ -40,4 +108,4 @@
     <div class="button">
         <button pButton label="Salvar" (click)="updatePersonDetails()"></button>
     </div>
-</div>
+</div> -->

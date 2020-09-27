@@ -1,8 +1,69 @@
-@import url('https://fonts.googleapis.com/css?family=Poppins');
+.config-content {
+  overflow-x: hidden;
+}
+
+.config-header {
+  background-image: url('../../../assets/img/about_hero.jpg');
+  background-position: center;
+  background-repeat: no-repeat; 
+  min-height: 200px;
+
+  display: grid;
+  place-items: center;
 
 
-.body {
-  input {
-    margin-bottom: 10px;
+  .title {
+    h1 {
+      text-align: center !important;
+      color: #fff;
+      font-size: 50px;
+      font-weight: 700;
+      text-transform: capitalize;
+    }
   }
+}
+
+.config-form {
+  h5 {
+    font-size: 20px;
+    text-transform: capitalize;
+  }
+  
+  .image-upload {
+    padding-top: 30% !important;
+  }
+  
+  .form-fields {
+    padding: 5%;
+    input {
+      margin: 5px !important;
+    }
+  }
+}
+
+@media(max-width: 992px) {
+  .config-form {
+    .form-fields {
+      input, .p-calendar .p-inputtext {
+        width: 90% !important;
+      }
+    }
+
+    .image-upload {
+      padding-top: 0 !important;
+    }
+
+    h5 {
+      text-align: center;
+    }
+  }
+
+  .forgot-password {
+    text-align: center;
+  }
+
+  .save-button {
+    text-align: -webkit-center;
+  }
+  
 }

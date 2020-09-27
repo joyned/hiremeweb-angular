@@ -88,6 +88,10 @@ h2 {
   }
 }
 
+.p-tabview-nav {
+  display: none !important;
+}
+
 @media(max-width: 960px){
   .p-inputtext {
     width: 90% !important;
@@ -99,5 +103,11 @@ h2 {
 
   .p-dialog {
     width: 90vw !important;
+  }
+}
+
+@media (max-width: 719px) {
+  h1 {
+    font-size: 30px !important;
   }
 }

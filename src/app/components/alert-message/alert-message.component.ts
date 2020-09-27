@@ -22,7 +22,7 @@ export class AlertMessageComponent implements OnInit, OnDestroy {
 
   subscribeToNotifications() {
     this.alertMessageService.loaderState.subscribe((state: MessageState) => {
-      this.messageService.add({ severity: state.severity, summary: state.message, detail: state.detail, });
+      this.messageService.add({key: 'tc' , severity: state.severity, summary: state.message, detail: state.detail, });
     });
 
     setTimeout(() => {

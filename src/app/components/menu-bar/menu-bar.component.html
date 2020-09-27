@@ -5,22 +5,48 @@
             65/A, 17th floor, Kings land, New York
         </div>
     </div>
+
     <hr class="separator">
-    <div>
-        <p-menubar [model]="items"></p-menubar>
+
+    <div class="menu-content">
+        <div class="p-grid">
+            <div class="p-col-12 p-md-12 p-lg-4 logo">
+            </div>
+
+            <div class="p-col-12 p-md-12 p-lg-8 menu">
+                <tr class="menu-list">
+                    <td class="menu-item" *ngFor="let item of items">
+                        <p (click)="item.command()">{{ item.label }}</p>
+                        <div class="submenu" *ngIf="item.items">
+                            <ul>
+                                <li *ngFor="let subitem of item.items">
+                                    <span *ngIf="subitem.label" (click)="subitem.command()">{{ subitem.label }}</span>
+                                    <hr *ngIf="!subitem.label">
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+            </div>
+        </div>
+
     </div>
     <hr class="separator">
 </div>
 
 <div class="menu-mobile">
-    <ul class="menu-ul">
-        <li class="logo">
-            <label (click)="redirectToPage('/home')">Logo</label>
-        </li>
-        <li class="menu-button">
-            <button #btn type="button" pButton icon="pi pi-bars" (click)="menu.toggle($event)"></button>
-            <p-slideMenu #menu [model]="items" [popup]="true" [viewportHeight]="300" backLabel="Voltar"></p-slideMenu>
-        </li>
-    </ul>
+    <div class="menu-mobile-content">
+        <div class="p-grid">
+            <div class="p-col-6 p-md-6 p-lg-6 logo">
+            </div>
+            
+            <div class="p-col-6 p-md-6 p-lg-6 menu">
+                <div class="menu-button-mobile">
+                    <i #btn (click)="menu.toggle($event)" class="pi pi-align-justify"></i>
+                    <p-slideMenu #menu [model]="items" [popup]="true" [viewportHeight]="320"></p-slideMenu>
+                </div>
+            </div>
+        </div>
+    </div>
     <hr class="separator">
 </div>

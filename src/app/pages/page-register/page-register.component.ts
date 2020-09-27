@@ -1,14 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { of } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
+import { ApiUtil } from 'src/app/classes/utils/APIUtils/api-util';
 import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-page-register',
   templateUrl: './page-register.component.html',
-  styleUrls: ['./page-register.component.scss']
+  styleUrls: ['./page-register.component.scss'],
 })
 export class PageRegisterComponent implements OnInit {
 
-  constructor(private userService: UserService) { }
+  constructor(private http: HttpClient) { }
   public isLoading = true;
   public profiles = [];
 
@@ -22,20 +26,37 @@ export class PageRegisterComponent implements OnInit {
     this.getProfiles();
   }
 
-  async getProfiles() {
-    this.profiles = await this.userService.getUsersProfiles();
+  public getProfiles() {
+    this.http.get<any>(ApiUtil.getPath() + 'users-profiles', ApiUtil.buildOptions())
+      .pipe(
+        tap((data: any) => {
+          this.profiles = data.payload;
+          console.log(this.profiles)
+        }),
+        catchError((httpErrorResponse) => {
+          return of();
+        })
+      ).subscribe();
     this.isLoading = false;
   }
 
-  save() {
-    console.log(this.pageRegister);
+  public save() {
+    this.http.post<any>(ApiUtil.getPath() + 'page-register', this.pageRegister, ApiUtil.buildOptions())
+      .pipe(
+        tap((data: any) => {
+          console.log(data.payload);
+        }),
+        catchError((httpErrorResponse) => {
+          return of();
+        })
+      ).subscribe();
   }
 
-  checkEvent(event) {
-    if (event.source._checked) {
-      this.pageRegister.pagePermission.push(event.source.value);
+  public checkEvent(event, value) {
+    if (event.checked) {
+      this.pageRegister.pagePermission.push(value);
     } else {
-      const index = this.pageRegister.pagePermission.indexOf(event.source.value);
+      const index = this.pageRegister.pagePermission.indexOf(value);
       this.pageRegister.pagePermission.splice(index, 1);
     }
   }

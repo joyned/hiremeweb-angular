@@ -11,6 +11,8 @@ import { MessagesComponent } from './pages/messages/messages.component';
 import { PageRegisterComponent } from './pages/page-register/page-register.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { UserManualRegisterComponent } from './pages/user-manual-register/user-manual-register.component';
+import { AboutUsComponent } from './pages/about-us/about-us.component';
+import { JobRegisterComponent } from './pages/job-register/job-register.component';
 
 
 const routes: Routes = [
@@ -20,10 +22,12 @@ const routes: Routes = [
   { path: 'jobs-detail/:id', component: JobDetailsComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'about-us', component: AboutUsComponent },
   { path: 'applied-jobs', component: AppliedJobsComponent, canActivate: [AuthGuard] },
   { path: 'config', component: ConfigurationComponent, canActivate: [AuthGuard] },
   { path: 'page-register', component: PageRegisterComponent, canActivate: [AuthGuard] },
   { path: 'manual-register', component: UserManualRegisterComponent, canActivate: [AuthGuard] },
+  { path: 'job-register', component: JobRegisterComponent, canActivate: [AuthGuard]},
   { path: 'messages', component: MessagesComponent }
 ];
 
