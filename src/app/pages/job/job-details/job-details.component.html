@@ -30,7 +30,7 @@
                 <h5 *ngIf="job.company">Empresa</h5>
                 <p *ngIf="job.company">{{job.company}}</p>
             </div>
-            <div class="p-col-12 p-md-12 p-lg-12 button">
+            <div class="p-col-12 p-md-12 p-lg-12 button" *ngIf="!companyUser">
                 <p-button label="Candidatar-se" (click)="confirmJobApplication()" *ngIf="logged && !alreadyApplied"></p-button>
                 <p-button label="Efetuar login" (click)="doLogin()" *ngIf="!logged"></p-button>
             </div>

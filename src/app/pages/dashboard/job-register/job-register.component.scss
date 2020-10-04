@@ -1,0 +1,61 @@
+.job-register-form {
+    padding: 3%;
+}
+
+.job-register-header {
+    background-image: url('../../../../assets/img/gallery_hero.jpg');
+    background-position: center;
+    background-repeat: no-repeat; 
+    min-height: 200px;
+
+    display: grid;
+    place-items: center;
+
+
+    .title {
+      h1 {
+        text-align: center !important;
+        color: #fff;
+        font-size: 50px;
+        font-weight: 700;
+        text-transform: capitalize;
+      }
+    }
+}
+
+p {
+    margin-bottom: 0;
+}
+
+.spacer {
+    padding: 15px;
+}
+
+.p-inputnumber, .p-dropdown, .input-width {
+    width: 70%;
+}
+
+.span-alignment {
+    text-align: end;
+}
+
+.job-benefits {
+    input {
+        margin-bottom: 15px;
+    }
+
+    .pi {
+        cursor: pointer;
+        margin-left: 15px;
+    }
+}
+
+@media(max-width: 767px) {
+    .span-alignment {
+        text-align: center !important;
+    }
+    
+    .p-inputnumber, .p-dropdown, .input-width {
+        width: 100%;
+    }
+}

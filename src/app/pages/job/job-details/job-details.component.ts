@@ -25,6 +25,7 @@ export class JobDetailsComponent implements OnInit {
   public logged: boolean;
   public loading: boolean;
   public alreadyApplied: boolean;
+  public companyUser: boolean;
 
   private jobId: number;
 
@@ -32,6 +33,7 @@ export class JobDetailsComponent implements OnInit {
     this.showApplyButton();
     this.job = new Job();
     this.jobId = Number(this.activatedRoute.snapshot.paramMap.get('id'));
+    this.checkIfCompanyPerson();
     this.checkIfAlreadyApplied();
     this.getDetails();
   }
@@ -41,10 +43,22 @@ export class JobDetailsComponent implements OnInit {
   }
 
   private checkIfAlreadyApplied() {
-    this.http.get<any>(ApiUtil.getPath() + 'job/person-applied/' + this.jobId, ApiUtil.buildOptions())
+    this.http.get<any>(ApiUtil.getPath() + 'job/personCanApply/' + this.jobId, ApiUtil.buildOptions())
       .pipe(
         tap((data) => {
           this.alreadyApplied = Boolean(data.payload);
+        }),
+        catchError((httpResponse) => {
+          return of();
+        })
+      ).subscribe();
+  }
+
+  private checkIfCompanyPerson() {
+    this.http.get<any>(ApiUtil.getPath() + 'user/companyPerson', ApiUtil.buildOptions())
+      .pipe(
+        tap((data: any) => {
+          this.companyUser = Boolean(data.payload);
         }),
         catchError((httpResponse) => {
           return of();
@@ -58,7 +72,6 @@ export class JobDetailsComponent implements OnInit {
     this.http.post<any>(ApiUtil.getPath() + 'job/detail/' + this.jobId, {})
       .pipe(
         tap((data) => {
-          console.log(data)
           this.job = data.payload;
         }),
         catchError((httpResponse) => {

@@ -34,9 +34,12 @@ export class JobsComponent implements OnInit {
       .pipe(
         tap((data) => {
           this.jobs = data.payload;
-          console.log(data.payload)
+          this.jobs.forEach(job => {
+            job.shortDescription = job.description.substring(0, 200);
+            job.shortDescription += '...';
+          });
         }),
-        catchError((httpResponseError) => {
+        catchError((httpResponse) => {
           return of();
         })
       ).subscribe();
@@ -52,7 +55,7 @@ export class JobsComponent implements OnInit {
         tap((data) => {
           this.jobs = data.payload;
         }),
-        catchError((httpResponseError) => {
+        catchError((httpResponse) => {
           return of();
         })
       ).subscribe();

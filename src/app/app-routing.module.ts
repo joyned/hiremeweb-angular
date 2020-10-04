@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guard/auth-guard.guard';
 import { AboutUsComponent } from './pages/about-us/about-us.component';
-import { CompanyDashboardComponent } from './pages/company-dashboard/company-dashboard.component';
+import { JobRegisterComponent } from './pages/dashboard/job-register/job-register.component';
+import { MainDashboardComponent } from './pages/dashboard/main-dashboard/main-dashboard.component';
 import { HomeComponent } from './pages/home/home.component';
 import { AppliedJobsComponent } from './pages/job/applied-jobs/applied-jobs.component';
 import { JobDetailsComponent } from './pages/job/job-details/job-details.component';
@@ -27,7 +28,8 @@ const routes: Routes = [
   { path: 'config', component: ConfigurationComponent, canActivate: [AuthGuard] },
   { path: 'page-register', component: PageRegisterComponent, canActivate: [AuthGuard] },
   { path: 'manual-register', component: UserManualRegisterComponent, canActivate: [AuthGuard] },
-  { path: 'company-dashboard', component: CompanyDashboardComponent, canActivate: [AuthGuard] },
+  { path: 'dashboard', component: MainDashboardComponent, canActivate: [AuthGuard] },
+  { path: 'dashboard/job-register', component: JobRegisterComponent, canActivate: [AuthGuard] },
   { path: 'messages', component: MessagesComponent }
 ];
 

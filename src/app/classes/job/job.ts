@@ -6,11 +6,9 @@ export class Job {
     city?: string;
     state?: string;
     country?: string;
-    salary?: string;
+    salary?: number;
     description?: string;
     shortDescription?: string;
-    idArea?: number;
-    idJobLevel?: number;
     jobBenefits?: JobBenefit[];
     company?: string;
     status?: boolean;

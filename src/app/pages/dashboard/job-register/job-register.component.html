@@ -1,0 +1,87 @@
+<div class="job-register-content">
+
+    <div class="job-register-header">
+        <div class="title">
+            <h1>Nova vaga</h1>
+        </div>
+    </div>
+
+    <hr class="separator">
+
+    <div class="job-register-form">
+        <div class="p-grid">
+            <div class="p-col-12 p-md-12 p-lg-12">
+                <div class="p-grid">
+                    <div class="p-col-12 p-md-4 p-lg-4 span-alignment">
+                        <span>Titulo: </span>
+                    </div>
+                    <div class="p-col-12 p-md-8 p-lg-8">
+                        <input pInputText class="input-width" [(ngModel)]="job.title">
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-col-12 p-md-12 p-lg-12">
+                <div class="p-grid">
+                    <div class="p-col-12 p-md-6 p-lg-4 span-alignment">
+                        <span>Estado: </span>
+                    </div>
+                    <div class="p-col-12 p-md-6 p-lg-8">
+                        <p-dropdown [options]="states" optionLabel="nome" (onChange)="getCitiesOnChange($event)" [(ngModel)]="job.state"></p-dropdown>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-col-12 p-md-12 p-lg-12">
+                <div class="p-grid">
+                    <div class="p-col-12 p-md-4 p-lg-4 span-alignment">
+                        <span>Cidade: </span>
+                    </div>
+                    <div class="p-col-12 p-md-8 p-lg-8">
+                        <p-dropdown [options]="cities" optionLabel="nome" (onChange)="changeCity($event)"></p-dropdown>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-col-12 p-md-12 p-lg-12">
+                <div class="p-grid">
+                    <div class="p-col-12 p-md-4 p-lg-4 span-alignment">
+                        <span>Descrição: </span>
+                    </div>
+                    <div class="p-col-12 p-md-8 p-lg-8">
+                        <textarea pInputTextarea [rows]="10" class="input-width" [(ngModel)]="job.description"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-col-12 p-md-12 p-lg-12">
+                <div class="p-grid">
+                    <div class="p-col-12 p-md-4 p-lg-4 span-alignment">
+                        <span>Salário: </span>
+                    </div>
+                    <div class="p-col-12 p-md-8 p-lg-8">
+                        <p-inputNumber mode="currency" currency="BRL" [(ngModel)]="job.salary" class="input-width"></p-inputNumber>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-col-12 p-md-12 p-lg-12">
+                <div class="p-grid">
+                    <div class="p-col-12 p-md-4 p-lg-4 span-alignment">
+                        <span>Beneficios: </span>
+                    </div>
+                    <div class="p-col-12 p-md-8 p-lg-8">
+                        <div class="job-benefits" *ngFor="let benefit of jobBenefits">
+                            <input pInputText class="input-width" [(ngModel)]="benefit.benefit">
+                            <i class="pi pi-times" (click)="removeBenefit(benefit)"></i>
+                            <br>
+                        </div>
+                        <p-button label="Adicionar" (click)="addNewBenefit()"></p-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <p-button label="Salvar" (click)="save()"></p-button>
+    </div>
+</div>

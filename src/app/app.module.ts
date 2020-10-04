@@ -30,7 +30,9 @@ import { ConfigurationComponent } from './pages/user/configuration/configuration
 import { LoginComponent } from './pages/user/login/login.component';
 import { RegisterComponent } from './pages/user/register/register.component';
 import { UserManualRegisterComponent } from './pages/system-config/user-manual-register/user-manual-register.component';
-import { CompanyDashboardComponent } from './pages/company-dashboard/company-dashboard.component';
+import { MainDashboardComponent } from './pages/dashboard/main-dashboard/main-dashboard.component';
+import { JobRegisterComponent } from './pages/dashboard/job-register/job-register.component';
+import { JobCandidatesComponent } from './pages/dashboard/job-candidates/job-candidates.component';
 
 /* PrimeNG Modules */
 import { ButtonModule } from 'primeng/button';
@@ -55,6 +57,8 @@ import { DropdownModule } from 'primeng/dropdown';
 import { TieredMenuModule } from 'primeng/tieredmenu';
 import { CarouselModule } from 'primeng/carousel';
 import { ChartModule } from 'primeng/chart';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
 
 @NgModule({
   declarations: [
@@ -78,7 +82,9 @@ import { ChartModule } from 'primeng/chart';
     ChangePasswordComponent,
     FooterBarComponent,
     AboutUsComponent,
-    CompanyDashboardComponent
+    MainDashboardComponent,
+    JobRegisterComponent,
+    JobCandidatesComponent
   ],
   imports: [
     BrowserModule,
@@ -112,7 +118,9 @@ import { ChartModule } from 'primeng/chart';
     DropdownModule,
     TieredMenuModule,
     CarouselModule,
-    ChartModule
+    ChartModule,
+    InputNumberModule,
+    DynamicDialogModule
   ],
   providers: [AuthGuard, ClientSocket],
   bootstrap: [AppComponent]

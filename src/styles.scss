@@ -20,6 +20,7 @@
 html, body { 
     height: 100%;
     width: auto;
+    overflow-x: hidden;
 }
 
 @media(max-width: 754px){
@@ -85,15 +86,44 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .hire-me-datatable {
+    .p-datatable .p-datatable-thead > tr > th {
+        border: none;
+    }
+
     .p-datatable .p-datatable-tbody > tr > td {
         font-family: "Poppins",sans-serif !important;
-        border: none;
-        border-bottom: 1px solid black;
+        border: none !important;
+    }
+
+    .p-datatable .p-datatable-tbody > tr:nth-child(odd) {
+        background-color: #efefef;
     }
 }
 
+.p-dialog .p-dialog-header {
+    border: none !important;
+    background-color: var(--primary-color);
+    color: white;
+
+    .pi {
+        color: white;
+    }
+}
+
+.p-dialog .p-dialog-content {
+    border: none;
+}
+
 .align-end {
-    text-align: end;
+    text-align: end !important;
+}
+
+.align-center {
+    text-align: center !important;
+}
+
+.p-card {
+    box-shadow: 0 6px 15px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
 }
 
 
