@@ -1,0 +1,9 @@
+.icon-column-alignment {
+    text-align: center !important;
+}
+
+@media screen and (max-width: 40rem) {
+    .icon-column-alignment {
+        text-align: left !important;
+    }
+}

@@ -1,0 +1,24 @@
+<div class="questionnaire-view-content">
+
+    <h1>{{questionnaire.title}}</h1>
+
+    <hr class="separator">
+
+    <div class="questionnaire-view-questions"
+        *ngFor="let question of questionnaire.questionnaireQuestions; let i = index">
+        <b>Questão {{i + 1}}:</b>
+        <p [innerHtml]="question.questionTitle"></p>
+
+        <b>Alternativas:</b>
+
+        <div class="questionnaire view questions options"
+            *ngFor="let option of question.questionnaireQuestionOption; let i = index">
+            <div class="p-field-radiobutton">
+                <p-radioButton value="option.id" inputId="city1"></p-radioButton>
+                <label for="city1" style="margin-top: 8px;">{{option.optionTitle}}</label>
+            </div>
+        </div>
+
+        <hr class="separator">
+    </div>
+</div>

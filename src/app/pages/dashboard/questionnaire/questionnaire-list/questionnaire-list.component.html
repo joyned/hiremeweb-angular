@@ -1,0 +1,29 @@
+<div class="questionnaire-list-content">
+    <p-table [value]="questionnairies" class="hire-me-datatable" styleClass="p-datatable-responsive-demo">
+        <ng-template pTemplate="header">
+            <tr>
+                <th class="job-title">Titulo</th>
+                <th>Status</th>
+                <th class="icon-column-alignment">Visualizar</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-questionnaire>
+            <tr>
+                <td>
+                    <span class="p-column-title">Titulo</span>
+                    {{questionnaire.title}}
+                </td>
+                <td>
+                    <span class="p-column-title">Status</span>
+                    Ativo
+                </td>
+
+                <td (click)="viewQuestionnaire(questionnaire.id)" class="icon-column-alignment">
+                    <span class="p-column-title">Visualizar</span>
+                    <i class="pi pi-search" ></i>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+    <p-button label="Adicionar" (click)="redirectToRegister()"></p-button>
+</div>

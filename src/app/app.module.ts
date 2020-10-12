@@ -31,8 +31,14 @@ import { LoginComponent } from './pages/user/login/login.component';
 import { RegisterComponent } from './pages/user/register/register.component';
 import { UserManualRegisterComponent } from './pages/system-config/user-manual-register/user-manual-register.component';
 import { MainDashboardComponent } from './pages/dashboard/main-dashboard/main-dashboard.component';
-import { JobRegisterComponent } from './pages/dashboard/job-register/job-register.component';
-import { JobCandidatesComponent } from './pages/dashboard/job-candidates/job-candidates.component';
+import { QuestionnaireListComponent } from './pages/dashboard/questionnaire/questionnaire-list/questionnaire-list.component';
+import { QuestionnaireRegisterComponent } from './pages/dashboard/questionnaire/questionnaire-register/questionnaire-register.component';
+import { JobRegisterComponent } from './pages/dashboard/job/job-register/job-register.component';
+import { JobCandidatesComponent } from './pages/dashboard/job/job-candidates/job-candidates.component';
+import { JobListComponent } from './pages/dashboard/job/job-list/job-list.component';
+import { SelectiveProcessListComponent } from './pages/dashboard/selective-process/selective-process-list/selective-process-list.component';
+import { SelectiveProcessRegisterComponent } from './pages/dashboard/selective-process/selective-process-register/selective-process-register.component';
+import { QuestionnaireViewComponent } from './pages/dashboard/questionnaire/questionnaire-view/questionnaire-view.component';
 
 /* PrimeNG Modules */
 import { ButtonModule } from 'primeng/button';
@@ -59,6 +65,9 @@ import { CarouselModule } from 'primeng/carousel';
 import { ChartModule } from 'primeng/chart';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { AccordionModule } from 'primeng/accordion';
+import { EditorModule } from 'primeng/editor';
+import { RadioButtonModule } from 'primeng/radiobutton';
 
 @NgModule({
   declarations: [
@@ -84,7 +93,13 @@ import { DynamicDialogModule } from 'primeng/dynamicdialog';
     AboutUsComponent,
     MainDashboardComponent,
     JobRegisterComponent,
-    JobCandidatesComponent
+    JobCandidatesComponent,
+    QuestionnaireRegisterComponent,
+    QuestionnaireListComponent,
+    JobListComponent,
+    SelectiveProcessListComponent,
+    SelectiveProcessRegisterComponent,
+    QuestionnaireViewComponent
   ],
   imports: [
     BrowserModule,
@@ -120,7 +135,10 @@ import { DynamicDialogModule } from 'primeng/dynamicdialog';
     CarouselModule,
     ChartModule,
     InputNumberModule,
-    DynamicDialogModule
+    DynamicDialogModule,
+    AccordionModule,
+    EditorModule,
+    RadioButtonModule
   ],
   providers: [AuthGuard, ClientSocket],
   bootstrap: [AppComponent]

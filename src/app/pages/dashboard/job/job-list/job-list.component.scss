@@ -1,0 +1,25 @@
+.add-new-job-button {
+    margin-top: 15px;
+}
+
+.pi {
+    cursor: pointer;
+}
+
+.job-title {
+    width: 30% !important;
+}
+
+.icon-column {
+    text-align: center !important;
+}
+
+@media screen and (max-width: 40rem) {
+    .job-title {
+        width: 100% !important;
+    }
+
+    .icon-column {
+        text-align: left !important;
+    }
+}

@@ -1,0 +1,36 @@
+.selective-process-register-content {
+    margin-top: 5%;
+    width: 100%;
+}
+
+.selective-process-title {
+    text-align: center;
+    font-size: 40px;
+}
+
+.p-inputnumber, .p-dropdown, .input-width {
+    width: 70%;
+}
+
+.span-alignment {
+    text-align: end;
+}
+
+.p-editor-container {
+    width: 70% !important;
+}
+
+
+@media(max-width: 767px) {
+    .span-alignment {
+        text-align: center !important;
+    }
+    
+    .p-inputnumber, .p-dropdown, .input-width {
+        width: 100%;
+    }
+
+    .p-editor-container {
+        width: 100% !important;
+    }
+}

@@ -82,7 +82,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .spacer {
-    padding: 10px !important;
+    margin: 15px !important;
 }
 
 .hire-me-datatable {
@@ -114,6 +114,15 @@ h1, h2, h3, h4, h5, h6 {
     border: none;
 }
 
+.hire-me-accordion {
+    .p-accordion .p-accordion-header:not(.p-disabled).p-highlight .p-accordion-header-link, 
+    .p-accordion p-accordiontab:last-child .p-accordion-header:not(.p-highlight) .p-accordion-header-link {
+        background-color: var(--primary-color) !important;
+        color: white;
+    }
+
+}
+
 .align-end {
     text-align: end !important;
 }
@@ -125,7 +134,6 @@ h1, h2, h3, h4, h5, h6 {
 .p-card {
     box-shadow: 0 6px 15px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
 }
-
 
 @media(max-width: 719px) {
     h1, h2, h3, h4, h5, h6 {

@@ -1,9 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { Questionnaire } from './classes/questionnaire/questionnaire';
 import { AuthGuard } from './guard/auth-guard.guard';
 import { AboutUsComponent } from './pages/about-us/about-us.component';
-import { JobRegisterComponent } from './pages/dashboard/job-register/job-register.component';
+import { JobRegisterComponent } from './pages/dashboard/job/job-register/job-register.component';
 import { MainDashboardComponent } from './pages/dashboard/main-dashboard/main-dashboard.component';
+import { QuestionnaireRegisterComponent } from './pages/dashboard/questionnaire/questionnaire-register/questionnaire-register.component';
+import { QuestionnaireViewComponent } from './pages/dashboard/questionnaire/questionnaire-view/questionnaire-view.component';
+import { SelectiveProcessListComponent } from './pages/dashboard/selective-process/selective-process-list/selective-process-list.component';
+import { SelectiveProcessRegisterComponent } from './pages/dashboard/selective-process/selective-process-register/selective-process-register.component';
 import { HomeComponent } from './pages/home/home.component';
 import { AppliedJobsComponent } from './pages/job/applied-jobs/applied-jobs.component';
 import { JobDetailsComponent } from './pages/job/job-details/job-details.component';
@@ -29,7 +34,10 @@ const routes: Routes = [
   { path: 'page-register', component: PageRegisterComponent, canActivate: [AuthGuard] },
   { path: 'manual-register', component: UserManualRegisterComponent, canActivate: [AuthGuard] },
   { path: 'dashboard', component: MainDashboardComponent, canActivate: [AuthGuard] },
-  { path: 'dashboard/job-register', component: JobRegisterComponent, canActivate: [AuthGuard] },
+  { path: 'dashboard/job', component: JobRegisterComponent, canActivate: [AuthGuard] },
+  { path: 'dashboard/questionnaire', component: QuestionnaireRegisterComponent, canActivate: [AuthGuard] },
+  { path: 'dashboard/questionnaire/view', component: QuestionnaireViewComponent, canActivate: [AuthGuard] },
+  { path: 'dashboard/selective-process', component: SelectiveProcessRegisterComponent, canActivate: [AuthGuard] },
   { path: 'messages', component: MessagesComponent }
 ];
 

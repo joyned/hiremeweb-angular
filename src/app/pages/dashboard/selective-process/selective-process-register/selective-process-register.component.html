@@ -1,0 +1,90 @@
+<div class="selective-process-register-content">
+
+    <div class="selective-process-register-form">
+        <h1 class="selective-process-title">Geral</h1>
+        <div class="p-grid">
+            <div class="p-col-12 p-md-12 p-lg-12">
+                <div class="p-grid">
+                    <div class="p-col-12 p-md-4 p-lg-4 span-alignment">
+                        <span>Titulo do questionário: </span>
+                    </div>
+                    <div class="p-col-12 p-md-8 p-lg-8">
+                        <input pInputText type="text" class="input-width">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="selective-process-register-step">
+
+            <h1 class="selective-process-title" *ngIf="!step">Etapas</h1>
+            <h1 class="selective-process-title" *ngIf="step">Nova etapa</h1>
+
+            <div style="text-align: center;" *ngIf="!step">
+                <p-button label="Adicionar nova etapa" (click)="addStep()"></p-button>
+            </div>
+
+            <div class="selective-process-register-step-form" *ngIf="step">
+                <div class="p-grid">
+                    <div class="p-col-12 p-md-12 p-lg-12">
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-4 p-lg-4 span-alignment">
+                                <span>Titulo da etapa: </span>
+                            </div>
+                            <div class="p-col-12 p-md-8 p-lg-8">
+                                <input pInputText type="text" class="input-width">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-col-12 p-md-12 p-lg-12">
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-4 p-lg-4 span-alignment">
+                                <span>Descrição da etapa: </span>
+                            </div>
+                            <div class="p-col-12 p-md-8 p-lg-8">
+                                <p-editor [style]="{'height':'320px'}"></p-editor>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-col-12 p-md-12 p-lg-12">
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-4 p-lg-4 span-alignment">
+                                <span>Tipo da etapa: </span>
+                            </div>
+                            <div class="p-col-12 p-md-8 p-lg-8">
+                                <p-dropdown [options]="stepTypes" [(ngModel)]="step.stepType"></p-dropdown>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-col-12 p-md-12 p-lg-12" *ngIf="step.stepType === 'Q'">
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-4 p-lg-4 span-alignment">
+                                <span>Questionário: </span>
+                            </div>
+                            <div class="p-col-12 p-md-8 p-lg-8">
+                                <p-dropdown></p-dropdown>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-col-12 p-md-12 p-lg-12" *ngIf="step.stepType === 'D'">
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-4 p-lg-4 span-alignment">
+                                <span>Desafio: </span>
+                            </div>
+                            <div class="p-col-12 p-md-8 p-lg-8">
+                                <p-dropdown></p-dropdown>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

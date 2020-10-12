@@ -2,22 +2,6 @@
     padding: 3%;
 }
 
-.add-new-job-button {
-    margin-top: 15px;
-}
-
-.pi {
-    cursor: pointer;
-}
-
-.job-title {
-    width: 30% !important;
-}
-
-.icon-column {
-    text-align: center !important;
-}
-
 :host ::ng-deep {    
     .p-datatable-responsive-demo .p-datatable-tbody > tr > td .p-column-title {
         display: none;
@@ -25,14 +9,6 @@
 }
 
 @media screen and (max-width: 40rem) {
-    .job-title {
-        width: 100% !important;
-    }
-
-    .icon-column {
-        text-align: left !important;
-    }
-
     :host ::ng-deep {
         .p-datatable {
             &.p-datatable-responsive-demo {

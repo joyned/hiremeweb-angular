@@ -1,0 +1,47 @@
+.questionnaire-register-content {
+    margin-top: 5%;
+    width: 100%;
+}
+
+.questionnaire-register-form {
+    width: 100%;
+
+}
+
+.questionnaire-register-title {
+    text-align: center;
+    font-size: 40px;
+}
+
+.questionnaire-options {
+    .pi {
+        margin-left: 15px;
+        cursor: pointer;
+    }
+}
+
+.p-inputnumber, .p-dropdown, .input-width {
+    width: 70%;
+}
+
+.span-alignment {
+    text-align: end;
+}
+
+.save-question-list {
+    margin-top: 50px;
+}
+
+.p-editor-container {
+    width: 70% !important;
+}
+
+@media(max-width: 767px) {
+    .span-alignment {
+        text-align: center !important;
+    }
+    
+    .p-inputnumber, .p-dropdown, .input-width {
+        width: 100%;
+    }
+}
