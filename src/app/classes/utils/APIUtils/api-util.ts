@@ -11,7 +11,7 @@ export class ApiUtil {
     }
 
     static buildOptions() {
-        let token = localStorage.getItem('token');
+        const token = localStorage.getItem('token');
         return { headers: { Authorization: token } };
     }
 }

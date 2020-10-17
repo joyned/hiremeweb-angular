@@ -31,7 +31,6 @@ export class QuestionnaireViewComponent implements OnInit {
       .pipe(
         tap((data: any) => {
           this.questionnaire = data.payload;
-          console.log(this.questionnaire);
         }),
         catchError((httpErrorResponse) => {
           return of();

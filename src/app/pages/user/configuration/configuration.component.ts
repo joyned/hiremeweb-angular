@@ -18,7 +18,8 @@ import { of } from 'rxjs';
 })
 export class ConfigurationComponent implements OnInit {
 
-  constructor(private personService: PersonService, private messageService: AlertMessageService, private sanitizer: DomSanitizer, private http: HttpClient) { }
+  constructor(private personService: PersonService, private messageService: AlertMessageService,
+              private sanitizer: DomSanitizer, private http: HttpClient) { }
 
   public image: any;
   public person: Person;
@@ -35,16 +36,16 @@ export class ConfigurationComponent implements OnInit {
 
     this.getPersonDetails();
   }
-  
+
   private getPersonDetails() {
     this.loading = true;
     this.http.get<any>(ApiUtil.getPath() + 'person/get', ApiUtil.buildOptions())
-    .pipe(
-      tap((data) => {
-        this.person.birthdate = new Date();
-        this.person = data.payload;
-        console.log(this.person)
-        this.image = 'data:image/jpg;base64,' + (this.sanitizer.bypassSecurityTrustResourceUrl(this.person.photo) as any).changingThisBreaksApplicationSecurity;
+      .pipe(
+        tap((data) => {
+          this.person.birthdate = new Date();
+          this.person = data.payload;
+          this.image = 'data:image/jpg;base64,' + (this.sanitizer.bypassSecurityTrustResourceUrl(this.person.photo) as any)
+            .changingThisBreaksApplicationSecurity;
         }),
         catchError((httpResponse) => {
           return of();
@@ -58,11 +59,10 @@ export class ConfigurationComponent implements OnInit {
       this.http.post<any>(ApiUtil.getPath() + 'person/update', this.person, ApiUtil.buildOptions())
         .pipe(
           tap((data) => {
-            console.log(data);
-            this.messageService.successMessage("Sucesso", "Sua conta foi atualizada com sucesso!");
+            this.messageService.successMessage('Sucesso', 'Sua conta foi atualizada com sucesso!');
           }),
           catchError((httpResponse) => {
-            this.messageService.errorMessage("Erro", "Não foi possivel atualizar sua conta. Por favor, tente novamente.");
+            this.messageService.errorMessage('Erro', 'Não foi possivel atualizar sua conta. Por favor, tente novamente.');
             return of();
           })
         ).subscribe();
@@ -72,13 +72,13 @@ export class ConfigurationComponent implements OnInit {
 
   public setImage(event) {
     this.image = event.target.files[0];
-    var reader = new FileReader();
+    const reader = new FileReader();
     reader.onload = this._handleReaderLoaded.bind(this);
     reader.readAsBinaryString(this.image);
   }
 
   private _handleReaderLoaded(readerEvt) {
-    var binaryString = readerEvt.target.result;
+    const binaryString = readerEvt.target.result;
     this.imageAsBase64 = btoa(binaryString);
     this.person.photo = this.imageAsBase64;
   }
@@ -93,14 +93,15 @@ export class ConfigurationComponent implements OnInit {
   private buildCalendar() {
     this.pt = {
       firstDayOfWeek: 1,
-      dayNames: ["domingo", "segunda", "terça", "quarta", "quinta", "sexta", "sábado"],
-      dayNamesShort: ["dom", "seg", "ter", "qua", "qui", "sex", "sáb"],
-      dayNamesMin: ["D", "S", "T", "Q", "Q", "S", "S"],
-      monthNames: ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"],
-      monthNamesShort: ["jan", "feb", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dec"],
+      dayNames: ['domingo', 'segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado'],
+      dayNamesShort: ['dom', 'seg', 'ter', 'qua', 'qui', 'sex', 'sáb'],
+      dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],
+      monthNames: ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro',
+        'outubro', 'novembro', 'dezembro'],
+      monthNamesShort: ['jan', 'feb', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dec'],
       today: 'Hoje',
       clear: 'Apagar'
-    }
+    };
   }
 
 }

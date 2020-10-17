@@ -31,7 +31,6 @@ export class PageRegisterComponent implements OnInit {
       .pipe(
         tap((data: any) => {
           this.profiles = data.payload;
-          console.log(this.profiles)
         }),
         catchError((httpErrorResponse) => {
           return of();
@@ -44,7 +43,6 @@ export class PageRegisterComponent implements OnInit {
     this.http.post<any>(ApiUtil.getPath() + 'page-register', this.pageRegister, ApiUtil.buildOptions())
       .pipe(
         tap((data: any) => {
-          console.log(data.payload);
         }),
         catchError((httpErrorResponse) => {
           return of();

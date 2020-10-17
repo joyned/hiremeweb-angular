@@ -20,7 +20,7 @@ import { DatasharingService } from 'src/app/services/data-sharing/datasharing.se
 export class LoginComponent implements OnInit {
 
   constructor(public router: Router, private loginService: LoginService, private activatedRoute: ActivatedRoute,
-    private alertMessage: AlertMessageService, private dataSharingService: DatasharingService) { }
+              private alertMessage: AlertMessageService, private dataSharingService: DatasharingService) { }
 
   public user = new User();
 
@@ -36,7 +36,6 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.redirectUrl = this.activatedRoute.snapshot.paramMap.get('redirect');
-    console.log(this.redirectUrl)
   }
 
   async doLogin() {
@@ -54,7 +53,7 @@ export class LoginComponent implements OnInit {
       }
 
     } catch (error) {
-      this.alertMessage.errorMessage("Erro", "O usuário/senha estão incorretos. Tente novamente.")
+      this.alertMessage.errorMessage('Erro', 'O usuário/senha estão incorretos. Tente novamente.');
     } finally {
       this.isLoading = false;
     }

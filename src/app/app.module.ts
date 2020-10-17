@@ -20,7 +20,7 @@ import { MessagesComponent } from './pages/messages/messages.component';
 import { PageRegisterComponent } from './pages/system-config/page-register/page-register.component';
 import { ClientSocket } from './services/socket/client.socket';
 import { Interceptor } from './services/token-interceptor/token-interceptor.service';
-import { AlertMessageComponent } from './components/alert-message/alert-message.component'
+import { AlertMessageComponent } from './components/alert-message/alert-message.component';
 import { FooterBarComponent } from './components/footer-bar/footer-bar.component';
 import { AboutUsComponent } from './pages/about-us/about-us.component';
 import { JobDetailsComponent } from './pages/job/job-details/job-details.component';
@@ -37,6 +37,7 @@ import { JobRegisterComponent } from './pages/dashboard/job/job-register/job-reg
 import { JobCandidatesComponent } from './pages/dashboard/job/job-candidates/job-candidates.component';
 import { JobListComponent } from './pages/dashboard/job/job-list/job-list.component';
 import { SelectiveProcessListComponent } from './pages/dashboard/selective-process/selective-process-list/selective-process-list.component';
+// tslint:disable-next-line:max-line-length
 import { SelectiveProcessRegisterComponent } from './pages/dashboard/selective-process/selective-process-register/selective-process-register.component';
 import { QuestionnaireViewComponent } from './pages/dashboard/questionnaire/questionnaire-view/questionnaire-view.component';
 

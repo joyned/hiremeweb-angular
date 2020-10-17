@@ -11,7 +11,7 @@ export class Person {
     city: string;
     state: string;
     country: string;
-    photo: string
+    photo: string;
     personAddress: PersonAddress;
     user: User;
 }

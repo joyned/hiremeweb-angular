@@ -56,7 +56,7 @@ export class MainDashboardComponent implements OnInit {
           data: [28, 48, 40, 19, 86, 27, 90]
         }
       ]
-    }
+    };
   }
 
   private buildDaysOfMoth() {
@@ -65,7 +65,7 @@ export class MainDashboardComponent implements OnInit {
     const month = date.getMonth();
     const daysInMonth = new Date(year, month, 0).getDate();
 
-    let daysInMonthList = {
+    const daysInMonthList = {
       days: [],
       data: []
     };
@@ -73,17 +73,16 @@ export class MainDashboardComponent implements OnInit {
     for (let i = 0; i < daysInMonth; i++) {
       daysInMonthList.days.push(i);
       this.thirtyDaysChart.forEach(obj => {
-        let date = new Date(obj.date);
-        let d1 = new Date(year, month, i);
+        const dateObj = new Date(obj.date);
+        const d1 = new Date(year, month, i);
         d1.setHours(0, 0, 0, 0);
-        date.setHours(0, 0, 0, 0);
-        if (date.getTime() === d1.getTime()) {
+        dateObj.setHours(0, 0, 0, 0);
+        if (dateObj.getTime() === d1.getTime()) {
           daysInMonthList.data.push(obj.total);
         }
       });
       daysInMonthList.data.push(0);
     }
-    console.log(daysInMonthList);
 
     return daysInMonthList;
   }

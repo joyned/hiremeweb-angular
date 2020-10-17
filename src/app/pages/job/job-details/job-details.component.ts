@@ -18,8 +18,8 @@ import { AlertMessageService } from 'src/app/services/alert-message/alert-messag
 })
 export class JobDetailsComponent implements OnInit {
 
-  constructor(private http: HttpClient, private activatedRoute: ActivatedRoute, private router: Router, private confirmationService: ConfirmationService,
-    private alertMessage: AlertMessageService) { }
+  constructor(private http: HttpClient, private activatedRoute: ActivatedRoute, private router: Router,
+              private confirmationService: ConfirmationService, private alertMessage: AlertMessageService) { }
 
   public job: Job;
   public logged: boolean;
@@ -105,11 +105,11 @@ export class JobDetailsComponent implements OnInit {
     this.http.post<any>(ApiUtil.getPath() + 'job/apply', body, ApiUtil.buildOptions())
       .pipe(
         tap((data) => {
-          console.log(data);
-          this.alertMessage.successMessage("Sucesso", "Sua aplicação para a vaga " + this.job.title + " foi um sucesso!");
+          this.alertMessage.successMessage('Sucesso', 'Sua aplicação para a vaga ' + this.job.title + ' foi um sucesso!');
         }),
         catchError((httpResponse) => {
-          this.alertMessage.errorMessage("Erro", "Sua aplicação para a vaga " + this.job.title + " não foi efetuda com sucesso. Por favor, tente novamente.")
+          this.alertMessage.errorMessage('Erro', 'Sua aplicação para a vaga '
+            + this.job.title + ' não foi efetuda com sucesso. Por favor, tente novamente.');
           return of();
         })
       ).subscribe();

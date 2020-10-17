@@ -3,6 +3,8 @@ export class SelectiveProcessStep {
     stepTitle: string;
     stepDescription: string;
     stepType: string;
+    questionnaireId: number;
+    selectiveProcessId: number;
 
     constructor() {
         this.stepType = 'E';

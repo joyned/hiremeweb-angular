@@ -18,7 +18,8 @@ export class JobListComponent implements OnInit {
 
   public jobs: Job[] = [];
 
-  constructor(private http: HttpClient, private router: Router, private dialogService: DialogService, private confirmationService: ConfirmationService) { }
+  constructor(private http: HttpClient, private router: Router, private dialogService: DialogService,
+              private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
     this.getJobsByUserId();
@@ -51,7 +52,7 @@ export class JobListComponent implements OnInit {
       data: {
         id: jobId
       }
-    })
+    });
   }
 
   public openDetails(jobId: number) {
@@ -59,30 +60,29 @@ export class JobListComponent implements OnInit {
   }
 
   public confirmChangeStatus(job: Job) {
-    let message: string;
+    let messageText: string;
     if (job.status) {
-      message = 'Deseja realmente alterar o status da vaga para inativa? Ela não aparecerá mais nas listagens das vagas.'
+      messageText = 'Deseja realmente alterar o status da vaga para inativa? Ela não aparecerá mais nas listagens das vagas.';
     } else {
-      message = 'Deseja realmente alterar o status da vga para ativa? Ela irá aparecer novamente nas listagens das vagas.'
+      messageText = 'Deseja realmente alterar o status da vga para ativa? Ela irá aparecer novamente nas listagens das vagas.';
     }
     this.confirmationService.confirm({
-      message: message,
+      message: messageText,
       header: 'Alterar status da vaga',
       accept: () => {
         this.changeJobStatus(job);
       }
-    })
+    });
   }
 
   public changeJobStatus(job: Job) {
-    let body = {
+    const body = {
       status: !job.status,
       jobId: job.id
-    }
+    };
     this.http.post<any>(ApiUtil.getPath() + 'job/status', body, ApiUtil.buildOptions())
       .pipe(
         tap((data: any) => {
-          console.log(data);
         }),
         catchError((httpResponse) => {
           return of();

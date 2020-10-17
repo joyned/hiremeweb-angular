@@ -16,10 +16,10 @@ export class JobService {
       .then(
         (res: any) => {
           this.jobs = res.payload;
-          for (var index in this.jobs) {
-            let trimDescription = this.jobs[index].description.substring(0, 200);
-            this.jobs[index].shortDescription = trimDescription + '...';
-          }
+          this.jobs.forEach(job => {
+            const trimDescription = job.description.substring(0, 200);
+            job.shortDescription = trimDescription + '...';
+          });
         }
       );
     return this.jobs;

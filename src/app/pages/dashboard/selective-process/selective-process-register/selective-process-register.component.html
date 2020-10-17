@@ -1,25 +1,46 @@
 <div class="selective-process-register-content">
-
     <div class="selective-process-register-form">
         <h1 class="selective-process-title">Geral</h1>
         <div class="p-grid">
             <div class="p-col-12 p-md-12 p-lg-12">
                 <div class="p-grid">
                     <div class="p-col-12 p-md-4 p-lg-4 span-alignment">
-                        <span>Titulo do questionário: </span>
+                        <span>Titulo do processo: </span>
                     </div>
                     <div class="p-col-12 p-md-8 p-lg-8">
-                        <input pInputText type="text" class="input-width">
+                        <input pInputText type="text" class="input-width" [(ngModel)]="selectiveProcess.title">
                     </div>
                 </div>
             </div>
-        </div>
 
+        </div>
 
         <div class="selective-process-register-step">
 
             <h1 class="selective-process-title" *ngIf="!step">Etapas</h1>
             <h1 class="selective-process-title" *ngIf="step">Nova etapa</h1>
+
+            <div class="selective-process-steps-list" *ngIf="selectiveProcess.steps">
+                <div class="accordion-steps" *ngFor="let step of selectiveProcess.steps">
+                    <p-accordion class="hire-me-accordion">
+                        <p-accordionTab [header]="step.stepTitle">
+                            <b>Descrição</b>
+                            <p [innerHTML]="step.stepDescription"></p>
+                            
+                            <div class="selective-process-step-questionnaire" *ngIf="step.stepType === 'Q'">
+                                <b>Questionário</b>
+                                <p>{{getQuestionnaireNameById(step.questionnaireId)}}</p>
+                            </div>
+
+                            <div class="selective-process-step-video-interview" *ngIf="step.stepType === 'E'">
+                                <b>Tipo da etapa</b>
+                                <p>Entrevista por video</p>
+                            </div>
+
+                        </p-accordionTab>
+                    </p-accordion>
+                </div>
+            </div>
 
             <div style="text-align: center;" *ngIf="!step">
                 <p-button label="Adicionar nova etapa" (click)="addStep()"></p-button>
@@ -33,7 +54,7 @@
                                 <span>Titulo da etapa: </span>
                             </div>
                             <div class="p-col-12 p-md-8 p-lg-8">
-                                <input pInputText type="text" class="input-width">
+                                <input pInputText type="text" class="input-width" [(ngModel)]="step.stepTitle">
                             </div>
                         </div>
                     </div>
@@ -44,7 +65,7 @@
                                 <span>Descrição da etapa: </span>
                             </div>
                             <div class="p-col-12 p-md-8 p-lg-8">
-                                <p-editor [style]="{'height':'320px'}"></p-editor>
+                                <p-editor [style]="{'height':'320px'}" [(ngModel)]="step.stepDescription"></p-editor>
                             </div>
                         </div>
                     </div>
@@ -55,7 +76,7 @@
                                 <span>Tipo da etapa: </span>
                             </div>
                             <div class="p-col-12 p-md-8 p-lg-8">
-                                <p-dropdown [options]="stepTypes" [(ngModel)]="step.stepType"></p-dropdown>
+                                <p-dropdown [options]="stepTypes" [(ngModel)]="step.stepType" (onChange)="changeStepType($event)"></p-dropdown>
                             </div>
                         </div>
                     </div>
@@ -66,7 +87,7 @@
                                 <span>Questionário: </span>
                             </div>
                             <div class="p-col-12 p-md-8 p-lg-8">
-                                <p-dropdown></p-dropdown>
+                                <p-dropdown [options]="questionnaires" [(ngModel)]="step.questionnaireId"></p-dropdown>
                             </div>
                         </div>
                     </div>
@@ -82,9 +103,19 @@
                         </div>
                     </div>
                 </div>
+
+                <div style="text-align: center; margin-bottom: 3%;">
+                    <p-button label="Adicionar" (click)="saveStep()" class="hireme-confirm-button"></p-button>
+                    <span style="margin: 5px;"></span>
+                    <p-button label="Cancelar" (click)="step = undefined" class="hireme-reject-button"></p-button>
+                </div>
             </div>
 
         </div>
-    </div>
 
+        <div class="save-button" *ngIf="!step">
+            <p-button label="Salvar processo" (click)="saveSelectiveProcess()"></p-button>
+        </div>
+
+    </div>
 </div>

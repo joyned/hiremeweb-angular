@@ -17,19 +17,18 @@ export class AlertMessageComponent implements OnInit, OnDestroy {
   constructor(private alertMessageService: AlertMessageService, private messageService: MessageService) { }
 
   ngOnInit(): void {
-    this.subscribeToNotifications()
+    this.subscribeToNotifications();
   }
 
   subscribeToNotifications() {
     this.alertMessageService.loaderState.subscribe((state: MessageState) => {
-      this.messageService.add({key: 'tc' , severity: state.severity, summary: state.message, detail: state.detail, });
+      this.messageService.add({ key: 'tc', severity: state.severity, summary: state.message, detail: state.detail, });
     });
 
     setTimeout(() => {
       this.messageService.clear();
     }, 10000);
   }
-  
 
   ngOnDestroy() {
     this.subscription.unsubscribe();

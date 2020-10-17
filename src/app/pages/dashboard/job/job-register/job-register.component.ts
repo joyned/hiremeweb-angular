@@ -29,7 +29,7 @@ export class JobRegisterComponent implements OnInit {
 
     this.job.id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
 
-    if (this.job == 0) {
+    if (this.job === 0) {
       this.getStates();
       this.jobBenefits = [];
       this.job.salary = 0;
@@ -46,7 +46,7 @@ export class JobRegisterComponent implements OnInit {
     this.http.put<any>(ApiUtil.getPath() + 'job/', this.job, ApiUtil.buildOptions())
       .pipe(
         tap((data) => {
-          if (this.job.id == 0) {
+          if (this.job.id === 0) {
             this.alertMessage.successMessage('Sucesso', 'A vaga ' + this.job.title + ' foi cadastrada com sucesso!');
             this.job = new Job();
           } else {
@@ -65,7 +65,6 @@ export class JobRegisterComponent implements OnInit {
       .pipe(
         tap((data: any) => {
           this.job = data.payload;
-          console.log(this.job)
           this.jobBenefits = this.job.jobBenefits;
         }),
         catchError((httpResponse) => {
@@ -107,7 +106,6 @@ export class JobRegisterComponent implements OnInit {
 
   private getCities(stateId: number) {
     const url = 'https://servicodados.ibge.gov.br/api/v1/localidades/estados/' + stateId + '/distritos';
-    console.log(url);
     this.http.get<any>(url)
       .pipe(
         tap((data: any) => {
@@ -137,7 +135,6 @@ export class JobRegisterComponent implements OnInit {
       this.jobBenefits.splice(index, 1);
     }
 
-    console.log(this.jobBenefits)
   }
 
 }

@@ -18,7 +18,7 @@ import { AlertMessageService } from 'src/app/services/alert-message/alert-messag
 export class AppliedJobsComponent implements OnInit {
 
   constructor(private confirmationService: ConfirmationService, private http: HttpClient, private router: Router,
-    private alertMessageService: AlertMessageService) { }
+              private alertMessageService: AlertMessageService) { }
 
   public jobs: Job[];
   public isLoading = true;
@@ -37,7 +37,6 @@ export class AppliedJobsComponent implements OnInit {
   }
 
   test(data: any) {
-    console.log(data)
   }
 
   private getAppliedJobs() {
@@ -70,10 +69,10 @@ export class AppliedJobsComponent implements OnInit {
     this.http.post<any>(ApiUtil.getPath() + 'job/delete/' + jobId, {}, ApiUtil.buildOptions())
       .pipe(
         tap((data) => {
-          this.alertMessageService.successMessage('Sucesso!', 'O cancelamento da aplicação foi feita com sucesso.')
+          this.alertMessageService.successMessage('Sucesso!', 'O cancelamento da aplicação foi feita com sucesso.');
         }),
         catchError((httpResponse) => {
-          this.alertMessageService.errorMessage('Erro!', 'Não foi possivel realizar o cancelamento da aplicação. Tente novamente.')
+          this.alertMessageService.errorMessage('Erro!', 'Não foi possivel realizar o cancelamento da aplicação. Tente novamente.');
           return of();
         })
       ).subscribe();
@@ -86,6 +85,6 @@ export class AppliedJobsComponent implements OnInit {
   }
 
   public openJobsList() {
-    this.router.navigateByUrl('/jobs')
+    this.router.navigateByUrl('/jobs');
   }
 }

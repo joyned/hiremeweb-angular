@@ -11,6 +11,7 @@
 :root {
     --primary-color: #002d5b;
     --second-color: #ff656a;
+    --thrid-color: #3C9C6B;
 }
 
 .mat-icon.mat-accent {
@@ -40,6 +41,27 @@ body {
     font-family: "Poppins",sans-serif !important;
 }
 
+.hireme-confirm-button {
+    .p-button {
+        background: var(--thrid-color) !important;
+        border: var(--thrid-color) !important;
+    }
+    
+    .p-button:hover {
+        background: var(--thrid-color) !important;
+    }
+}
+
+.hireme-reject-button {
+    .p-button {
+        background: var(--second-color) !important;
+        border: var(--second-color) !important;
+    }
+    
+    .p-button:hover {
+        background: red !important;
+    }
+}
 
 .p-button {
     background: var(--second-color) !important;
@@ -47,7 +69,7 @@ body {
 }
 
 .p-button:hover {
-    background: red !important;
+    background: var(--second-color) !important;
 }
 
 .p-button:enabled:hover 
@@ -83,6 +105,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .spacer {
     margin: 15px !important;
+}
+
+.spacer-top {
+    margin-top: 15px !important;
 }
 
 .hire-me-datatable {
@@ -129,6 +155,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .align-center {
     text-align: center !important;
+}
+
+.fifteen-px-margin{
+    margin: 15px;
 }
 
 .p-card {

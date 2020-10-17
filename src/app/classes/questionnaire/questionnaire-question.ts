@@ -11,7 +11,6 @@ export class QuestionnaireQuestion {
 
    constructor() {
       this.questionnaireQuestionOption = [];
-      this.questionnaireQuestionOption.push(new QuestionnaireQuestionOption());
       this.answerType = 'T';
    }
 }

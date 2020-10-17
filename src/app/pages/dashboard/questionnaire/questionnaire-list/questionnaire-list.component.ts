@@ -1,10 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ConfirmationService } from 'primeng/api';
 import { of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { Questionnaire } from 'src/app/classes/questionnaire/questionnaire';
 import { ApiUtil } from 'src/app/classes/utils/APIUtils/api-util';
+import { AlertMessageService } from 'src/app/services/alert-message/alert-message.service';
 
 @Component({
   selector: 'app-questionnaire-list',
@@ -15,7 +17,8 @@ export class QuestionnaireListComponent implements OnInit {
 
   public questionnairies: Questionnaire[];
 
-  constructor(private router: Router, private http: HttpClient) { }
+  constructor(private router: Router, private http: HttpClient, private alertMessageService: AlertMessageService,
+              private confirmService: ConfirmationService) { }
 
   ngOnInit(): void {
     this.questionnairies = [];
@@ -27,7 +30,6 @@ export class QuestionnaireListComponent implements OnInit {
       .pipe(
         tap((data: any) => {
           this.questionnairies = data.payload;
-          console.log(this.questionnairies);
         }),
         catchError((httpErrorResponse) => {
           return of();
@@ -35,6 +37,30 @@ export class QuestionnaireListComponent implements OnInit {
       ).subscribe();
   }
 
+  public deleteQuestionnaire(questionnaire: Questionnaire) {
+    this.confirmService.confirm({
+      header: questionnaire.title,
+      message: 'Deseja realmente deletar o questionário ' + questionnaire.title + '?',
+      acceptLabel: 'Sim',
+      accept: () => this.confirmDelete(questionnaire.id)
+    });
+  }
+
+  private confirmDelete(id: number) {
+    this.http.delete<any>(ApiUtil.getPath() + 'questionnaire/delete/' + id, ApiUtil.buildOptions())
+      .pipe(
+        tap((data: any) => {
+          this.listQuestionnaires();
+        }),
+        catchError((httpErrorResponse) => {
+          if (httpErrorResponse.error.payload === 'not.editable.questionnaire') {
+            this.alertMessageService
+              .errorMessage('Erro.', 'Não foi possivel excluir esse questionário. Ele está relacionado a um processo seletivo.');
+          }
+          return of();
+        })
+      ).subscribe();
+  }
 
   public redirectToRegister() {
     this.router.navigateByUrl('/dashboard/questionnaire');
@@ -42,6 +68,10 @@ export class QuestionnaireListComponent implements OnInit {
 
   public viewQuestionnaire(questionnaireId: number) {
     this.router.navigate(['/dashboard/questionnaire/view', { id: questionnaireId }]);
+  }
+
+  public editQuestionnaire(questionnaireId: number) {
+    this.router.navigate(['/dashboard/questionnaire', { id: questionnaireId }]);
   }
 
 }

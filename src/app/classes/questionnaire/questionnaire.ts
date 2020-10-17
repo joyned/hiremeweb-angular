@@ -11,6 +11,5 @@ export class Questionnaire {
     questionnaireQuestions: QuestionnaireQuestion[];
 
     constructor() {
-        this.questionnaireQuestions = [];
     }
 }

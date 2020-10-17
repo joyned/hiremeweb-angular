@@ -11,24 +11,24 @@ export class AlertMessageService {
   private loaderSubject = new Subject<MessageState>();
   loaderState = this.loaderSubject.asObservable();
 
-  infoMessage(message: string, detail: string) {
+  public infoMessage(message: string, detail: string) {
     this.message('info', message, detail);
   }
 
-  errorMessage(message: string, detail: string) {
+  public errorMessage(message: string, detail: string) {
     this.message('error', message, detail);
   }
 
-  successMessage(message: string, detail: string) {
+  public successMessage(message: string, detail: string) {
     this.message('success', message, detail);
   }
 
-  message(severity: string, message: string, detail: string) {
-    this.loaderSubject.next(<MessageState>{
-      severity: severity,
-      message: message,
-      detail: detail
-    });
+  private message(severityMessage: string, messageText: string, detailText: string) {
+    this.loaderSubject.next({
+      severity: severityMessage,
+      message: messageText,
+      detail: detailText
+    } as MessageState);
   }
 
 }

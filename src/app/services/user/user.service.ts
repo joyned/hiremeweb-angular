@@ -14,7 +14,6 @@ export class UserService {
     await this.api.post('register', user, {})
       .then(
         (res: any) => {
-          console.log(res);
         });
   }
 }

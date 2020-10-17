@@ -29,8 +29,8 @@ export class JobCandidatesComponent implements OnInit {
         tap((data: any) => {
           this.candidates = data.payload;
           this.candidates.forEach(candidate => {
-            candidate.applicationDate = this.datePipe.transform(candidate.applicationDate, "dd/MM/yyyy");
-          })
+            candidate.applicationDate = this.datePipe.transform(candidate.applicationDate, 'dd/MM/yyyy');
+          });
         }),
         catchError((httpResponse) => {
           return of();

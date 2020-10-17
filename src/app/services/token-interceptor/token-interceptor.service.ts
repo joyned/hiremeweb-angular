@@ -10,7 +10,7 @@ export class TokenInterceptorService implements HttpInterceptor {
   constructor(private injector: Injector) { }
 
   intercept(req: import('@angular/common/http').HttpRequest<any>,
-    next: import('@angular/common/http').HttpHandler): import('rxjs').Observable<import('@angular/common/http').HttpEvent<any>> {
+            next: import('@angular/common/http').HttpHandler): import('rxjs').Observable<import('@angular/common/http').HttpEvent<any>> {
     const loginService = this.injector.get(LoginService);
     if (this.uncheckedPath(req)) {
       return next.handle(req);
@@ -29,7 +29,7 @@ export class TokenInterceptorService implements HttpInterceptor {
       req.url.includes('api/job/detail') ||
       req.url.includes('api/job/filter') ||
       req.url.includes('api/register') ||
-      req.url.includes('api/v1/localidades/estados')
+      req.url.includes('api/v1/localidades/estados');
   }
 }
 

@@ -9,7 +9,5 @@ export class SelectiveProcess {
     steps: SelectiveProcessStep[];
 
     constructor() {
-        this.steps = [];
-        this.steps.push(new SelectiveProcessStep());
     }
 }

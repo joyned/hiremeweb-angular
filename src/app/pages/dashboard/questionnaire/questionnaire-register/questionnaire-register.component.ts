@@ -1,6 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, Sanitizer, ViewEncapsulation } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SelectItem } from 'primeng/api';
 import { of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
@@ -8,6 +9,7 @@ import { Questionnaire } from 'src/app/classes/questionnaire/questionnaire';
 import { QuestionnaireQuestion } from 'src/app/classes/questionnaire/questionnaire-question';
 import { QuestionnaireQuestionOption } from 'src/app/classes/questionnaire/questionnaire-question-option';
 import { ApiUtil } from 'src/app/classes/utils/APIUtils/api-util';
+import { AlertMessageService } from 'src/app/services/alert-message/alert-message.service';
 
 @Component({
   selector: 'app-questionnaire-register',
@@ -20,12 +22,20 @@ export class QuestionnaireRegisterComponent implements OnInit {
   public questionnaire: Questionnaire;
   public question: QuestionnaireQuestion;
   public answerTypes: SelectItem[];
+  public editable = true;
+  private questionnaireId: number;
 
-  constructor(private http: HttpClient, private sanitizer: DomSanitizer) { }
+  constructor(private http: HttpClient, private alertMessage: AlertMessageService, private activatedRoute: ActivatedRoute,
+              private route: Router) { }
 
   ngOnInit(): void {
     this.questionnaire = new Questionnaire();
-    this.question = new QuestionnaireQuestion();
+    this.questionnaireId = Number(this.activatedRoute.snapshot.paramMap.get('id'));
+
+    if (this.questionnaireId) {
+      this.getQuestionnaire();
+      this.questionnaireEditable();
+    }
 
     this.answerTypes = [
       {
@@ -39,11 +49,40 @@ export class QuestionnaireRegisterComponent implements OnInit {
     ];
   }
 
-  public saveQuestionnaire() {
-    this.http.post<any>(ApiUtil.getPath() + 'questionnaire/create', this.questionnaire, ApiUtil.buildOptions())
+  private getQuestionnaire() {
+    this.http.get<any>(ApiUtil.getPath() + 'questionnaire/get/' + this.questionnaireId, ApiUtil.buildOptions())
       .pipe(
         tap((data: any) => {
-          console.log(data);
+          this.questionnaire = data.payload;
+        }),
+        catchError((httpErrorResponse) => {
+          return of();
+        })
+      ).subscribe();
+  }
+
+  private questionnaireEditable() {
+    this.http.get<any>(ApiUtil.getPath() + 'questionnaire/editable/' + this.questionnaireId, ApiUtil.buildOptions())
+      .pipe(
+        tap((data: any) => {
+          this.editable = Boolean(data.payload);
+        }),
+        catchError((httpErrorResponse) => {
+          return of();
+        })
+      ).subscribe();
+  }
+
+  public saveQuestionnaire() {
+    this.http.put<any>(ApiUtil.getPath() + 'questionnaire', this.questionnaire, ApiUtil.buildOptions())
+      .pipe(
+        tap((data: any) => {
+          if (this.questionnaire.id > 0) {
+            this.alertMessage.successMessage('Sucesso.', 'Questionário atualizado com sucesso.');
+          } else {
+            this.alertMessage.successMessage('Sucesso.', 'Questionário criado com sucesso.');
+          }
+          this.questionnaire.id = Number(data.payload.questionnaire);
         }),
         catchError((httpErrorResponse) => {
           return of();
@@ -64,15 +103,26 @@ export class QuestionnaireRegisterComponent implements OnInit {
     }
   }
 
-  public addQuestion() {
-    console.log(this.question)
+  public saveQuestion() {
+    if (this.questionnaire.questionnaireQuestions === undefined) {
+      this.questionnaire.questionnaireQuestions = [];
+    }
+
+    if (this.question.id !== 0) {
+      const index = this.questionnaire.questionnaireQuestions.indexOf(this.question, 0);
+      if (index > -1) {
+        this.questionnaire.questionnaireQuestions.splice(index, 1);
+      }
+    }
     this.questionnaire.questionnaireQuestions.push(this.question);
+    this.question = undefined;
+  }
+
+  public addQuestion() {
     this.question = new QuestionnaireQuestion();
   }
 
-  public sanitizerString(string: string) {
-    let temp = this.sanitizer.bypassSecurityTrustHtml(string);
-    return temp;
+  public editQuestion(question: QuestionnaireQuestion) {
+    this.question = question;
   }
-
 }

@@ -1,11 +1,11 @@
 export class UserUtil {
 
-    static isLogged(){
+    static isLogged() {
         const token = localStorage.getItem('token');
         return token !== null;
     }
 
-    static getToken(){
+    static getToken() {
         return localStorage.getItem('token');
     }
 }

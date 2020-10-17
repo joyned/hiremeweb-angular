@@ -3,6 +3,23 @@
     width: 100%;
 }
 
+.questionnaire-register-not-editable {
+    text-align: center;
+    padding: 25px;
+    border: 1px solid black;
+    margin: 5% 15%;
+    background: red;
+    color: white;
+
+    p {
+        margin-bottom: 0;
+    }
+
+    pi {
+        font-size: 1.5em;
+    }
+}
+
 .questionnaire-register-form {
     width: 100%;
 
@@ -29,11 +46,21 @@
 }
 
 .save-question-list {
-    margin-top: 50px;
+    margin: 3% 15%;
 }
 
 .p-editor-container {
     width: 70% !important;
+}
+
+.save-button {
+    text-align: center;
+    margin-top: 5%;
+    margin-bottom: 2%;
+}
+
+.accordion-edit-button {
+    margin-top: 10px;
 }
 
 @media(max-width: 767px) {

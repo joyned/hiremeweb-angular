@@ -1,22 +1,32 @@
 <div class="selective-process-list-content">
-    <p-table class="hire-me-datatable" styleClass="p-datatable-responsive-demo">
+    <p-table [value]="selectiveProcesses" class="hire-me-datatable" styleClass="p-datatable-responsive-demo">
         <ng-template pTemplate="header">
             <tr>
                 <th class="job-title">Titulo</th>
                 <th>Status</th>
+                <th>Editar</th>
             </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-questionnaire>
+        <ng-template pTemplate="body" let-process>
             <tr>
                 <td>
                     <span class="p-column-title">Titulo</span>
+                    {{process.title}}
                 </td>
+
                 <td>
                     <span class="p-column-title">Status</span>
                     Ativo
                 </td>
+
+                <td>
+                    <span class="p-column-title">Editar</span>
+                    <i class="pi pi-pencil" (click)="editSelectiveProcess(process.id)"></i>
+                </td>
             </tr>
         </ng-template>
     </p-table>
-    <p-button label="Adicionar" (click)="redirectToRegister()"></p-button>
+    <div class="spacer-top">
+        <p-button label="Adicionar" (click)="redirectToRegister()"></p-button>
+    </div>
 </div>

@@ -1,5 +1,13 @@
 <div class="questionnaire-register-content">
 
+    <div class="questionnaire-register-not-editable" *ngIf="!editable">
+        <p>
+            <i class="pi pi-exclamation-triangle"></i>
+            Esse questionário não é editavel pois ele está relacionado com um processo seletivo. Para edita-lo, basta retirar a relação com o processo.
+        </p>
+    </div>
+
+
     <div class="questionnaire-register-form">
         <h1 class="questionnaire-register-title">Geral</h1>
         <div class="p-grid">
@@ -9,14 +17,69 @@
                         <span>Titulo do questionário: </span>
                     </div>
                     <div class="p-col-12 p-md-8 p-lg-8">
-                        <input pInputText type="text" class="input-width" [(ngModel)]="questionnaire.title">
+                        <div *ngIf="!editable">
+                            <input pInputText type="text" class="input-width" [(ngModel)]="questionnaire.title" disabled="!editable">
+                        </div>
+                        <div *ngIf="editable">
+                            <input pInputText type="text" class="input-width" [(ngModel)]="questionnaire.title">
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
         <h1 class="questionnaire-register-title">Questão</h1>
-        <div class="p-grid">
+
+        <div class="save-question-list" *ngIf="questionnaire.questionnaireQuestions">
+            <div class="p-grid">
+                <div class="p-col-12 p-md-12 p-lg-12">
+                    <div class="question-list" *ngFor="let question of questionnaire.questionnaireQuestions; let i = index">
+                        <p-accordion class="hire-me-accordion">
+                            <p-accordionTab header="Questão {{i + 1}}">
+                                <div class="question-text">
+                                    <b>Questão</b>
+                                    <div [innerHTML]="question.questionTitle"></div>
+                                </div>
+    
+                                <div class="question-help-text" *ngIf="question.questionHelp">
+                                    <b>Ajuda</b>
+                                    <p>{{question.questionHelp}}</p>
+                                </div>
+    
+                                <div class="answer-type">
+                                    <b>Tipo de resposta: </b>
+                                    <p *ngIf="question.answerType === 'T'">Texto</p>
+                                    <p *ngIf="question.answerType === 'E'">Multipla escolha</p>
+                                </div>
+    
+                                <div class="question-options" *ngIf="question.questionnaireQuestionOption.length !== 0 && question.answerType === 'E'">
+                                    <b>Opções</b>
+                                    <table>
+                                        <tr>
+                                            <div *ngFor="let option of question.questionnaireQuestionOption; let i = index">
+                                                <td>
+                                                    {{i}} - {{option.optionTitle}}
+                                                </td>
+                                            </div>
+                                        </tr>
+                                    </table>
+                                </div>
+
+                                <div class="accordion-edit-button" *ngIf="editable">
+                                    <p-button label="Editar" (click)="editQuestion(question)"></p-button>
+                                </div>
+                            </p-accordionTab>
+                        </p-accordion>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="center-buttons" style="text-align: center;" *ngIf="!question && editable">
+            <p-button label="Adicionar questão" (click)="addQuestion()"></p-button>
+        </div>
+
+        <div class="p-grid" *ngIf="question">
             <div class="p-col-12 p-md-12 p-lg-12">
                 <div class="p-grid">
                     <div class="p-col-12 p-md-4 p-lg-4 span-alignment">
@@ -56,64 +119,19 @@
                             <p class="spacer"></p>
                         </div>
                         <p class="spacer"></p>
-                        <p-button label="Adicionar opção" (click)="addOption()"></p-button>
+                        <p-button label="Adicionar opção" (click)="addOption()" *ngIf="editable"></p-button>
                     </div>
                 </div>
             </div>
 
             <div class="p-col-12 p-md-12 p-lg-12 align-center">
-                <p-button label="Adicionar questão" (click)="addQuestion()"></p-button>
-            </div>
-        </div>
-
-    </div>
-
-    <div class="save-question-list" *ngIf="questionnaire.questionnaireQuestions.length !== 0">
-        <div class="p-grid">
-            <div class="p-col-12 p-md-12 p-lg-12">
-                <h1 class="questionnaire-register-title">Questões salvas</h1>
-            </div>
-            <div class="p-col-12 p-md-12 p-lg-12">
-                <div class="question-list" *ngFor="let question of questionnaire.questionnaireQuestions; let i = index">
-                    <p-accordion class="hire-me-accordion">
-                        <p-accordionTab header="Questão {{i}}">
-                            <div class="question-text">
-                                <b>Questão</b>
-                                <div [innerHTML]="question.questionTitle"></div>
-                            </div>
-
-                            <div class="question-help-text" *ngIf="question.questionHelp">
-                                <b>Ajuda</b>
-                                <p>{{question.questionHelp}}</p>
-                            </div>
-
-                            <div class="answer-type">
-                                <b>Tipo de resposta: </b>
-                                <p *ngIf="question.answerType === 'T'">Texto</p>
-                                <p *ngIf="question.answerType === 'E'">Multipla escolha</p>
-                            </div>
-
-                            <div class="question-options" *ngIf="question.questionnaireQuestionOption.length !== 0 && question.answerType === 'E'">
-                                <b>Opções</b>
-                                <table>
-                                    <tr>
-                                        <div *ngFor="let option of question.questionnaireQuestionOption; let i = index">
-                                            <td>
-                                                {{i}} - {{option.optionTitle}}
-                                            </td>
-                                        </div>
-                                    </tr>
-                                </table>
-                            </div>
-                        </p-accordionTab>
-                    </p-accordion>
-                </div>
+                <p-button label="Adicionar questão" (click)="saveQuestion()" *ngIf="editable"></p-button>
             </div>
         </div>
     </div>
 
-    <div style="text-align: center;">
-        <p-button label="Salvar questão" (click)="saveQuestionnaire()"></p-button>
+    <div class="save-button" *ngIf="questionnaire.questionnaireQuestions && editable">
+        <p-button label="Salvar questionário" (click)="saveQuestionnaire()"></p-button>
     </div>
 
 </div>

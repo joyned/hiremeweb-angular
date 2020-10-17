@@ -91,15 +91,17 @@ export class MenuBarComponent implements OnInit {
   }
 
   buildDynamicSubMenu() {
-    let subItens = [];
-    for (var index = 0; index < this.pages.length; index++) {
-      let constant = this.pages[index].constant;
-      let item = {
-        label: this.pages[index].name,
+    const subItens = [];
+
+    this.pages.forEach(page => {
+      const constant = page.constant;
+      const item = {
+        label: page.name,
         command: () => this.redirectToPage(constant)
-      }
+      };
       subItens.push(item);
-    }
+    });
+
     subItens.push(
       { separator: true },
       {
@@ -130,7 +132,7 @@ export class MenuBarComponent implements OnInit {
     this.router.navigateByUrl('/home');
   }
 
-  private doNothing(){
+  private doNothing() {
     // Do nothing
   }
 

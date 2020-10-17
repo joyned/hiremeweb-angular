@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit {
   }
 
 
-  public openJobs(){
+  public openJobs() {
     this.route.navigateByUrl('/jobs');
   }
 
