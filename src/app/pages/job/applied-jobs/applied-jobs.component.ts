@@ -45,6 +45,10 @@ export class AppliedJobsComponent implements OnInit {
       .pipe(
         tap((data) => {
           this.jobs = data.payload;
+          this.jobs.forEach(job => {
+            const trimDescription = job.description.substring(0, 200);
+            job.shortDescription = trimDescription + '...';
+          });
         }),
         catchError((httpResponse) => {
           return of();
@@ -86,5 +90,9 @@ export class AppliedJobsComponent implements OnInit {
 
   public openJobsList() {
     this.router.navigateByUrl('/jobs');
+  }
+
+  public myApplication(jobId: number){
+    this.router.navigate(['/job/my-applcation/details', {id: jobId}]);
   }
 }

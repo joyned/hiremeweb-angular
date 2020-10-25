@@ -1,0 +1,25 @@
+<div class="job-candidate-process-steps" *ngFor="let step of jobSelectiveProcess">
+    <p-accordion [ngClass]="step.status === 'P' ? 'hire-me-accordion-red' : 'hire-me-accordion'">
+        <p-accordionTab [header]="step.stepTitle" [selected]="step.status === 'P'">
+            <b>Descrição</b>
+            <p [innerHTML]="step.stepDescription"></p>
+
+            <b>Status</b>
+            <div class="step-status">
+              <p *ngIf="step.status === 'P'">Pendente</p>
+              <p *ngIf="!step.status">Não disponivel</p>
+            </div>
+
+            <b>Tipo de avaliação</b>
+            <div class="step-type">
+                <p *ngIf="step.stepType === 'Q'">Questionário</p>
+                <p *ngIf="step.stepType === 'E'">Entrevista</p>
+                <p *ngIf="step.stepType === 'D'">Desafio</p>
+            </div>
+
+            <div class="approve-button">
+                <p-button label="Aprovar" (click)="approve(step.id)" *ngIf="step.status === 'P'"></p-button>
+            </div>
+        </p-accordionTab>
+    </p-accordion>
+</div>

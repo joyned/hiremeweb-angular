@@ -80,8 +80,22 @@
                     </div>
                 </div>
             </div>
+
+            <div class="p-col-12 p-md-12 p-lg-12">
+                <div class="p-grid">
+                    <div class="p-col-12 p-md-6 p-lg-4 span-alignment">
+                        <span>Processo seletivo: </span>
+                    </div>
+                    <div class="p-col-12 p-md-6 p-lg-8">
+                        <p-dropdown [options]="selectiveProcesses" placeholder="Processo Seletivo" [(ngModel)]="job.selectiveProcessId"></p-dropdown>
+                    </div>
+                </div>
+            </div>
+        
         </div>
 
-        <p-button label="Salvar" (click)="save()"></p-button>
+        <div class="job-save-button">
+            <p-button label="Salvar" (click)="save()" class="hireme-green-button"></p-button>
+        </div>
     </div>
 </div>

@@ -24,14 +24,14 @@
                 <h5>Benefícios</h5>
                 <p *ngFor="let benefit of job.jobBenefits">{{benefit.benefit}}</p>
 
-                <h5 *ngIf="alreadyApplied">Candidatura</h5>
-                <p *ngIf="alreadyApplied">Você já se candidatou para está vaga :)</p>
+                <h5 *ngIf="!canApply">Candidatura</h5>
+                <p *ngIf="!canApply">Você já se candidatou para está vaga :)</p>
 
                 <h5 *ngIf="job.company">Empresa</h5>
                 <p *ngIf="job.company">{{job.company}}</p>
             </div>
             <div class="p-col-12 p-md-12 p-lg-12 button" *ngIf="!companyUser">
-                <p-button label="Candidatar-se" (click)="confirmJobApplication()" *ngIf="logged && !alreadyApplied"></p-button>
+                <p-button label="Candidatar-se" (click)="confirmJobApplication()" *ngIf="logged && canApply"></p-button>
                 <p-button label="Efetuar login" (click)="doLogin()" *ngIf="!logged"></p-button>
             </div>
         </div>

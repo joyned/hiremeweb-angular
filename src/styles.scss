@@ -41,7 +41,7 @@ body {
     font-family: "Poppins",sans-serif !important;
 }
 
-.hireme-confirm-button {
+.hireme-confirm-button, .hireme-green-button {
     .p-button {
         background: var(--thrid-color) !important;
         border: var(--thrid-color) !important;
@@ -88,7 +88,7 @@ body {
 h1, h2, h3, h4, h5, h6 {
     font-family: "Poppins",sans-serif !important;
     color: var(--primary-color);
-    font-size: 70px;
+    font-size: 45px;
     font-weight: 900;
     margin-bottom: 14px;
     font-family: "Poppins",sans-serif;
@@ -109,6 +109,23 @@ h1, h2, h3, h4, h5, h6 {
 
 .spacer-top {
     margin-top: 15px !important;
+}
+
+.spacer-bottom {
+    margin-bottom: 15px !important;
+}
+
+.spacer-left {
+    margin-left: 15px !important;
+}
+
+.spacer-right {
+    margin-right: 15px !important;
+}
+
+.hireme-content {
+    margin-top: 5%;
+    width: 100%;
 }
 
 .hire-me-datatable {
@@ -149,6 +166,15 @@ h1, h2, h3, h4, h5, h6 {
 
 }
 
+.hire-me-accordion-red {
+    .p-accordion .p-accordion-header:not(.p-disabled).p-highlight .p-accordion-header-link, 
+    .p-accordion p-accordiontab:last-child .p-accordion-header:not(.p-highlight) .p-accordion-header-link {
+        background-color: var(--second-color) !important;
+        color: white;
+    }
+
+}
+
 .align-end {
     text-align: end !important;
 }
@@ -157,8 +183,16 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center !important;
 }
 
+.icon-column-alignment {
+    text-align: center !important;
+}
+
 .fifteen-px-margin{
     margin: 15px;
+}
+
+.clickable {
+    cursor: pointer;
 }
 
 .p-card {
@@ -168,5 +202,11 @@ h1, h2, h3, h4, h5, h6 {
 @media(max-width: 719px) {
     h1, h2, h3, h4, h5, h6 {
         font-size: 40px !important;
+    }
+}
+
+@media screen and (max-width: 40rem) {
+    .icon-column-alignment {
+        text-align: left !important;
     }
 }

@@ -24,8 +24,10 @@
                 <div class="accordion-steps" *ngFor="let step of selectiveProcess.steps">
                     <p-accordion class="hire-me-accordion">
                         <p-accordionTab [header]="step.stepTitle">
-                            <b>Descrição</b>
-                            <p [innerHTML]="step.stepDescription"></p>
+                            <div class="selective-process-description" *ngIf="step.stepDescription">
+                                <b>Descrição</b>
+                                <p [innerHTML]="step.stepDescription"></p>
+                            </div>
                             
                             <div class="selective-process-step-questionnaire" *ngIf="step.stepType === 'Q'">
                                 <b>Questionário</b>
@@ -35,6 +37,10 @@
                             <div class="selective-process-step-video-interview" *ngIf="step.stepType === 'E'">
                                 <b>Tipo da etapa</b>
                                 <p>Entrevista por video</p>
+                            </div>
+                            
+                            <div class="selective-process-step-edit-button">
+                                <p-button label="Editar" (click)="editStep(step)"></p-button>
                             </div>
 
                         </p-accordionTab>
@@ -114,7 +120,7 @@
         </div>
 
         <div class="save-button" *ngIf="!step">
-            <p-button label="Salvar processo" (click)="saveSelectiveProcess()"></p-button>
+            <p-button label="Salvar processo" (click)="saveSelectiveProcess()" class="hireme-green-button"></p-button>
         </div>
 
     </div>

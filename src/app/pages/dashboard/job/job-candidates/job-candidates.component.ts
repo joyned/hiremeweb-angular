@@ -1,7 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { DynamicDialogConfig } from 'primeng/dynamicdialog';
+import { ActivatedRoute, Router } from '@angular/router';
 import { of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { ApiUtil } from 'src/app/classes/utils/APIUtils/api-util';
@@ -15,19 +15,22 @@ export class JobCandidatesComponent implements OnInit {
 
   private jobId: number;
   public candidates: any[];
+  public jobTitle: string;
 
-  constructor(private dialogConf: DynamicDialogConfig, private http: HttpClient, private datePipe: DatePipe) { }
+  constructor(private activatedRoute: ActivatedRoute, private http: HttpClient, private datePipe: DatePipe,
+    private router: Router) { }
 
   ngOnInit(): void {
-    this.jobId = this.dialogConf.data.id;
+    this.jobId = Number(this.activatedRoute.snapshot.paramMap.get('id'));
     this.getCandidatesByJobId();
   }
 
   private getCandidatesByJobId() {
-    this.http.get<any>(ApiUtil.getPath() + 'job/candidates/' + this.jobId, ApiUtil.buildOptions())
+    this.http.get<any>(ApiUtil.getPath() + 'selective/process/candidates/' + this.jobId, ApiUtil.buildOptions())
       .pipe(
         tap((data: any) => {
-          this.candidates = data.payload;
+          this.jobTitle = data.payload.jobTitle;
+          this.candidates = data.payload.candidates;
           this.candidates.forEach(candidate => {
             candidate.applicationDate = this.datePipe.transform(candidate.applicationDate, 'dd/MM/yyyy');
           });
@@ -38,5 +41,13 @@ export class JobCandidatesComponent implements OnInit {
       ).subscribe();
   }
 
+  public openProcess(candidate: any) {
+    const data = {
+      personId: candidate.candidateId,
+      jobId: this.jobId
+    };
+
+    this.router.navigate(['dashboard/job/candidate/process', { candidate: JSON.stringify(data) }]);
+  }
 
 }

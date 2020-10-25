@@ -24,7 +24,7 @@ export class JobDetailsComponent implements OnInit {
   public job: Job;
   public logged: boolean;
   public loading: boolean;
-  public alreadyApplied: boolean;
+  public canApply: boolean;
   public companyUser: boolean;
 
   private jobId: number;
@@ -46,7 +46,7 @@ export class JobDetailsComponent implements OnInit {
     this.http.get<any>(ApiUtil.getPath() + 'job/personCanApply/' + this.jobId, ApiUtil.buildOptions())
       .pipe(
         tap((data) => {
-          this.alreadyApplied = Boolean(data.payload);
+          this.canApply = Boolean(data.payload);
         }),
         catchError((httpResponse) => {
           return of();

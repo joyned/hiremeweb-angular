@@ -12,4 +12,5 @@ export class Job {
     jobBenefits?: JobBenefit[];
     company?: string;
     status?: boolean;
+    selectiveProcessId: number;
 }

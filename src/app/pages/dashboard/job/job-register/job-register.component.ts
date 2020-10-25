@@ -21,15 +21,17 @@ export class JobRegisterComponent implements OnInit {
   public jobBenefits: JobBenefit[];
   public states: any[];
   public cities: any[];
+  public selectiveProcesses: SelectItem[];
 
   constructor(private http: HttpClient, private alertMessage: AlertMessageService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.selectiveProcesses = [];
     this.job = new Job();
-
     this.job.id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
+    this.getSelectiveProcesses();
 
-    if (this.job === 0) {
+    if (this.job.id === 0) {
       this.getStates();
       this.jobBenefits = [];
       this.job.salary = 0;
@@ -117,6 +119,25 @@ export class JobRegisterComponent implements OnInit {
               return -1;
             }
             return 0;
+          });
+        }),
+        catchError((httpResponse) => {
+          return of();
+        })
+      ).subscribe();
+  }
+
+  private getSelectiveProcesses(){
+    this.http.get<any>(ApiUtil.getPath() + 'selective/process/list/simple', ApiUtil.buildOptions())
+      .pipe(
+        tap((data: any) => {
+          data.payload.forEach(element => {
+            const objItem = {
+              label: element.title,
+              value: element.id
+            };
+
+            this.selectiveProcesses.push(objItem);
           });
         }),
         catchError((httpResponse) => {

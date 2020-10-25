@@ -18,8 +18,7 @@ export class JobListComponent implements OnInit {
 
   public jobs: Job[] = [];
 
-  constructor(private http: HttpClient, private router: Router, private dialogService: DialogService,
-              private confirmationService: ConfirmationService) { }
+  constructor(private http: HttpClient, private router: Router, private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
     this.getJobsByUserId();
@@ -45,14 +44,7 @@ export class JobListComponent implements OnInit {
   }
 
   public openCandidates(jobId: number) {
-    this.dialogService.open(JobCandidatesComponent, {
-      header: 'Candidatos',
-      styleClass: 'hire-me-dialog',
-      width: '50%',
-      data: {
-        id: jobId
-      }
-    });
+    this.router.navigate(['dashboard/job/candidates', { id: jobId }]);
   }
 
   public openDetails(jobId: number) {

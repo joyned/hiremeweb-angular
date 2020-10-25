@@ -4,8 +4,8 @@
             <tr>
                 <th class="job-title">Titulo</th>
                 <th>Status</th>
-                <th class="icon-column-alignment">Editar</th>
                 <th class="icon-column-alignment">Visualizar</th>
+                <th class="icon-column-alignment">Editar</th>
                 <th class="icon-column-alignment">Excluir</th>
             </tr>
         </ng-template>
@@ -20,19 +20,19 @@
                     Ativo
                 </td>
 
-                <td (click)="editQuestionnaire(questionnaire.id)" class="icon-column-alignment">
-                    <span class="p-column-title">Editar</span>
-                    <i class="pi pi-pencil" ></i>
-                </td>
-
                 <td (click)="viewQuestionnaire(questionnaire.id)" class="icon-column-alignment">
                     <span class="p-column-title">Visualizar</span>
-                    <i class="pi pi-search" ></i>
+                    <i class="pi pi-search clickable" ></i>
+                </td>
+
+                <td (click)="editQuestionnaire(questionnaire.id)" class="icon-column-alignment">
+                    <span class="p-column-title">Editar</span>
+                    <i class="pi pi-pencil clickable" ></i>
                 </td>
 
                 <td (click)="deleteQuestionnaire(questionnaire)" class="icon-column-alignment">
                     <span class="p-column-title">Excluir</span>
-                    <i class="pi pi-times"></i>
+                    <i class="pi pi-times clickable"></i>
                 </td>
             </tr>
         </ng-template>

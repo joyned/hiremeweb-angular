@@ -4,7 +4,8 @@
             <tr>
                 <th class="job-title">Titulo</th>
                 <th>Status</th>
-                <th>Editar</th>
+                <th class="icon-column-alignment">Editar</th>
+                <th class="icon-column-alignment">Excluir</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-process>
@@ -19,9 +20,14 @@
                     Ativo
                 </td>
 
-                <td>
+                <td class="icon-column-alignment">
                     <span class="p-column-title">Editar</span>
-                    <i class="pi pi-pencil" (click)="editSelectiveProcess(process.id)"></i>
+                    <i class="pi pi-pencil clickable" (click)="editSelectiveProcess(process.id)"></i>
+                </td>
+
+                <td class="icon-column-alignment">
+                    <span class="p-column-title">Excluir</span>
+                    <i class="pi pi-times clickable" (click)="deleteSelectiveProcess(process)"></i>
                 </td>
             </tr>
         </ng-template>

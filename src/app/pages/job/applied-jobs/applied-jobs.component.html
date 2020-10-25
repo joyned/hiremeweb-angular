@@ -1,7 +1,7 @@
 <div class="applied-jobs-content">
     <div class="applied-jobs-header">
         <div class="title">
-            <h1>Vagas aplicadas</h1>
+            <h1>Minhas candidaturas</h1>
         </div>
     </div>
 
@@ -10,28 +10,24 @@
     <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>
 
     <div class="applied-jobs-list">
-        <p-table [columns]="cols" [value]="jobs" styleClass="p-datatable-responsive-demo" class="hire-me-datatable" *ngIf="jobs.length != 0">
-            <ng-template pTemplate="header" let-columns></ng-template>
-            <ng-template pTemplate="body" let-rowData let-columns="columns">
-                <tr>
-                    <td style="width: 70%;">
-                        <p>{{rowData.title}}</p>
-                    </td>
-                    <td>
-                        <i class="pi pi-exclamation-circle" style="cursor: pointer;" (click)="test(rowData)"></i>
-                    </td>
-                    <td>
-                        <i class="pi pi-times" style="cursor: pointer;" (click)="showCancelConfirmDialog(rowData)"></i>
-                    </td>
-                </tr>
-            </ng-template>
-        </p-table>
-
-        <div class="no-jobs-found" *ngIf="jobs.length == 0">
-            <p>Você ainda não se candidatou para nenhuma vaga :(</p>
-            <br>
-            <p>Quer ver nossas vagas? Clique no botão abaixo para ir dar uma olhadinha!</p>
-            <p-button label="Nossas vagas" (click)="openJobsList()"></p-button>
+        <div class="p-grid">
+            <div class="p-col-12 p-md-12 p-lg-4" *ngFor="let job of jobs">
+                <p-card [header]="job.title" subheader="{{job.city}}, {{job.state}}">
+                    {{job.shortDescription}}
+                    <p-footer>
+                        <p-button label="Minha candidatura" class="hireme-green-button" (click)="myApplication(job.id)"></p-button>
+                        <span class="spacer-left"></span>
+                        <p-button label="Desistir"></p-button>
+                    </p-footer>
+                </p-card>
+            </div>
         </div>
+    </div>
+
+    <div class="no-jobs-found" *ngIf="jobs.length == 0">
+        <p>Você ainda não se candidatou para nenhuma vaga :(</p>
+        <br>
+        <p>Quer ver nossas vagas? Clique no botão abaixo para ir dar uma olhadinha!</p>
+        <p-button label="Nossas vagas" (click)="openJobsList()"></p-button>
     </div>
 </div>

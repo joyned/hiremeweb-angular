@@ -69,6 +69,9 @@ import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { AccordionModule } from 'primeng/accordion';
 import { EditorModule } from 'primeng/editor';
 import { RadioButtonModule } from 'primeng/radiobutton';
+import { MyApplicationsComponent } from './pages/job/my-applications/my-applications.component';
+import { MyApplicationsDetailsComponent } from './pages/job/my-applications-details/my-applications-details.component';
+import { JobCandidateProcessComponent } from './pages/dashboard/job/job-candidate-process/job-candidate-process.component';
 
 @NgModule({
   declarations: [
@@ -100,7 +103,10 @@ import { RadioButtonModule } from 'primeng/radiobutton';
     JobListComponent,
     SelectiveProcessListComponent,
     SelectiveProcessRegisterComponent,
-    QuestionnaireViewComponent
+    QuestionnaireViewComponent,
+    MyApplicationsComponent,
+    MyApplicationsDetailsComponent,
+    JobCandidateProcessComponent
   ],
   imports: [
     BrowserModule,

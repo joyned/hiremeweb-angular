@@ -42,6 +42,7 @@ export class QuestionnaireListComponent implements OnInit {
       header: questionnaire.title,
       message: 'Deseja realmente deletar o questionário ' + questionnaire.title + '?',
       acceptLabel: 'Sim',
+      rejectLabel: 'Não',
       accept: () => this.confirmDelete(questionnaire.id)
     });
   }
@@ -50,6 +51,7 @@ export class QuestionnaireListComponent implements OnInit {
     this.http.delete<any>(ApiUtil.getPath() + 'questionnaire/delete/' + id, ApiUtil.buildOptions())
       .pipe(
         tap((data: any) => {
+          this.alertMessageService.successMessage('Sucesso.', 'Questionário excluido com sucesso.');
           this.listQuestionnaires();
         }),
         catchError((httpErrorResponse) => {

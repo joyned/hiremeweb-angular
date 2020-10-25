@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SelectItem } from 'primeng/api';
 import { of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { SelectiveProcess } from 'src/app/classes/selective-process/selective-process';
 import { SelectiveProcessStep } from 'src/app/classes/selective-process/selective-process-step';
 import { ApiUtil } from 'src/app/classes/utils/APIUtils/api-util';
+import { AlertMessageService } from 'src/app/services/alert-message/alert-message.service';
 import { idText } from 'typescript';
 
 @Component({
@@ -24,7 +25,8 @@ export class SelectiveProcessRegisterComponent implements OnInit {
 
   private processId: number;
 
-  constructor(private http: HttpClient, private activatedRoute: ActivatedRoute) { }
+  constructor(private http: HttpClient, private activatedRoute: ActivatedRoute, private alertMessageService: AlertMessageService,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.processId = Number(this.activatedRoute.snapshot.paramMap.get('id'));
@@ -64,11 +66,15 @@ export class SelectiveProcessRegisterComponent implements OnInit {
   }
 
   public saveSelectiveProcess() {
-    this.http.post<any>(ApiUtil.getPath() + 'selective/process/create', this.selectiveProcess, ApiUtil.buildOptions())
+    this.http.put<any>(ApiUtil.getPath() + 'selective/process', this.selectiveProcess, ApiUtil.buildOptions())
       .pipe(
         tap((data: any) => {
+          this.alertMessageService.successMessage('Sucesso.', 'O processo seletivo foi salvo com sucesso!');
+          this.selectiveProcess.id = data.payload.seletiveProcessId;
+          this.router.navigate(['/dashboard/selective-process/', { id: data.payload.seletiveProcessId }]);
         }),
         catchError((httpErrorResponse) => {
+          this.alertMessageService.errorMessage('Erro.', 'Ocorreu um erro ao salvar. Tente novamente.');
           return of();
         })
       ).subscribe();
@@ -78,6 +84,14 @@ export class SelectiveProcessRegisterComponent implements OnInit {
     if (!this.selectiveProcess.steps) {
       this.selectiveProcess.steps = [];
     }
+
+    if (this.selectiveProcess.id !== 0) {
+      const index = this.selectiveProcess.steps.indexOf(this.step, 0);
+      if (index > -1) {
+        this.selectiveProcess.steps.splice(index, 1);
+      }
+    }
+
     this.selectiveProcess.steps.push(this.step);
     this.step = undefined;
   }
@@ -103,12 +117,6 @@ export class SelectiveProcessRegisterComponent implements OnInit {
               value: quest.id
             });
           });
-          // for (const index in data.payload) {
-          //   this.questionnaires.push({
-          //     label: data.payload[index].title,
-          //     value: data.payload[index].id
-          //   });
-          // }
         }),
         catchError((httpErrorResponse) => {
           return of();
@@ -128,6 +136,10 @@ export class SelectiveProcessRegisterComponent implements OnInit {
       }
     });
     return questionnaireName;
+  }
+
+  public editStep(step: SelectiveProcessStep) {
+    this.step = step;
   }
 
 }
