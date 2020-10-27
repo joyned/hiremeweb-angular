@@ -1,10 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ConfirmationService } from 'primeng/api';
 import { of } from 'rxjs';
-import { tap, catchError } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 import { JobSelectiveProcess } from 'src/app/classes/selective-process/job-selective-process';
 import { ApiUtil } from 'src/app/classes/utils/APIUtils/api-util';
+import { AlertMessageService } from 'src/app/services/alert-message/alert-message.service';
 
 @Component({
   selector: 'app-job-candidate-process',
@@ -13,17 +15,19 @@ import { ApiUtil } from 'src/app/classes/utils/APIUtils/api-util';
 })
 export class JobCandidateProcessComponent implements OnInit {
 
-  private candidate: any;
+  public candidate: any;
   public jobSelectiveProcess: JobSelectiveProcess[];
 
-  constructor(private activatedRoute: ActivatedRoute, private http: HttpClient) { }
+  constructor(private activatedRoute: ActivatedRoute, private http: HttpClient,
+    private confirmationService: ConfirmationService, private router: Router,
+    private alertMessageService: AlertMessageService) { }
 
   ngOnInit(): void {
     this.candidate = JSON.parse(this.activatedRoute.snapshot.paramMap.get('candidate'));
     this.getSelectiveProcess();
   }
 
-  public getSelectiveProcess() {
+  private getSelectiveProcess() {
     this.http.post<any>(ApiUtil.getPath() + 'selective/process/job/candidate', this.candidate, ApiUtil.buildOptions())
       .pipe(
         tap((data: any) => {
@@ -35,8 +39,43 @@ export class JobCandidateProcessComponent implements OnInit {
       ).subscribe();
   }
 
-  public approve(processId: number) {
+  public confirmApprove(processId: number) {
+    this.confirmationService.confirm({
+      header: 'Aprovação',
+      message: 'Tem certeza que deseja aprovar o candidato nessa etapa?',
+      acceptLabel: 'Sim',
+      rejectLabel: 'Não',
+      accept: () => this.approve(processId)
+    });
+  }
+
+  private approve(processId: number) {
     this.http.post<any>(ApiUtil.getPath() + 'approval/selective/process/approve/' + processId, {}, ApiUtil.buildOptions())
+      .pipe(
+        tap((data: any) => {
+          this.alertMessageService.successMessage('Sucesso', 'Aprovado com suceso!');
+          this.getSelectiveProcess();
+        }),
+        catchError((httpResponse) => {
+          this.alertMessageService.errorMessage('Erro', 'Ocorreu um erro ao aprovar. Tente novamente.');
+          return of();
+        })
+      ).subscribe();
+  }
+
+  public confirmReject(processId: number) {
+    this.confirmationService.confirm({
+      header: 'Aprovação',
+      message: 'Tem certeza que deseja reprovar o candidato nessa etapa? Caso sim, o proceso irá parar.',
+      acceptLabel: 'Sim',
+      rejectLabel: 'Não',
+      accept: () => this.reject(processId)
+    });
+  }
+
+
+  private reject(processId: number) {
+    this.http.post<any>(ApiUtil.getPath() + 'approval/selective/process/reject/' + processId, {}, ApiUtil.buildOptions())
       .pipe(
         tap((data: any) => {
           console.log(data);
@@ -45,6 +84,14 @@ export class JobCandidateProcessComponent implements OnInit {
           return of();
         })
       ).subscribe();
+  }
+
+  public viewAnswers(jobSelectiveProcess: JobSelectiveProcess) {
+    this.router.navigate(['dashboard/job/candidates/questionnaire/answer', {
+      personId: this.candidate.personId,
+      jobId: this.candidate.jobId,
+      questionnaireId: jobSelectiveProcess.questionnaireId
+    }]);
   }
 
 }

@@ -2,6 +2,10 @@
     padding: 3%;
 }
 
+.header {
+    text-align: center;
+}
+
 :host ::ng-deep {    
     .p-datatable-responsive-demo .p-datatable-tbody > tr > td .p-column-title {
         display: none;

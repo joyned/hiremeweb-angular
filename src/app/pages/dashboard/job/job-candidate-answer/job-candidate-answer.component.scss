@@ -1,0 +1,44 @@
+.questionnaire-view-content {
+    margin-top: 3%;
+    width: 100%;
+}
+
+h1 {
+    text-align: center;
+    font-size: 40px;
+    margin-bottom: 3%;
+}
+
+.questionnaire-view-questions {
+    margin: 3%;
+
+    .question-title {
+        display: inline-block;
+        width: 100%;
+
+        b {
+            float: left;
+        }
+
+        i {
+            float: right;
+        }
+
+        .pi {
+            font-size: 1.5rem;
+        }
+
+        .pi-check {
+            color: green;
+        }
+
+        .pi-times {
+            color: red;
+        }
+    }
+}
+
+.send-questionnaire-button {
+    text-align: center;
+    padding: 1% 4% 5% 4%;
+}

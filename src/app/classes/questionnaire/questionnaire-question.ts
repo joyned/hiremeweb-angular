@@ -8,6 +8,8 @@ export class QuestionnaireQuestion {
    answerType: string;
    answerTime: number;
    questionnaireQuestionOption: QuestionnaireQuestionOption[];
+   questionnaireAnswer: string;
+   questionnaireCorrect: string;
 
    constructor() {
       this.questionnaireQuestionOption = [];

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guard/auth-guard.guard';
 import { AboutUsComponent } from './pages/about-us/about-us.component';
+import { JobCandidateAnswerComponent } from './pages/dashboard/job/job-candidate-answer/job-candidate-answer.component';
 import { JobCandidateProcessComponent } from './pages/dashboard/job/job-candidate-process/job-candidate-process.component';
 import { JobCandidatesComponent } from './pages/dashboard/job/job-candidates/job-candidates.component';
 import { JobRegisterComponent } from './pages/dashboard/job/job-register/job-register.component';
@@ -16,6 +17,7 @@ import { JobDetailsComponent } from './pages/job/job-details/job-details.compone
 import { JobsComponent } from './pages/job/jobs/jobs.component';
 import { MyApplicationsDetailsComponent } from './pages/job/my-applications-details/my-applications-details.component';
 import { MessagesComponent } from './pages/messages/messages.component';
+import { QuestionnaireAnswerComponent } from './pages/questionnaire/questionnaire-answer/questionnaire-answer.component';
 import { PageRegisterComponent } from './pages/system-config/page-register/page-register.component';
 import { UserManualRegisterComponent } from './pages/system-config/user-manual-register/user-manual-register.component';
 import { ConfigurationComponent } from './pages/user/configuration/configuration.component';
@@ -38,12 +40,13 @@ const routes: Routes = [
   { path: 'dashboard', component: MainDashboardComponent, canActivate: [AuthGuard] },
   { path: 'dashboard/job', component: JobRegisterComponent, canActivate: [AuthGuard] },
   { path: 'dashboard/job/candidates', component: JobCandidatesComponent, canActivate: [AuthGuard] },
+  { path: 'dashboard/job/candidates/questionnaire/answer', component: JobCandidateAnswerComponent, canActivate: [AuthGuard] },
   { path: 'dashboard/job/candidate/process', component: JobCandidateProcessComponent, canActivate: [AuthGuard] },
   { path: 'dashboard/questionnaire', component: QuestionnaireRegisterComponent, canActivate: [AuthGuard] },
   { path: 'dashboard/questionnaire/view', component: QuestionnaireViewComponent, canActivate: [AuthGuard] },
   { path: 'dashboard/selective-process', component: SelectiveProcessRegisterComponent, canActivate: [AuthGuard] },
   { path: 'job/my-applcation/details', component: MyApplicationsDetailsComponent, canActivate: [AuthGuard] },
-  { path: 'messages', component: MessagesComponent }
+  { path: 'questionnaire/answer', component: QuestionnaireAnswerComponent }
 ];
 
 @NgModule({

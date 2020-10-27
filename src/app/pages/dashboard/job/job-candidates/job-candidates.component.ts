@@ -44,7 +44,9 @@ export class JobCandidatesComponent implements OnInit {
   public openProcess(candidate: any) {
     const data = {
       personId: candidate.candidateId,
-      jobId: this.jobId
+      jobId: this.jobId,
+      candidateName: candidate.candidateName,
+      jobTitle: this.jobTitle
     };
 
     this.router.navigate(['dashboard/job/candidate/process', { candidate: JSON.stringify(data) }]);

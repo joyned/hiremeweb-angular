@@ -72,6 +72,8 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { MyApplicationsComponent } from './pages/job/my-applications/my-applications.component';
 import { MyApplicationsDetailsComponent } from './pages/job/my-applications-details/my-applications-details.component';
 import { JobCandidateProcessComponent } from './pages/dashboard/job/job-candidate-process/job-candidate-process.component';
+import { QuestionnaireAnswerComponent } from './pages/questionnaire/questionnaire-answer/questionnaire-answer.component';
+import { JobCandidateAnswerComponent } from './pages/dashboard/job/job-candidate-answer/job-candidate-answer.component';
 
 @NgModule({
   declarations: [
@@ -106,7 +108,9 @@ import { JobCandidateProcessComponent } from './pages/dashboard/job/job-candidat
     QuestionnaireViewComponent,
     MyApplicationsComponent,
     MyApplicationsDetailsComponent,
-    JobCandidateProcessComponent
+    JobCandidateProcessComponent,
+    QuestionnaireAnswerComponent,
+    JobCandidateAnswerComponent
   ],
   imports: [
     BrowserModule,
