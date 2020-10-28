@@ -17,6 +17,7 @@
                 <div class="step-status">
                     <p *ngIf="step.status === 'P'">Pendente</p>
                     <p *ngIf="step.status === 'G'">Aguardando aprovação</p>
+                    <p *ngIf="step.status === 'A'">Aprovado</p>
                     <p *ngIf="!step.status">Não disponivel</p>
                 </div>
 

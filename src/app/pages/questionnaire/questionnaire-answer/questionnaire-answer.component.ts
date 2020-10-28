@@ -32,7 +32,7 @@ export class QuestionnaireAnswerComponent implements OnInit {
   }
 
   private getQuestionnaire() {
-    this.http.get<any>(ApiUtil.getPath() + 'questionnaire/get/response/' + this.questionnaireId, ApiUtil.buildOptions())
+    this.http.get<any>(ApiUtil.getPath() + 'questionnaire/get/response/' + this.questionnaireId + '/' + this.approvalId, ApiUtil.buildOptions())
       .pipe(
         tap((data: any) => {
           this.questionnaire = data.payload;

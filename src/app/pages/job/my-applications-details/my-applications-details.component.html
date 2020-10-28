@@ -12,6 +12,7 @@
                 <div class="step-status">
                   <p *ngIf="step.status === 'P'">Pendente</p>
                   <p *ngIf="step.status === 'G'">Aguardando aprovação</p>
+                  <p *ngIf="step.status === 'A'">Aprovado</p>
                   <p *ngIf="!step.status">Não disponivel</p>
                 </div>
 
@@ -22,7 +23,7 @@
                     <p *ngIf="step.stepType === 'D'">Desafio</p>
                 </div>
 
-                <div class="step-questionnaire-button" *ngIf="step.stepType === 'Q' && step.status !== 'G' && step.status">
+                <div class="step-questionnaire-button" *ngIf="step.stepType === 'Q' && step.status === 'P' && step.status">
                     <p-button label="Responder questionário" (click)="goToAwnserQuestionnaire(step)"></p-button>
                 </div>
 

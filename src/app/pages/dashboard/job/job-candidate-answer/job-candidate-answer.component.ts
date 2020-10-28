@@ -19,7 +19,7 @@ export class JobCandidateAnswerComponent implements OnInit {
 
   public questionnaire: Questionnaire;
   public correctionList: QuestionnaireQuestionAnswerCorrection[];
-  public canCorrect = false;
+  public canCorrect = true;
 
   private personId: number;
   private jobId: number;
@@ -48,7 +48,7 @@ export class JobCandidateAnswerComponent implements OnInit {
         tap((data: any) => {
           this.questionnaire = data.payload;
           this.questionnaire.questionnaireQuestions.forEach(obj => {
-            if(obj.questionnaireCorrect){
+            if(obj.questionnaireCorrect !== null){
               this.canCorrect = false;
             }
           })
