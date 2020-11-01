@@ -4,7 +4,7 @@ export class ApiUtil {
 
     static getPath() {
         if (environment.production) {
-            return 'https://python-hire-me-api.herokuapp.com/api/';
+            return 'http://development-hireme.eastus.cloudapp.azure.com/api/api/';
         } else {
             return 'http://localhost:4200/api/';
         }
