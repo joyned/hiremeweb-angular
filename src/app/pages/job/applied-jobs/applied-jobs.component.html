@@ -12,8 +12,8 @@
     <div class="applied-jobs-list">
         <div class="p-grid">
             <div class="p-col-12 p-md-12 p-lg-4" *ngFor="let job of jobs">
-                <p-card [header]="job.title" subheader="{{job.city}}, {{job.state}}">
-                    {{job.shortDescription}}
+                <p-card [header]="job.title" subheader="{{job.city}}, {{job.state}}" [ngClass]="job.city ? '' : 'sem-subheader'">
+                    <p style="overflow-wrap: break-word;">{{job.shortDescription}}</p>
                     <p-footer>
                         <p-button label="Minha candidatura" class="hireme-green-button" (click)="myApplication(job.id)"></p-button>
                         <span class="spacer-left"></span>

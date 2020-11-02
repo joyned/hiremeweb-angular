@@ -74,6 +74,7 @@ import { MyApplicationsDetailsComponent } from './pages/job/my-applications-deta
 import { JobCandidateProcessComponent } from './pages/dashboard/job/job-candidate-process/job-candidate-process.component';
 import { QuestionnaireAnswerComponent } from './pages/questionnaire/questionnaire-answer/questionnaire-answer.component';
 import { JobCandidateAnswerComponent } from './pages/dashboard/job/job-candidate-answer/job-candidate-answer.component';
+import { OverlayLoadingComponent } from './components/overlay-loading/overlay-loading.component';
 
 @NgModule({
   declarations: [
@@ -110,7 +111,8 @@ import { JobCandidateAnswerComponent } from './pages/dashboard/job/job-candidate
     MyApplicationsDetailsComponent,
     JobCandidateProcessComponent,
     QuestionnaireAnswerComponent,
-    JobCandidateAnswerComponent
+    JobCandidateAnswerComponent,
+    OverlayLoadingComponent
   ],
   imports: [
     BrowserModule,

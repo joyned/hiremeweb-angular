@@ -29,15 +29,6 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.http.get<any>('http://development-hireme.eastus.cloudapp.azure.com/api/', {})
-      .pipe(
-        tap((data: any) => {
-          console.log(data);
-        }),
-        catchError((httpErrorResponse) => {
-          return of()
-        })
-      ).subscribe();
   }
 
 

@@ -19,7 +19,7 @@ import { of } from 'rxjs';
 export class ConfigurationComponent implements OnInit {
 
   constructor(private personService: PersonService, private messageService: AlertMessageService,
-              private sanitizer: DomSanitizer, private http: HttpClient) { }
+    private sanitizer: DomSanitizer, private http: HttpClient) { }
 
   public image: any;
   public person: Person;
@@ -46,28 +46,29 @@ export class ConfigurationComponent implements OnInit {
           this.person = data.payload;
           this.image = 'data:image/jpg;base64,' + (this.sanitizer.bypassSecurityTrustResourceUrl(this.person.photo) as any)
             .changingThisBreaksApplicationSecurity;
+          this.loading = false;
         }),
         catchError((httpResponse) => {
+          this.loading = false;
           return of();
         })
       ).subscribe();
-    this.loading = false;
   }
 
   public updatePersonDetails() {
-    try {
+      this.loading = true;
       this.http.post<any>(ApiUtil.getPath() + 'person/update', this.person, ApiUtil.buildOptions())
         .pipe(
           tap((data) => {
             this.messageService.successMessage('Sucesso', 'Sua conta foi atualizada com sucesso!');
+            this.loading = false;
           }),
           catchError((httpResponse) => {
             this.messageService.errorMessage('Erro', 'Não foi possivel atualizar sua conta. Por favor, tente novamente.');
+            this.loading = false;
             return of();
           })
         ).subscribe();
-    } catch (error) {
-    }
   }
 
   public setImage(event) {

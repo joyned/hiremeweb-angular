@@ -48,3 +48,9 @@ p {
         margin-top: 15px !important;
     }
 }
+
+.sem-subheader {
+    .p-card .p-card-subtitle {
+        display: none !important;
+    }
+}

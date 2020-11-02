@@ -123,5 +123,7 @@
             <p-button label="Salvar processo" (click)="saveSelectiveProcess()" class="hireme-green-button"></p-button>
         </div>
 
+        <app-overlay-loading *ngIf="loading"></app-overlay-loading>
+
     </div>
 </div>

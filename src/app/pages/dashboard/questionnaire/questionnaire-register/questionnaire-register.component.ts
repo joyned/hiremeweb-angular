@@ -23,6 +23,7 @@ export class QuestionnaireRegisterComponent implements OnInit {
   public question: QuestionnaireQuestion;
   public answerTypes: SelectItem[];
   public editable = true;
+  public loading = false;
   private questionnaireId: number;
 
   constructor(private http: HttpClient, private alertMessage: AlertMessageService, private activatedRoute: ActivatedRoute,
@@ -50,12 +51,15 @@ export class QuestionnaireRegisterComponent implements OnInit {
   }
 
   private getQuestionnaire() {
+    this.loading = true;
     this.http.get<any>(ApiUtil.getPath() + 'questionnaire/get/' + this.questionnaireId, ApiUtil.buildOptions())
       .pipe(
         tap((data: any) => {
           this.questionnaire = data.payload;
+          this.loading = false;
         }),
         catchError((httpErrorResponse) => {
+          this.loading = false;
           return of();
         })
       ).subscribe();
@@ -74,6 +78,7 @@ export class QuestionnaireRegisterComponent implements OnInit {
   }
 
   public saveQuestionnaire() {
+    this.loading = true;
     this.http.put<any>(ApiUtil.getPath() + 'questionnaire', this.questionnaire, ApiUtil.buildOptions())
       .pipe(
         tap((data: any) => {
@@ -83,8 +88,11 @@ export class QuestionnaireRegisterComponent implements OnInit {
             this.alertMessage.successMessage('Sucesso.', 'Questionário criado com sucesso.');
           }
           this.questionnaire.id = Number(data.payload.questionnaire);
+          this.loading = false;
         }),
         catchError((httpErrorResponse) => {
+          this.alertMessage.errorMessage('Erro.', 'Falha ao salvar o questionário. Por favor, tente novamente.');
+          this.loading = false;
           return of();
         })
       ).subscribe();

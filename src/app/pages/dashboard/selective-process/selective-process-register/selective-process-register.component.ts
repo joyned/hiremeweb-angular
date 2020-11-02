@@ -22,6 +22,7 @@ export class SelectiveProcessRegisterComponent implements OnInit {
   public step: SelectiveProcessStep;
   public stepTypes: SelectItem[];
   public questionnaires: SelectItem[];
+  public loading = false;
 
   private processId: number;
 
@@ -66,15 +67,18 @@ export class SelectiveProcessRegisterComponent implements OnInit {
   }
 
   public saveSelectiveProcess() {
+    this.loading = true;
     this.http.put<any>(ApiUtil.getPath() + 'selective/process', this.selectiveProcess, ApiUtil.buildOptions())
       .pipe(
         tap((data: any) => {
           this.alertMessageService.successMessage('Sucesso.', 'O processo seletivo foi salvo com sucesso!');
           this.selectiveProcess.id = data.payload.seletiveProcessId;
           this.router.navigate(['/dashboard/selective-process/', { id: data.payload.seletiveProcessId }]);
+          this.loading = false;
         }),
         catchError((httpErrorResponse) => {
           this.alertMessageService.errorMessage('Erro.', 'Ocorreu um erro ao salvar. Tente novamente.');
+          this.loading = false;
           return of();
         })
       ).subscribe();
@@ -108,6 +112,7 @@ export class SelectiveProcessRegisterComponent implements OnInit {
   }
 
   public getQuestionnaires() {
+    this.loading = true;
     this.http.get<any>(ApiUtil.getPath() + 'questionnaire/list/simple', ApiUtil.buildOptions())
       .pipe(
         tap((data: any) => {
@@ -117,8 +122,10 @@ export class SelectiveProcessRegisterComponent implements OnInit {
               value: quest.id
             });
           });
+          this.loading = false;
         }),
         catchError((httpErrorResponse) => {
+          this.loading = false;
           return of();
         })
       ).subscribe();

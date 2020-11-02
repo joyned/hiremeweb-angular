@@ -63,49 +63,6 @@
             </div>
         </div>
     </div>
+
+    <app-overlay-loading *ngIf="loading"></app-overlay-loading>
 </div>
-
-
-<!-- <div class="header" align="center">
-</div>
-
-<div class="body" align="center">
-    <app-hire-me-title [text]="'Sua foto'"></app-hire-me-title>
-    <app-image-upload [img]="image" [editable]="true" (change)="setImage($event)"></app-image-upload>
-    
-    <app-hire-me-title [text]="'Conta'"></app-hire-me-title>
-    <div class="fields">
-        <form>
-            <input type="text" pInputText placeholder="Nome" style="width:60%;" [(ngModel)]="person.name" name="name" disabled="true"/>
-            <input type="text" pInputText placeholder="Nome completo" style="width:60%;" [(ngModel)]="person.fullname" name="full-name" disabled="true" />
-            <input type="text" pInputText placeholder="Cidade" style="width:60%;" [(ngModel)]="person.city" name="city"/>
-            <input type="text" pInputText placeholder="Estado" style="width:60%;" [(ngModel)]="person.state" name="state"/>
-            <input type="text" pInputText placeholder="Endereço" style="width:60%;" [(ngModel)]="person.personAddress.address" name="address"/>
-            <input type="text" pInputText placeholder="Complemento" style="width:41%;" [(ngModel)]="person.personAddress.complement" name="complement"/>
-            <p-inputMask mask="99999-999" placeholder="CEP" [style]="{'width':'19%', 'margin-bottom':'10px'}"[(ngModel)]="person.personAddress.cep" name="address-number"></p-inputMask>
-        </form>
-    </div>
-
-    <app-hire-me-title [text]="'Geral'"></app-hire-me-title>
-    <div class="fields">
-        <form>
-            <input type="text" pInputText placeholder="E-mail" style="width:60%;" name="email" disabled="true" [(ngModel)]="person.user.email" />
-            <p-inputMask mask="999.999.999-99" placeholder="CPF" [style]="{'width':'60%', 'margin-bottom':'10px'}" [(ngModel)]="person.cpf" name="cpf" disabled="true"></p-inputMask>
-            <p-inputMask mask="99.999.999-9" placeholder="RG" [style]="{'width':'60%', 'margin-bottom':'10px'}" [(ngModel)]="person.rg" name="rg" disabled="true"></p-inputMask>
-            <p-calendar placeholder="Data de nascimento" [locale]="pt" dateFormat="dd/mm/yy" [style]="{'width':'60%'}" [(ngModel)]="person.birthdate" name="birthdate" disabled="true"></p-calendar>
-        </form>
-    </div>
-
-    <app-hire-me-title [text]="'Senha'"></app-hire-me-title>
-    <div class="fields">
-        <form>
-            <input type="password" pInputText placeholder="Senha atual" style="width:60%;"/>
-            <input type="password" pInputText placeholder="Nova senha" style="width:60%;"/>
-            <input type="password" pInputText placeholder="Repita a nova senha" style="width:60%;"/>
-        </form>
-    </div>
-
-    <div class="button">
-        <button pButton label="Salvar" (click)="updatePersonDetails()"></button>
-    </div>
-</div> -->

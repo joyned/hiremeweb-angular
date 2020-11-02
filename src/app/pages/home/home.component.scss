@@ -19,10 +19,9 @@ p {
 }
 
 .home-carousel-text {
-    position: relative;
-    top: 30%;
-    left: 5%;
-    width: 50%;
+    position: static;
+    padding: 6%;
+    width: 60%;
     margin-bottom: 53px;
 
     p {

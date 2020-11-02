@@ -22,6 +22,7 @@ export class JobRegisterComponent implements OnInit {
   public states: any[];
   public cities: any[];
   public selectiveProcesses: SelectItem[];
+  public loading = false;
 
   constructor(private http: HttpClient, private alertMessage: AlertMessageService, private activatedRoute: ActivatedRoute) { }
 
@@ -43,6 +44,7 @@ export class JobRegisterComponent implements OnInit {
   }
 
   public save() {
+    this.loading = true;
     this.job.jobBenefits = this.jobBenefits;
 
     this.http.put<any>(ApiUtil.getPath() + 'job/', this.job, ApiUtil.buildOptions())
@@ -54,9 +56,11 @@ export class JobRegisterComponent implements OnInit {
           } else {
             this.alertMessage.successMessage('Sucesso', 'A vaga ' + this.job.title + ' foi atualizada com sucesso!');
           }
+          this.loading = false;
         }),
         catchError((httpResponse) => {
           this.alertMessage.errorMessage('Erro', 'Não foi possivel salvar a vaga ' + this.job.title + ' .');
+          this.loading = false;
           return of();
         })
       ).subscribe();

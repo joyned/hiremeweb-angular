@@ -20,7 +20,7 @@ export class JobsComponent implements OnInit {
   public jobFilter: JobFilter;
   public jobs: Job[] = [];
 
-  public loading = false;
+  public loading = true;
 
   ngOnInit() {
     this.jobFilter = new JobFilter();
@@ -38,13 +38,14 @@ export class JobsComponent implements OnInit {
             job.shortDescription = job.description.substring(0, 200);
             job.shortDescription += '...';
           });
+          this.loading = false;
         }),
         catchError((httpResponse) => {
+          this.loading = false;
           return of();
         })
       ).subscribe();
 
-    this.loading = false;
   }
 
   filter() {

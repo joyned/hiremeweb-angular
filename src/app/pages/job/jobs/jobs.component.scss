@@ -51,6 +51,12 @@
     }
 }
 
+.sem-subheader {
+    .p-card .p-card-subtitle {
+        display: none !important;
+    }
+}
+
 @media(max-width:991px) {
     .jobs {
         .job-list{ 

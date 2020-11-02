@@ -2,6 +2,16 @@
 
     <h1 class="align-center">{{jobTitle}}</h1>
 
+    <div class="without-selective-process" *ngIf="jobSelectiveProcess.length === 0">
+        <p>Olá! Muito legal em saber que você está conosco buscando seu próximo desafio na carreira!!</p>
+        <p>
+            Para essa vaga a empresa optou por não fazer um processo seletivo pelo nosso sistema,
+            mas não tem problema algum, fique de olho no seu e-mail para saber os proximos passos. :)
+        </p>
+        <br><br>
+        <p>Boa sorte!!!</p>
+    </div>
+
     <div class="my-application-details-steps" *ngFor="let step of jobSelectiveProcess">
         <p-accordion [ngClass]="step.status === 'P' || step.status === 'G' ? 'hire-me-accordion-red' : 'hire-me-accordion'">
             <p-accordionTab [header]="step.stepTitle" [selected]="step.status === 'P' || step.status === 'G'">

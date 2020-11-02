@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
 
   public user = new User();
 
-  public isLoading = false;
+  public loading = false;
   private userAuth = false;
 
   public errorMessage = '';
@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
 
   async doLogin() {
     try {
-      this.isLoading = true;
+      this.loading = true;
       this.response = await this.loginService.login(this.user);
 
       this.dataSharingService.userName.next(localStorage.getItem('user'));
@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
     } catch (error) {
       this.alertMessage.errorMessage('Erro', 'O usuário/senha estão incorretos. Tente novamente.');
     } finally {
-      this.isLoading = false;
+      this.loading = false;
     }
   }
 
