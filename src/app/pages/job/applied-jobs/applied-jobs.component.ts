@@ -21,7 +21,7 @@ export class AppliedJobsComponent implements OnInit {
               private alertMessageService: AlertMessageService) { }
 
   public jobs: Job[];
-  public isLoading = true;
+  public loading = true;
 
   public cols = [];
 
@@ -40,7 +40,7 @@ export class AppliedJobsComponent implements OnInit {
   }
 
   private getAppliedJobs() {
-    this.isLoading = true;
+    this.loading = true;
     this.http.get<any>(ApiUtil.getPath() + 'job/applied-jobs', ApiUtil.buildOptions())
       .pipe(
         tap((data) => {
@@ -49,12 +49,13 @@ export class AppliedJobsComponent implements OnInit {
             const trimDescription = job.description.substring(0, 200);
             job.shortDescription = trimDescription + '...';
           });
+          this.loading = false;
         }),
         catchError((httpResponse) => {
+          this.loading = false;
           return of();
         })
       ).subscribe();
-    this.isLoading = false;
   }
 
   public showCancelConfirmDialog(job: Job) {

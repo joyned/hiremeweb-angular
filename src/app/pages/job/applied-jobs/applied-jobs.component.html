@@ -24,10 +24,14 @@
         </div>
     </div>
 
-    <div class="no-jobs-found" *ngIf="jobs.length == 0">
+    <div class="no-jobs-found" *ngIf="jobs.length == 0 && !loading">
         <p>Você ainda não se candidatou para nenhuma vaga :(</p>
         <br>
         <p>Quer ver nossas vagas? Clique no botão abaixo para ir dar uma olhadinha!</p>
         <p-button label="Nossas vagas" (click)="openJobsList()"></p-button>
+    </div>
+
+    <div *ngIf="loading">
+        <app-loading-spinner></app-loading-spinner>
     </div>
 </div>
