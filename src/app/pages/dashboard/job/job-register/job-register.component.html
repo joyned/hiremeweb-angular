@@ -14,6 +14,7 @@
                 <div class="p-grid">
                     <div class="p-col-12 p-md-4 p-lg-4 span-alignment">
                         <span>Titulo: </span>
+                        <span class="required">*</span>
                     </div>
                     <div class="p-col-12 p-md-8 p-lg-8">
                         <input pInputText class="input-width" [(ngModel)]="job.title">
@@ -25,9 +26,10 @@
                 <div class="p-grid">
                     <div class="p-col-12 p-md-6 p-lg-4 span-alignment">
                         <span>Estado: </span>
+                        <span class="required">*</span>
                     </div>
                     <div class="p-col-12 p-md-6 p-lg-8">
-                        <p-dropdown [options]="states" optionLabel="nome" (onChange)="getCitiesOnChange($event)" [(ngModel)]="job.state"></p-dropdown>
+                        <p-dropdown [options]="states" optionLabel="nome" (onChange)="getCitiesOnChange($event)"></p-dropdown>
                     </div>
                 </div>
             </div>
@@ -36,6 +38,7 @@
                 <div class="p-grid">
                     <div class="p-col-12 p-md-4 p-lg-4 span-alignment">
                         <span>Cidade: </span>
+                        <span class="required">*</span>
                     </div>
                     <div class="p-col-12 p-md-8 p-lg-8">
                         <p-dropdown [options]="cities" optionLabel="nome" (onChange)="changeCity($event)"></p-dropdown>
@@ -47,6 +50,7 @@
                 <div class="p-grid">
                     <div class="p-col-12 p-md-4 p-lg-4 span-alignment">
                         <span>Descrição: </span>
+                        <span class="required">*</span>
                     </div>
                     <div class="p-col-12 p-md-8 p-lg-8">
                         <textarea pInputTextarea [rows]="10" class="input-width" [(ngModel)]="job.description"></textarea>
@@ -58,6 +62,7 @@
                 <div class="p-grid">
                     <div class="p-col-12 p-md-4 p-lg-4 span-alignment">
                         <span>Salário: </span>
+                        <span class="required">*</span>
                     </div>
                     <div class="p-col-12 p-md-8 p-lg-8">
                         <p-inputNumber mode="currency" currency="BRL" [(ngModel)]="job.salary" class="input-width"></p-inputNumber>
@@ -85,9 +90,10 @@
                 <div class="p-grid">
                     <div class="p-col-12 p-md-6 p-lg-4 span-alignment">
                         <span>Processo seletivo: </span>
+                        <span class="required">*</span>
                     </div>
                     <div class="p-col-12 p-md-6 p-lg-8">
-                        <p-dropdown [options]="selectiveProcesses" placeholder="Processo Seletivo" [(ngModel)]="job.selectiveProcessId"></p-dropdown>
+                        <p-dropdown [options]="selectiveProcesses" placeholder="Selecione" [(ngModel)]="job.selectiveProcessId"></p-dropdown>
                     </div>
                 </div>
             </div>

@@ -124,8 +124,9 @@
                 </div>
             </div>
 
-            <div class="p-col-12 p-md-12 p-lg-12 align-center">
-                <p-button label="Adicionar questão" (click)="saveQuestion()" *ngIf="editable"></p-button>
+            <div class="p-col-12 p-md-12 p-lg-12 align-center" *ngIf="editable">
+                <p-button label="Salvar" (click)="saveQuestion()" class="hireme-green-button"></p-button>
+                <p-button label="Cancelar" (click)="question = undefined" style="margin-left: 5px;"></p-button>
             </div>
         </div>
     </div>

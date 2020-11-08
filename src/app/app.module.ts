@@ -40,6 +40,15 @@ import { SelectiveProcessListComponent } from './pages/dashboard/selective-proce
 // tslint:disable-next-line:max-line-length
 import { SelectiveProcessRegisterComponent } from './pages/dashboard/selective-process/selective-process-register/selective-process-register.component';
 import { QuestionnaireViewComponent } from './pages/dashboard/questionnaire/questionnaire-view/questionnaire-view.component';
+import { MyApplicationsComponent } from './pages/job/my-applications/my-applications.component';
+import { MyApplicationsDetailsComponent } from './pages/job/my-applications-details/my-applications-details.component';
+import { JobCandidateProcessComponent } from './pages/dashboard/job/job-candidate-process/job-candidate-process.component';
+import { QuestionnaireAnswerComponent } from './pages/questionnaire/questionnaire-answer/questionnaire-answer.component';
+import { JobCandidateAnswerComponent } from './pages/dashboard/job/job-candidate-answer/job-candidate-answer.component';
+import { OverlayLoadingComponent } from './components/overlay-loading/overlay-loading.component';
+import { ForgotPasswordComponent } from './pages/user/forgot-password/forgot-password.component';
+import { CompanyComponent } from './pages/super-user/company/company.component';
+import { MyResumeComponent } from './pages/user/my-resume/my-resume.component';
 
 /* PrimeNG Modules */
 import { ButtonModule } from 'primeng/button';
@@ -69,12 +78,8 @@ import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { AccordionModule } from 'primeng/accordion';
 import { EditorModule } from 'primeng/editor';
 import { RadioButtonModule } from 'primeng/radiobutton';
-import { MyApplicationsComponent } from './pages/job/my-applications/my-applications.component';
-import { MyApplicationsDetailsComponent } from './pages/job/my-applications-details/my-applications-details.component';
-import { JobCandidateProcessComponent } from './pages/dashboard/job/job-candidate-process/job-candidate-process.component';
-import { QuestionnaireAnswerComponent } from './pages/questionnaire/questionnaire-answer/questionnaire-answer.component';
-import { JobCandidateAnswerComponent } from './pages/dashboard/job/job-candidate-answer/job-candidate-answer.component';
-import { OverlayLoadingComponent } from './components/overlay-loading/overlay-loading.component';
+import { InputSwitchModule } from 'primeng/inputswitch';
+import { FileUploadModule } from 'primeng/fileupload';
 
 @NgModule({
   declarations: [
@@ -112,7 +117,10 @@ import { OverlayLoadingComponent } from './components/overlay-loading/overlay-lo
     JobCandidateProcessComponent,
     QuestionnaireAnswerComponent,
     JobCandidateAnswerComponent,
-    OverlayLoadingComponent
+    OverlayLoadingComponent,
+    ForgotPasswordComponent,
+    CompanyComponent,
+    MyResumeComponent
   ],
   imports: [
     BrowserModule,
@@ -151,7 +159,9 @@ import { OverlayLoadingComponent } from './components/overlay-loading/overlay-lo
     DynamicDialogModule,
     AccordionModule,
     EditorModule,
-    RadioButtonModule
+    RadioButtonModule,
+    InputSwitchModule,
+    FileUploadModule
   ],
   providers: [AuthGuard, ClientSocket],
   bootstrap: [AppComponent]

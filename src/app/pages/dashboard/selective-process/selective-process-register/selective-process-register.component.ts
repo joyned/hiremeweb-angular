@@ -2,13 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SelectItem } from 'primeng/api';
+import { element } from 'protractor';
 import { of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { SelectiveProcess } from 'src/app/classes/selective-process/selective-process';
 import { SelectiveProcessStep } from 'src/app/classes/selective-process/selective-process-step';
 import { ApiUtil } from 'src/app/classes/utils/APIUtils/api-util';
 import { AlertMessageService } from 'src/app/services/alert-message/alert-message.service';
-import { idText } from 'typescript';
 
 @Component({
   selector: 'app-selective-process-register',
@@ -23,6 +23,7 @@ export class SelectiveProcessRegisterComponent implements OnInit {
   public stepTypes: SelectItem[];
   public questionnaires: SelectItem[];
   public loading = false;
+  public editable = true;
 
   private processId: number;
 
@@ -36,6 +37,7 @@ export class SelectiveProcessRegisterComponent implements OnInit {
 
     if (this.processId > 0 && this.processId) {
       this.getSelectiveProcess();
+      this.selectiveProcessEditable();
     }
 
     this.stepTypes = [
@@ -66,22 +68,68 @@ export class SelectiveProcessRegisterComponent implements OnInit {
       ).subscribe();
   }
 
-  public saveSelectiveProcess() {
-    this.loading = true;
-    this.http.put<any>(ApiUtil.getPath() + 'selective/process', this.selectiveProcess, ApiUtil.buildOptions())
+  private selectiveProcessEditable() {
+    this.http.get<any>(ApiUtil.getPath() + 'selective/process/editable/' + this.processId, ApiUtil.buildOptions())
       .pipe(
         tap((data: any) => {
-          this.alertMessageService.successMessage('Sucesso.', 'O processo seletivo foi salvo com sucesso!');
-          this.selectiveProcess.id = data.payload.seletiveProcessId;
-          this.router.navigate(['/dashboard/selective-process/', { id: data.payload.seletiveProcessId }]);
-          this.loading = false;
+          this.editable = Boolean(data.payload);
         }),
         catchError((httpErrorResponse) => {
-          this.alertMessageService.errorMessage('Erro.', 'Ocorreu um erro ao salvar. Tente novamente.');
-          this.loading = false;
           return of();
         })
       ).subscribe();
+  }
+
+  public saveSelectiveProcess() {
+    if (!this.checkIfThereIsNotDuplicatedSteps()) {
+      this.loading = true;
+      this.http.put<any>(ApiUtil.getPath() + 'selective/process', this.selectiveProcess, ApiUtil.buildOptions())
+        .pipe(
+          tap((data: any) => {
+            if (this.selectiveProcess.id > 0) {
+              this.alertMessageService.successMessage('Sucesso.', 'O processo seletivo foi atualizado com sucesso!');
+            } else {
+              this.alertMessageService.successMessage('Sucesso.', 'O processo seletivo foi criado com sucesso!');
+            }
+            this.selectiveProcess.id = Number(data.payload.seletiveProcessId);
+            this.loading = false;
+            this.sortStepsByOrder();
+          }),
+          catchError((httpErrorResponse) => {
+            this.alertMessageService.errorMessage('Erro.', 'Ocorreu um erro ao salvar. Tente novamente.');
+            this.loading = false;
+            return of();
+          })
+        ).subscribe();
+    } else {
+      this.alertMessageService.errorMessage('Erro', 'Existem ordens duplicadas. Por favor, verifique os passos e não deixe ordens duplicadas.');
+    }
+  }
+
+  private checkIfThereIsNotDuplicatedSteps() {
+    var valuesSoFar = Object.create(null);
+    for (var i = 0; i < this.selectiveProcess.steps.length; ++i) {
+      var value = this.selectiveProcess.steps[i];
+      if (value.order in valuesSoFar) {
+        return true;
+      }
+      valuesSoFar[value.order] = true;
+    }
+    return false;
+  }
+
+  private sortStepsByOrder() {
+    this.selectiveProcess.steps = this.selectiveProcess.steps.sort((step1, step2) => {
+      if (step1.order > step2.order) {
+        return 1;
+      }
+
+      if (step1.order < step2.order) {
+        return -1;
+      }
+
+      return 0;
+    })
   }
 
   public saveStep() {
@@ -102,6 +150,8 @@ export class SelectiveProcessRegisterComponent implements OnInit {
 
   public addStep() {
     this.step = new SelectiveProcessStep();
+    let max = Math.max.apply(Math, this.selectiveProcess.steps.map(function (el) { return el.order; }));
+    this.step.order = max + 1;
   }
 
 

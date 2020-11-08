@@ -85,6 +85,10 @@ body {
     box-shadow: none;
 }
 
+.p-toast .p-toast-message .p-toast-message-content {
+    z-index: 9999999;
+}
+
 h1, h2, h3, h4, h5, h6 {
     font-family: "Poppins",sans-serif !important;
     color: var(--primary-color);
@@ -154,6 +158,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .p-dialog .p-dialog-content {
+    overflow: visible;
     border: none;
 }
 
@@ -197,6 +202,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .p-card {
     box-shadow: 0 6px 15px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
+}
+
+.required {
+    color: red;
 }
 
 @media(max-width: 719px) {

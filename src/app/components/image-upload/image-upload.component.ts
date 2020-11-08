@@ -16,11 +16,12 @@ export class ImageUploadComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.img.currentValue !== undefined) {
-      const reader = new FileReader();
-      reader.onload = e => this.img = reader.result;
-      reader.readAsDataURL(changes.img.currentValue);
-    }
+    // if (changes.img.currentValue !== undefined) {
+    //   const reader = new FileReader();
+    //   reader.onload = e => this.img = reader.result;
+    //   console.log(changes.img.currentValue)
+    //   reader.readAsDataURL(changes.img.currentValue);
+    // }
   }
 
 }

@@ -1,0 +1,29 @@
+.company-content {
+    padding: 5%;
+}
+
+.header {
+    text-align: center;
+}
+
+.span-alignment {
+    text-align: end;
+}
+
+.input-width {
+    width: 70%;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+@media(max-width: 767px) {
+    .span-alignment {
+        text-align: center !important;
+    }
+    
+    .input-width {
+        width: 100%;
+    }
+}

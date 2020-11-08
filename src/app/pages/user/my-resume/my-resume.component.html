@@ -1,0 +1,105 @@
+<div class="my-resume-content hireme-content">
+
+    <div class="header">
+        <h1>Meu curriculo</h1>
+        <p>Você pode fazer upload do seu curriculo no formato PDF. Aceitamos arquivos até 1MB.</p>
+
+        <div *ngIf="!selectedFile.fileBase64">
+            <input type="file" id='select-file' (change)="onBasicUpload($event)" accept="application/pdf">
+            <label for="select-file" class="select-file-button">
+                Selecionar arquivo
+            </label>
+        </div>
+
+        <div *ngIf="selectedFile.fileBase64">
+            <p>
+                <span style="margin-right: 10px;">{{selectedFile.fileName}}</span>
+                <i class="pi pi-times clickable" (click)="removeFile()"></i>
+            </p>
+            <p-button label="Fazer upload do arquivo"></p-button>
+        </div>
+    </div>
+
+    <div class="header" style="margin-top: 50px;">
+        <h1>Meu historico profissional</h1>
+    </div>
+
+    <div class="professional-history">
+        <p-table [value]="professionalHistories" class="hire-me-datatable">
+            <ng-template pTemplate="body" let-history>
+                <tr>
+                    <td>
+                        <div class="professional-history-details">
+                            <h1>{{history.job}}</h1>
+                            <p>
+                                <b>Empresa: </b>
+                                {{history.company}}
+                            </p>
+                            <p>
+                                <b>Descrição: </b>
+                                {{history.description}}
+                            </p>
+                            <p>
+                                <b>Periodo: </b>
+                                <span *ngIf="history.currentJob">
+                                    <span>{{convertDate(history.initialDate)}}</span>
+                                    <span> - Atualmente</span>
+                                </span>
+                                <span *ngIf="!history.currentJob">
+                                    <span>{{convertDate(history.initialDate)}}</span>
+                                    <span> até </span>
+                                    <span>{{convertDate(history.finalDate)}}</span>
+                                </span>
+                            </p>
+    
+                            <p-button label="Editar" (click)="editProfessionalHistory(history)"></p-button>
+                        </div>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+
+        <p-dialog header="Histórico profissional" [(visible)]="dialogOpened" [focusOnShow]="false" showEffect="fade"
+                [modal]="true" [style]="{width: '50vw'}">
+                <div class="professional-history-dialog">
+                    <span>Empresa:</span>
+                    <input type="text" pInputText placeholder="Empresa" name="company"
+                        [(ngModel)]="professionalHistory.company" />
+                    <span>Cargo:</span>
+                    <input type="text" pInputText placeholder="Cargo" name="job"
+                        [(ngModel)]="professionalHistory.job" />
+                    <span>Data de inicio:</span>
+                    <p-calendar placeholder="Data de inicio" [locale]="pt" dateFormat="dd/mm/yy"
+                        [(ngModel)]="professionalHistory.initialDate" name="initialDate" [ngClass]="{'width': '100%'}">
+                    </p-calendar>
+                    <div *ngIf="professionalHistory.currentJob">
+                        <span>Data de saida:</span>
+                        <p-calendar placeholder="Data de saida" [locale]="pt" dateFormat="dd/mm/yy"
+                            [(ngModel)]="professionalHistory.finalDate" name="finalDate"
+                            disabled="professionalHistory.currentJob"></p-calendar>
+                    </div>
+                    <div *ngIf="!professionalHistory.currentJob">
+                        <span>Data de saida:</span>
+                        <p-calendar placeholder="Data de saida" [locale]="pt" dateFormat="dd/mm/yy"
+                            [(ngModel)]="professionalHistory.finalDate" name="finalDate"></p-calendar>
+                    </div>
+                    <div class="current-job-div">
+                        <p-inputSwitch [(ngModel)]="professionalHistory.currentJob"></p-inputSwitch>
+                        <span style="margin-left: 10px;">Trabalho aqui atualmente</span>
+                    </div>
+                    <span>Descrição:</span>
+                    <textarea pInputTextarea [rows]="10" [cols]="30" placeholder="Descrição" name="description"
+                        [(ngModel)]="professionalHistory.description"></textarea>
+                    <p-footer>
+                        <div class="ui-dialog-buttonpane ui-helper-clearfix">
+                            <p-button icon="pi pi-check" (click)="saveProfessionalHistory()" label="Salvar"
+                                class="hireme-confirm-button" style="margin-right: 5px;"></p-button>
+                            <p-button icon="pi pi-times" class="p-button-danger" (click)="closeDialog()" label="Fechar">
+                            </p-button>
+                        </div>
+                    </p-footer>
+                </div>
+            </p-dialog>
+    </div>
+
+</div>

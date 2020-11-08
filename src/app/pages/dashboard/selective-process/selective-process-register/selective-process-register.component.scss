@@ -3,6 +3,24 @@
     width: 100%;
 }
 
+
+.selective-process-register-not-editable {
+    text-align: center;
+    padding: 25px;
+    border: 1px solid black;
+    margin: 5% 15%;
+    background: red;
+    
+    p {
+        color: white;
+        margin-bottom: 0;
+    }
+
+    .pi {
+        font-size: 1.5em;
+    }
+}
+
 .selective-process-title {
     text-align: center;
     font-size: 40px;
@@ -28,6 +46,16 @@
 
 .selective-process-steps-list {
     margin: 3% 15%;
+}
+
+.selective-process-step-order {
+    p {
+        margin-bottom: 0;
+    }
+
+    input {
+        margin-bottom: 15px;
+    }
 }
 
 @media(max-width: 767px) {

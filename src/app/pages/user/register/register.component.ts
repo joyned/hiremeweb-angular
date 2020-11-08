@@ -1,9 +1,14 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
+import { of } from 'rxjs';
+import { catchError, subscribeOn, tap } from 'rxjs/operators';
 import { ProfessionalHistory } from 'src/app/classes/candidate/professional-history';
 import { Person } from 'src/app/classes/person/person';
 import { PersonAddress } from 'src/app/classes/person/person-addres';
 import { User } from 'src/app/classes/user/user';
+import { ApiUtil } from 'src/app/classes/utils/APIUtils/api-util';
+import { AlertMessageService } from 'src/app/services/alert-message/alert-message.service';
 import { LoginService } from 'src/app/services/login/login.service';
 import { UserService } from 'src/app/services/user/user.service';
 
@@ -20,7 +25,7 @@ export class RegisterComponent implements OnInit {
 
   public errorMessage: any;
   public emptyFields = '';
-  public isLoading = false;
+  public loading = false;
   public pt: any;
   public tabIndex = 0;
 
@@ -32,26 +37,11 @@ export class RegisterComponent implements OnInit {
   public professionalHistories: ProfessionalHistory[] = [];
   public professionalHistory: ProfessionalHistory;
   public selectedProfessionalHistory: ProfessionalHistory;
-  private editingProfessionalHistory = false;
 
   public person: Person;
 
-  public cols = [
-    {
-      name: 'company',
-      label: 'Empresa'
-    },
-    {
-      name: 'job',
-      label: 'Cargo'
-    },
-    {
-      name: 'description',
-      label: 'Descrição'
-    }
-  ];
-
-  constructor(private router: Router, private userService: UserService, private loginService: LoginService) { }
+  constructor(private router: Router, private loginService: LoginService,
+    private http: HttpClient, private alertMessageService: AlertMessageService) { }
 
   ngOnInit(): void {
     this.person = new Person();
@@ -62,18 +52,24 @@ export class RegisterComponent implements OnInit {
     this.buildCalendar();
   }
 
-  async register() {
-    this.isLoading = true;
-    try {
-      this.createLoadingDialog();
-      await this.userService.registerNewUser(this.person);
-      this.doLoginAfterRegister();
-    } catch (error) {
-      this.errorMessage = error.error;
-      this.createErrorDialog();
-    } finally {
-      this.isLoading = false;
-    }
+  public register() {
+    this.loading = true;
+    this.person.professionalHistory = this.professionalHistories;
+    this.http.post<any>(ApiUtil.getPath() + 'register', this.person, {})
+      .pipe(
+        tap((data: any) => {
+          this.alertMessageService.successMessage('Sucesso', 'Você foi registrado com sucesso no nosso sistema');
+          this.router.navigateByUrl('/login');
+          this.loading = false;
+        }),
+        catchError((httpErrorResponse) => {
+          if (httpErrorResponse.error.payload === 'user.already.exists') {
+            this.alertMessageService.errorMessage('Erro', 'Esse email já está cadastrado no nosso sistema');
+          }
+          this.loading = false;
+          return of();
+        })
+      ).subscribe();
   }
 
   async doLoginAfterRegister() {
@@ -136,22 +132,22 @@ export class RegisterComponent implements OnInit {
   }
 
   addProfessionalHistory() {
-    const pHistories = [...this.professionalHistories];
-    if (!this.editingProfessionalHistory) {
-      pHistories.push(this.professionalHistory);
-    } else {
-      pHistories[this.professionalHistories.indexOf(this.selectedProfessionalHistory)] = this.professionalHistory;
+    const index = this.professionalHistories.indexOf(this.professionalHistory, 0);
+    if (index > -1) {
+      this.professionalHistories.splice(index, 1);
     }
 
-    this.professionalHistories = pHistories;
+    if (this.professionalHistory.currentJob) {
+      this.professionalHistory.finalDate = undefined;
+    }
+
+    this.professionalHistories.push(this.professionalHistory);
     this.professionalHistory = new ProfessionalHistory();
     this.dialogOpened = false;
-    this.editingProfessionalHistory = false;
   }
 
-  onRowSelect(event) {
-    this.editingProfessionalHistory = true;
-    this.professionalHistory = event.data;
+  public editProfessionalHistory(professionalHistory: ProfessionalHistory) {
+    this.professionalHistory = professionalHistory;
     this.dialogOpened = true;
   }
 

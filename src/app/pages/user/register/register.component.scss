@@ -92,6 +92,27 @@ h2 {
   display: none !important;
 }
 
+.professional-history-details {
+  h1 {
+    font-size: 25px;
+  }
+}
+
+.professional-history-dialog {
+  .p-calendar {
+    width: 100% !important;
+  }
+
+  .current-job-div {
+    text-align: start;
+    margin-bottom: 2%;
+  }
+}
+
+.professional-history-add-button {
+  margin-bottom: 2%;
+}
+
 @media(max-width: 960px){
   .p-inputtext {
     width: 90% !important;

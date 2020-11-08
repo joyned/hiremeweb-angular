@@ -9,6 +9,9 @@ import { HttpClient } from '@angular/common/http';
 import { ApiUtil } from 'src/app/classes/utils/APIUtils/api-util';
 import { tap, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { Router } from '@angular/router';
+import { DialogService } from 'primeng/dynamicdialog';
+import { ChangePasswordComponent } from '../change-password/change-password.component';
 
 @Component({
   selector: 'app-configuration',
@@ -18,8 +21,8 @@ import { of } from 'rxjs';
 })
 export class ConfigurationComponent implements OnInit {
 
-  constructor(private personService: PersonService, private messageService: AlertMessageService,
-    private sanitizer: DomSanitizer, private http: HttpClient) { }
+  constructor(private messageService: AlertMessageService, private router: Router,
+    private sanitizer: DomSanitizer, private http: HttpClient, private dialogService: DialogService) { }
 
   public image: any;
   public person: Person;
@@ -56,19 +59,19 @@ export class ConfigurationComponent implements OnInit {
   }
 
   public updatePersonDetails() {
-      this.loading = true;
-      this.http.post<any>(ApiUtil.getPath() + 'person/update', this.person, ApiUtil.buildOptions())
-        .pipe(
-          tap((data) => {
-            this.messageService.successMessage('Sucesso', 'Sua conta foi atualizada com sucesso!');
-            this.loading = false;
-          }),
-          catchError((httpResponse) => {
-            this.messageService.errorMessage('Erro', 'Não foi possivel atualizar sua conta. Por favor, tente novamente.');
-            this.loading = false;
-            return of();
-          })
-        ).subscribe();
+    this.loading = true;
+    this.http.post<any>(ApiUtil.getPath() + 'person/update', this.person, ApiUtil.buildOptions())
+      .pipe(
+        tap((data) => {
+          this.messageService.successMessage('Sucesso', 'Sua conta foi atualizada com sucesso!');
+          this.loading = false;
+        }),
+        catchError((httpResponse) => {
+          this.messageService.errorMessage('Erro', 'Não foi possivel atualizar sua conta. Por favor, tente novamente.');
+          this.loading = false;
+          return of();
+        })
+      ).subscribe();
   }
 
   public setImage(event) {
@@ -103,6 +106,16 @@ export class ConfigurationComponent implements OnInit {
       today: 'Hoje',
       clear: 'Apagar'
     };
+  }
+
+  public changePassword() {
+    this.dialogService.open(ChangePasswordComponent, {
+      header: 'Mudar senha'
+    });
+  }
+
+  public goToMyProfessionalHistory(){
+    this.router.navigateByUrl('/user/my-resume');
   }
 
 }

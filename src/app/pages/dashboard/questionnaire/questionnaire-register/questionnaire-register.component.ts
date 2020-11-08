@@ -27,7 +27,7 @@ export class QuestionnaireRegisterComponent implements OnInit {
   private questionnaireId: number;
 
   constructor(private http: HttpClient, private alertMessage: AlertMessageService, private activatedRoute: ActivatedRoute,
-              private route: Router) { }
+    private route: Router) { }
 
   ngOnInit(): void {
     this.questionnaire = new Questionnaire();
@@ -112,18 +112,23 @@ export class QuestionnaireRegisterComponent implements OnInit {
   }
 
   public saveQuestion() {
-    if (this.questionnaire.questionnaireQuestions === undefined) {
-      this.questionnaire.questionnaireQuestions = [];
-    }
-
-    if (this.question.id !== 0) {
-      const index = this.questionnaire.questionnaireQuestions.indexOf(this.question, 0);
-      if (index > -1) {
-        this.questionnaire.questionnaireQuestions.splice(index, 1);
+    if (this.question.answerType === 'E' && (this.question.questionnaireQuestionOption.length === 0
+      || this.question.questionnaireQuestionOption.length < 2)) {
+      this.alertMessage.errorMessage('Erro', 'Para uma questão multipla escolha, é preciso ter pelo menos 2 opções.');
+    } else {
+      if (this.questionnaire.questionnaireQuestions === undefined) {
+        this.questionnaire.questionnaireQuestions = [];
       }
+
+      if (this.question.id !== 0) {
+        const index = this.questionnaire.questionnaireQuestions.indexOf(this.question, 0);
+        if (index > -1) {
+          this.questionnaire.questionnaireQuestions.splice(index, 1);
+        }
+      }
+      this.questionnaire.questionnaireQuestions.push(this.question);
+      this.question = undefined;
     }
-    this.questionnaire.questionnaireQuestions.push(this.question);
-    this.question = undefined;
   }
 
   public addQuestion() {

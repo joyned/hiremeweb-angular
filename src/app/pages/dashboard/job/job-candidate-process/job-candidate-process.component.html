@@ -6,39 +6,46 @@
         <p>Candidato: {{candidate.candidateName}}</p>
     </div>
 
-    <div class="job-candidate-process-steps" *ngFor="let step of jobSelectiveProcess">
-        <p-accordion
-            [ngClass]="step.status === 'P' || step.status === 'G' ? 'hire-me-accordion-red' : 'hire-me-accordion'">
-            <p-accordionTab [header]="step.stepTitle" [selected]="step.status === 'P' || step.status === 'G'">
-                <b>Descrição</b>
-                <p [innerHTML]="step.stepDescription"></p>
+    <div *ngIf="jobSelectiveProcess.length === 0" style="text-align: center; margin: 0 auto; width: 36%;">
+        Para essa vaga não foi escolhido um processo seletivo, você pode entrar em contato com o candidato por email. :)
+    </div>
 
-                <b>Status</b>
-                <div class="step-status">
-                    <p *ngIf="step.status === 'P'">Pendente</p>
-                    <p *ngIf="step.status === 'G'">Aguardando aprovação</p>
-                    <p *ngIf="step.status === 'A'">Aprovado</p>
-                    <p *ngIf="!step.status">Não disponivel</p>
-                </div>
+    <div *ngIf="jobSelectiveProcess.length !== 0">
+        <div class="job-candidate-process-steps" *ngFor="let step of jobSelectiveProcess">
+            <p-accordion
+                [ngClass]="step.status === 'P' || step.status === 'G' ? 'hire-me-accordion-red' : 'hire-me-accordion'">
+                <p-accordionTab [header]="step.stepTitle" [selected]="step.status === 'P' || step.status === 'G'">
+                    <b>Descrição</b>
+                    <p [innerHTML]="step.stepDescription"></p>
 
-                <b>Tipo de avaliação</b>
-                <div class="step-type">
-                    <p *ngIf="step.stepType === 'Q'">Questionário</p>
-                    <p *ngIf="step.stepType === 'E'">Entrevista</p>
-                    <p *ngIf="step.stepType === 'D'">Desafio</p>
-                </div>
+                    <b>Status</b>
+                    <div class="step-status">
+                        <p *ngIf="step.status === 'P'">Pendente</p>
+                        <p *ngIf="step.status === 'G'">Aguardando aprovação</p>
+                        <p *ngIf="step.status === 'A'">Aprovado</p>
+                        <p *ngIf="!step.status">Não disponivel</p>
+                    </div>
 
-                <div class="view-answers-button" *ngIf="step.stepType === 'Q' && step.status === 'G'">
-                    <p-button label="Visualizar respostas" (click)="viewAnswers(step)"></p-button>
-                </div>
+                    <b>Tipo de avaliação</b>
+                    <div class="step-type">
+                        <p *ngIf="step.stepType === 'Q'">Questionário</p>
+                        <p *ngIf="step.stepType === 'E'">Entrevista</p>
+                        <p *ngIf="step.stepType === 'D'">Desafio</p>
+                    </div>
 
-                <div class="approve-button spacer-top"
-                    *ngIf="(step.status === 'P' || step.canApprove) && step.status !== 'A'">
-                    <p-button label="Aprovar" (click)="confirmApprove(step.id)" class="hireme-green-button"></p-button>
-                    <p-button label="Reprovar" (click)="confirmReject(step.id)" class="spacer-left">
-                    </p-button>
-                </div>
-            </p-accordionTab>
-        </p-accordion>
+                    <div class="view-answers-button" *ngIf="step.stepType === 'Q' && step.status === 'G'">
+                        <p-button label="Visualizar respostas" (click)="viewAnswers(step)"></p-button>
+                    </div>
+
+                    <div class="approve-button spacer-top"
+                        *ngIf="(step.status === 'P' || step.canApprove) && step.status !== 'A'">
+                        <p-button label="Aprovar" (click)="confirmApprove(step.id)" class="hireme-green-button">
+                        </p-button>
+                        <p-button label="Reprovar" (click)="confirmReject(step.id)" class="spacer-left">
+                        </p-button>
+                    </div>
+                </p-accordionTab>
+            </p-accordion>
+        </div>
     </div>
 </div>

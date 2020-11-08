@@ -1,4 +1,12 @@
 <div class="selective-process-register-content">
+
+    <div class="selective-process-register-not-editable" *ngIf="!editable">
+        <p>
+            <i class="pi pi-exclamation-triangle"></i>
+            Esse processo seletivo não é editavel pois ele está relacionado com uma vaga. Edita-lo, pode gerar inconsistencias.
+        </p>
+    </div>
+
     <div class="selective-process-register-form">
         <h1 class="selective-process-title">Geral</h1>
         <div class="p-grid">
@@ -8,7 +16,12 @@
                         <span>Titulo do processo: </span>
                     </div>
                     <div class="p-col-12 p-md-8 p-lg-8">
-                        <input pInputText type="text" class="input-width" [(ngModel)]="selectiveProcess.title">
+                        <div *ngIf="!editable">
+                            <input pInputText type="text" class="input-width" [(ngModel)]="selectiveProcess.title" disabled="!editable">
+                        </div>
+                        <div *ngIf="editable">
+                            <input pInputText type="text" class="input-width" [(ngModel)]="selectiveProcess.title">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -39,16 +52,23 @@
                                 <p>Entrevista por video</p>
                             </div>
                             
-                            <div class="selective-process-step-edit-button">
+                            <div class="selective-process-step-order">
+                                <p><b>Ordem</b></p>
+                                <input pInputText type="number" [(ngModel)]="step.order" *ngIf="editable">
+                                <p *ngIf="!editable">{{step.order}}</p>
+                            </div>
+
+                            <div class="selective-process-step-edit-button" *ngIf="editable">
                                 <p-button label="Editar" (click)="editStep(step)"></p-button>
                             </div>
+
 
                         </p-accordionTab>
                     </p-accordion>
                 </div>
             </div>
 
-            <div style="text-align: center;" *ngIf="!step">
+            <div style="text-align: center;" *ngIf="!step && editable">
                 <p-button label="Adicionar nova etapa" (click)="addStep()"></p-button>
             </div>
 
@@ -110,7 +130,7 @@
                     </div>
                 </div>
 
-                <div style="text-align: center; margin-bottom: 3%;">
+                <div style="text-align: center; margin-bottom: 3%;" *ngIf="editable">
                     <p-button label="Adicionar" (click)="saveStep()" class="hireme-confirm-button"></p-button>
                     <span style="margin: 5px;"></span>
                     <p-button label="Cancelar" (click)="step = undefined" class="hireme-reject-button"></p-button>
@@ -119,7 +139,7 @@
 
         </div>
 
-        <div class="save-button" *ngIf="!step">
+        <div class="save-button" *ngIf="!step && editable">
             <p-button label="Salvar processo" (click)="saveSelectiveProcess()" class="hireme-green-button"></p-button>
         </div>
 

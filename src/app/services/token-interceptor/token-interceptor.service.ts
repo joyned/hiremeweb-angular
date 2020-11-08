@@ -29,6 +29,7 @@ export class TokenInterceptorService implements HttpInterceptor {
       req.url.includes('api/job/detail') ||
       req.url.includes('api/job/filter') ||
       req.url.includes('api/register') ||
+      req.url.includes('api/reset-password') ||
       req.url.includes('api/v1/localidades/estados');
   }
 }

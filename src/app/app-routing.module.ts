@@ -18,10 +18,14 @@ import { JobsComponent } from './pages/job/jobs/jobs.component';
 import { MyApplicationsDetailsComponent } from './pages/job/my-applications-details/my-applications-details.component';
 import { MessagesComponent } from './pages/messages/messages.component';
 import { QuestionnaireAnswerComponent } from './pages/questionnaire/questionnaire-answer/questionnaire-answer.component';
+import { CompanyComponent } from './pages/super-user/company/company.component';
 import { PageRegisterComponent } from './pages/system-config/page-register/page-register.component';
 import { UserManualRegisterComponent } from './pages/system-config/user-manual-register/user-manual-register.component';
+import { ChangePasswordComponent } from './pages/user/change-password/change-password.component';
 import { ConfigurationComponent } from './pages/user/configuration/configuration.component';
+import { ForgotPasswordComponent } from './pages/user/forgot-password/forgot-password.component';
 import { LoginComponent } from './pages/user/login/login.component';
+import { MyResumeComponent } from './pages/user/my-resume/my-resume.component';
 import { RegisterComponent } from './pages/user/register/register.component';
 
 
@@ -31,8 +35,10 @@ const routes: Routes = [
   { path: 'jobs', component: JobsComponent },
   { path: 'jobs-detail/:id', component: JobDetailsComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'about-us', component: AboutUsComponent },
+  { path: 'user/my-resume', component: MyResumeComponent, canActivate: [AuthGuard] },
   { path: 'applied-jobs', component: AppliedJobsComponent, canActivate: [AuthGuard] },
   { path: 'config', component: ConfigurationComponent, canActivate: [AuthGuard] },
   { path: 'page-register', component: PageRegisterComponent, canActivate: [AuthGuard] },
@@ -46,7 +52,8 @@ const routes: Routes = [
   { path: 'dashboard/questionnaire/view', component: QuestionnaireViewComponent, canActivate: [AuthGuard] },
   { path: 'dashboard/selective-process', component: SelectiveProcessRegisterComponent, canActivate: [AuthGuard] },
   { path: 'job/my-applcation/details', component: MyApplicationsDetailsComponent, canActivate: [AuthGuard] },
-  { path: 'questionnaire/answer', component: QuestionnaireAnswerComponent }
+  { path: 'questionnaire/answer', component: QuestionnaireAnswerComponent },
+  { path: 'super-user/company', component: CompanyComponent },
 ];
 
 @NgModule({

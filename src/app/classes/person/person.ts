@@ -1,5 +1,6 @@
 import { PersonAddress } from './person-addres';
 import { User } from '../user/user';
+import { ProfessionalHistory } from '../candidate/professional-history';
 
 export class Person {
     id: number;
@@ -14,4 +15,5 @@ export class Person {
     photo: string;
     personAddress: PersonAddress;
     user: User;
+    professionalHistory: ProfessionalHistory[];
 }

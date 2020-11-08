@@ -27,7 +27,7 @@
             <div class="p-col-12 p-md-12 p-lg-12">
                 <input id="password" type="password" [(ngModel)]="user.password" pInputText>
                 <p class="forgot-password"> Esqueceu sua senha?
-                    <a>Clique aqui</a>
+                    <a (click)="forgotPassword()">Clique aqui</a>
                 </p>
             </div>
 

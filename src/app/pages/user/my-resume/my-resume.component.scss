@@ -1,0 +1,38 @@
+.header {
+    text-align: center;
+}
+
+h1 {
+    font-size: 30px;
+}
+
+.p-inputtext {
+    width: 100%;
+    margin-bottom: 10px;
+}
+  
+.p-calendar {
+    width: 100% !important;
+}
+
+.current-job-div {
+    text-align: start;
+    margin-bottom: 2%;
+}
+
+input[type='file'] {
+    display: none
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.select-file-button {
+    background: var(--second-color);
+    color: white;
+    width: 13%;
+    padding: 9px;
+    border-radius: 4px;
+    cursor: pointer;
+}

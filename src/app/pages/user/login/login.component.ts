@@ -10,6 +10,7 @@ import { tap, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { MenuBarComponent } from 'src/app/components/menu-bar/menu-bar.component';
 import { DatasharingService } from 'src/app/services/data-sharing/datasharing.service';
+import { ApiUtil } from 'src/app/classes/utils/APIUtils/api-util';
 
 @Component({
   selector: 'app-login',
@@ -23,15 +24,12 @@ export class LoginComponent implements OnInit {
               private alertMessage: AlertMessageService, private dataSharingService: DatasharingService) { }
 
   public user = new User();
-
   public loading = false;
-  private userAuth = false;
-
   public errorMessage = '';
   public errorMessageVisible = false;
 
   private redirectUrl: string;
-
+  private userAuth = false;
   private response: any;
 
   ngOnInit(): void {
@@ -76,6 +74,10 @@ export class LoginComponent implements OnInit {
 
   goRegister() {
     this.router.navigateByUrl('/register');
+  }
+
+  public forgotPassword(){
+    this.router.navigateByUrl('/forgot-password');
   }
 
 }

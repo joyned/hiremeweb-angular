@@ -5,6 +5,7 @@ export class SelectiveProcessStep {
     stepType: string;
     questionnaireId: number;
     selectiveProcessId: number;
+    order: number;
 
     constructor() {
         this.stepType = 'E';

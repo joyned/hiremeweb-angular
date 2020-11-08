@@ -44,26 +44,30 @@ export class JobRegisterComponent implements OnInit {
   }
 
   public save() {
-    this.loading = true;
-    this.job.jobBenefits = this.jobBenefits;
-
-    this.http.put<any>(ApiUtil.getPath() + 'job/', this.job, ApiUtil.buildOptions())
-      .pipe(
-        tap((data) => {
-          if (this.job.id === 0) {
-            this.alertMessage.successMessage('Sucesso', 'A vaga ' + this.job.title + ' foi cadastrada com sucesso!');
-            this.job = new Job();
-          } else {
-            this.alertMessage.successMessage('Sucesso', 'A vaga ' + this.job.title + ' foi atualizada com sucesso!');
-          }
-          this.loading = false;
-        }),
-        catchError((httpResponse) => {
-          this.alertMessage.errorMessage('Erro', 'Não foi possivel salvar a vaga ' + this.job.title + ' .');
-          this.loading = false;
-          return of();
-        })
-      ).subscribe();
+    if(this.validateFields()){
+      this.loading = true;
+      this.job.jobBenefits = this.jobBenefits;
+  
+      this.http.put<any>(ApiUtil.getPath() + 'job/', this.job, ApiUtil.buildOptions())
+        .pipe(
+          tap((data) => {
+            if (this.job.id === 0) {
+              this.alertMessage.successMessage('Sucesso', 'A vaga ' + this.job.title + ' foi cadastrada com sucesso!');
+              this.job = new Job();
+            } else {
+              this.alertMessage.successMessage('Sucesso', 'A vaga ' + this.job.title + ' foi atualizada com sucesso!');
+            }
+            this.loading = false;
+          }),
+          catchError((httpResponse) => {
+            this.alertMessage.errorMessage('Erro', 'Não foi possivel salvar a vaga ' + this.job.title + ' .');
+            this.loading = false;
+            return of();
+          })
+        ).subscribe();
+    } else {
+      this.alertMessage.errorMessage('Erro', 'Existem campos obrigatórios vazios.');
+    }
   }
 
   public getDetails() {
@@ -160,6 +164,11 @@ export class JobRegisterComponent implements OnInit {
       this.jobBenefits.splice(index, 1);
     }
 
+  }
+
+  public validateFields(){
+    console.log(this.job.selectiveProcessId)
+    return this.job.title && this.job.description && this.job.selectiveProcessId > 0 && this.job.salary > 0;
   }
 
 }

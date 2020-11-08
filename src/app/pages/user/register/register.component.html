@@ -1,16 +1,18 @@
 <div class="content" align="center">
     <div class="errorMessage" align="center" *ngIf="emptyFields != ''">
         <h3>Existem campos obrigatórios vazios:</h3>
-        <pre [innerHtml]= 'emptyFields'></pre>
+        <pre [innerHtml]='emptyFields'></pre>
     </div>
     <p-tabView [(activeIndex)]="tabIndex">
         <p-tabPanel header="Credenciais">
             <app-hire-me-title [text]="'Credenciais'"></app-hire-me-title>
-            <input type="text" pInputText placeholder="Email" [(ngModel)]="person.user.email" name="email"/>
+            <input type="text" pInputText placeholder="Email" [(ngModel)]="person.user.email" name="email" />
             <input type="password" pInputText placeholder="Senha" [(ngModel)]="person.user.password" name="password" />
-            <input type="password" pInputText placeholder="Confirme a senha" [(ngModel)]="person.user.confirmPassword" name="confirmPassword" />
+            <input type="password" pInputText placeholder="Confirme a senha" [(ngModel)]="person.user.confirmPassword"
+                name="confirmPassword" />
             <div>
-                <button pButton label="Proximo" icon="pi pi-arrow-right" styleClass="p-button" (click)="nextTab()"></button>
+                <p-button label="Proximo" icon="pi pi-arrow-right" styleClass="p-button" (click)="nextTab()"
+                    class="hireme-confirm-button"></p-button>
             </div>
         </p-tabPanel>
 
@@ -18,23 +20,32 @@
             <app-hire-me-title [text]="'Dados gerais'"></app-hire-me-title>
             <input type="text" pInputText placeholder="Nome abreviado" [(ngModel)]="person.name" name="name" />
             <input type="text" pInputText placeholder="Nome completo" [(ngModel)]="person.fullname" name="fullname" />
-            <p-calendar placeholder="Data de nascimento" [locale]="pt" dateFormat="dd/mm/yy" [(ngModel)]="person.birthdate" name="birthdate"></p-calendar>
-            <p-inputMask mask="999.999.999-99" placeholder="CPF" [style]="{'width':'55%', 'margin-bottom':'10px'}" [(ngModel)]="person.cpf" name="cpf"></p-inputMask>
-            <p-inputMask mask="99.999.999-9" placeholder="RG" [style]="{'width':'55%', 'margin-bottom':'10px'}" [(ngModel)]="person.rg" name="rg"></p-inputMask>
+            <p-calendar placeholder="Data de nascimento" [locale]="pt" dateFormat="dd/mm/yy"
+                [(ngModel)]="person.birthdate" name="birthdate"></p-calendar>
+            <p-inputMask mask="999.999.999-99" placeholder="CPF" [style]="{'width':'55%', 'margin-bottom':'10px'}"
+                [(ngModel)]="person.cpf" name="cpf"></p-inputMask>
+            <p-inputMask mask="99.999.999-9" placeholder="RG" [style]="{'width':'55%', 'margin-bottom':'10px'}"
+                [(ngModel)]="person.rg" name="rg"></p-inputMask>
             <input type="text" pInputText placeholder="Cidade" [(ngModel)]="person.city" name="city" />
             <input type="text" pInputText placeholder="Estado" [(ngModel)]="person.state" name="state" />
             <input type="text" pInputText placeholder="Pais" [(ngModel)]="person.country" name="country" />
             <div>
-                <input type="text" pInputText placeholder="Endereço" style="width:35%;" [(ngModel)]="person.personAddress.address" name="address" />
-                <p-inputMask mask="99999-999" placeholder="CEP" [style]="{'width':'20%', 'margin-bottom':'10px'}" [(ngModel)]="person.personAddress.cep" name="cep"></p-inputMask>
+                <input type="text" pInputText placeholder="Endereço" style="width:35%;"
+                    [(ngModel)]="person.personAddress.address" name="address" />
+                <p-inputMask mask="99999-999" placeholder="CEP" [style]="{'width':'20%', 'margin-bottom':'10px'}"
+                    [(ngModel)]="person.personAddress.cep" name="cep"></p-inputMask>
             </div>
             <div>
-                <input type="text" pInputText placeholder="Número" style="width:30%;" [(ngModel)]="person.personAddress.number" name="number" />
-                <input type="text" pInputText placeholder="Complemento" style="width:25%;" [(ngModel)]="person.personAddress.complement" name="complement" />
+                <input type="text" pInputText placeholder="Número" style="width:30%;"
+                    [(ngModel)]="person.personAddress.number" name="number" />
+                <input type="text" pInputText placeholder="Complemento" style="width:25%;"
+                    [(ngModel)]="person.personAddress.complement" name="complement" />
             </div>
             <div class="next-prev-button">
-                <button pButton label="Proximo" icon="pi pi-arrow-right" styleClass="p-button" (click)="nextTab()"></button>
-                <button pButton label="Voltar" icon="pi pi-arrow-left" styleClass="p-button" class="p-button-danger" (click)="previousTab()"></button>
+                <p-button class="hireme-confirm-button" label="Proximo" icon="pi pi-arrow-right" styleClass="p-button"
+                    (click)="nextTab()"></p-button>
+                <p-button label="Voltar" icon="pi pi-arrow-left" styleClass="p-button" class="p-button-danger"
+                    (click)="previousTab()"></p-button>
             </div>
         </p-tabPanel>
 
@@ -49,51 +60,96 @@
                 </span>
             </div>
             <div class="next-prev-button">
-                <button pButton label="Proximo" icon="pi pi-arrow-right" styleClass="p-button" (click)="nextTab()"></button>
-                <button pButton label="Voltar" icon="pi pi-arrow-left" styleClass="p-button" class="p-button-danger" (click)="previousTab()"></button>
+                <p-button class="hireme-confirm-button" label="Proximo" icon="pi pi-arrow-right" styleClass="p-button"
+                    (click)="nextTab()"></p-button>
+                <p-button label="Voltar" icon="pi pi-arrow-left" styleClass="p-button" class="p-button-danger"
+                    (click)="previousTab()"></p-button>
             </div>
         </p-tabPanel>
 
         <p-tabPanel header="Histórico profissional">
             <app-hire-me-title [text]="'Histórico profissional'"></app-hire-me-title>
-            <p-table [columns]="cols" [value]="professionalHistories" selectionMode="single" [(selection)]="selectedProfessionalHistory" 
-                (onRowSelect)="onRowSelect($event)" [paginator]="true" [rows]="20">
-                <ng-template pTemplate="header" let-columns>
-                    <tr>
-                        <th *ngFor="let col of columns">
-                            {{col.label}}
-                        </th>
-                    </tr>
-                </ng-template>
-                <ng-template pTemplate="body" let-rowData let-columns="columns">
-                    <tr [pSelectableRow]="rowData">
-                        <td *ngFor="let col of columns">
-                            {{rowData[col.name]}}
-                        </td>
-                    </tr>
-                </ng-template>
-                <ng-template pTemplate="summary" let-rowData>
-                    <div style="text-align:left">
-                        <button type="button" pButton icon="pi pi-plus" label="Adicionar" (click)="openDialog()"></button>
-                    </div>
-                </ng-template>
-            </p-table>
+            <div style="margin-bottom: 15px;">
+                <p-table [value]="professionalHistories" class="hire-me-datatable">
+                    <ng-template pTemplate="body" let-history>
+                        <tr>
+                            <td>
+                                <div class="professional-history-details">
+                                    <h1>{{history.job}}</h1>
+                                    <p>
+                                        <b>Empresa: </b>
+                                        {{history.company}}
+                                    </p>
+                                    <p>
+                                        <b>Descrição: </b>
+                                        {{history.description}}
+                                    </p>
+                                    <p>
+                                        <b>Periodo: </b>
+                                        <span *ngIf="history.currentJob">
+                                            <span>{{history.initialDate}}</span>
+                                            <span> - Atualmente</span>
+                                        </span>
+                                        <span *ngIf="!history.currentJob">
+                                            <span>{{history.initialDate}}</span>
+                                            <span> - </span>
+                                            <span>{{history.finalDate}}</span>
+                                        </span>
+                                    </p>
 
-            <div class="next-prev-button">
-                <button pButton label="Proximo" icon="pi pi-arrow-right" styleClass="p-button" (click)="nextTab()"></button>
-                <button pButton label="Voltar" icon="pi pi-arrow-left" styleClass="p-button" class="p-button-danger" (click)="previousTab()"></button>
+                                    <p-button label="Editar" (click)="editProfessionalHistory(history)"></p-button>
+                                </div>
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+            
+            <div class="professional-history-add-button">
+                <p-button icon="pi pi-plus" label="Adicionar historico profissional" (click)="openDialog()"></p-button>
             </div>
 
-            <p-dialog header="Histórico profissional" [(visible)]="dialogOpened" [focusOnShow]="false" showEffect="fade" [modal]="true" [style]="{width: '50vw'}">
-                <input type="text" pInputText placeholder="Empresa" name="company" [(ngModel)]="professionalHistory.company"/>
-                <input type="text" pInputText placeholder="Cargo" name="job" [(ngModel)]="professionalHistory.job"/>
-                <textarea pInputTextarea [rows]="10" [cols]="30" placeholder="Descrição" name="description" [(ngModel)]="professionalHistory.description"></textarea>
-                <p-footer>
-                    <div class="ui-dialog-buttonpane ui-helper-clearfix">
-                        <button type="button" pButton icon="pi pi-check" (click)="addProfessionalHistory()" label="Salvar"></button>
-                        <button type="button" pButton icon="pi pi-times" class="p-button-danger" (click)="closeDialog()" label="Fechar"></button>
+            <div class="next-prev-button">
+                <p-button label="Proximo" icon="pi pi-arrow-right" styleClass="p-button" (click)="nextTab()"
+                    class="hireme-confirm-button"></p-button>
+                <p-button label="Voltar" icon="pi pi-arrow-left" styleClass="p-button" class="p-button-danger"
+                    (click)="previousTab()"></p-button>
+            </div>
+
+            <p-dialog header="Histórico profissional" [(visible)]="dialogOpened" [focusOnShow]="false" showEffect="fade"
+                [modal]="true" [style]="{width: '50vw'}">
+                <div class="professional-history-dialog">
+                    <input type="text" pInputText placeholder="Empresa" name="company"
+                        [(ngModel)]="professionalHistory.company" />
+                    <input type="text" pInputText placeholder="Cargo" name="job"
+                        [(ngModel)]="professionalHistory.job" />
+                    <p-calendar placeholder="Data de inicio" [locale]="pt" dateFormat="dd/mm/yy"
+                        [(ngModel)]="professionalHistory.initialDate" name="initialDate" [ngClass]="{'width': '100%'}">
+                    </p-calendar>
+                    <div *ngIf="professionalHistory.currentJob">
+                        <p-calendar placeholder="Data de saida" [locale]="pt" dateFormat="dd/mm/yy"
+                            [(ngModel)]="professionalHistory.finalDate" name="finalDate"
+                            disabled="professionalHistory.currentJob"></p-calendar>
                     </div>
-                </p-footer>
+                    <div *ngIf="!professionalHistory.currentJob">
+                        <p-calendar placeholder="Data de saida" [locale]="pt" dateFormat="dd/mm/yy"
+                            [(ngModel)]="professionalHistory.finalDate" name="finalDate"></p-calendar>
+                    </div>
+                    <div class="current-job-div">
+                        <p-inputSwitch [(ngModel)]="professionalHistory.currentJob"></p-inputSwitch>
+                        <span style="margin-left: 10px;">Trabalho aqui atualmente</span>
+                    </div>
+                    <textarea pInputTextarea [rows]="10" [cols]="30" placeholder="Descrição" name="description"
+                        [(ngModel)]="professionalHistory.description"></textarea>
+                    <p-footer>
+                        <div class="ui-dialog-buttonpane ui-helper-clearfix">
+                            <p-button icon="pi pi-check" (click)="addProfessionalHistory()" label="Salvar"
+                                class="hireme-confirm-button" style="margin-right: 5px;"></p-button>
+                            <p-button icon="pi pi-times" class="p-button-danger" (click)="closeDialog()" label="Fechar">
+                            </p-button>
+                        </div>
+                    </p-footer>
+                </div>
             </p-dialog>
         </p-tabPanel>
 
@@ -103,19 +159,14 @@
 
             <div class="terms">
                 <p-checkbox name="groupname"></p-checkbox>
-                <label style="margin-left: 5px;">Você concorda com os <a style="cursor: pointer;">termos e condições?</a></label>
+                <label style="margin-left: 5px;">Você concorda com os <a style="cursor: pointer;">termos e
+                        condições?</a></label>
             </div>
             <div>
-                <button pButton label="Registrar" style="width: 15%;" (click)="register()"></button>
+                <p-button label="Registrar" style="width: 15%;" (click)="register()"></p-button>
             </div>
         </p-tabPanel>
     </p-tabView>
-</div>
 
-<ng-template #loading>
-    <div class="confirm-body" style="padding: 9px;">
-        <div class="text-confirm" style="margin-bottom: 5px;">
-            <app-loading-spinner [showText]="true"></app-loading-spinner>
-        </div>
-    </div>
-</ng-template>
+    <app-overlay-loading *ngIf="loading"></app-overlay-loading>
+</div>
