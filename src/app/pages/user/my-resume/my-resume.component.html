@@ -1,26 +1,27 @@
-<div class="my-resume-content hireme-content">
+<div class="my-resume-content">
 
     <div class="header">
-        <h1>Meu curriculo</h1>
-        <p>Você pode fazer upload do seu curriculo no formato PDF. Aceitamos arquivos até 1MB.</p>
-
-        <div *ngIf="!selectedFile.fileBase64">
-            <input type="file" id='select-file' (change)="onBasicUpload($event)" accept="application/pdf">
-            <label for="select-file" class="select-file-button">
-                Selecionar arquivo
-            </label>
-        </div>
-
-        <div *ngIf="selectedFile.fileBase64">
-            <p>
-                <span style="margin-right: 10px;">{{selectedFile.fileName}}</span>
-                <i class="pi pi-times clickable" (click)="removeFile()"></i>
-            </p>
-            <p-button label="Fazer upload do arquivo"></p-button>
+        <div class="title">
+            <h1>Meu curriculo</h1>
         </div>
     </div>
 
-    <div class="header" style="margin-top: 50px;">
+    <hr class="separator">
+
+    <div class="sub-header" style="margin-top: 50px;">
+        <h1>Minhas habilidades</h1>
+    </div>
+
+    <div class="my-habilities">
+        <p-chips [(ngModel)]="abilities"></p-chips>
+
+        <p>Adicione suas habilidades no campo acima. Quando digitar uma, aperte ENTER para salva-la.</p>
+
+        <p-button label="Salvar habilidades" (click)="saveAbilities()"></p-button>
+    </div>
+
+
+    <div class="sub-header" style="margin-top: 50px;">
         <h1>Meu historico profissional</h1>
     </div>
 

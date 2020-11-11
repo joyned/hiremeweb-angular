@@ -4,7 +4,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { ProfessionalHistory } from 'src/app/classes/candidate/professional-history';
-import { PersonFileMetadata } from 'src/app/classes/user/PersonFileMetadata';
+import { PersonAbility } from 'src/app/classes/person/PersonHability';
 import { ApiUtil } from 'src/app/classes/utils/APIUtils/api-util';
 import { AlertMessageService } from 'src/app/services/alert-message/alert-message.service';
 
@@ -20,21 +20,16 @@ export class MyResumeComponent implements OnInit {
   public professionalHistory: ProfessionalHistory;
   public pt: any;
   public dialogOpened = false;
-  public fileBase64: any;
-  public personFileMetadata: PersonFileMetadata;
-
-  public selectedFile = {
-    fileName: '',
-    fileBase64: undefined
-  }
+  public abilities: string[];
 
   constructor(private http: HttpClient, public datepipe: DatePipe, private alertMessageService: AlertMessageService) { }
 
   ngOnInit(): void {
+    this.getAbilities();
     this.professionalHistory = new ProfessionalHistory();
     this.getProfessionalHistory();
     this.buildCalendar();
-    this.personFileMetadata = new PersonFileMetadata();
+    this.abilities = [];
   }
 
   public getProfessionalHistory() {
@@ -46,6 +41,18 @@ export class MyResumeComponent implements OnInit {
             el.initialDate = new Date(el.initialDate);
             el.finalDate = new Date(el.finalDate);
           });
+        }),
+        catchError((httpErrorReponse) => {
+          return of();
+        })
+      ).subscribe();
+  }
+
+  public getAbilities() {
+    this.http.get<any>(ApiUtil.getPath() + 'person/abilities/get', ApiUtil.buildOptions())
+      .pipe(
+        tap((data: any) => {
+          this.abilities = data.payload;
         }),
         catchError((httpErrorReponse) => {
           return of();
@@ -97,30 +104,16 @@ export class MyResumeComponent implements OnInit {
     return this.datepipe.transform(date, 'dd/MM/yyyy');
   }
 
-  public onBasicUpload(event) {
-    let thisClazz = this
-    let file = event.target.files[0];
-    let reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = function () {
-      thisClazz.selectedFile.fileBase64 = reader.result;
-      thisClazz.selectedFile.fileName = file.name;
-    };
-    reader.onerror = function (error) {
-      thisClazz.alertMessageService.errorMessage('Erro', 'Falha ao fazer upload do arquivo');
-    };
-  }
+  public saveAbilities() {
+    this.http.post<any>(ApiUtil.getPath() + 'person/abilities', this.abilities, ApiUtil.buildOptions())
+      .pipe(
+        tap((data: any) => {
 
-  public removeFile() {
-    this.selectedFile = {
-      fileName: '',
-      fileBase64: undefined
-    };
-  }
-
-  public doUpload() {
-    this.personFileMetadata.file = this.selectedFile.fileBase64;
-    this.http.post<any>(ApiUtil.getPath(), this.personFileMetadata, ApiUtil.buildOptions());
+        }),
+        catchError((httpErrorReponse) => {
+          return of();
+        })
+      ).subscribe();
   }
 
 }

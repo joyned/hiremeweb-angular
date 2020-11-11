@@ -1,4 +1,25 @@
 .header {
+    background-image: url('../../../../assets/img/about_hero.jpg');
+    background-position: center;
+    background-repeat: no-repeat; 
+    min-height: 200px;
+  
+    display: grid;
+    place-items: center;
+  
+  
+    .title {
+      h1 {
+        text-align: center !important;
+        color: #fff;
+        font-size: 50px;
+        font-weight: 700;
+        text-transform: capitalize;
+      }
+    }
+}  
+
+.sub-header {
     text-align: center;
 }
 
@@ -28,11 +49,10 @@ input[type='file'] {
     cursor: pointer;
 }
 
-.select-file-button {
-    background: var(--second-color);
-    color: white;
-    width: 13%;
-    padding: 9px;
-    border-radius: 4px;
-    cursor: pointer;
+.my-habilities {
+    text-align: center;
+
+    .p-chips {
+        width: 75%;
+    }
 }

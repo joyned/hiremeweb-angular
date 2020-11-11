@@ -80,6 +80,7 @@ import { EditorModule } from 'primeng/editor';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { FileUploadModule } from 'primeng/fileupload';
+import { ChipsModule } from 'primeng/chips';
 
 @NgModule({
   declarations: [
@@ -161,7 +162,8 @@ import { FileUploadModule } from 'primeng/fileupload';
     EditorModule,
     RadioButtonModule,
     InputSwitchModule,
-    FileUploadModule
+    FileUploadModule,
+    ChipsModule
   ],
   providers: [AuthGuard, ClientSocket],
   bootstrap: [AppComponent]
