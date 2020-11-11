@@ -167,7 +167,6 @@ export class JobRegisterComponent implements OnInit {
   }
 
   public validateFields(){
-    console.log(this.job.selectiveProcessId)
     return this.job.title && this.job.description && this.job.selectiveProcessId > 0 && this.job.salary > 0;
   }
 

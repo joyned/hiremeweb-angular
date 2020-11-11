@@ -78,7 +78,6 @@ export class JobCandidateProcessComponent implements OnInit {
     this.http.post<any>(ApiUtil.getPath() + 'approval/selective/process/reject/' + processId, {}, ApiUtil.buildOptions())
       .pipe(
         tap((data: any) => {
-          console.log(data);
         }),
         catchError((httpResponse) => {
           return of();

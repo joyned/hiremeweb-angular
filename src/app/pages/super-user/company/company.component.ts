@@ -86,7 +86,6 @@ export class CompanyComponent implements OnInit {
 
   public edit(companyToEdit: Company) {
     this.company = Object.assign({}, companyToEdit);
-    console.log(this.company);
   }
 
 }

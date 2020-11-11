@@ -1,8 +1,7 @@
-<script src="https://kit.fontawesome.com/62fd25cca2.js" crossorigin="anonymous"></script>
 <div class="container">
     <div class="avatar-upload">
         <div class="avatar-edit" *ngIf="editable">
-            <input type="file" id="imageUpload" accept="png, jpg, jpeg">
+            <input type="file" id="imageUpload" accept="png, jpg, jpeg" (change)="changePersonPhoto($event)">
             <label for="imageUpload" class="icon-add">
                 <div class="icon">
                     <i class="pi pi-plus"></i>
@@ -11,7 +10,7 @@
         </div>
         <div class="avatar-preview">
             <img *ngIf="img == undefined" src="../../../assets/img/no-photo.png" class="avatar-preview">
-            <img *ngIf="img != undefined" [src]="img" class="avatar-preview">
+            <img *ngIf="img != undefined" src="{{img}}" class="avatar-preview">
         </div>
     </div>
 </div>

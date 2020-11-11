@@ -37,7 +37,6 @@ export class LoginComponent implements OnInit {
   }
 
   async doLogin() {
-    console.log(this.loading)
     this.loading = true;
     try {
       this.response = await this.loginService.login(this.user);
@@ -55,7 +54,6 @@ export class LoginComponent implements OnInit {
       this.alertMessage.errorMessage('Erro', 'O usuário/senha estão incorretos. Tente novamente.');
     } finally {
       this.loading = false;
-      console.log(this.loading)
     }
   }
 

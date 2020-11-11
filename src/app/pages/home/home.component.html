@@ -100,10 +100,11 @@
                 </div>
                 <div class="p-col-12 p-md-8 p-lg-8">
                     <div class="contact-form">
-                        <input pInputText placeholder="Nome" style="margin-right: 15px; width: 45%;">
-                        <input pInputText placeholder="Telefone" style="width: 45%;">
-                        <p-dropdown [options]="options"></p-dropdown>
-                        <p-button label="Enviar"></p-button>
+                        <input pInputText placeholder="Nome" [(ngModel)]="contact.name" style="margin-right: 15px; width: 45%;">
+                        <input pInputText placeholder="E-mail" [(ngModel)]="contact.email" style="width: 45%;">
+                        <p-dropdown [options]="options" [(ngModel)]="contact.position"></p-dropdown>
+                        <textarea pInputTextarea placeholder="Sua mensagem" [rows]="8" [cols]="71" [(ngModel)]="contact.message"></textarea>
+                        <p-button label="Enviar" (click)="sendContactEmail()"></p-button>
                     </div>
                 </div>
             </div>

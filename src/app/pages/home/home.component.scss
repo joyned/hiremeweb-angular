@@ -182,9 +182,14 @@ p {
             margin-top: 1em;
 
             .p-dropdown {
-                width: 79.5%; 
+                width: 92% !important; 
                 margin-right: 15px;
                 margin-top: 10px;
+            }
+
+            .p-inputtextarea {
+                margin-top: 15px;
+                width: 92% !important;
             }
         }
     }

@@ -97,8 +97,6 @@ export class JobCandidateAnswerComponent implements OnInit {
 
   private saveCorrection() {
     if (this.correctionList.length === this.questionnaire.questionnaireQuestions.length) {
-      console.log(this.correctionList);
-
       this.http.post<any>(ApiUtil.getPath() + 'questionnaire/correction', this.correctionList, ApiUtil.buildOptions())
         .pipe(
           tap((data: any) => {

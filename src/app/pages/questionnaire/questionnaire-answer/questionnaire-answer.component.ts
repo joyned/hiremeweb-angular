@@ -27,7 +27,6 @@ export class QuestionnaireAnswerComponent implements OnInit {
     this.questionnaireId = Number(this.activatedRoute.snapshot.paramMap.get('questionnaireId'));
     this.approvalId = Number(this.activatedRoute.snapshot.paramMap.get('approvalId'));
     this.view = Boolean(this.activatedRoute.snapshot.paramMap.get('view'));
-    console.log(Boolean(this.activatedRoute.snapshot.paramMap.get('view')))
     this.getQuestionnaire();
   }
 
@@ -44,7 +43,6 @@ export class QuestionnaireAnswerComponent implements OnInit {
   }
 
   public answerQuestionnaire() {
-    console.log('teste');
     this.confirmationService.confirm({
       message: 'Deseja realmente enviar o questionário?',
       header: this.questionnaire.title,

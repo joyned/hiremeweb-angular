@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { ApiUtil } from 'src/app/classes/utils/APIUtils/api-util';
 
 @Component({
   selector: 'app-home',
@@ -17,15 +18,22 @@ export class HomeComponent implements OnInit {
   public options: SelectItem[] = [
     {
       label: 'Empresa',
-      value: 'E'
+      value: 'Empresa'
     },
     {
       label: 'Candidato',
-      value: 'C'
+      value: 'Empresa'
     }
   ];
 
-  constructor(private route: Router, private http: HttpClient) {
+  public contact = {
+    email: '',
+    name: '',
+    position: 'Empresa',
+    message: ''
+  }
+
+  constructor(private route: Router, private http: HttpClient, private alertMessageService: AlertMessageService) {
   }
 
   ngOnInit(): void {
@@ -34,6 +42,18 @@ export class HomeComponent implements OnInit {
 
   public openJobs() {
     this.route.navigateByUrl('/jobs');
+  }
+
+  public sendContactEmail(){
+    this.http.post(ApiUtil.getPath() + 'contact', this.contact, {})
+      .pipe(
+        tap((data: any) => {
+          this.alertMessageService.successMessage('Sucesso', 'Seu contato foi enviado para nosso time. Fique de olho no seu email :).');
+        }),
+        catchError((httpErrorResponse) => {
+          return of()
+        })
+      ).subscribe();
   }
 
 }
