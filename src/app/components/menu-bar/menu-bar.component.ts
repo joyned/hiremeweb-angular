@@ -23,7 +23,6 @@ export class MenuBarComponent implements OnInit {
   public userName: string;
   public pages: any[] = [];
   public viewportHeight: number;
-
   public items: MenuItem[] = [];
 
   constructor(private router: Router, private dataSharingService: DatasharingService, private http: HttpClient) {
@@ -134,6 +133,10 @@ export class MenuBarComponent implements OnInit {
 
   private doNothing() {
     // Do nothing
+  }
+
+  public goHome() {
+    this.redirectToPage('/home');
   }
 
 }
