@@ -40,7 +40,6 @@ import { SelectiveProcessListComponent } from './pages/dashboard/selective-proce
 // tslint:disable-next-line:max-line-length
 import { SelectiveProcessRegisterComponent } from './pages/dashboard/selective-process/selective-process-register/selective-process-register.component';
 import { QuestionnaireViewComponent } from './pages/dashboard/questionnaire/questionnaire-view/questionnaire-view.component';
-import { MyApplicationsComponent } from './pages/job/my-applications/my-applications.component';
 import { MyApplicationsDetailsComponent } from './pages/job/my-applications-details/my-applications-details.component';
 import { JobCandidateProcessComponent } from './pages/dashboard/job/job-candidate-process/job-candidate-process.component';
 import { QuestionnaireAnswerComponent } from './pages/questionnaire/questionnaire-answer/questionnaire-answer.component';
@@ -81,6 +80,7 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { FileUploadModule } from 'primeng/fileupload';
 import { ChipsModule } from 'primeng/chips';
+import { JobCandidateProfileComponent } from './pages/dashboard/job/job-candidate-profile/job-candidate-profile.component';
 
 @NgModule({
   declarations: [
@@ -113,7 +113,6 @@ import { ChipsModule } from 'primeng/chips';
     SelectiveProcessListComponent,
     SelectiveProcessRegisterComponent,
     QuestionnaireViewComponent,
-    MyApplicationsComponent,
     MyApplicationsDetailsComponent,
     JobCandidateProcessComponent,
     QuestionnaireAnswerComponent,
@@ -121,7 +120,8 @@ import { ChipsModule } from 'primeng/chips';
     OverlayLoadingComponent,
     ForgotPasswordComponent,
     CompanyComponent,
-    MyResumeComponent
+    MyResumeComponent,
+    JobCandidateProfileComponent,
   ],
   imports: [
     BrowserModule,

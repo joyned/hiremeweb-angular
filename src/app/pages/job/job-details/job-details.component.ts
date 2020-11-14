@@ -106,6 +106,7 @@ export class JobDetailsComponent implements OnInit {
       .pipe(
         tap((data) => {
           this.alertMessage.successMessage('Sucesso', 'Sua aplicação para a vaga ' + this.job.title + ' foi um sucesso!');
+          this.canApply = false;
         }),
         catchError((httpResponse) => {
           this.alertMessage.errorMessage('Erro', 'Sua aplicação para a vaga '

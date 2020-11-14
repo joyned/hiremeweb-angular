@@ -44,16 +44,23 @@ export class HomeComponent implements OnInit {
     this.route.navigateByUrl('/jobs');
   }
 
-  public sendContactEmail(){
-    this.http.post(ApiUtil.getPath() + 'contact', this.contact, {})
-      .pipe(
-        tap((data: any) => {
-          this.alertMessageService.successMessage('Sucesso', 'Seu contato foi enviado para nosso time. Fique de olho no seu email :).');
-        }),
-        catchError((httpErrorResponse) => {
-          return of()
-        })
-      ).subscribe();
+  public sendContactEmail() {
+    if (this.validateFields()) {
+      this.http.post(ApiUtil.getPath() + 'contact', this.contact, {})
+        .pipe(
+          tap((data: any) => {
+            this.alertMessageService.successMessage('Sucesso', 'Seu contato foi enviado para nosso time. Fique de olho no seu email :).');
+          }),
+          catchError((httpErrorResponse) => {
+            return of()
+          })
+        ).subscribe();
+    } else {
+      this.alertMessageService.errorMessage('Erro', 'É necessário preencher o nome, email e mensagem para enviar um contato');
+    }
   }
 
+  private validateFields() {
+    return this.contact.name && this.contact.email && this.contact.message
+  }
 }

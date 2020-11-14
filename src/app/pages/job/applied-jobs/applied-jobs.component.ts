@@ -60,7 +60,7 @@ export class AppliedJobsComponent implements OnInit {
 
   public showCancelConfirmDialog(job: Job) {
     this.confirmationService.confirm({
-      message: 'Tem certeza de deseja <b>cancelar</b> a aplicação para <b>' + job.title + '</b>',
+      message: 'Tem certeza de deseja <b>cancelar</b> a aplicação para <b>' + job.title + '?</b>',
       header: 'Confirmação',
       acceptLabel: 'Sim',
       rejectLabel: 'Não',

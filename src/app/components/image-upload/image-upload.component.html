@@ -9,8 +9,8 @@
             </label>
         </div>
         <div class="avatar-preview">
-            <img *ngIf="img == undefined" src="../../../assets/img/no-photo.png" class="avatar-preview">
-            <img *ngIf="img != undefined" src="{{img}}" class="avatar-preview">
+            <img *ngIf="checkNull()" src="../../../assets/img/no-photo.png" class="avatar-preview">
+            <img *ngIf="!checkNull()" src="{{img}}" class="avatar-preview">
         </div>
     </div>
 </div>

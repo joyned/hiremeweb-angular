@@ -14,6 +14,7 @@
                 <div class="p-grid">
                     <div class="p-col-12 p-md-4 p-lg-4 span-alignment">
                         <span>Titulo do processo: </span>
+                        <span class="required">*</span>
                     </div>
                     <div class="p-col-12 p-md-8 p-lg-8">
                         <div *ngIf="!editable">
@@ -78,6 +79,7 @@
                         <div class="p-grid">
                             <div class="p-col-12 p-md-4 p-lg-4 span-alignment">
                                 <span>Titulo da etapa: </span>
+                                <span class="required">*</span>
                             </div>
                             <div class="p-col-12 p-md-8 p-lg-8">
                                 <input pInputText type="text" class="input-width" [(ngModel)]="step.stepTitle">
@@ -89,6 +91,7 @@
                         <div class="p-grid">
                             <div class="p-col-12 p-md-4 p-lg-4 span-alignment">
                                 <span>Descrição da etapa: </span>
+                                <span class="required">*</span>
                             </div>
                             <div class="p-col-12 p-md-8 p-lg-8">
                                 <p-editor [style]="{'height':'320px'}" [(ngModel)]="step.stepDescription"></p-editor>
@@ -100,6 +103,7 @@
                         <div class="p-grid">
                             <div class="p-col-12 p-md-4 p-lg-4 span-alignment">
                                 <span>Tipo da etapa: </span>
+                                <span class="required">*</span>
                             </div>
                             <div class="p-col-12 p-md-8 p-lg-8">
                                 <p-dropdown [options]="stepTypes" [(ngModel)]="step.stepType" (onChange)="changeStepType($event)"></p-dropdown>
@@ -111,20 +115,10 @@
                         <div class="p-grid">
                             <div class="p-col-12 p-md-4 p-lg-4 span-alignment">
                                 <span>Questionário: </span>
+                                <span class="required">*</span>
                             </div>
                             <div class="p-col-12 p-md-8 p-lg-8">
                                 <p-dropdown [options]="questionnaires" [(ngModel)]="step.questionnaireId"></p-dropdown>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="p-col-12 p-md-12 p-lg-12" *ngIf="step.stepType === 'D'">
-                        <div class="p-grid">
-                            <div class="p-col-12 p-md-4 p-lg-4 span-alignment">
-                                <span>Desafio: </span>
-                            </div>
-                            <div class="p-col-12 p-md-8 p-lg-8">
-                                <p-dropdown></p-dropdown>
                             </div>
                         </div>
                     </div>

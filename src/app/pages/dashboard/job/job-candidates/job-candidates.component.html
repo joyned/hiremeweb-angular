@@ -6,6 +6,7 @@
 
     <div class="job-candidate-sub-header align-center spacer-bottom">
         <p>Aqui estão os candidatos que aplicaram para essa vaga.</p>
+        <p>Ao clicar no nome do candidato, é possivel visualizar seu perfil.</p>
     </div>
 
     <div class="job-candidates list">
@@ -22,7 +23,7 @@
                 <tr>
                     <td>
                         <span class="p-column-title">Candidato</span>
-                        {{candidate.candidateName}}
+                        <span class="clickable" (click)="openCandidateProfile(candidate.candidateId)">{{candidate.candidateName}}</span>
                     </td>
                     <td>
                         <span class="p-column-title">Data aplicação</span>

@@ -52,4 +52,8 @@ export class JobCandidatesComponent implements OnInit {
     this.router.navigate(['dashboard/job/candidate/process', { candidate: JSON.stringify(data) }]);
   }
 
+  public openCandidateProfile(personId: number) {
+    this.router.navigate(['dashboard/job/candidate/profile', {id: personId}])
+  }
+
 }

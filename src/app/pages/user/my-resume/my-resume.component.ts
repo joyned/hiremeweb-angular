@@ -1,10 +1,11 @@
 import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { ConfirmationService } from 'primeng/api';
+import { ConfirmDialog } from 'primeng/confirmdialog';
 import { of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { ProfessionalHistory } from 'src/app/classes/candidate/professional-history';
-import { PersonAbility } from 'src/app/classes/person/PersonHability';
 import { ApiUtil } from 'src/app/classes/utils/APIUtils/api-util';
 import { AlertMessageService } from 'src/app/services/alert-message/alert-message.service';
 
@@ -22,7 +23,8 @@ export class MyResumeComponent implements OnInit {
   public dialogOpened = false;
   public abilities: string[];
 
-  constructor(private http: HttpClient, public datepipe: DatePipe, private alertMessageService: AlertMessageService) { }
+  constructor(private http: HttpClient, public datepipe: DatePipe, private alertMessageService: AlertMessageService,
+    private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
     this.getAbilities();
@@ -33,7 +35,7 @@ export class MyResumeComponent implements OnInit {
   }
 
   public getProfessionalHistory() {
-    this.http.get<any>(ApiUtil.getPath() + 'person/professional/history', ApiUtil.buildOptions())
+    this.http.get<any>(ApiUtil.getPath() + 'person/professional/history/get', ApiUtil.buildOptions())
       .pipe(
         tap((data: any) => {
           this.professionalHistories = data.payload;
@@ -60,6 +62,11 @@ export class MyResumeComponent implements OnInit {
       ).subscribe();
   }
 
+  public addProfessionalHistory() {
+    this.professionalHistory = new ProfessionalHistory();
+    this.dialogOpened = true;
+  }
+
   public editProfessionalHistory(professionalHistory: ProfessionalHistory) {
     this.professionalHistory = Object.assign({}, professionalHistory);
     this.dialogOpened = true;
@@ -71,12 +78,12 @@ export class MyResumeComponent implements OnInit {
   }
 
   public saveProfessionalHistory() {
-    this.http.post<any>(ApiUtil.getPath() + 'person/professional/history/update', this.professionalHistory, ApiUtil.buildOptions())
+    this.http.put<any>(ApiUtil.getPath() + 'person/professional/history', this.professionalHistory, ApiUtil.buildOptions())
       .pipe(
         tap((data: any) => {
           this.getProfessionalHistory();
           this.dialogOpened = false;
-          this.alertMessageService.successMessage('Sucesso', 'Historico profissional foi atualizado com sucesso');
+          this.alertMessageService.successMessage('Sucesso', 'O seu historico profissional foi salvo com sucesso');
         }),
         catchError((httpErrorReponse) => {
           this.dialogOpened = false;
@@ -108,9 +115,34 @@ export class MyResumeComponent implements OnInit {
     this.http.post<any>(ApiUtil.getPath() + 'person/abilities', this.abilities, ApiUtil.buildOptions())
       .pipe(
         tap((data: any) => {
-
+          this.alertMessageService.successMessage('Sucesso', 'Suas habilidades foram salvas com sucesso.');
         }),
         catchError((httpErrorReponse) => {
+          this.alertMessageService.errorMessage('Erro', 'Ocorreu um erro ao salvar. Tente novamente.');
+          return of();
+        })
+      ).subscribe();
+  }
+
+  public showDeleteDialog(professionalHistory: ProfessionalHistory) {
+    this.confirmationService.confirm({
+      header: 'Excluir histórico',
+      message: 'Tem certeza que deseja excluir esse histórico? Não pode ser revertido.',
+      accept: () => this.deleteProfessionalHistory(professionalHistory.id),
+      acceptLabel: 'Sim',
+      rejectLabel: 'Não'
+    })
+  }
+
+  private deleteProfessionalHistory(professionalHistoryId: number) {
+    this.http.delete<any>(ApiUtil.getPath() + 'person/professional/history/delete/' + professionalHistoryId, ApiUtil.buildOptions())
+      .pipe(
+        tap((data: any) =>{
+          this.alertMessageService.successMessage('Sucesso', 'A exclusão foi feita com sucesso');
+          this.getProfessionalHistory();
+        }),
+        catchError((httpErrorReponse) => {
+          this.alertMessageService.errorMessage('Erro', 'Ocorreu um erro ao excluir o histórico. Tente novamente.');
           return of();
         })
       ).subscribe();

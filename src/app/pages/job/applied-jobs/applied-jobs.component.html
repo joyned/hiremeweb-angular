@@ -17,7 +17,7 @@
                     <p-footer>
                         <p-button label="Minha candidatura" class="hireme-green-button" (click)="myApplication(job.id)"></p-button>
                         <span class="spacer-left"></span>
-                        <p-button label="Desistir"></p-button>
+                        <p-button label="Desistir" (click)="showCancelConfirmDialog(job)"></p-button>
                     </p-footer>
                 </p-card>
             </div>

@@ -14,9 +14,9 @@ export class ImageUploadComponent implements OnInit {
   constructor(private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
-    if(this.img !== undefined){
+    if (this.img !== undefined) {
       this.img = 'data:image/jpg;base64,' + (this.sanitizer.bypassSecurityTrustResourceUrl(this.img) as any)
-              .changingThisBreaksApplicationSecurity;
+        .changingThisBreaksApplicationSecurity;
     }
   }
 
@@ -26,6 +26,10 @@ export class ImageUploadComponent implements OnInit {
       reader.onload = e => this.img = reader.result;
       reader.readAsDataURL(event.target.files[0]);
     }
+  }
+
+  public checkNull(){
+    return this.img === 'data:image/jpg;base64,null';
   }
 
 }

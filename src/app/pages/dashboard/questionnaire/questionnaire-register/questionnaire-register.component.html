@@ -15,6 +15,7 @@
                 <div class="p-grid">
                     <div class="p-col-12 p-md-4 p-lg-4 span-alignment">
                         <span>Titulo do questionário: </span>
+                        <span class="required">*</span>
                     </div>
                     <div class="p-col-12 p-md-8 p-lg-8">
                         <div *ngIf="!editable">
@@ -84,6 +85,7 @@
                 <div class="p-grid">
                     <div class="p-col-12 p-md-4 p-lg-4 span-alignment">
                         <span>Questão: </span>
+                        <span class="required">*</span>
                     </div>
                     <div class="p-col-12 p-md-8 p-lg-8">
                         <p-editor [style]="{'height':'320px'}" [(ngModel)]="question.questionTitle"></p-editor>
@@ -102,6 +104,7 @@
                 <div class="p-grid">
                     <div class="p-col-12 p-md-4 p-lg-4 span-alignment">
                         <span>Tipo de resposta: </span>
+                        <span class="required">*</span>
                     </div>
                     <div class="p-col-12 p-md-8 p-lg-8">
                         <p-dropdown [options]="answerTypes" [(ngModel)]="question.answerType"></p-dropdown>
@@ -111,6 +114,7 @@
                 <div class="p-grid" *ngIf="question.answerType == 'E'">
                     <div class="p-col-12 p-md-12 p-lg-4 span-alignment">
                         <span>Opção: </span>
+                        <span class="required">*</span>
                     </div>
                     <div class="p-col-12 p-md-12 p-lg-8">
                         <div class="questionnaire-options" *ngFor="let option of question.questionnaireQuestionOption">

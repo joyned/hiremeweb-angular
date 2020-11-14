@@ -46,11 +46,11 @@ export class SelectiveProcessRegisterComponent implements OnInit {
         value: 'Q'
       },
       {
-        label: 'Entrevista por video',
+        label: 'Entrevista',
         value: 'E'
       },
       {
-        label: 'Desafio',
+        label: 'Fora da plataforma',
         value: 'D'
       }
     ];
@@ -81,7 +81,11 @@ export class SelectiveProcessRegisterComponent implements OnInit {
   }
 
   public saveSelectiveProcess() {
-    if (!this.checkIfThereIsNotDuplicatedSteps()) {
+    if (!this.selectiveProcess.title) {
+      this.alertMessageService.errorMessage('Erro', 'O titulo do processo seletivo não pode ser vazio.');
+    } else if (!this.selectiveProcess.steps) {
+      this.alertMessageService.errorMessage('Erro', 'É necessário ter pelo menos uma etapa para salvar.');
+    } else if (!this.checkIfThereIsNotDuplicatedSteps()) {
       this.loading = true;
       this.http.put<any>(ApiUtil.getPath() + 'selective/process', this.selectiveProcess, ApiUtil.buildOptions())
         .pipe(
@@ -133,25 +137,37 @@ export class SelectiveProcessRegisterComponent implements OnInit {
   }
 
   public saveStep() {
-    if (!this.selectiveProcess.steps) {
-      this.selectiveProcess.steps = [];
-    }
-
-    if (this.selectiveProcess.id !== 0) {
-      const index = this.selectiveProcess.steps.indexOf(this.step, 0);
-      if (index > -1) {
-        this.selectiveProcess.steps.splice(index, 1);
+    if (!this.step.stepTitle) {
+      this.alertMessageService.errorMessage('Erro', 'É preciso adicionar um titulo da etapa do processo.');
+    } else if (!this.step.stepDescription) {
+      this.alertMessageService.errorMessage('Erro', 'É necessário adicionar uma descrição na etapa.');
+    } else if(this.step.stepType === 'Q' && !this.step.questionnaireId){
+      this.alertMessageService.errorMessage('Erro', 'É necessário selecionar um questionário.');
+    } else {
+      if (!this.selectiveProcess.steps) {
+        this.selectiveProcess.steps = [];
       }
-    }
 
-    this.selectiveProcess.steps.push(this.step);
-    this.step = undefined;
+      if (this.selectiveProcess.id !== 0) {
+        const index = this.selectiveProcess.steps.indexOf(this.step, 0);
+        if (index > -1) {
+          this.selectiveProcess.steps.splice(index, 1);
+        }
+      }
+
+      this.selectiveProcess.steps.push(this.step);
+      this.step = undefined;
+    }
   }
 
   public addStep() {
     this.step = new SelectiveProcessStep();
-    let max = Math.max.apply(Math, this.selectiveProcess.steps.map(function (el) { return el.order; }));
-    this.step.order = max + 1;
+    if (this.selectiveProcess.steps) {
+      let max = Math.max.apply(Math, this.selectiveProcess.steps.map(function (el) { return el.order; }));
+      this.step.order = max + 1;
+    } else {
+      this.step.order = 1;
+    }
   }
 
 

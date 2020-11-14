@@ -78,24 +78,30 @@ export class QuestionnaireRegisterComponent implements OnInit {
   }
 
   public saveQuestionnaire() {
-    this.loading = true;
-    this.http.put<any>(ApiUtil.getPath() + 'questionnaire', this.questionnaire, ApiUtil.buildOptions())
-      .pipe(
-        tap((data: any) => {
-          if (this.questionnaire.id > 0) {
-            this.alertMessage.successMessage('Sucesso.', 'Questionário atualizado com sucesso.');
-          } else {
-            this.alertMessage.successMessage('Sucesso.', 'Questionário criado com sucesso.');
-          }
-          this.questionnaire.id = Number(data.payload.questionnaire);
-          this.loading = false;
-        }),
-        catchError((httpErrorResponse) => {
-          this.alertMessage.errorMessage('Erro.', 'Falha ao salvar o questionário. Por favor, tente novamente.');
-          this.loading = false;
-          return of();
-        })
-      ).subscribe();
+    if (!this.questionnaire.title) {
+      this.alertMessage.errorMessage('Erro', 'O titulo do questionário não pode ser vazio.');
+    } else if (this.questionnaire.questionnaireQuestions.length < 1) {
+      this.alertMessage.errorMessage('Erro', 'É preciso ter pelo menos uma questão no questionário.');
+    } else {
+      this.loading = true;
+      this.http.put<any>(ApiUtil.getPath() + 'questionnaire', this.questionnaire, ApiUtil.buildOptions())
+        .pipe(
+          tap((data: any) => {
+            if (this.questionnaire.id > 0) {
+              this.alertMessage.successMessage('Sucesso.', 'Questionário atualizado com sucesso.');
+            } else {
+              this.alertMessage.successMessage('Sucesso.', 'Questionário criado com sucesso.');
+            }
+            this.questionnaire.id = Number(data.payload.questionnaire);
+            this.loading = false;
+          }),
+          catchError((httpErrorResponse) => {
+            this.alertMessage.errorMessage('Erro.', 'Falha ao salvar o questionário. Por favor, tente novamente.');
+            this.loading = false;
+            return of();
+          })
+        ).subscribe();
+    }
   }
 
   public addOption() {
@@ -115,6 +121,8 @@ export class QuestionnaireRegisterComponent implements OnInit {
     if (this.question.answerType === 'E' && (this.question.questionnaireQuestionOption.length === 0
       || this.question.questionnaireQuestionOption.length < 2)) {
       this.alertMessage.errorMessage('Erro', 'Para uma questão multipla escolha, é preciso ter pelo menos 2 opções.');
+    } else if (!this.question.questionTitle) {
+      this.alertMessage.errorMessage('Erro', 'O texto da questão não pode ser vazio.');
     } else {
       if (this.questionnaire.questionnaireQuestions === undefined) {
         this.questionnaire.questionnaireQuestions = [];
@@ -138,4 +146,5 @@ export class QuestionnaireRegisterComponent implements OnInit {
   public editQuestion(question: QuestionnaireQuestion) {
     this.question = question;
   }
+
 }
