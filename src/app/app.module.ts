@@ -16,7 +16,7 @@ import { MenuBarComponent } from './components/menu-bar/menu-bar.component';
 import { AuthGuard } from './guard/auth-guard.guard';
 import { AppliedJobsComponent } from './pages/job/applied-jobs/applied-jobs.component';
 import { HomeComponent } from './pages/home/home.component';
-import { MessagesComponent } from './pages/messages/messages.component';
+import { MessagesComponent } from './pages/dashboard/job/messages/messages.component';
 import { PageRegisterComponent } from './pages/system-config/page-register/page-register.component';
 import { ClientSocket } from './services/socket/client.socket';
 import { Interceptor } from './services/token-interceptor/token-interceptor.service';
@@ -48,6 +48,7 @@ import { OverlayLoadingComponent } from './components/overlay-loading/overlay-lo
 import { ForgotPasswordComponent } from './pages/user/forgot-password/forgot-password.component';
 import { CompanyComponent } from './pages/super-user/company/company.component';
 import { MyResumeComponent } from './pages/user/my-resume/my-resume.component';
+import { JobCandidateProfileComponent } from './pages/dashboard/job/job-candidate-profile/job-candidate-profile.component';
 
 /* PrimeNG Modules */
 import { ButtonModule } from 'primeng/button';
@@ -80,7 +81,8 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { FileUploadModule } from 'primeng/fileupload';
 import { ChipsModule } from 'primeng/chips';
-import { JobCandidateProfileComponent } from './pages/dashboard/job/job-candidate-profile/job-candidate-profile.component';
+import { MessageListComponent } from './pages/candidate/message-list/message-list.component';
+import { MessageComponent } from './pages/candidate/message/message.component';
 
 @NgModule({
   declarations: [
@@ -122,6 +124,8 @@ import { JobCandidateProfileComponent } from './pages/dashboard/job/job-candidat
     CompanyComponent,
     MyResumeComponent,
     JobCandidateProfileComponent,
+    MessageListComponent,
+    MessageComponent,
   ],
   imports: [
     BrowserModule,

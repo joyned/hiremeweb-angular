@@ -1,0 +1,38 @@
+.messages-content {
+    margin-top: 15px;
+
+    .p-card {
+        width: 95% !important;
+        margin: 0 auto !important;
+    }
+}
+
+.messages-header {
+    text-align: center;
+}
+
+.messages-content {
+    margin-top: 15px;
+}
+
+
+.messages-input-text {
+    .p-inputtext {
+        width: 100%;
+        height: 100px;
+    }
+}
+
+.messages-body-content {
+    .message {
+        margin-bottom: 20px;
+        padding: 15px;
+    }
+
+    .mine {
+        background-color: lightgray;
+        margin-bottom: 20px;
+        text-align: end;
+    }
+}
+

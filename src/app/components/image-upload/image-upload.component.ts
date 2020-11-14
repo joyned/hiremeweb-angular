@@ -29,7 +29,7 @@ export class ImageUploadComponent implements OnInit {
   }
 
   public checkNull(){
-    return this.img === 'data:image/jpg;base64,null';
+    return this.img === 'data:image/jpg;base64,null' || this.img === undefined;
   }
 
 }

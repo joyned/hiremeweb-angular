@@ -20,6 +20,87 @@
         <p-button label="Salvar habilidades" (click)="saveAbilities()"></p-button>
     </div>
 
+    <div class="sub-header" style="margin-top: 50px;">
+        <h1>Educação</h1>
+    </div>
+
+    <div class="person-education">
+        <p-table [value]="personEducations" class="hire-me-datatable" *ngIf="personEducations">
+            <ng-template pTemplate="body" let-education>
+                <tr>
+                    <td>
+                        <div class="professional-history-details">
+                            <h1>{{education.institution}}</h1>
+                            <p>
+                                <b>Curso: </b>
+                                {{education.course}}
+                            </p>
+                            <p>
+                                <b>Periodo: </b>
+                                <span *ngIf="education.currentStudy">
+                                    <span>{{convertDate(education.initialDate)}}</span>
+                                    <span> - Atualmente</span>
+                                </span>
+                                <span *ngIf="!education.currentStudy">
+                                    <span>{{convertDate(education.initialDate)}}</span>
+                                    <span> até </span>
+                                    <span>{{convertDate(education.finalDate)}}</span>
+                                </span>
+                            </p>
+                        </div>
+
+                        <p-button label="Editar" (click)="editEducation(education)" class="hireme-green-button">
+                        </p-button>
+                        <p-button label="Excluir" (click)="showEducationDeleteDialog(education)" class="spacer-left">
+                        </p-button>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+
+        <div class="add-professional-history-button" style="text-align: center;" class="spacer-top">
+            <p-button label="Adicionar educação" (click)="addEducation()"></p-button>
+        </div>
+
+
+        <p-dialog header="Educação" [(visible)]="personEducationDialog" [focusOnShow]="false"
+            showEffect="fade" [modal]="true" [style]="{width: '50vw'}">
+            <div class="professional-history-dialog">
+                <span>Instituição:</span>
+                <input type="text" pInputText placeholder="Instituição" name="institution"
+                    [(ngModel)]="personEducation.institution" />
+                <span>Curso:</span>
+                <input type="text" pInputText placeholder="Curso" name="course" [(ngModel)]="personEducation.course" />
+                <span>Data de inicio:</span>
+                <p-calendar placeholder="Data de inicio" [locale]="pt" dateFormat="dd/mm/yy"
+                    [(ngModel)]="personEducation.initialDate" name="initialDate" [ngClass]="{'width': '100%'}">
+                </p-calendar>
+                <div *ngIf="personEducation.currentStudy">
+                    <span>Data de saida:</span>
+                    <p-calendar placeholder="Data de saida" [locale]="pt" dateFormat="dd/mm/yy"
+                        [(ngModel)]="personEducation.finalDate" name="finalDate"
+                        disabled="personEducation.currentStudy"></p-calendar>
+                </div>
+                <div *ngIf="!personEducation.currentStudy">
+                    <span>Data de saida:</span>
+                    <p-calendar placeholder="Data de saida" [locale]="pt" dateFormat="dd/mm/yy"
+                        [(ngModel)]="personEducation.finalDate" name="finalDate"></p-calendar>
+                </div>
+                <div class="current-job-div">
+                    <p-inputSwitch [(ngModel)]="personEducation.currentStudy"></p-inputSwitch>
+                    <span style="margin-left: 10px;">Estuda aqui atualmente</span>
+                </div>
+                <p-footer>
+                    <div class="ui-dialog-buttonpane ui-helper-clearfix">
+                        <p-button icon="pi pi-check" (click)="saveEducation()" label="Salvar"
+                            class="hireme-confirm-button" style="margin-right: 5px;"></p-button>
+                        <p-button icon="pi pi-times" class="p-button-danger" (click)="closeEducationDialog()" label="Fechar">
+                        </p-button>
+                    </div>
+                </p-footer>
+            </div>
+        </p-dialog>
+    </div>
 
     <div class="sub-header" style="margin-top: 50px;">
         <h1>Meu historico profissional</h1>
@@ -52,9 +133,12 @@
                                     <span>{{convertDate(history.finalDate)}}</span>
                                 </span>
                             </p>
-    
-                            <p-button label="Editar" (click)="editProfessionalHistory(history)" class="hireme-green-button"></p-button>
-                            <p-button label="Excluir" class="spacer-left" (click)="showDeleteDialog(history)"></p-button>
+
+                            <p-button label="Editar" (click)="editProfessionalHistory(history)"
+                                class="hireme-green-button"></p-button>
+                            <p-button label="Excluir" class="spacer-left"
+                                (click)="showProfessionalHistoryDeleteDialog(history)">
+                            </p-button>
                         </div>
                     </td>
                 </tr>
@@ -65,47 +149,47 @@
             <p-button label="Adicionar histórico profissional" (click)="addProfessionalHistory()"></p-button>
         </div>
 
-        <p-dialog header="Histórico profissional" [(visible)]="dialogOpened" [focusOnShow]="false" showEffect="fade"
-                [modal]="true" [style]="{width: '50vw'}">
-                <div class="professional-history-dialog">
-                    <span>Empresa:</span>
-                    <input type="text" pInputText placeholder="Empresa" name="company"
-                        [(ngModel)]="professionalHistory.company" />
-                    <span>Cargo:</span>
-                    <input type="text" pInputText placeholder="Cargo" name="job"
-                        [(ngModel)]="professionalHistory.job" />
-                    <span>Data de inicio:</span>
-                    <p-calendar placeholder="Data de inicio" [locale]="pt" dateFormat="dd/mm/yy"
-                        [(ngModel)]="professionalHistory.initialDate" name="initialDate" [ngClass]="{'width': '100%'}">
-                    </p-calendar>
-                    <div *ngIf="professionalHistory.currentJob">
-                        <span>Data de saida:</span>
-                        <p-calendar placeholder="Data de saida" [locale]="pt" dateFormat="dd/mm/yy"
-                            [(ngModel)]="professionalHistory.finalDate" name="finalDate"
-                            disabled="professionalHistory.currentJob"></p-calendar>
-                    </div>
-                    <div *ngIf="!professionalHistory.currentJob">
-                        <span>Data de saida:</span>
-                        <p-calendar placeholder="Data de saida" [locale]="pt" dateFormat="dd/mm/yy"
-                            [(ngModel)]="professionalHistory.finalDate" name="finalDate"></p-calendar>
-                    </div>
-                    <div class="current-job-div">
-                        <p-inputSwitch [(ngModel)]="professionalHistory.currentJob"></p-inputSwitch>
-                        <span style="margin-left: 10px;">Trabalho aqui atualmente</span>
-                    </div>
-                    <span>Descrição:</span>
-                    <textarea pInputTextarea [rows]="10" [cols]="30" placeholder="Descrição" name="description"
-                        [(ngModel)]="professionalHistory.description"></textarea>
-                    <p-footer>
-                        <div class="ui-dialog-buttonpane ui-helper-clearfix">
-                            <p-button icon="pi pi-check" (click)="saveProfessionalHistory()" label="Salvar"
-                                class="hireme-confirm-button" style="margin-right: 5px;"></p-button>
-                            <p-button icon="pi pi-times" class="p-button-danger" (click)="closeDialog()" label="Fechar">
-                            </p-button>
-                        </div>
-                    </p-footer>
+        <p-dialog header="Histórico profissional" [(visible)]="professionalHistoryDialog" [focusOnShow]="false"
+            showEffect="fade" [modal]="true" [style]="{width: '50vw'}">
+            <div class="professional-history-dialog">
+                <span>Empresa:</span>
+                <input type="text" pInputText placeholder="Empresa" name="company"
+                    [(ngModel)]="professionalHistory.company" />
+                <span>Cargo:</span>
+                <input type="text" pInputText placeholder="Cargo" name="job" [(ngModel)]="professionalHistory.job" />
+                <span>Data de inicio:</span>
+                <p-calendar placeholder="Data de inicio" [locale]="pt" dateFormat="dd/mm/yy"
+                    [(ngModel)]="professionalHistory.initialDate" name="initialDate" [ngClass]="{'width': '100%'}">
+                </p-calendar>
+                <div *ngIf="professionalHistory.currentJob">
+                    <span>Data de saida:</span>
+                    <p-calendar placeholder="Data de saida" [locale]="pt" dateFormat="dd/mm/yy"
+                        [(ngModel)]="professionalHistory.finalDate" name="finalDate"
+                        disabled="professionalHistory.currentJob"></p-calendar>
                 </div>
-            </p-dialog>
+                <div *ngIf="!professionalHistory.currentJob">
+                    <span>Data de saida:</span>
+                    <p-calendar placeholder="Data de saida" [locale]="pt" dateFormat="dd/mm/yy"
+                        [(ngModel)]="professionalHistory.finalDate" name="finalDate"></p-calendar>
+                </div>
+                <div class="current-job-div">
+                    <p-inputSwitch [(ngModel)]="professionalHistory.currentJob"></p-inputSwitch>
+                    <span style="margin-left: 10px;">Trabalho aqui atualmente</span>
+                </div>
+                <span>Descrição:</span>
+                <textarea pInputTextarea [rows]="10" [cols]="30" placeholder="Descrição" name="description"
+                    [(ngModel)]="professionalHistory.description"></textarea>
+                <p-footer>
+                    <div class="ui-dialog-buttonpane ui-helper-clearfix">
+                        <p-button icon="pi pi-check" (click)="saveProfessionalHistory()" label="Salvar"
+                            class="hireme-confirm-button" style="margin-right: 5px;"></p-button>
+                        <p-button icon="pi pi-times" class="p-button-danger" (click)="closeProfessionalHistoryDialog()"
+                            label="Fechar">
+                        </p-button>
+                    </div>
+                </p-footer>
+            </div>
+        </p-dialog>
     </div>
 
 </div>

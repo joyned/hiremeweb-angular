@@ -17,6 +17,7 @@
                     <th pSortableColumn="applicationDate">Data aplicação <p-sortIcon field="applicationDate"></p-sortIcon></th>
                     <th pSortableColumn="status">Status aplicação <p-sortIcon field="status"></p-sortIcon></th>
                     <th>Visualizar processo</th>
+                    <th>Mensagem</th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-candidate>
@@ -38,6 +39,10 @@
                     <td>
                         <span class="p-column-title">Visualizar processo</span>
                         <p-button label="Processo" (click)="openProcess(candidate)"></p-button>
+                    </td>
+                    <td>
+                        <span class="p-column-title">Mensagem</span>
+                        <p-button label="Mensagem" (click)="openMessage(candidate.candidateId)"></p-button>
                     </td>
                 </tr>
             </ng-template>

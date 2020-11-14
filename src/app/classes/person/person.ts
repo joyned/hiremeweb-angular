@@ -1,6 +1,7 @@
 import { PersonAddress } from './person-addres';
 import { User } from '../user/user';
 import { ProfessionalHistory } from '../candidate/professional-history';
+import { PersonEducation } from './PersonEducation';
 
 export class Person {
     id: number;
@@ -8,7 +9,7 @@ export class Person {
     fullname: string;
     cpf: number;
     rg: number;
-    birthdate: Date;
+    birthdate: string;
     city: string;
     state: string;
     country: string;
@@ -16,4 +17,6 @@ export class Person {
     personAddress: PersonAddress;
     user: User;
     professionalHistory: ProfessionalHistory[];
+    abilities: string[];
+    personEducations: PersonEducation[];
 }

@@ -43,9 +43,7 @@
                     [(ngModel)]="person.cpf" name="cpf" disabled="true"></p-inputMask>
                 <p-inputMask mask="99.999.999-9" placeholder="RG" [style]="{'width':'80%'}"
                     [(ngModel)]="person.rg" name="rg" disabled="true"></p-inputMask>
-                <p-calendar placeholder="Data de nascimento" [locale]="pt" dateFormat="dd/mm/yy"
-                    [style]="{'width':'81.5%'}" [(ngModel)]="person.birthdate" name="birthdate" disabled="true">
-                </p-calendar>
+                <input pInputText placeholder="Data de nascimento" [style]="{'width':'81.5%'}" [(ngModel)]="person.birthdate" name="birthdate" disabled="true"/>
 
                 <p class="spacer"></p>
 

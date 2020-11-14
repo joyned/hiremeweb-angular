@@ -53,7 +53,11 @@ export class JobCandidatesComponent implements OnInit {
   }
 
   public openCandidateProfile(personId: number) {
-    this.router.navigate(['dashboard/job/candidate/profile', {id: personId}])
+    this.router.navigate(['dashboard/job/candidate/profile', {id: personId}]);
+  }
+
+  public openMessage(personId: number){
+    this.router.navigate(['dashboard/job/candidate/message', {id: personId}]);
   }
 
 }

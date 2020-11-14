@@ -88,9 +88,6 @@ h2 {
   }
 }
 
-.p-tabview-nav {
-  display: none !important;
-}
 
 .professional-history-details {
   h1 {
@@ -109,11 +106,32 @@ h2 {
   }
 }
 
+.abilities-container {
+  text-align: center;
+  .p-chips {
+    width: 100%;
+    margin-left: 23%;
+  }
+}
+
+
 .professional-history-add-button {
   margin-bottom: 2%;
 }
 
+@media(max-width:844px){
+  .p-tabview-nav {
+    display: none !important;
+  }
+}
+
 @media(max-width: 960px){
+  .abilities-container {
+    .p-chips {
+      width: 75%;
+      margin-left: 7%;
+    }
+  }
   .p-inputtext {
     width: 90% !important;
   }

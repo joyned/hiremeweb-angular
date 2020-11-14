@@ -12,6 +12,7 @@ import { of } from 'rxjs';
 import { Router } from '@angular/router';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ChangePasswordComponent } from '../change-password/change-password.component';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-configuration',
@@ -22,7 +23,8 @@ import { ChangePasswordComponent } from '../change-password/change-password.comp
 export class ConfigurationComponent implements OnInit {
 
   constructor(private messageService: AlertMessageService, private router: Router,
-    private sanitizer: DomSanitizer, private http: HttpClient, private dialogService: DialogService) { }
+    private sanitizer: DomSanitizer, private http: HttpClient, private dialogService: DialogService,
+    private datePipe: DatePipe) { }
 
   public image: any;
   public person: Person;
@@ -45,11 +47,11 @@ export class ConfigurationComponent implements OnInit {
     this.http.get<any>(ApiUtil.getPath() + 'person/get', ApiUtil.buildOptions())
       .pipe(
         tap((data) => {
-          this.person.birthdate = new Date();
           this.person = data.payload;
           this.image = 'data:image/jpg;base64,' + (this.sanitizer.bypassSecurityTrustResourceUrl(this.person.photo) as any)
             .changingThisBreaksApplicationSecurity;
           this.loading = false;
+          this.person.birthdate = this.datePipe.transform(this.person.birthdate, 'dd/MM/yyyy');
         }),
         catchError((httpResponse) => {
           this.loading = false;
