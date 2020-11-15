@@ -24,6 +24,7 @@
 }
 
 .messages-body-content {
+    margin-bottom: 20px;
     .message {
         margin-bottom: 20px;
         padding: 15px;
@@ -32,6 +33,7 @@
     .mine {
         background-color: lightgray;
         margin-bottom: 20px;
+        text-align: end;
     }
 }
 

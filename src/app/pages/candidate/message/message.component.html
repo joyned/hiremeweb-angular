@@ -4,27 +4,32 @@
         <h1>Mensagens</h1>
     </div>
 
+    <div class="messages-body-content">
+        <p-card>
+            <div *ngIf="!messages">
+                <p>Não existe um histórico de Mensagens ainda. Mande a primeira!</p>
+            </div>
+            <div *ngIf="messages">
+                <div *ngFor="let message of messages" [ngClass]="message.mine ? 'message mine' : 'message'">
+                    <div class="message-header">
+                        <b>{{message.fromName}}</b>
+                    </div>
+                    <div class="message-body">
+                        {{message.message}}
+                    </div>
+                    <div class="message-footer" style="font-size: small;">
+                        {{transformDate(message.sentDate)}}
+                    </div>
+                </div>
+            </div>
+        </p-card>
+    </div>
+
     <div class="messages-input-text spacer-bottom">
         <p-card header="Sua mensagem">
             <textarea pInputTextarea [cols]="30" [rows]="10" [(ngModel)]="message.message"></textarea>
 
             <p-button label="Enviar" (click)="sendMessage()"></p-button>
-        </p-card>
-    </div>
-
-    <div class="messages-body-content">
-        <p-card>
-            <div *ngFor="let message of messages" [ngClass]="message.mine ? 'message mine' : 'message'">
-                <div class="message-header">
-                    <b>{{message.fromName}}</b>
-                </div>
-                <div class="message-body">
-                    {{message.message}}
-                </div>
-                <div class="message-footer" style="font-size: small;">
-                    {{transformDate(message.sentDate)}}
-                </div>
-            </div>
         </p-card>
     </div>
 </div>

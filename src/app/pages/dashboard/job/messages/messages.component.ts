@@ -63,7 +63,7 @@ export class MessagesComponent implements OnInit {
   }
 
   public transformDate(date) {
-    return this.datePipe.transform(date, 'dd/MM/yyyy')
+    return this.datePipe.transform(date, 'dd/MM/yyyy HH:mm:ss')
   }
 
 }
