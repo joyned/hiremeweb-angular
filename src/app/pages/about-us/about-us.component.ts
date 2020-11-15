@@ -1,5 +1,10 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { SelectItem } from 'primeng/api';
+import { of } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
+import { ApiUtil } from 'src/app/classes/utils/APIUtils/api-util';
+import { AlertMessageService } from 'src/app/services/alert-message/alert-message.service';
 
 @Component({
   selector: 'app-about-us',
@@ -9,18 +14,25 @@ import { SelectItem } from 'primeng/api';
 })
 export class AboutUsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private http: HttpClient, private alertMessageService: AlertMessageService) { }
 
   public options: SelectItem[] = [
     {
       label: 'Empresa',
-      value: 'E'
+      value: 'Empresa'
     },
     {
       label: 'Candidato',
-      value: 'C'
+      value: 'Empresa'
     }
   ];
+
+  public contact = {
+    email: '',
+    name: '',
+    position: 'Empresa',
+    message: ''
+  }
 
   public infos = [
     {
@@ -56,6 +68,26 @@ export class AboutUsComponent implements OnInit {
 
   public scrollToElement($element): void {
     $element.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
+  }
+
+  public sendContactEmail() {
+    if (this.validateFields()) {
+      this.http.post(ApiUtil.getPath() + 'contact', this.contact, {})
+        .pipe(
+          tap((data: any) => {
+            this.alertMessageService.successMessage('Sucesso', 'Seu contato foi enviado para nosso time. Fique de olho no seu email :).');
+          }),
+          catchError((httpErrorResponse) => {
+            return of()
+          })
+        ).subscribe();
+    } else {
+      this.alertMessageService.errorMessage('Erro', 'É necessário preencher o nome, email e mensagem para enviar um contato');
+    }
+  }
+
+  private validateFields() {
+    return this.contact.name && this.contact.email && this.contact.message
   }
 
 }

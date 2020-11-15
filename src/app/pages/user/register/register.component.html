@@ -197,6 +197,12 @@
                     <p-button label="Adicionar educação" (click)="openEducationDialog()"></p-button>
                 </div>
 
+                <div class="next-prev-button">
+                    <p-button label="Proximo" icon="pi pi-arrow-right" styleClass="p-button" (click)="nextTab()"
+                        class="hireme-confirm-button"></p-button>
+                    <p-button label="Voltar" icon="pi pi-arrow-left" styleClass="p-button" class="p-button-danger"
+                        (click)="previousTab()"></p-button>
+                </div>
 
                 <p-dialog header="Educação" [(visible)]="personEducationDialog" [focusOnShow]="false" showEffect="fade"
                     [modal]="true" [style]="{width: '50vw'}">
@@ -263,7 +269,7 @@
                         condições?</a></label>
             </div>
             <div>
-                <p-button label="Registrar" style="width: 15%;" (click)="register()"></p-button>
+                <p-button label="Registrar" style="width: 15%; margin-right: 15px;" (click)="register()" class="hireme-green-button"></p-button>
                 <p-button label="Voltar" icon="pi pi-arrow-left" styleClass="p-button" class="p-button-danger"
                     (click)="previousTab()"></p-button>
             </div>
