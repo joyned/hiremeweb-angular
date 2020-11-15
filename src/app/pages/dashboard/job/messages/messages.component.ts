@@ -52,6 +52,7 @@ export class MessagesComponent implements OnInit {
         .pipe(
           tap((data: any) => {
             this.getMessages();
+            this.message = new Message();
           }),
           catchError((httpErrorResponse) => {
             return of();

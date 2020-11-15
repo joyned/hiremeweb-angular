@@ -71,9 +71,6 @@ export class MenuBarComponent implements OnInit {
         command: () => this.redirectToPage('/jobs')
       },
       {
-        label: 'Para empresas',
-      },
-      {
         label: 'Sobre nós',
         command: () => this.redirectToPage('/about-us')
       }

@@ -6,11 +6,7 @@
         <p>Candidato: {{candidate.candidateName}}</p>
     </div>
 
-    <div *ngIf="jobSelectiveProcess.length === 0" style="text-align: center; margin: 0 auto; width: 36%;">
-        Para essa vaga não foi escolhido um processo seletivo, você pode entrar em contato com o candidato por email. :)
-    </div>
-
-    <div *ngIf="jobSelectiveProcess.length !== 0">
+    <div *ngIf="jobSelectiveProcess && jobSelectiveProcess.length !== 0">
         <div class="job-candidate-process-steps" *ngFor="let step of jobSelectiveProcess">
             <p-accordion
                 [ngClass]="step.status === 'P' || step.status === 'G' ? 'hire-me-accordion-red' : 'hire-me-accordion'">

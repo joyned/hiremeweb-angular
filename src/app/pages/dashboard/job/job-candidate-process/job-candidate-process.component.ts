@@ -58,6 +58,7 @@ export class JobCandidateProcessComponent implements OnInit {
         }),
         catchError((httpResponse) => {
           this.alertMessageService.errorMessage('Erro', 'Ocorreu um erro ao aprovar. Tente novamente.');
+          this.getSelectiveProcess();
           return of();
         })
       ).subscribe();
