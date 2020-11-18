@@ -17,6 +17,8 @@ export class JobCandidateProcessComponent implements OnInit {
 
   public candidate: any;
   public jobSelectiveProcess: JobSelectiveProcess[];
+  public loading = false;
+  public lastApproval = false;
 
   constructor(private activatedRoute: ActivatedRoute, private http: HttpClient,
     private confirmationService: ConfirmationService, private router: Router,
@@ -28,12 +30,15 @@ export class JobCandidateProcessComponent implements OnInit {
   }
 
   private getSelectiveProcess() {
+    this.loading = true;
     this.http.post<any>(ApiUtil.getPath() + 'selective/process/job/candidate', this.candidate, ApiUtil.buildOptions())
       .pipe(
         tap((data: any) => {
           this.jobSelectiveProcess = data.payload.selectiveProcess;
+          this.loading = false;
         }),
         catchError((httpResponse) => {
+          this.loading = false;
           return of();
         })
       ).subscribe();
@@ -50,15 +55,20 @@ export class JobCandidateProcessComponent implements OnInit {
   }
 
   private approve(processId: number) {
+    this.loading = true;
     this.http.post<any>(ApiUtil.getPath() + 'approval/selective/process/approve/' + processId, {}, ApiUtil.buildOptions())
       .pipe(
         tap((data: any) => {
           this.alertMessageService.successMessage('Sucesso', 'Aprovado com suceso!');
           this.getSelectiveProcess();
+          this.loading = false;
+          this.lastApproval = Boolean(data.payload);
+          console.log(this.lastApproval);
         }),
         catchError((httpResponse) => {
           this.alertMessageService.errorMessage('Erro', 'Ocorreu um erro ao aprovar. Tente novamente.');
           this.getSelectiveProcess();
+          this.loading = false;
           return of();
         })
       ).subscribe();
@@ -76,11 +86,15 @@ export class JobCandidateProcessComponent implements OnInit {
 
 
   private reject(processId: number) {
+    this.loading = true;
     this.http.post<any>(ApiUtil.getPath() + 'approval/selective/process/reject/' + processId, {}, ApiUtil.buildOptions())
       .pipe(
         tap((data: any) => {
+          this.getSelectiveProcess();
+          this.loading = false;
         }),
         catchError((httpResponse) => {
+          this.loading = false;
           return of();
         })
       ).subscribe();

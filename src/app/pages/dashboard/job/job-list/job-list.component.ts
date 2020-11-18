@@ -2,12 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
-import { DialogService } from 'primeng/dynamicdialog';
 import { of } from 'rxjs';
-import { tap, catchError } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 import { Job } from 'src/app/classes/job/job';
 import { ApiUtil } from 'src/app/classes/utils/APIUtils/api-util';
-import { JobCandidatesComponent } from '../job-candidates/job-candidates.component';
 
 @Component({
   selector: 'app-job-list',
@@ -75,6 +73,7 @@ export class JobListComponent implements OnInit {
     this.http.post<any>(ApiUtil.getPath() + 'job/status', body, ApiUtil.buildOptions())
       .pipe(
         tap((data: any) => {
+          this.getJobsByUserId();
         }),
         catchError((httpResponse) => {
           return of();

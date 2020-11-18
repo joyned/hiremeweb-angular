@@ -9,15 +9,21 @@
         <b>Questão {{i + 1}}:</b>
         <p [innerHtml]="question.questionTitle"></p>
 
-        <b>Alternativas:</b>
-
-        <div class="questionnaire view questions options"
-            *ngFor="let option of question.questionnaireQuestionOption; let i = index">
-            <div class="p-field-radiobutton">
-                <p-radioButton value="option.id" inputId="city1"></p-radioButton>
-                <label for="city1" style="margin-top: 8px;">{{option.optionTitle}}</label>
+        <div *ngIf="question.answerType === 'E'">
+            <b>Alternativas:</b>
+            <div class="questionnaire view questions options"
+                *ngFor="let option of question.questionnaireQuestionOption; let i = index">
+                <div class="p-field-radiobutton">
+                    <p-radioButton value="option.id" inputId="city1" [disabled]="true"></p-radioButton>
+                    <label for="city1" style="margin-top: 8px;">{{option.optionTitle}}</label>
+                </div>
             </div>
         </div>
+
+        <div class="question-text spacer-bottom" *ngIf="question.answerType === 'T'">
+            <p-editor [style]="{'height':'320px'}"></p-editor>
+        </div>
+
 
         <hr class="separator">
     </div>

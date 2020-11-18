@@ -6,7 +6,9 @@
             <th class="icon-column">Visualizar</th>
             <th class="icon-column">Candidatos</th>
             <th class="icon-column">Editar</th>
-            <th class="icon-column">Inativar vaga</th>
+            <th class="icon-column">
+                Ativar/Inativar
+            </th>
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-job>
@@ -36,7 +38,7 @@
                 <i class="pi pi-pencil" (click)="editJob(job)"></i>
             </td>
             <td class="icon-column">
-                <span class="p-column-title">Inativar vaga</span>
+                <span class="p-column-title">Ativar/Inativar</span>
                 <i class="pi pi-times" (click)="confirmChangeStatus(job)"></i>
             </td>
         </tr>
